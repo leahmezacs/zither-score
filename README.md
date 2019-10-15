@@ -2,4 +2,4 @@
 
 #### Notes:
 make sure to .gitignore these files/dir
-* hosted_images
+* host_images
