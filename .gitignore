@@ -1,2 +1,2 @@
-#Don't track content of these folders
-host_images/*
+#Don't track these folders
+/host_images/*
