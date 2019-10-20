@@ -6,3 +6,6 @@
 # dependencies
 node_modules
 build
+
+# wiki
+zither-score.wiki
