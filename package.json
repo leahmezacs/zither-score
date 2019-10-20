@@ -1,0 +1,19 @@
+{
+  "name": "zither-score",
+  "version": "1.0.0",
+  "description": "make sure to .gitignore these files/dir\r * host_images",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessica-chu/zither-score.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessica-chu/zither-score/issues"
+  },
+  "homepage": "https://github.com/jessica-chu/zither-score#readme"
+}
