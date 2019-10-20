@@ -1,4 +1,6 @@
-# Welcome to the Zither Score app! Please check our [wiki](https://github.com/leahmezacs/zither-score/wiki) for more detailed information
+# Welcome to the Zither Score app!
+
+**Please check our [wiki](https://github.com/leahmezacs/zither-score/wiki) for more detailed information**
 
 #### Notes:
 For those using npm... install react-scripts: `npm i react-scripts`
