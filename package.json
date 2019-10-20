@@ -2,22 +2,26 @@
   "name": "zither-score",
   "version": "1.0.0",
   "description": "make sure to .gitignore these files/dir\r * host_images",
-  "main": "index.js",
+  "main": "App.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/webpack-dev-server --config ./webpack/webpack.dev.config.js"
+    "dev": "./node_modules/.bin/webpack-dev-server --config ./webpack/webpack.dev.config.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jessica-chu/zither-score.git"
+    "url": "git+https://github.com/leahmezacs/zither-score.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jessica-chu/zither-score/issues"
+    "url": "https://github.com/leahmezacs/zither-score/issues"
   },
-  "homepage": "https://github.com/jessica-chu/zither-score#readme",
+  "homepage": "https://github.com/leahmezacs/zither-score/wiki",
   "dependencies": {
+    "core-util-is": "^1.0.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "webpack": "^4.41.2",
@@ -35,7 +39,8 @@
     "css-loader": "^3.2.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "style-loader": "^1.0.0"
+    "style-loader": "^1.0.0",
+    "webpack-cli": "^3.3.9"
   },
   "babel": {
     "presets": [
@@ -45,6 +50,18 @@
     ],
     "plugins": [
       "transform-object-rest-spread"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }
