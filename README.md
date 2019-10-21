@@ -7,3 +7,5 @@ For those using npm... install react-scripts: `npm i react-scripts`
 * Our package.json uses `npm start` to start the app
 
 We will be using [Flat IO API](https://github.com/FlatIO/api-client-js).
+
+The Zither Score will open in http://localhost:3000/
