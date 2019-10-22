@@ -6,8 +6,10 @@ class HomePage extends Component{
         return (
             <div>
                 <NavBar />
+                <div className="text-center">
                 <h1>Home Page</h1>
                 <p>Will be modify later</p>
+                </div>    
             </div>
         )  
     }
