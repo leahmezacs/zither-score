@@ -6,13 +6,14 @@ import {
     Form,
     FormControl,
     Button
-    } from 'reactstrap';
+    } from 'react-bootstrap';
 
 
 class NavBar extends Component {
     render(){
         return (
             <div>
+
             </div>
         )
     }
