@@ -6,9 +6,12 @@ class Settings extends Component{
         return (
             <div>
                 <NavBar />
-                <div className="text-center">
-                    <p>test</p>
-                </div>    
+                {/* change after backend setup */}
+                
+                <p>Username: </p>
+                <p>password: </p> 
+                <p>email: </p>
+                
             </div>
         )  
     }
