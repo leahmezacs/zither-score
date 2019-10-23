@@ -3,7 +3,8 @@ import HomePage from './components/HomePage.js'
 import Settings from './components/Settings.js'
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-export default class App extends Component {
+
+class App extends Component {
     render () {
         return (
             <div>
@@ -17,4 +18,5 @@ export default class App extends Component {
         )  
     }
 }
+export default App;
 
