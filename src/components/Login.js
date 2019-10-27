@@ -12,3 +12,34 @@ const authErrorMessageMapper = (message) => {
     console.log("ERROR: " + message);
     return message;
 }
+
+class Login extends Component {
+    render() {
+        return (
+            <div>
+                <div>
+                    <Authenticator
+                        onStateChange={this.handleAuthStateChange}  
+                        amplifyConfig={awsExports}
+                        errorMessage={authErrorMessageMapper}
+                    />
+                </div>
+            </div>
+        )
+    }
+}
+
+handleAuthStateChange = async (state) => {
+    if (state === 'signedIn') {
+        const cognitoUser = await Auth.currentAuthenticatedUser();
+        const userExists = await getUser(cognitoUser.username);
+        if (!userExists) {
+            const createdUser = await createUser({id: cognitoUser.username, username: cognitoUser.username });
+            this.props.onLogin(cognitoUser);
+        } else {
+            this.props.onLogin(cognitoUser);
+        }
+    }
+}
+
+export default Login;
