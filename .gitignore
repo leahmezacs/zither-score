@@ -1,7 +1,7 @@
 # Don't track these folders
 
 # images
-/host_images/*
+host_images/*
 
 # dependencies
 node_modules
@@ -9,3 +9,5 @@ build
 
 # wiki
 zither-score.wiki
+The Business Model Canvas.jpg
+*/.md
