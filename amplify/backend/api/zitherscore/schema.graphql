@@ -1,5 +1,0 @@
-type Users @model {
-  username: String!
-  email: String!
-  type: String!
-}
