@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { Analytics, Auth } from 'aws-amplify';
 import HomePage from './components/HomePage.js'
 import Settings from './components/Settings.js'
+import Login from './components/Login.js'
 
 
 class App extends Component {
@@ -42,8 +43,9 @@ class App extends Component {
                 <Router>
                     <Switch>
                         <Route path="/" 
-                            render = {() => <HomePage onLogin={this.updateCurrentUser} />}
+                            render = {() => <Login onLogin={this.updateCurrentUser} />}
                         />
+                        <Route path="/HomePage" exact component={HomePage} />
                         <Route path="/Settings" exact component={Settings} />
                     </Switch>
                 </Router>
