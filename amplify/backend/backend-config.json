@@ -1,9 +1,15 @@
 {
 	"auth": {
-		"zitherscorec9fd6fe2": {
+		"zitherscore48a8bce6": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
+		}
+	},
+	"analytics": {
+		"zitherscore": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
 		}
 	},
 	"api": {
@@ -14,10 +20,9 @@
 				"authConfig": {
 					"additionalAuthenticationProviders": [],
 					"defaultAuthentication": {
-						"authenticationType": "API_KEY",
-						"apiKeyConfig": {
-							"description": "",
-							"apiKeyExpirationDays": 7
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authzitherscore48a8bce6"
 						}
 					}
 				}
