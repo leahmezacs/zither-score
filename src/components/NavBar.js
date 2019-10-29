@@ -31,7 +31,7 @@ class NavBar extends Component {
                         <Nav.Link href="#">Create</Nav.Link>
                         <Nav.Link href="#">Notification</Nav.Link>
                     </Nav>
-                    
+                            
                     {/* Icon will later be change to icon */}
                     <NavDropdown title="Icon" id="basic-nav-dropdown">
                         <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
@@ -40,8 +40,7 @@ class NavBar extends Component {
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#">Help</NavDropdown.Item>
                         <NavDropdown.Item href="#">Logout</NavDropdown.Item>
-                    </NavDropdown>
-                    
+                    </NavDropdown> 
                 </Navbar.Collapse>
                 </Navbar>
             </div>
