@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Redirect } from 'react-router-dom';
 import {
     Navbar,
     Nav,
@@ -10,11 +11,11 @@ import {
 
 
 class NavBar extends Component {
-    render(){
+    render(){  
         return (
             <div>
                 <Navbar bg="secondary" expand="lg">
-                {/* Logo will be later insert as image */}
+                
                 <Navbar.Brand href="#">Logo</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -27,20 +28,26 @@ class NavBar extends Component {
                         <Button variant="outline-warning">Search</Button>
                     </Form>
                     
-                    <Nav className="ml-auto">
-                        <Nav.Link href="#">Create</Nav.Link>
-                        <Nav.Link href="#">Notification</Nav.Link>
-                    </Nav>
+                    {this.props.loggedInUser
+                        ? <>
+                            <Nav className="ml-auto">
+                                <Nav.Link href="#">Create</Nav.Link>
+                                <Nav.Link href="#">Notification</Nav.Link>
+                            </Nav>
+                                    
                             
-                    {/* Icon will later be change to icon */}
-                    <NavDropdown title="Icon" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
-                        <NavDropdown.Item href="#">Libary</NavDropdown.Item>
-                        <NavDropdown.Item href="#">Profile</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#">Help</NavDropdown.Item>
-                        <NavDropdown.Item href="#">Logout</NavDropdown.Item>
-                    </NavDropdown> 
+                            <NavDropdown title="Icon" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
+                                <NavDropdown.Item href="#">Libary</NavDropdown.Item>
+                                <NavDropdown.Item href="#">Profile</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="#">Help</NavDropdown.Item>
+                                <NavDropdown.Item onClick={this.props.onSignOut}>Logout</NavDropdown.Item>
+                            </NavDropdown> 
+                        </>
+                        : <Nav.Link href="/Login">Login</Nav.Link>
+                    }
+                    
                 </Navbar.Collapse>
                 </Navbar>
             </div>
