@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { Analytics, Auth } from 'aws-amplify';
-import HomePage from './components/HomePage.js'
-import Settings from './components/Settings.js'
-import Login from './components/Login.js'
-
+import HomePage from './components/HomePage.js';
+import Settings from './components/Settings.js';
+import Login from './components/Login.js';
+import NavBar from './components/NavBar';
 
 class App extends Component {
     constructor(props) {
@@ -38,19 +38,18 @@ class App extends Component {
     }
 
     render () {
-        return (
-            <div>
-                <Router>
-                    <Switch>
-                        <Route path="/" 
-                            render = {() => <Login onLogin={this.updateCurrentUser} />}
-                        />
-                        <Route path="/HomePage" exact component={HomePage} />
-                        <Route path="/Settings" exact component={Settings} />
-                    </Switch>
-                </Router>
-            </div>
-        )  
+        return ( 
+            <Router>
+                <div className="App">
+                    <NavBar loggedInUser={this.state.currentUser} onSignOut={this.onSignOut} />
+                    <Route exact path="/" component={HomePage} />
+                    <Route exact path="/Login" 
+                        render = {() => <Login onLogin={this.updateCurrentUser} />}
+                    />
+                    <Route exact path="/Settings" component={Settings} />
+                </div>
+            </Router>
+        ); 
     }
 }
 export default App;

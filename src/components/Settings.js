@@ -1,14 +1,22 @@
-import React, {Component} from 'react';
-import NavBar from './NavBar.js';
+import React, { Component } from 'react';
+import { Auth } from 'aws-amplify';
 
-class Settings extends Component{
+class Settings extends Component {
+    state = {
+        info: {}
+    }
+   
+    async componentDidMount() {
+        const info = await Auth.currentUserInfo();
+        this.setState({ info });
+    }
+
     render () {
+        const { info } = this.state
+        const { username } = info
         return (
             <div>
-                <NavBar />
-                {/* change after backend setup */}
-                
-                <p>Username: </p>
+                <p>Username: {username}</p>
                 <p>password: </p> 
                 <p>email: </p>
                 

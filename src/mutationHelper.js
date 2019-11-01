@@ -7,19 +7,3 @@ const assertErrors = (response) => {
     }
 }
 
-export const createUser = async (user) => {
-    try {
-        const response = await API.graphql(
-            graphqlOperation(mutations.CreateUser, { user })
-        );
-        assertErrors(response);
-        return response.data.createUser;
-    } catch (e) {
-        Analytics.record({
-            name: 'CreateUserError',
-            attributes: {
-                error: e.message
-            }
-        })
-    }
-}
