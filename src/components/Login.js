@@ -31,5 +31,6 @@ class Login extends Component {
             this.props.onLogin(cognitoUser);
         }
     }
+    
 }
 export default Login;

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Redirect } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import {
     Navbar,
     Nav,
@@ -12,6 +12,10 @@ import {
 
 class NavBar extends Component {
     render(){  
+        console.log(this.props.location);
+        if (this.props.location.pathname === '/Login' && this.props.loggedInUser) {
+            return <Redirect to="/" />
+        }
         return (
             <div>
                 <Navbar bg="secondary" expand="lg">
@@ -34,8 +38,6 @@ class NavBar extends Component {
                                 <Nav.Link href="#">Create</Nav.Link>
                                 <Nav.Link href="#">Notification</Nav.Link>
                             </Nav>
-                                    
-                            
                             <NavDropdown title="Icon" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
                                 <NavDropdown.Item href="#">Libary</NavDropdown.Item>
@@ -55,4 +57,4 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar;
+export default withRouter(NavBar);
