@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { Analytics, Auth } from 'aws-amplify';
-import HomePage from './components/HomePage.js'
-import Settings from './components/Settings.js'
-import Login from './components/Login.js'
-import NavBar from './components/NavBar'
-
+import HomePage from './components/HomePage.js';
+import Settings from './components/Settings.js';
+import Login from './components/Login.js';
+import NavBar from './components/NavBar';
 
 class App extends Component {
     constructor(props) {
@@ -39,8 +38,7 @@ class App extends Component {
     }
 
     render () {
-        return (
-            
+        return ( 
             <Router>
                 <div className="App">
                     <NavBar loggedInUser={this.state.currentUser} onSignOut={this.onSignOut} />
@@ -48,10 +46,9 @@ class App extends Component {
                     <Route exact path="/Login" 
                         render = {() => <Login onLogin={this.updateCurrentUser} />}
                     />
-                    <Route path="/Settings" component={Settings} />
+                    <Route exact path="/Settings" component={Settings} />
                 </div>
             </Router>
-            
         ); 
     }
 }
