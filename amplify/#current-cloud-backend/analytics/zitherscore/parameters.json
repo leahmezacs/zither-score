@@ -1,0 +1,20 @@
+{
+    "appName": "zitherscore",
+    "roleName": "pinpointLambdaRole2440bfc1",
+    "cloudWatchPolicyName": "cloudWatchPolicy2440bfc1",
+    "pinpointPolicyName": "pinpointPolicy2440bfc1",
+    "authPolicyName": "pinpoint_amplify_2440bfc1",
+    "unauthPolicyName": "pinpoint_amplify_2440bfc1",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
