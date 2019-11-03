@@ -6,7 +6,7 @@ class Library extends Component {
     render () {
         return (
             <div>
-                    <NavBar id="nav-bar" className="fixed-top"></NavBar>
+                    <NavBar id="nav-bar" className="fixed-top"/>
                     
                     <div id="left-bar">
                         <div id="inner">
