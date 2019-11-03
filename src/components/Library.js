@@ -6,8 +6,19 @@ class Library extends Component {
     render () {
         return (
             <div>
-                    <div id="nav-bar">
-                        <NavBar></NavBar>
+                    <NavBar id="nav-bar" className="fixed-top"></NavBar>
+                    
+                    <div id="left-bar">
+                        <div id="col-scores" className="position-fixed">
+                            <a>
+                                <span>Scores</span>
+                            </a>
+                        </div>
+                        <div id="col-new">
+                            <a>
+                                <span>New collection</span>
+                            </a>
+                        </div>
                     </div>
             </div>
         )
