@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
 import { Authenticator } from 'aws-amplify-react';
-import awsmobile from '../aws-exports';
+import awsmobile from '../../aws-exports';
 
 const authErrorMessageMapper = (message) => {
     if (/incorrect.*username.*password/i.test(message)) {
