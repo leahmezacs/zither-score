@@ -6,7 +6,9 @@ class Library extends Component {
     render () {
         return (
             <div>
-
+                    <div id="nav-bar">
+                        <NavBar></NavBar>
+                    </div>
             </div>
         )
     }
