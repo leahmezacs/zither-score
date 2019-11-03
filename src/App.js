@@ -46,7 +46,7 @@ class App extends Component {
                     <Route exact path="/Login" 
                         render = {() => <Login onLogin={this.updateCurrentUser} />}
                     />
-                    <Route exact path="/Settings" component={Settings} />
+                    <Route exact path="/Settings" component={Settings}/>
                 </div>
             </Router>
         ); 
