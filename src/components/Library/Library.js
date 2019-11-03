@@ -33,31 +33,31 @@ class Library extends Component {
                                     </div>
                                  </div>
                             </Col>
-                        </Row>
-                    </Container>
-                    
-
-                    <div id="main-bar">
-                        <div id="library-content">
-                            <div id="header">
-                                <h1>
-                                    Scores
-                                </h1>
-                            </div>
-                            <div id="scores-list">
-                                <div className="thead">
-                                    <div className="tr">
-                                        // className="th" Checkbox div
-                                        <div className="th">Name</div>
-                                        <div className="th">Modified</div>
-                                        <div className="th">Sharing</div>
-                                        <div className="th"></div>
+                            <Col>
+                                <div id="main-bar">
+                                    <div id="library-content">
+                                        <div id="header">
+                                            <h1>
+                                                Scores
+                                            </h1>
+                                        </div>
+                                        <div id="scores-list">
+                                            <div className="thead">
+                                                <div className="tr">
+                                                    // className="th" Checkbox div
+                                                    <div className="th">Name</div>
+                                                    <div className="th">Modified</div>
+                                                    <div className="th">Sharing</div>
+                                                    <div className="th"></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
+                            </Col>
+                        </Row>
+                    </Container>
+                
                     <div id="right-bar">
                         <div id="inner">
                             <button>Create new score</button>
