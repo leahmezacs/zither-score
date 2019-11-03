@@ -20,6 +20,11 @@ class Library extends Component {
                                     <span>New collection</span>
                                 </a>
                             </div>
+                            <div id="col-trash">
+                                <a>
+                                    <span>Trash</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
