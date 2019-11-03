@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar';
 import { Auth } from 'aws-amplify';
+import { Container, Row, Col } from 'react-bootstrap/';
+
 
 class Library extends Component {
     render () {
@@ -8,25 +10,32 @@ class Library extends Component {
             <div>
                     <NavBar id="nav-bar" className="fixed-top"/>
                     
-                    <div id="left-bar">
-                        <div id="inner">
-                            <div id="col-scores" className="position-fixed">
-                                <a>
-                                    <span>Scores</span>
-                                </a>
-                            </div>
-                            <div id="col-new">
-                                <a>
-                                    <span>New collection</span>
-                                </a>
-                            </div>
-                            <div id="col-trash">
-                                <a>
-                                    <span>Trash</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <Container>
+                        <Row>
+                            <Col>
+                                <div id="left-bar">
+                                    <div id="inner">
+                                        <div id="col-scores" className="position-fixed">
+                                            <a>
+                                                <span>Scores</span>
+                                            </a>
+                                        </div>
+                                        <div id="col-new">
+                                            <a>
+                                                <span>New collection</span>
+                                            </a>
+                                        </div>
+                                        <div id="col-trash">
+                                            <a>
+                                                <span>Trash</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                    
 
                     <div id="main-bar">
                         <div id="library-content">
