@@ -42,7 +42,12 @@ class Library extends Component {
                                 </div>
                             </div>
                         </div>
+                    </div>
 
+                    <div id="right-bar">
+                        <div id="inner">
+                            <button>Create new score</button>
+                        </div>
                     </div>
             </div>
         )
