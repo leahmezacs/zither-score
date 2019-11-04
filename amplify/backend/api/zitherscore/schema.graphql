@@ -3,7 +3,7 @@ type User
   @auth(rules: [{ allow: owner, ownerField: "id", queries: null }]) {
   id: ID!
   username: String!
-  email: String!
+  email: AWSEmail
   scores: [Score] @connection(name: "UserScores", sortField: "createdDate")
 }
 
@@ -11,8 +11,8 @@ type Scores @model {
   id: ID!
   content: String!
   user: User @connection(name: "UserScores", sortField: "createdDate")
-  createdDate: String
-  updatedDate: String
+  createdDate: AWSDateTime
+  updatedDate: AWSDateTime
   status: ScoreStatus
 }
 
