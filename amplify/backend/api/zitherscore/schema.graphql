@@ -4,4 +4,19 @@ type User
   id: ID!
   username: String!
   email: String!
+  scores: [Score] @connection(name: "UserScores", sortField: "createdDate")
+}
+
+type Scores @model {
+  id: ID!
+  content: String!
+  user: User @connection(name: "UserScores", sortField: "createdDate")
+  createdDate: String
+  updatedDate: String
+  status: ScoreStatus
+}
+
+enum ScoreStatus {
+  PRIVATE
+  PUBLIC
 }
