@@ -55,14 +55,15 @@ class Library extends Component {
                                     </div>
                                 </div>
                             </Col>
+                            <Col>
+                                <div id="right-bar">
+                                    <div id="inner">
+                                        <button>Create new score</button>
+                                    </div>
+                                </div>
+                            </Col>
                         </Row>
                     </Container>
-                
-                    <div id="right-bar">
-                        <div id="inner">
-                            <button>Create new score</button>
-                        </div>
-                    </div>
             </div>
         )
     }
