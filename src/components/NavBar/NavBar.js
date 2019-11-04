@@ -41,7 +41,7 @@ class NavBar extends Component {
                             </Nav>
                             <NavDropdown title="Icon" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
-                                <NavDropdown.Item href="#">Libary</NavDropdown.Item>
+                                <NavDropdown.Item href="/Library">Library</NavDropdown.Item>
                                 <NavDropdown.Item href="#">Profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#">Help</NavDropdown.Item>
