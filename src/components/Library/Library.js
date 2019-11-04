@@ -9,7 +9,7 @@ class Library extends Component {
             <div>
                 <Container>
                     <Row>
-                        <Col xs={2}>
+                        <Col xs lg={2}>
                             <div id="left-bar">
                                 <div id="inner">
                                     <div id="col-scores" className="position-fixed">
@@ -30,7 +30,7 @@ class Library extends Component {
                                 </div>
                                 </div>
                         </Col>
-                        <Col xs={8}>
+                        <Col xs lg={8}>
                             <div id="main-bar">
                                 <div id="library-content">
                                     <div id="header">
@@ -41,7 +41,7 @@ class Library extends Component {
                                     <Row>
                                         <Col>Name</Col>
                                         <Col md="auto">Date Modified</Col>
-                                        <Col xs lg="2">Sharing</Col>
+                                        <Col xs lg={2}>Sharing</Col>
                                         <Col></Col>  
                                     </Row>
                                 </div>
