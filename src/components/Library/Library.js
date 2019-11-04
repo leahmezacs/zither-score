@@ -40,7 +40,7 @@ class Library extends Component {
                                     </div>
                                     <Row>
                                         <Col>Name</Col>
-                                        <Col md="auto">Modified</Col>
+                                        <Col md="auto">Date Modified</Col>
                                         <Col xs lg="2">Sharing</Col>
                                         <Col></Col>  
                                     </Row>
