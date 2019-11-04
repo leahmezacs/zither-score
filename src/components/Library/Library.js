@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar';
 import { Auth } from 'aws-amplify';
 import { Container, Row, Col } from 'react-bootstrap/';
 
@@ -8,11 +7,9 @@ class Library extends Component {
     render () {
         return (
             <div>
-                <NavBar id="nav-bar" className="fixed-top"/>
-                
                 <Container>
                     <Row>
-                        <Col>
+                        <Col xs={2}>
                             <div id="left-bar">
                                 <div id="inner">
                                     <div id="col-scores" className="position-fixed">
@@ -33,7 +30,7 @@ class Library extends Component {
                                 </div>
                                 </div>
                         </Col>
-                        <Col xs={6}>
+                        <Col xs={8}>
                             <div id="main-bar">
                                 <div id="library-content">
                                     <div id="header">
@@ -41,24 +38,12 @@ class Library extends Component {
                                             Scores
                                         </h1>
                                     </div>
-                                    <div id="scores-list">
-                                        <div className="thead">
-                                            <div className="tr">
-                                                // className="th" Checkbox div
-                                                <div className="th">Name</div>
-                                                <div className="th">Modified</div>
-                                                <div className="th">Sharing</div>
-                                                <div className="th"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col>
-                            <div id="right-bar">
-                                <div id="inner">
-                                    <button>Create new score</button>
+                                    <Row>
+                                        <Col>Name</Col>
+                                        <Col md="auto">Modified</Col>
+                                        <Col xs lg="2">Sharing</Col>
+                                        <Col></Col>  
+                                    </Row>
                                 </div>
                             </div>
                         </Col>
