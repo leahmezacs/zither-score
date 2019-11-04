@@ -33,7 +33,7 @@ class Library extends Component {
                                     </div>
                                  </div>
                             </Col>
-                            <Col>
+                            <Col xs={6}>
                                 <div id="main-bar">
                                     <div id="library-content">
                                         <div id="header">
