@@ -9,3 +9,11 @@ build
 
 # wiki
 zither-score.wiki
+
+#amplify
+
+build/
+dist/
+node_modules/
+# aws-exports.js
+awsconfiguration.json
