@@ -13,9 +13,10 @@ import {
 class NavBar extends Component {
     render(){  
         console.log(this.props.location);
-        if (this.props.location.pathname === '/Login' && this.props.loggedInUser) {
-            return <Redirect to="/" />
+        if (this.props.loggedInUser && this.props.location.pathname === '/Login') {
+            return <Redirect to="/" />;
         }
+        
         return (
             <div>
                 <Navbar bg="secondary" expand="lg">
@@ -44,7 +45,7 @@ class NavBar extends Component {
                                 <NavDropdown.Item href="#">Profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#">Help</NavDropdown.Item>
-                                <NavDropdown.Item onClick={this.props.onSignOut}>Logout</NavDropdown.Item>
+                                <NavDropdown.Item href="/" onClick={this.props.onSignOut}>Logout</NavDropdown.Item>
                             </NavDropdown> 
                         </>
                         : <Nav.Link href="/Login">Login</Nav.Link>
