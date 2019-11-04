@@ -7,7 +7,7 @@ type User
   scores: [Score] @connection(name: "UserScores", sortField: "createdDate")
 }
 
-type Scores @model {
+type Score @model {
   id: ID!
   content: String!
   user: User @connection(name: "UserScores", sortField: "createdDate")
