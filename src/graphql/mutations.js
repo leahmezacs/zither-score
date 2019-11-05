@@ -34,4 +34,15 @@ export const createScore = `mutation createScore($input: CreateScoreInput!) {
     }
 }`
 
+export const deleteScore = `mutation deleteScore($input: DeleteScoreInput!) {
+    deleteScore(input: $input) {
+        id
+        content
+        createdDate
+        updatedDate
+        status
+        scoreUserId
+    }
+}`
+
 
