@@ -12,19 +12,19 @@ class Library extends Component {
                         <Col lg xl={2}>
                             <div id="side-bar">
                                 <div id="inner">
-                                        <a href="#!">
-                                            <span>Scores</span>
+                                        <a href="#">
+                                            <Row>Scores</Row>
                                         </a>
-                                        <a href="#!">
-                                            <span>New collection</span>
+                                        <a href="#">
+                                            <Row>New collection</Row>
                                         </a>
-                                        <a href="#!">
-                                            <span>Trash</span>
+                                        <a href="#">
+                                            <Row>Trash</Row>
                                         </a>
                                 </div>
                             </div>
                         </Col>
-                        <Col lg xl={8}>
+                        <Col lg xl={10}>
                             <div id="main-bar">
                                 <div id="library-content">
                                     <div id="header">
@@ -34,7 +34,7 @@ class Library extends Component {
                                     </div>
                                     <Row>
                                         <Col>Name</Col>
-                                        <Col md="auto">Date Modified</Col>
+                                        <Col lg xl={2}>Date Modified</Col>
                                         <Col lg xl={2}>Sharing</Col>
                                         <Col></Col>  
                                     </Row>
