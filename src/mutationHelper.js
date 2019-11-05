@@ -40,3 +40,20 @@ export const updateUser = async (user) => {
         })
     }
 }
+
+export const deleteUser = async (user) => {
+    try {
+        const response = await API.graphql(
+            graphqlOperation(mutations.deleteUser, { user })
+        );
+        assertErrors(response);
+        return response.data.deleteUser;
+    } catch (e) {
+        Analytics.record({
+            name: 'deleteUserError',
+            attributes: {
+                error: e.message
+            }
+        })
+    }
+}
