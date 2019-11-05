@@ -12,23 +12,17 @@ class Library extends Component {
                         <Col lg xl={2}>
                             <div id="left-bar">
                                 <div id="inner">
-                                    <div id="col-scores" className="position-fixed">
-                                        <a>
+                                        <a href="#!">
                                             <span>Scores</span>
                                         </a>
-                                    </div>
-                                    <div id="col-new">
-                                        <a>
+                                        <a href="#!">
                                             <span>New collection</span>
                                         </a>
-                                    </div>
-                                    <div id="col-trash">
-                                        <a>
+                                        <a href="#!">
                                             <span>Trash</span>
                                         </a>
-                                    </div>
                                 </div>
-                                </div>
+                            </div>
                         </Col>
                         <Col lg xl={8}>
                             <div id="main-bar">
