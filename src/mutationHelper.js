@@ -57,3 +57,21 @@ export const deleteUser = async (user) => {
         })
     }
 }
+
+export const createScore = async (user) => {
+    try {
+        const response = await API.graphql(
+            graphqlOperation(mutations.createScore, { user })
+        );
+        assertErrors(response);
+        return response.data.createScore;
+    } catch (e) {
+        Analytics.record({
+            name: 'createScoreError',
+            attributes: {
+                error: e.message
+            }
+        })
+    }
+}
+
