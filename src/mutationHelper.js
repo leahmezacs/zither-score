@@ -75,3 +75,19 @@ export const createScore = async (user) => {
     }
 }
 
+export const deleteScore = async (user) => {
+    try {
+        const response = await API.graphql(
+            graphqlOperation(mutations.deleteScore, { user })
+        );
+        assertErrors(response);
+        return response.data.deleteScore;
+    } catch (e) {
+        Analytics.record({
+            name: 'deleteScoreError',
+            attributes: {
+                error: e.message
+            }
+        })
+    }
+}
