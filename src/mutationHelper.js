@@ -10,15 +10,16 @@ const assertErrors = (response) => {
 export const createUser = async (user) => {
     try {
         const response = await API.graphql(
-            graphqlOperation(mutations.CreateUser, { user })
+            graphqlOperation(mutations.createUser, { user })
         );
         assertErrors(response);
         return response.data.createUser;
     } catch (e) {
         Analytics.record({
-            name: 'CreateUserError',
+            name: 'createUserError',
             attributes: {
                 error: e.message
             }
         })
     }
+}

@@ -1,36 +1,36 @@
 {
 	"providers": {
 		"awscloudformation": {
-			"AuthRoleName": "zitherscore-local-20191027184536-authRole",
-			"UnauthRoleArn": "arn:aws:iam::579217758069:role/zitherscore-local-20191027184536-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::579217758069:role/zitherscore-local-20191027184536-authRole",
-			"Region": "us-east-1",
-			"DeploymentBucketName": "zitherscore-local-20191027184536-deployment",
-			"UnauthRoleName": "zitherscore-local-20191027184536-unauthRole",
-			"StackName": "zitherscore-local-20191027184536",
-			"StackId": "arn:aws:cloudformation:us-east-1:579217758069:stack/zitherscore-local-20191027184536/7c4a6e80-f90b-11e9-b649-0e24761bd22a"
+			"AuthRoleName": "zitherscore-local-20191105130630-authRole",
+			"UnauthRoleArn": "arn:aws:iam::579217758069:role/zitherscore-local-20191105130630-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::579217758069:role/zitherscore-local-20191105130630-authRole",
+			"Region": "us-east-2",
+			"DeploymentBucketName": "zitherscore-local-20191105130630-deployment",
+			"UnauthRoleName": "zitherscore-local-20191105130630-unauthRole",
+			"StackName": "zitherscore-local-20191105130630",
+			"StackId": "arn:aws:cloudformation:us-east-2:579217758069:stack/zitherscore-local-20191105130630/fd7f3200-fff6-11e9-b48f-0247ef85be9c"
 		}
 	},
 	"auth": {
-		"zitherscore48a8bce6": {
+		"zitherscore7de0a299": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
 			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191027184536-deployment/amplify-cfn-templates/auth/zitherscore48a8bce6-cloudformation-template.yml",
-				"logicalId": "authzitherscore48a8bce6"
+				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191105130630-deployment/amplify-cfn-templates/auth/zitherscore7de0a299-cloudformation-template.yml",
+				"logicalId": "authzitherscore7de0a299"
 			},
-			"lastPushTimeStamp": "2019-11-04T03:25:58.841Z",
+			"lastPushTimeStamp": "2019-11-05T18:12:55.278Z",
 			"output": {
-				"AppClientSecret": "1d7a9qcmjdns6dfhpv3ss0e36ti38pgpaes3o4bqa3v0gaochnim",
-				"UserPoolId": "us-east-1_ITOV4RAwo",
-				"AppClientIDWeb": "4m0s9ruim21emp0vr6opj3551u",
-				"AppClientID": "26br09i8mqnof8dab4jqp8s2p2",
-				"IdentityPoolId": "us-east-1:38dc40b2-46a9-4b38-b4d4-863ae26fef74",
-				"IdentityPoolName": "zitherscore48a8bce6_identitypool_48a8bce6__local",
-				"UserPoolName": "zitherscore48a8bce6_userpool_48a8bce6"
+				"AppClientSecret": "1kagl8emnqq6ujleuan4jgb7tu700q8k1u6tg9vr1uosfmi6r4ve",
+				"UserPoolId": "us-east-2_7F0WLIMNk",
+				"AppClientIDWeb": "7u4pt9f80mqfb6ah46dmaikn5m",
+				"AppClientID": "5e07udr2e4g50tr58d48qb372l",
+				"IdentityPoolId": "us-east-2:d85cdd2a-9b7b-4f1c-80f9-f84742370aa7",
+				"IdentityPoolName": "zitherscore7de0a299_identitypool_7de0a299__local",
+				"UserPoolName": "zitherscore7de0a299_userpool_7de0a299"
 			},
-			"lastPushDirHash": "CT7dKd/p3no8XHaRQ0nuXmuO/1Q="
+			"lastPushDirHash": "6cyJu9aK64ZcBATy5whN7mJuxlE="
 		}
 	},
 	"analytics": {
@@ -38,16 +38,16 @@
 			"service": "Pinpoint",
 			"providerPlugin": "awscloudformation",
 			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191027184536-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191105130630-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
 				"logicalId": "analyticszitherscore"
 			},
-			"lastPushTimeStamp": "2019-11-04T03:25:58.842Z",
+			"lastPushTimeStamp": "2019-11-05T18:12:55.278Z",
 			"output": {
 				"appName": "zitherscore-local",
 				"Region": "us-east-1",
-				"Id": "c9c05ae444854dd09d31b529efb55153"
+				"Id": "6b4b7051c50c4fef86b100f13c42ccae"
 			},
-			"lastPushDirHash": "v1sQhSiaEaJQ2F8gyLpn3fKtDpY="
+			"lastPushDirHash": "WLueo1PvUIZo3BZ+HCKnrkim7+M="
 		}
 	},
 	"api": {
@@ -60,19 +60,19 @@
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
-							"userPoolId": "authzitherscore48a8bce6"
+							"userPoolId": "authzitherscore7de0a299"
 						}
 					}
 				},
-				"GraphQLAPIIdOutput": "juydl6by4vgf5aywoma6piprwm",
-				"GraphQLAPIEndpointOutput": "https://pq6oxelidfa5zlq5f2yf33jcsu.appsync-api.us-east-1.amazonaws.com/graphql"
+				"GraphQLAPIIdOutput": "hf3n5xzqbjgwvlpry72npmudqy",
+				"GraphQLAPIEndpointOutput": "https://zx2cc2r4jzeshkrnca27v4g5ya.appsync-api.us-east-2.amazonaws.com/graphql"
 			},
 			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191027184536-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191105130630-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apizitherscore"
 			},
-			"lastPushTimeStamp": "2019-11-04T03:25:58.844Z",
-			"lastPushDirHash": "hpex8TMS69v5DfOxuZgWb/+MQ7Y="
+			"lastPushTimeStamp": "2019-11-05T18:12:55.278Z",
+			"lastPushDirHash": "oQPR4SxL7OYulRautyMe6EtbS6k="
 		}
 	}
 }

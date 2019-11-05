@@ -1,5 +1,5 @@
-export const OnCreateUser = `
-    subscription OnCreateUser {
+export const onCreateUser = `
+    subscription onCreateUser {
         onCreateUser {
             id
             username

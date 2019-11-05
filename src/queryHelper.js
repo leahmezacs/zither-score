@@ -10,13 +10,13 @@ const assertErrors = (response) => {
 export const getUser = async (username: string) => {
     try {
         const response = await API.graphql(
-            graphqlOperation(queries.GetUser, { id: username })
+            graphqlOperation(queries.getUser, { id: username })
         );
         assertErrors(response);
         return response.data.getUser;
     } catch (e) {
         Analytics.record({
-            name: 'GetUserError',
+            name: 'getUserError',
             attributes: {
                 error: e.message
             }
