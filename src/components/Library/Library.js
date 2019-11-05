@@ -9,28 +9,22 @@ class Library extends Component {
             <div>
                 <Container>
                     <Row>
-                        <Col xs={2}>
-                            <div id="left-bar">
+                        <Col lg xl={2}>
+                            <div id="side-bar">
                                 <div id="inner">
-                                    <div id="col-scores" className="position-fixed">
-                                        <a>
-                                            <span>Scores</span>
+                                        <a href="#">
+                                            <Row>Scores</Row>
                                         </a>
-                                    </div>
-                                    <div id="col-new">
-                                        <a>
-                                            <span>New collection</span>
+                                        <a href="#">
+                                            <Row>New collection</Row>
                                         </a>
-                                    </div>
-                                    <div id="col-trash">
-                                        <a>
-                                            <span>Trash</span>
+                                        <a href="#">
+                                            <Row>Trash</Row>
                                         </a>
-                                    </div>
                                 </div>
-                                </div>
+                            </div>
                         </Col>
-                        <Col xs={8}>
+                        <Col lg xl={10}>
                             <div id="main-bar">
                                 <div id="library-content">
                                     <div id="header">
@@ -40,8 +34,8 @@ class Library extends Component {
                                     </div>
                                     <Row>
                                         <Col>Name</Col>
-                                        <Col md="auto">Modified</Col>
-                                        <Col xs lg="2">Sharing</Col>
+                                        <Col lg xl={2}>Date Modified</Col>
+                                        <Col lg xl={2}>Sharing</Col>
                                         <Col></Col>  
                                     </Row>
                                 </div>

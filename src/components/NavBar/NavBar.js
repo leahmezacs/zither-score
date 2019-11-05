@@ -21,7 +21,7 @@ class NavBar extends Component {
             <div>
                 <Navbar bg="secondary" expand="lg">
                 
-                <Navbar.Brand href="#">Logo</Navbar.Brand>
+                <Navbar.Brand href="/Library">Logo</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
@@ -36,13 +36,13 @@ class NavBar extends Component {
                     {this.props.loggedInUser
                         ? <>
                             <Nav className="ml-auto">
-                                <Nav.Link href="#">Create</Nav.Link>
+                                <Nav.Link href="/EditScore">Create</Nav.Link>
                                 <Nav.Link href="#">Notification</Nav.Link>
                             </Nav>
                             <NavDropdown title="Icon" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
-                                <NavDropdown.Item href="/Library">Library</NavDropdown.Item>
                                 <NavDropdown.Item href="#">Profile</NavDropdown.Item>
+                                <NavDropdown.Item href="/Library">Library</NavDropdown.Item>
+                                <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#">Help</NavDropdown.Item>
                                 <NavDropdown.Item href="/" onClick={this.props.onSignOut}>Logout</NavDropdown.Item>
