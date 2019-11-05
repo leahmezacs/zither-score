@@ -10,7 +10,7 @@ class Library extends Component {
                 <Container>
                     <Row>
                         <Col lg xl={2}>
-                            <div id="left-bar">
+                            <div id="side-bar">
                                 <div id="inner">
                                         <a href="#!">
                                             <span>Scores</span>
