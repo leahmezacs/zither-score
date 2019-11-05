@@ -23,3 +23,20 @@ export const createUser = async (user) => {
         })
     }
 }
+
+export const updateUser = async (user) => {
+    try {
+        const response = await API.graphql(
+            graphqlOperation(mutations.updateUser, { user })
+        );
+        assertErrors(response);
+        return response.data.updateUser;
+    } catch (e) {
+        Analytics.record({
+            name: 'updateUserError',
+            attributes: {
+                error: e.message
+            }
+        })
+    }
+}
