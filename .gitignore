@@ -10,6 +10,12 @@ build
 # wiki
 zither-score.wiki
 
+build/
+dist/
+node_modules/
+# aws-exports.js
+awsconfiguration.json
+
 #amplify
 amplify/\#current-cloud-backend
 amplify/.config/local-*

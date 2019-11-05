@@ -1,0 +1,78 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "zitherscore-local-20191105130630-authRole",
+			"UnauthRoleArn": "arn:aws:iam::579217758069:role/zitherscore-local-20191105130630-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::579217758069:role/zitherscore-local-20191105130630-authRole",
+			"Region": "us-east-2",
+			"DeploymentBucketName": "zitherscore-local-20191105130630-deployment",
+			"UnauthRoleName": "zitherscore-local-20191105130630-unauthRole",
+			"StackName": "zitherscore-local-20191105130630",
+			"StackId": "arn:aws:cloudformation:us-east-2:579217758069:stack/zitherscore-local-20191105130630/fd7f3200-fff6-11e9-b48f-0247ef85be9c"
+		}
+	},
+	"auth": {
+		"zitherscore7de0a299": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191105130630-deployment/amplify-cfn-templates/auth/zitherscore7de0a299-cloudformation-template.yml",
+				"logicalId": "authzitherscore7de0a299"
+			},
+			"lastPushTimeStamp": "2019-11-05T18:12:55.278Z",
+			"output": {
+				"AppClientSecret": "1kagl8emnqq6ujleuan4jgb7tu700q8k1u6tg9vr1uosfmi6r4ve",
+				"UserPoolId": "us-east-2_7F0WLIMNk",
+				"AppClientIDWeb": "7u4pt9f80mqfb6ah46dmaikn5m",
+				"AppClientID": "5e07udr2e4g50tr58d48qb372l",
+				"IdentityPoolId": "us-east-2:d85cdd2a-9b7b-4f1c-80f9-f84742370aa7",
+				"IdentityPoolName": "zitherscore7de0a299_identitypool_7de0a299__local",
+				"UserPoolName": "zitherscore7de0a299_userpool_7de0a299"
+			},
+			"lastPushDirHash": "6cyJu9aK64ZcBATy5whN7mJuxlE="
+		}
+	},
+	"analytics": {
+		"zitherscore": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191105130630-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"logicalId": "analyticszitherscore"
+			},
+			"lastPushTimeStamp": "2019-11-05T18:12:55.278Z",
+			"output": {
+				"appName": "zitherscore-local",
+				"Region": "us-east-1",
+				"Id": "6b4b7051c50c4fef86b100f13c42ccae"
+			},
+			"lastPushDirHash": "WLueo1PvUIZo3BZ+HCKnrkim7+M="
+		}
+	},
+	"api": {
+		"zitherscore": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authzitherscore7de0a299"
+						}
+					}
+				},
+				"GraphQLAPIIdOutput": "hf3n5xzqbjgwvlpry72npmudqy",
+				"GraphQLAPIEndpointOutput": "https://zx2cc2r4jzeshkrnca27v4g5ya.appsync-api.us-east-2.amazonaws.com/graphql"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191105130630-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apizitherscore"
+			},
+			"lastPushTimeStamp": "2019-11-05T18:12:55.278Z",
+			"lastPushDirHash": "oQPR4SxL7OYulRautyMe6EtbS6k="
+		}
+	}
+}

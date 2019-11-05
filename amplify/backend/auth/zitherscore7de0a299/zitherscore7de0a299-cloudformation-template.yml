@@ -97,7 +97,7 @@ Resources:
   # Created to allow the UserPool SMS Config to publish via the Simple Notification Service during MFA Process
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, 'zitherc9fd6fe2_sns-role', !Join ['',['zitherc9fd6fe2_sns-role', '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, 'zither7de0a299_sns-role', !Join ['',['zither7de0a299_sns-role', '-', !Ref env]]]
       AssumeRolePolicyDocument: 
         Version: "2012-10-17"
         Statement: 
@@ -109,10 +109,10 @@ Resources:
               - "sts:AssumeRole"
             Condition: 
               StringEquals:
-                sts:ExternalId: zitherc9fd6fe2_role_external_id
+                sts:ExternalId: zither7de0a299_role_external_id
       Policies: 
         - 
-          PolicyName: zitherc9fd6fe2-sns-policy
+          PolicyName: zither7de0a299-sns-policy
           PolicyDocument: 
             Version: "2012-10-17"
             Statement: 
@@ -158,7 +158,7 @@ Resources:
       SmsVerificationMessage: !Ref smsVerificationMessage
       SmsConfiguration: 
         SnsCallerArn: !GetAtt SNSRole.Arn
-        ExternalId: zitherc9fd6fe2_role_external_id
+        ExternalId: zither7de0a299_role_external_id
     
   
   UserPoolClientWeb:
@@ -166,7 +166,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: zitherc9fd6fe2_app_clientWeb
+      ClientName: zither7de0a299_app_clientWeb
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -176,7 +176,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: zitherc9fd6fe2_app_client
+      ClientName: zither7de0a299_app_client
       
       GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
@@ -241,7 +241,7 @@ Resources:
   # Marked as depending on UserPoolClientRole for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: zitherc9fd6fe2_userpoolclient_lambda_iam_policy
+      PolicyName: zither7de0a299_userpoolclient_lambda_iam_policy
       Roles: 
         - !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',[!Ref userpoolClientLambdaRole, '-', !Ref env]]]
       PolicyDocument:
@@ -258,7 +258,7 @@ Resources:
   # Marked as depending on UserPoolClientLambdaPolicy for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: zitherc9fd6fe2_userpoolclient_lambda_log_policy
+      PolicyName: zither7de0a299_userpoolclient_lambda_log_policy
       Roles: 
         - !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',[!Ref userpoolClientLambdaRole, '-', !Ref env]]]
       PolicyDocument:
@@ -298,7 +298,7 @@ Resources:
   # Always created
     Type: AWS::Cognito::IdentityPool
     Properties: 
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'zitherscorec9fd6fe2_identitypool_c9fd6fe2', !Join ['',['zitherscorec9fd6fe2_identitypool_c9fd6fe2', '__', !Ref env]]]
+      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'zitherscore7de0a299_identitypool_7de0a299', !Join ['',['zitherscore7de0a299_identitypool_7de0a299', '__', !Ref env]]]
       
       CognitoIdentityProviders:
         - ClientId:  !Ref UserPoolClient
