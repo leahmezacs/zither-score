@@ -2,6 +2,6 @@
     "local": {
         "configLevel": "project",
         "useProfile": true,
-        "profileName": "zither-score"
+        "profileName": "zitherscore"
     }
 }

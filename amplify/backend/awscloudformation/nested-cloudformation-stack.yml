@@ -68,15 +68,15 @@
 				}
 			}
 		},
-		"authzitherscore48a8bce6": {
+		"authzitherscore7de0a299": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191027184536-deployment/amplify-cfn-templates/auth/zitherscore48a8bce6-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191105130630-deployment/amplify-cfn-templates/auth/zitherscore7de0a299-cloudformation-template.yml",
 				"Parameters": {
-					"identityPoolName": "zitherscore48a8bce6_identitypool_48a8bce6",
+					"identityPoolName": "zitherscore7de0a299_identitypool_7de0a299",
 					"allowUnauthenticatedIdentities": true,
-					"resourceNameTruncated": "zither48a8bce6",
-					"userPoolName": "zitherscore48a8bce6_userpool_48a8bce6",
+					"resourceNameTruncated": "zither7de0a299",
+					"userPoolName": "zitherscore7de0a299_userpool_7de0a299",
 					"autoVerifiedAttributes": "email",
 					"mfaConfiguration": "OFF",
 					"mfaTypes": "SMS Text Message",
@@ -92,9 +92,9 @@
 					"userpoolClientRefreshTokenValidity": 30,
 					"userpoolClientWriteAttributes": "email",
 					"userpoolClientReadAttributes": "email",
-					"userpoolClientLambdaRole": "zither48a8bce6_userpoolclient_lambda_role",
+					"userpoolClientLambdaRole": "zither7de0a299_userpoolclient_lambda_role",
 					"userpoolClientSetAttributes": false,
-					"resourceName": "zitherscore48a8bce6",
+					"resourceName": "zitherscore7de0a299",
 					"authSelections": "identityPoolAndUserPool",
 					"authRoleArn": {
 						"Fn::GetAtt": [
@@ -117,14 +117,14 @@
 		"analyticszitherscore": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191027184536-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191105130630-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
 				"Parameters": {
 					"appName": "zitherscore",
-					"roleName": "pinpointLambdaRole2440bfc1",
-					"cloudWatchPolicyName": "cloudWatchPolicy2440bfc1",
-					"pinpointPolicyName": "pinpointPolicy2440bfc1",
-					"authPolicyName": "pinpoint_amplify_2440bfc1",
-					"unauthPolicyName": "pinpoint_amplify_2440bfc1",
+					"roleName": "pinpointLambdaRolea958c807",
+					"cloudWatchPolicyName": "cloudWatchPolicya958c807",
+					"pinpointPolicyName": "pinpointPolicya958c807",
+					"authPolicyName": "pinpoint_amplify_a958c807",
+					"unauthPolicyName": "pinpoint_amplify_a958c807",
 					"authRoleName": {
 						"Ref": "AuthRoleName"
 					},
@@ -144,7 +144,7 @@
 		"apizitherscore": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191027184536-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191105130630-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
 					"CreateAPIKey": 0,
 					"AppSyncApiName": "zitherscore",
@@ -152,12 +152,12 @@
 					"DynamoDBEnableServerSideEncryption": "false",
 					"AuthCognitoUserPoolId": {
 						"Fn::GetAtt": [
-							"authzitherscore48a8bce6",
+							"authzitherscore7de0a299",
 							"Outputs.UserPoolId"
 						]
 					},
-					"S3DeploymentBucket": "zitherscore-local-20191027184536-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/35a56e4ec0d9007855a7885f3c016c4a3966359f",
+					"S3DeploymentBucket": "zitherscore-local-20191105130630-deployment",
+					"S3DeploymentRootKey": "amplify-appsync-files/68eb577a66b1e0170578e77f89fd5def52831d87",
 					"env": "local"
 				}
 			}
@@ -166,7 +166,7 @@
 			"DependsOn": [
 				"AuthRole",
 				"UnauthRole",
-				"authzitherscore48a8bce6"
+				"authzitherscore7de0a299"
 			],
 			"Type": "AWS::Lambda::Function",
 			"Properties": {
@@ -249,7 +249,7 @@
 				},
 				"idpId": {
 					"Fn::GetAtt": [
-						"authzitherscore48a8bce6",
+						"authzitherscore7de0a299",
 						"Outputs.IdentityPoolId"
 					]
 				},

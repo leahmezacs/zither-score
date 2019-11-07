@@ -1,20 +1,21 @@
-export const ListUsers = `
-    query ListUsers {
+export const listUsers = `
+    query listUsers {
         listUsers {
             items {
                 id
                 username
-                createdAt
+                email
             }
         }
     }
 `
 
-export const GetUser = `
-    query GetUser($id: ID!) {
+export const getUser = `
+    query getUser($id: ID!) {
         getUser(id: $id) {
             id
             username
+            email
         }
     }
 `
