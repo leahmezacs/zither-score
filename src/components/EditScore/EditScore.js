@@ -9,9 +9,11 @@ class EditScore extends Component {
         return (
             <div>
                 <ToolBar />
-                <Container>
-                    
-                </Container>
+                <div id="svg-score-sheet">
+                    <svg width="1275" height="1650">
+
+                    </svg>
+                </div>
             </div>
         )
     }
