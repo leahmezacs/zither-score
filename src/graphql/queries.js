@@ -53,3 +53,28 @@ export const getScore = `
         }
     }
 `
+
+export const listNotes = `
+    query listNotes {
+        listNotes {
+            number
+            dot
+            doubleDot
+            line
+            doubleLine
+            curve
+            position
+            score {
+                id
+                user {
+                    id
+                    username
+                    email
+                }
+                createdDate
+                updatedDate
+                status
+            }
+        }
+    }
+`
