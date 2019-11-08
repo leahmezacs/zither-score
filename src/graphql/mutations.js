@@ -72,4 +72,9 @@ export const updateNote = `mutation updateNote($input: UpdateNoteInput!) {
     }
 }`
 
+export const deleteNote = `mutation deleteNote($input: DeleteNoteInput!) {
+    deleteNote(input: $input) {
+        id
+    }
+}`
 
