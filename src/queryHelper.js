@@ -23,3 +23,20 @@ export const getUser = async (username: string) => {
         })
     }
 }
+
+export const getScore = async (score_id: string) => {
+    try {
+        const response = await API.graphql(
+            graphqlOperation(queries.getUser, { id: score_id })
+        );
+        assertErrors(response);
+        return response.data.getScore;
+    } catch (e) {
+        Analytics.record({
+            name: 'getScoreError',
+            attributes: {
+                error: e.message
+            }
+        })
+    }
+}
