@@ -125,3 +125,37 @@ export const createNote = async (note) => {
         })
     }
 }
+
+export const updateNote = async (note) => {
+    try {
+        const response = await API.graphql(
+            graphqlOperation(mutations.updateNote, { note })
+        );
+        assertErrors(response);
+        return response.data.updateNote;
+    } catch (e) {
+        Analytics.record({
+            name: 'updateNoteError',
+            attributes: {
+                error: e.message
+            }
+        })
+    }
+}
+
+export const deleteNote = async (note) => {
+    try {
+        const response = await API.graphql(
+            graphqlOperation(mutations.deleteNote, { note })
+        );
+        assertErrors(response);
+        return response.data.deleteNote;
+    } catch (e) {
+        Analytics.record({
+            name: 'deleteNoteError',
+            attributes: {
+                error: e.message
+            }
+        })
+    }
+}
