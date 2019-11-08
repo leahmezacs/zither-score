@@ -20,3 +20,18 @@ export const onCreateScore = `
     }
 `
 
+export const onCreateNote = `
+    subscription onCreateNote {
+        onCreateNote {
+            number
+            dot
+            doubleDot
+            line
+            doubleLine
+            curve
+            position
+            noteScoreId
+        }
+    }
+`
+
