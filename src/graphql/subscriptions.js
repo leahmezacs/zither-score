@@ -7,3 +7,16 @@ export const onCreateUser = `
         }
     }
 `
+
+export const onCreateScore = `
+    subscription onCreateScore {
+        onCreateScore {
+            id
+            createdDate
+            updatedDate
+            status
+            scoreUserId
+        }
+    }
+`
+
