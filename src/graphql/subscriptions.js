@@ -50,6 +50,14 @@ export const onUpdateScore = `
     }
 `
 
+export const onDeleteScore = `
+    subscription onDeleteScore {
+        onDeleteScore {
+            id
+        }
+    }
+`
+
 export const onCreateNote = `
     subscription onCreateNote {
         onCreateNote {
