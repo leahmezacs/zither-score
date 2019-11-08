@@ -87,3 +87,11 @@ export const onUpdateNote = `
         }
     }
 `
+
+export const onDeleteNote = `
+    subscription onDeleteNote {
+        onDeleteNote {
+            id
+        }
+    }
+`
