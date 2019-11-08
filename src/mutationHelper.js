@@ -108,3 +108,20 @@ export const deleteScore = async (score) => {
         })
     }
 }
+
+export const createNote = async (note) => {
+    try {
+        const response = await API.graphql(
+            graphqlOperation(mutations.createNote, { note })
+        );
+        assertErrors(response);
+        return response.data.createNote;
+    } catch (e) {
+        Analytics.record({
+            name: 'createNoteError',
+            attributes: {
+                error: e.message
+            }
+        })
+    }
+}
