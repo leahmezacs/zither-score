@@ -58,10 +58,10 @@ export const deleteUser = async (user) => {
     }
 }
 
-export const createScore = async (user) => {
+export const createScore = async (score) => {
     try {
         const response = await API.graphql(
-            graphqlOperation(mutations.createScore, { user })
+            graphqlOperation(mutations.createScore, { score })
         );
         assertErrors(response);
         return response.data.createScore;
@@ -75,10 +75,27 @@ export const createScore = async (user) => {
     }
 }
 
-export const deleteScore = async (user) => {
+export const updateScore = async (score) => {
     try {
         const response = await API.graphql(
-            graphqlOperation(mutations.deleteScore, { user })
+            graphqlOperation(mutations.updateScore, { score })
+        );
+        assertErrors(response);
+        return response.data.updateScore;
+    } catch (e) {
+        Analytics.record({
+            name: 'updateScoreError',
+            attributes: {
+                error: e.message
+            }
+        })
+    }
+}
+
+export const deleteScore = async (score) => {
+    try {
+        const response = await API.graphql(
+            graphqlOperation(mutations.deleteScore, { score })
         );
         assertErrors(response);
         return response.data.deleteScore;
