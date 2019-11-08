@@ -37,3 +37,19 @@ export const listScores = `
         }
     }
 `
+
+export const getScore = `
+    query getScore($id: ID!) {
+        getScore(id: $id) {
+            id
+            user {
+                id
+                username
+                email
+            }
+            createdDate
+            updatedDate
+            status
+        }
+    }
+`
