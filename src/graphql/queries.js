@@ -78,3 +78,28 @@ export const listNotes = `
         }
     }
 `
+
+export const getNote = `
+    query getNote($id: ID!) {
+        getNote(id: $id) {
+            number
+            dot
+            doubleDot
+            line
+            doubleLine
+            curve
+            position
+            score {
+                id
+                user {
+                    id
+                    username
+                    email
+                }
+                createdDate
+                updatedDate
+                status
+            }
+        }
+    }
+`
