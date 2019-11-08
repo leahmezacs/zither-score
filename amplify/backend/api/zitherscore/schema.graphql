@@ -22,11 +22,11 @@ enum ScoreStatus {
 }
 
 type Note @model {
-  number: 
-  dot:
-  doubleDot:
-  line:
-  doubleLine:
-  curve:
-  position:
+  number: Int
+  dot: dotStatus
+  doubleDot: dotStatus
+  line: Int
+  doubleLine: Int
+  curve: Int
+  position: [Int!]!
 }
