@@ -27,13 +27,30 @@ export const getUser = async (username: string) => {
 export const getScore = async (score_id: string) => {
     try {
         const response = await API.graphql(
-            graphqlOperation(queries.getUser, { id: score_id })
+            graphqlOperation(queries.getScore, { id: score_id })
         );
         assertErrors(response);
         return response.data.getScore;
     } catch (e) {
         Analytics.record({
             name: 'getScoreError',
+            attributes: {
+                error: e.message
+            }
+        })
+    }
+}
+
+export const getNote = async (pos: number) => {
+    try {
+        const response = await API.graphql(
+            graphqlOperation(queries.getNote, { position: pos })
+        );
+        assertErrors(response);
+        return response.data.getNote;
+    } catch (e) {
+        Analytics.record({
+            name: 'getNoteError',
             attributes: {
                 error: e.message
             }
