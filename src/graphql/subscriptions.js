@@ -18,6 +18,14 @@ export const onUpdateUser = `
     }
 `
 
+export const onDeleteUser = `
+    subscription onDeleteUser {
+        onDeleteUser {
+            id
+        }
+    }
+`
+
 export const onCreateScore = `
     subscription onCreateScore {
         onCreateScore {
