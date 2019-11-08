@@ -19,3 +19,21 @@ export const getUser = `
         }
     }
 `
+
+export const listScores = `
+    query listScores {
+        listScores {
+            items {
+                id
+                user {
+                    id
+                    username
+                    email
+                }
+                createdDate
+                updatedDate
+                status
+            }
+        }
+    }
+`
