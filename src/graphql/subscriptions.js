@@ -8,6 +8,16 @@ export const onCreateUser = `
     }
 `
 
+export const onUpdateUser = `
+    subscription onUpdateUser {
+        onUpdateUser {
+            id
+            username
+            email
+        }
+    }
+`
+
 export const onCreateScore = `
     subscription onCreateScore {
         onCreateScore {
