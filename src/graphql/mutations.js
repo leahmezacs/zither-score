@@ -17,9 +17,6 @@ export const updateUser = `mutation updateUser($input: UpdateUserInput!) {
 export const deleteUser = `mutation deleteUser($input: DeleteUserInput!) {
     deleteUser(input: $input) {
         id
-        username
-        email
-        scores
     }
 }`
 
@@ -36,11 +33,6 @@ export const createScore = `mutation createScore($input: CreateScoreInput!) {
 export const deleteScore = `mutation deleteScore($input: DeleteScoreInput!) {
     deleteScore(input: $input) {
         id
-        note
-        createdDate
-        updatedDate
-        status
-        scoreUserId
     }
 }`
 
