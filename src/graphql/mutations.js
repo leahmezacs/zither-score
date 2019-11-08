@@ -30,6 +30,16 @@ export const createScore = `mutation createScore($input: CreateScoreInput!) {
     }
 }`
 
+export const updateScore = `mutation updateScore($input: UpdateScoreInput!) {
+    updateScore(input: $input) {
+        id
+        createdDate
+        updatedDate
+        status
+        scoreUserId
+    }
+}`
+
 export const deleteScore = `mutation deleteScore($input: DeleteScoreInput!) {
     deleteScore(input: $input) {
         id
