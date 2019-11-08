@@ -59,4 +59,17 @@ export const createNote = `mutation createNote($input: CreateNoteInput!) {
     }
 }`
 
+export const updateNote = `mutation updateNote($input: UpdateNoteInput!) {
+    updateNote(input: $input) {
+        number
+        dot
+        doubleDot
+        line
+        doubleLine
+        curve
+        position
+        noteScoreId
+    }
+}`
+
 
