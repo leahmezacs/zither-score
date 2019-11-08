@@ -9,7 +9,7 @@ type User
 
 type Score @model {
   id: ID!
-  note: [note]
+  notes: [note]
   user: User @connection(name: "UserScores", sortField: "createdDate")
   createdDate: AWSDateTime
   updatedDate: AWSDateTime
@@ -29,4 +29,9 @@ type Note @model {
   doubleLine: Int
   curve: Int
   position: [Int!]!
+}
+
+enum dotStatus {
+  TOP
+  BOTTOM
 }
