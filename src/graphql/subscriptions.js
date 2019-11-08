@@ -30,6 +30,18 @@ export const onCreateScore = `
     }
 `
 
+export const onUpdateScore = `
+    subscription onUpdateScore {
+        onUpdateScore {
+            id
+            createdDate
+            updatedDate
+            status
+            scoreUserId
+        }
+    }
+`
+
 export const onCreateNote = `
     subscription onCreateNote {
         onCreateNote {
