@@ -57,3 +57,17 @@ export const onCreateNote = `
     }
 `
 
+export const onUpdateNote = `
+    subscription onUpdateNote {
+        onUpdateNote {
+            number
+            dot
+            doubleDot
+            line
+            doubleLine
+            curve
+            position
+            noteScoreId
+        }
+    }
+`
