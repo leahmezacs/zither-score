@@ -14,7 +14,7 @@ export const updateUser = `mutation updateUser($input: UpdateUserInput!) {
     }
 }`
 
-export const deleteUser = `mutation deleteUser($user: DeleteUserInput!) {
+export const deleteUser = `mutation deleteUser($input: DeleteUserInput!) {
     deleteUser(input: $input) {
         id
         username
@@ -26,7 +26,6 @@ export const deleteUser = `mutation deleteUser($user: DeleteUserInput!) {
 export const createScore = `mutation createScore($input: CreateScoreInput!) {
     createScore(input: $input) {
         id
-        content
         createdDate
         updatedDate
         status
@@ -37,11 +36,24 @@ export const createScore = `mutation createScore($input: CreateScoreInput!) {
 export const deleteScore = `mutation deleteScore($input: DeleteScoreInput!) {
     deleteScore(input: $input) {
         id
-        content
+        note
         createdDate
         updatedDate
         status
         scoreUserId
+    }
+}`
+
+export const createNote = `mutation createNote($input: CreateNoteInput!) {
+    createNote(input: $input) {
+        number
+        dot
+        doubleDot
+        line
+        doubleLine
+        curve
+        position
+        noteScoreId
     }
 }`
 

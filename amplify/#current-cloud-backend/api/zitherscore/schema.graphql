@@ -9,7 +9,7 @@ type User
 
 type Score @model {
   id: ID!
-  content: String!
+  notes: [Note] @connection(name: "ScoreNotes")
   user: User @connection(name: "UserScores", sortField: "createdDate")
   createdDate: AWSDateTime
   updatedDate: AWSDateTime
@@ -19,4 +19,20 @@ type Score @model {
 enum ScoreStatus {
   PRIVATE
   PUBLIC
+}
+
+type Note @model {
+  number: Int
+  dot: dotStatus
+  doubleDot: dotStatus
+  line: Int
+  doubleLine: Int
+  curve: Int
+  position: [Int!]!
+  score: Score @connection(name: "ScoreNotes")
+}
+
+enum dotStatus {
+  TOP
+  BOTTOM
 }
