@@ -9,7 +9,7 @@ type User
 
 type Score @model {
   id: ID!
-  notes: [note] @connection(name: "ScoreNotes", sortField: "position")
+  notes: [Note] @connection(name: "ScoreNotes", sortField: "position")
   user: User @connection(name: "UserScores", sortField: "createdDate")
   createdDate: AWSDateTime
   updatedDate: AWSDateTime
