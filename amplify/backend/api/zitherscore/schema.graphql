@@ -2,7 +2,7 @@ type User
   @model 
   @auth(rules: [{ allow: owner, ownerField: "id", queries: null }]) {
   id: ID!
-  username: String! @unique
+  username: String! 
   email: String!
   scores: [Score] @connection(name: "UserScores", sortField: "createdDate")
 }
@@ -28,7 +28,7 @@ type Note @model {
   line: Int
   doubleLine: Int
   curve: Int
-  position: Int @unique
+  position: Int
   score: Score @connection(name: "ScoreNotes")
 }
 

@@ -19,7 +19,7 @@ class Settings extends Component {
         const { attributes } = userInfo;
         console.log(attributes);
         return (
-            <div>
+            <div className = "container">
                 <p>Username: {userInfo.username}</p>
                 <p>password: </p> 
                 <p>email: </p>
