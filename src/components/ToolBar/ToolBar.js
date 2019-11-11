@@ -30,7 +30,7 @@ export default function SimpleTooltips() {
             <RemoveIcon />
           </Tooltip>
           <Tooltip
-            title="doule line"
+            title="double line"
             aria-label="doubleLine"
             className={classes.space}
           >
