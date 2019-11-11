@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Auth } from 'aws-amplify';
-import { Container, Row, Col } from 'react-bootstrap/';
-import ToolBar from '../ToolBar/ToolBar'
-
+import ToolBar from '../ToolBar/ToolBar';
+import '../../stylesheets/scorestylesheet.css';
 
 class EditScore extends Component {
     render () {
@@ -10,7 +8,7 @@ class EditScore extends Component {
             <div>
                 <ToolBar />
                 <div id="svg-score-sheet">
-                    <svg width="1275" height="1650">
+                    <svg width="1275" height="1650" className="score-sheet">
 
                     </svg>
                 </div>
