@@ -32,13 +32,7 @@ class ScoreInput extends Component {
     }
     render () {
         return (
-            <div>
-                <div>
-                -->This is where curves go    
-                </div>
-                <div>
-                -->This should enable/disable dots above numbers
-                </div> 
+            <div> 
                 <div>
                     <ToggleButtonGroup type="checkbox" defaultValue={['', '']}>
                         <p style={pStyle}>|</p>
@@ -59,9 +53,7 @@ class ScoreInput extends Component {
                         </ToggleButton>
                     </ToggleButtonGroup>
                 </div>
-                <div>
-                -->This should enable/disable dots below numbers
-                </div>  
+                  
             </div>
         )
     }
