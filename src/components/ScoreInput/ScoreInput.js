@@ -1,16 +1,27 @@
 import React, {Component} from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
-import { InputGroup, FormControl, Col} from 'react-bootstrap/';
+import { InputGroup, ToggleButtonGroup, ToggleButton} from 'react-bootstrap/';
 
 const inputStyle = {
-    width: '15px',
+    width: '20px',
     height: '25px',
-    margin: '10px',
+    position: 'absolute center'
 };
 
-const divStyle = {
-    position: 'absolute'
+const buttonStyle = {
+    width:'45px',
+    height: '40px',
+    padding: '5px',
+    margin: '1px',
+    position: 'relative'
+};
+
+const pStyle ={
+    fontSize: '30px',
+    position: 'relative'
 }
+
+
 
 class ScoreInput extends Component {
     numberOnly(num) {
