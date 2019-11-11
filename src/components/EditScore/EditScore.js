@@ -11,6 +11,7 @@ class EditScore extends Component {
                 <ToolBar />
                 <Container>
                     
+                    
                 </Container>
             </div>
         )
