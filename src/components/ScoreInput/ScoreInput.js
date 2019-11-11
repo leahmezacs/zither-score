@@ -3,23 +3,30 @@ import { withRouter, Redirect } from 'react-router-dom';
 import { InputGroup, ToggleButtonGroup, ToggleButton} from 'react-bootstrap/';
 
 const inputStyle = {
-    width: '20px',
-    height: '25px',
+    fontSize: '12px',
+    width: '15px',
+    height: '20px',
     position: 'absolute center'
 };
 
 const buttonStyle = {
-    width:'45px',
+    width:'30px',
     height: '40px',
     padding: '5px',
     margin: '1px',
     position: 'relative'
 };
 
-const pStyle ={
-    fontSize: '30px',
-    position: 'relative'
-}
+const pStyle = {
+    fontSize: '25px',
+    float: 'left',
+    display: 'inline'
+};
+
+const toggleStyle = {
+    float: 'left',
+    display: 'inline'
+};
 
 
 
