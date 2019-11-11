@@ -14,8 +14,9 @@ class EditScore extends Component {
                 
                 <div id="svg-score-sheet">
                     <div className="score-scrollable">
+                    <ScoreInput />
                         <svg width="1275" height="1650" className="score-sheet">
-
+                        
                         </svg>
                     </div>
                 </div>
