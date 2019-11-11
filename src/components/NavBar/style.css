@@ -1,7 +1,11 @@
-.back {
-    background: aliceblue;
-    color: beige;
+.background {
+    background: linear-gradient(315deg, #31caa9 30%, #54cece 70%);
 }
 .dropdown-toggle::after {
     display:none;
+}
+.navbar-default {
+    background-color:teal;
+    background-image: none;
+    background-repeat: no-repeat;
 }
