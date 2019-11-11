@@ -33,40 +33,35 @@ class ScoreInput extends Component {
     render () {
         return (
             <div>
-                <InputGroup>
-                    <div>
-                        
-                    </div>
-                    <p>|</p>
-                        <div>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        </div>
-                        <div>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        </div>
-                        <div>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        </div>
-                        <div>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        </div>
-                    <p>|</p>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                    <p>|</p>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                    <p>|</p>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                        <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input>
-                    <p>|</p>
-                </InputGroup>   
+                <div>
+                -->This is where curves go    
+                </div>
+                <div>
+                -->This should enable/disable dots above numbers
+                </div> 
+                <div>
+                    <ToggleButtonGroup type="checkbox" defaultValue={['', '']}>
+                        <p style={pStyle}>|</p>
+                        <ToggleButton value={'0, 0'} style={buttonStyle}>
+                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                        </ToggleButton>
+                    
+                        <ToggleButton value={'[0, 1]'} style={buttonStyle}>
+                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                        </ToggleButton>
+                    
+                        <ToggleButton value={'[0, 2]'} style={buttonStyle}>
+                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                        </ToggleButton>
+                    
+                        <ToggleButton value={'[0, 3]'} style={buttonStyle}>
+                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+                </div>
+                <div>
+                -->This should enable/disable dots below numbers
+                </div>  
             </div>
         )
     }
