@@ -6,12 +6,16 @@ class EditScore extends Component {
     render () {
         return (
             <div>
-                <ToolBar />
-                <br />
+                <div id="toolbar">
+                    <ToolBar />
+                </div>
+                
                 <div id="svg-score-sheet">
-                    <svg width="1275" height="1650" className="score-sheet">
+                    <div className="score-scrollable">
+                        <svg width="1275" height="1650" className="score-sheet">
 
-                    </svg>
+                        </svg>
+                    </div>
                 </div>
             </div>
         )
