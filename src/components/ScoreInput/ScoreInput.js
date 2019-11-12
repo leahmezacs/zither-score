@@ -29,7 +29,12 @@ const toggleStyle = {
 };
 
 class ScoreInput extends Component {
-    
+    numberOnly(num) {
+        var ch = String.fromCharCode(num.which);
+        if(!(/[0-7]/.test(ch))) {
+            num.preventDefault();
+        }
+    }
     render () {
         return (
             <div> 
