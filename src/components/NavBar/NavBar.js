@@ -9,14 +9,30 @@ import {
     Button
     } from 'react-bootstrap';
 
+import PopUpWindow from '../PopUpWindow/PopUpWindow'
+
+
 
 
 class NavBar extends Component {
+       state={
+           showPopOut :true
+    
+       }
+       _onclick = () => {
+        this.setState({
+           showPopOut: true
+    }, () => {console.log('this is state: ', this.state)})
+    
+    }
+
     render(){  
         console.log(this.props.location);
         if (this.props.loggedInUser && this.props.location.pathname === '/Login') {
             return <Redirect to="/" />;
         }
+
+        
         
         return (
             <div>
@@ -37,7 +53,7 @@ class NavBar extends Component {
                     {this.props.loggedInUser
                         ? <>
                             <Nav className="ml-auto">
-                                <Nav.Link href="../components/PopUpWindow/PopUpWindow.html">Create</Nav.Link>
+                                <Nav.Link onClick={this._onClick} href='/PopUpWindow'>Create</Nav.Link>
                                 <Nav.Link href="#">Notification</Nav.Link>
                             </Nav>
                             <NavDropdown title="Icon" id="basic-nav-dropdown">
@@ -55,6 +71,7 @@ class NavBar extends Component {
                 </Navbar.Collapse>
                 </Navbar>
             </div>
+            
         )
     }
 }
