@@ -16,7 +16,7 @@ class EditScore extends Component {
 
                         </svg>
                     </div>
-                </div>
+                </div>                     
             </div>
         )
     }
