@@ -12,11 +12,11 @@ class EditScore extends Component {
                 
                 <div id="svg-score-sheet">
                     <div className="score-scrollable">
-                        <svg width="1275" height="1650" className="score-sheet">
+                        <svg width="1150" height="1650" className="score-sheet">
                             <g className="page-contents" transform="scale(1.25, 1.25) translate(32.126, 32.126)">
                                 <g className="inside-margin" transform="translate(0,0)">
                                     <g className="page-title">
-                                        <text font-family="Noto Serif TC" font-style="medium" text-anchor="middle" font-size="40" transform="translate(477.874, 80)">ABC</text>
+                                        <text font-family="Noto Serif TC" font-style="medium" text-anchor="middle" font-size="40" transform="translate(431.024, 80)">ABC</text>
                                     </g>
                                 </g>
                                 
