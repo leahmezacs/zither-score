@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ToolBar from '../ToolBar/ToolBar';
+import ScoreInput from '../ScoreInput/ScoreInput'
 import '../../stylesheets/scorestylesheet.css';
 
 class EditScore extends Component {
@@ -19,7 +20,7 @@ class EditScore extends Component {
                                         <text font-family="Noto Serif TC" font-style="medium" text-anchor="middle" font-size="40" transform="translate(431.024, 80)">ABC</text>
                                     </g>
                                 </g>
-                                
+                                <ScoreInput />
                                 <g className="page-main" transform="translate(0, 140)">
                                     
                                 </g>
