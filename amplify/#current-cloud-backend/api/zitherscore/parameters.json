@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "zitherscore",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authzitherscore7de0a299",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
