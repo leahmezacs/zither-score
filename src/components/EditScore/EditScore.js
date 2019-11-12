@@ -14,10 +14,14 @@ class EditScore extends Component {
                     <div className="score-scrollable">
                         <svg width="1275" height="1650" className="score-sheet">
                             <g className="page-contents" transform="scale(1.25, 1.25) translate(32.126, 32.126)">
-                                <g className="insideMargin" transform="translate(0,0)">
+                                <g className="inside-margin" transform="translate(0,0)">
                                     <g className="page-title">
                                         <text font-family="Noto Serif TC" font-style="medium" text-anchor="middle" font-size="40" transform="translate(477.874, 80)">ABC</text>
                                     </g>
+                                </g>
+                                
+                                <g className="page-main" transform="translate(0, 140)">
+                                    
                                 </g>
                             </g>
                         </svg>
