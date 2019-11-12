@@ -28,4 +28,13 @@ const toggleStyle = {
     display: 'inline'
 };
 
+class ScoreInput extends Component {
+    
+    render () {
+        return (
+            
+        )
+    }
+}
 
+export default withRouter(ScoreInput);
