@@ -55,4 +55,3 @@ export default class PopUpWindow extends React.Component {
   }
 }
 
-export default PopUpWindow;
