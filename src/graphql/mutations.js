@@ -54,7 +54,8 @@ export const createNote = `mutation createNote($input: CreateNoteInput!) {
         line
         doubleLine
         curve
-        position
+        row
+        column
         noteScoreId
     }
 }`
@@ -67,7 +68,8 @@ export const updateNote = `mutation updateNote($input: UpdateNoteInput!) {
         line
         doubleLine
         curve
-        position
+        row
+        column
         noteScoreId
     }
 }`

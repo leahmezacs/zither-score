@@ -67,7 +67,8 @@ export const onCreateNote = `
             line
             doubleLine
             curve
-            position
+            row
+            column
             noteScoreId
         }
     }
@@ -82,7 +83,8 @@ export const onUpdateNote = `
             line
             doubleLine
             curve
-            position
+            row
+            column
             noteScoreId
         }
     }

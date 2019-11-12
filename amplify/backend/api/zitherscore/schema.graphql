@@ -28,7 +28,8 @@ type Note @model {
   line: Int
   doubleLine: Int
   curve: Int
-  position: Int
+  row: Int
+  column: Int
   score: Score @connection(name: "ScoreNotes")
 }
 

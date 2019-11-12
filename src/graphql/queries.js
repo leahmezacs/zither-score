@@ -63,7 +63,8 @@ export const listNotes = `
             line
             doubleLine
             curve
-            position
+            row
+            column
             score {
                 id
                 user {
@@ -88,7 +89,8 @@ export const getNote = `
             line
             doubleLine
             curve
-            position
+            row
+            column
             score {
                 id
                 user {
