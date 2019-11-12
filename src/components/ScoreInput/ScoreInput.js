@@ -23,3 +23,9 @@ const pStyle = {
     display: 'inline'
 };
 
+const toggleStyle = {
+    float: 'left',
+    display: 'inline'
+};
+
+
