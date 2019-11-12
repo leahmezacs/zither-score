@@ -10,6 +10,7 @@ import {
     } from 'react-bootstrap';
 
 
+
 class NavBar extends Component {
     render(){  
         console.log(this.props.location);
@@ -36,7 +37,7 @@ class NavBar extends Component {
                     {this.props.loggedInUser
                         ? <>
                             <Nav className="ml-auto">
-                                <Nav.Link href="/EditScore">Create</Nav.Link>
+                                <Nav.Link href="../components/PopUpWindow/PopUpWindow.html">Create</Nav.Link>
                                 <Nav.Link href="#">Notification</Nav.Link>
                             </Nav>
                             <NavDropdown title="Icon" id="basic-nav-dropdown">
