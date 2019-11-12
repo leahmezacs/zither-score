@@ -16,3 +16,10 @@ const buttonStyle = {
     margin: '1px',
     position: 'relative'
 };
+
+const pStyle = {
+    fontSize: '25px',
+    float: 'left',
+    display: 'inline'
+};
+
