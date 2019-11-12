@@ -1,0 +1,13 @@
+.MainCard {
+    background: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
+    border: 0;
+    border-radius: 3;
+    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+    color: white;
+    height: 300px;
+    padding: 0 30px;
+}
+
+.title {
+    font-size: 400%;
+}
