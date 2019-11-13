@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
+import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
 import "./style.css";
 import {
   Navbar,
@@ -23,7 +23,9 @@ class NavBar extends Component {
     return (
       <div>
         <Navbar className="background" expand="lg">
-          <Navbar.Brand href="/">Logo</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <LibraryMusicIcon fontSize="large"/>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
