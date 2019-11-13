@@ -21,7 +21,7 @@ class Settings extends Component {
             <div className = "container">
                 <p>Username: {this.state.userInfo.username}</p>
                 <p>password: </p> 
-                <p>email: {this.state.userInfo.attributes.email}</p>
+                <p>email: {this.state.userInfo.attributes ? this.state.userInfo.attributes.email : ''}</p>
             </div>
         )  
     }
