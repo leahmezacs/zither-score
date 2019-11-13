@@ -1,0 +1,18 @@
+/* This style sheet is used for creating the basic outline of the score sheet. */
+
+.score-sheet {
+    display: block;
+    box-shadow: 0 -1px #e7e8ec, 0 -18px 0 0 #fff, 0 0 12px 0 rgba(0,0,0,.08);
+    margin-top: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.score-scrollable {
+    width: 100%;
+    display: flex;
+    flex: 1 1 auto;
+    overflow: auto;
+    background: #fff;
+    margin: 0;
+}
