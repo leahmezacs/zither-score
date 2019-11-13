@@ -22,7 +22,7 @@ class NavBar extends Component {
 
     return (
       <div>
-        <Navbar className="background" expand="lg">
+        <Navbar className="NavBarBackground" expand="lg">
           <Navbar.Brand href="/">
             <LibraryMusicIcon fontSize="large"/>
           </Navbar.Brand>
@@ -33,7 +33,7 @@ class NavBar extends Component {
             </Nav>
 
             <Form inline className="mx-auto">
-              <SearchIcon className="text-white icon" fontSize="large" />
+              <SearchIcon className="text-white SearchIcon" fontSize="large" />
               <FormControl
                 type="text"
                 placeholder="Search"
