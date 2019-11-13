@@ -56,7 +56,7 @@ class ScoreInput extends Component {
         return (
             <div> 
                 <div>
-                    <p style={pStyle}>|</p>
+                    <p style={pStyle}>||</p>
                     <ToggleButtonGroup type="checkbox" defaultValue={['', '']} style={toggleStyle}>
                         <ToggleButton data-toggle="modal" data-target="#exampleModal" onClick={this.handleToolBar} value={'0, 0'} style={buttonStyle}>
                             <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
@@ -128,7 +128,7 @@ class ScoreInput extends Component {
                             <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     </ToggleButtonGroup>
-                    <p style={pStyle}>|</p>
+                    <p style={pStyle}>||</p>
                 </div>
 
                 {this.state.isClick ?
