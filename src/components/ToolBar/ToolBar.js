@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 class ToolBar extends Component {
   render() {
     return (
-      <div>
+      <div className="toolBarBackground">
         <Grid container justify="center">
           <Grid item>
             <Tooltip title="dot" aria-label="dot" className="space">
