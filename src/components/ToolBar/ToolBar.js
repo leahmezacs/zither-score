@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
@@ -16,28 +16,30 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SimpleTooltips() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <Grid container justify="center">
-        <Grid item>
-          <Tooltip title="dot" aria-label="dot" className={classes.space}>
-            <FiberManualRecordIcon fontSize="small" />
-          </Tooltip>
-          <Tooltip title="line" aria-label="line" className={classes.space}>
-            <RemoveIcon />
-          </Tooltip>
-          <Tooltip
-            title="doule line"
-            aria-label="doubleLine"
-            className={classes.space}
-          >
-            <DragHandleIcon />
-          </Tooltip>
+class ToolBar extends Component {
+  render() {
+    return (
+      <div>
+        <Grid container justify="center">
+          <Grid item>
+            <Tooltip title="dot" aria-label="dot" className="space">
+              <FiberManualRecordIcon fontSize="small" />
+            </Tooltip>
+            <Tooltip title="line" aria-label="line" className="space">
+              <RemoveIcon />
+            </Tooltip>
+            <Tooltip
+              title="doule line"
+              aria-label="doubleLine"
+              className="space"
+            >
+              <DragHandleIcon />
+            </Tooltip>
+          </Grid>
         </Grid>
-      </Grid>
     </div>
-  );
+    )
+  }
 }
+
+export default ToolBar;
