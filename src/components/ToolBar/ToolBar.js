@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import Tooltip from "@material-ui/core/Tooltip";
+// import Button from "@material-ui/core/Button";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RemoveIcon from "@material-ui/icons/Remove";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
 import Grid from "@material-ui/core/Grid";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "../style.css";
 
 class ToolBar extends Component {
@@ -12,8 +14,18 @@ class ToolBar extends Component {
       <div className="toolBarbackground">
         <Grid container justify="center">
           <Grid item>
-            <Tooltip title="dot" aria-label="dot" className="toolBarspace">
+          <Navbar className="" expand="lg">
+            <NavDropdown title={<FiberManualRecordIcon fontSize="small" />} id="basic-nav-dropdown">
+              <NavDropdown.Item>Top</NavDropdown.Item>
+              <NavDropdown.Item>Buttom</NavDropdown.Item>
+            </NavDropdown>
+            <Nav>{<RemoveIcon />}</Nav>
+            <Nav>{<DragHandleIcon />}</Nav>
+          </Navbar>
+            <Tooltip disableFocusListener title="dot" aria-label="dot" className="toolBarspace">
               <FiberManualRecordIcon fontSize="small" />
+              {/* <Button>Top</Button>
+              <Button>Buttom</Button> */}
             </Tooltip>
             <Tooltip title="line" aria-label="line" className="toolBarspace">
               <RemoveIcon />

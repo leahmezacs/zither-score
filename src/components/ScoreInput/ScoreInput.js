@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { withRouter} from 'react-router-dom';
-import { ToggleButtonGroup, ToggleButton, Button, Modal} from 'react-bootstrap/';
+import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap/';
 import ToolBar from '../ToolBar/ToolBar';
 
 const inputStyle = {
