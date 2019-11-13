@@ -11,29 +11,23 @@ import {
 
 import PopUpWindow from '../PopUpWindow/PopUpWindow'
 
-
-
-
 class NavBar extends Component {
-       state={
-           showPopOut :true
-    
-       }
-       _onclick = () => {
-        this.setState({
-           showPopOut: true
-    }, () => {console.log('this is state: ', this.state)})
-    
+    state = {
+        showPopOut: false
     }
-
+    handlePopOut = () => {
+        this.setState((prevState) => {
+            return {
+                showPopOut: !prevState.showPopOut
+            }
+        })
+    }
     render(){  
         console.log(this.props.location);
         if (this.props.loggedInUser && this.props.location.pathname === '/Login') {
             return <Redirect to="/" />;
         }
 
-        
-        
         return (
             <div>
                 <Navbar bg="secondary" expand="lg">
@@ -53,7 +47,7 @@ class NavBar extends Component {
                     {this.props.loggedInUser
                         ? <>
                             <Nav className="ml-auto">
-                                <Nav.Link onClick={this._onClick} href='/PopUpWindow'>Create</Nav.Link>
+                                <Nav.Link onClick={this.handlePopOut}>Create</Nav.Link>
                                 <Nav.Link href="#">Notification</Nav.Link>
                             </Nav>
                             <NavDropdown title="Icon" id="basic-nav-dropdown">
@@ -70,6 +64,10 @@ class NavBar extends Component {
                     
                 </Navbar.Collapse>
                 </Navbar>
+                <PopUpWindow
+                    showPopOut = {this.state.showPopOut}
+                    handlePopOut = {this.handlePopOut}
+                />
             </div>
             
         )
