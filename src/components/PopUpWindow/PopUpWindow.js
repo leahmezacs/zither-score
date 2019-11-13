@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal} from 'react-bootstrap';
+import EditScore from '../EditScore/EditScore'
 
 const PopUpWindow = (props) => {
     return (
@@ -20,7 +21,7 @@ const PopUpWindow = (props) => {
 
           <Modal.Footer>
             <Button variant="danger" onClick={props.handlePopOut}>Cancel</Button>
-            <Button Variant="green" onClick ={props.handlePopOut}>Submit</Button>
+            <Button Variant="green" onClick ={props.handlePopOut} href='/EditScore'>Submit</Button>
           </Modal.Footer>
         </Modal>
       </>
