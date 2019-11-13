@@ -32,7 +32,6 @@ class EditScore extends Component {
                     >
                       ABC
                     </text>
-                    <ScoreInput />
                   </g>
                 </g>
 

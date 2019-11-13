@@ -29,6 +29,21 @@ const toggleStyle = {
 };
 
 class ScoreInput extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isClick: false
+        }
+
+        this.handleToolBar = this.handleToolBar.bind(this);
+    }
+
+    handleToolBar() {
+        this.setState({
+            isClick: !this.state.isClick
+        })
+    }
+
     numberOnly(num) {
         var ch = String.fromCharCode(num.which);
         if(!(/[0-7]/.test(ch))) {
@@ -41,7 +56,7 @@ class ScoreInput extends Component {
                 <div>
                     <p style={pStyle}>|</p>
                     <ToggleButtonGroup type="checkbox" defaultValue={['', '']} style={toggleStyle}>
-                        <ToggleButton value={'0, 0'} style={buttonStyle}>
+                        <ToggleButton onClick={this.handleToolBar} value={'0, 0'} style={buttonStyle}>
                             <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
