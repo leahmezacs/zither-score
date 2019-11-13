@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
+import "./HomePage.css";
 
 class HomePage extends Component{
     render () {
         return (
-            <div>
-                <div className="text-center">
-                <h1>Home Page</h1>
-                <p>Will be modify later</p>
-                </div>    
+            <div className="MainCard">
+                <div className="title">
+                    <p>Welcome to NumScore!</p>
+                </div>
             </div>
         )  
     }

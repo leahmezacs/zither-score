@@ -7,12 +7,10 @@
 node_modules
 build
 
-# wiki
-zither-score.wiki
-
 build/
 dist/
 node_modules/
+
 # aws-exports.js
 awsconfiguration.json
 
@@ -27,3 +25,6 @@ dist/
 node_modules/
 aws-exports.js
 awsconfiguration.json
+
+# Wiki page
+zither-score.wiki
