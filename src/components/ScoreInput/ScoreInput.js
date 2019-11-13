@@ -29,11 +29,6 @@ const toggleStyle = {
     display: 'inline'
 };
 
-<<<<<<< HEAD
-
-
-class ScoreInput extends Component {
-=======
 class ScoreInput extends Component {
     constructor(props){
         super(props);
@@ -51,7 +46,6 @@ class ScoreInput extends Component {
         console.log(this.state.isClick);
     }
 
->>>>>>> 21fa10b00f8fb9e26f82195779614b607e6f6c16
     numberOnly(num) {
         var ch = String.fromCharCode(num.which);
         if(!(/[0-7]/.test(ch))) {
