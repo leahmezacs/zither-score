@@ -12,11 +12,11 @@ class ToolBar extends Component {
       <div className="toolBarbackground">
         <Grid container justify="center">
           <Navbar expand="lg">
-            <NavDropdown title={<FiberManualRecordIcon fontSize="small" />} id="basic-nav-dropdown">
+            <NavDropdown title={<FiberManualRecordIcon fontSize="default" className="colorBlack"/>} id="basic-nav-dropdown">
               <NavDropdown.Item>Top</NavDropdown.Item>
               <NavDropdown.Item>Buttom</NavDropdown.Item>
             </NavDropdown>
-            <Nav>{<RemoveIcon />}</Nav>
+            <Nav className="toolBarspace">{<RemoveIcon />}</Nav>
             <Nav>{<DragHandleIcon />}</Nav>
           </Navbar>
         </Grid>
