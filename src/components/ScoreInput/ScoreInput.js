@@ -4,7 +4,7 @@ import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap/';
 import ToolBar from '../ToolBar/ToolBar';
 
 const inputStyle = {
-    fontSize: '12px',
+    fontSize: '20px',
     width: '15px',
     height: '20px',
     position: 'absolute center'
