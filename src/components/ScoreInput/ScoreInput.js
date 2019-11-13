@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { withRouter} from 'react-router-dom';
-import { ToggleButtonGroup, ToggleButton} from 'react-bootstrap/';
+import { ToggleButtonGroup, ToggleButton, Button, Modal} from 'react-bootstrap/';
+import ToolBar from '../ToolBar/ToolBar';
 
 const inputStyle = {
     fontSize: '12px',
@@ -39,9 +40,10 @@ class ScoreInput extends Component {
     }
 
     handleToolBar() {
-        this.setState({
-            isClick: !this.state.isClick
-        })
+        this.setState(state => ({
+            isClick: !state.isClick
+          }));
+        console.log(this.state.isClick);
     }
 
     numberOnly(num) {
@@ -56,7 +58,7 @@ class ScoreInput extends Component {
                 <div>
                     <p style={pStyle}>|</p>
                     <ToggleButtonGroup type="checkbox" defaultValue={['', '']} style={toggleStyle}>
-                        <ToggleButton onClick={this.handleToolBar} value={'0, 0'} style={buttonStyle}>
+                        <ToggleButton data-toggle="modal" data-target="#exampleModal" onClick={this.handleToolBar} value={'0, 0'} style={buttonStyle}>
                             <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
@@ -128,7 +130,23 @@ class ScoreInput extends Component {
                     </ToggleButtonGroup>
                     <p style={pStyle}>|</p>
                 </div>
-                  
+
+                {this.state.isClick ?
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">{<ToolBar />}</h5>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary">Save changes</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    : null
+                }
             </div>
         )
     }
