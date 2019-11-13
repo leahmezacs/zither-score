@@ -1,57 +1,30 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal} from 'react-bootstrap';
 
-export default class PopUpWindow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { modal: false,name: ''};
-    this.toggle = this.toggle.bind(this);
-    this.handleChangeName = this.handleChangeName.bind(this);   
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
-  handleChangeName(event) {
-    this.setState({name: event.target.value});
-  }
-  
-
-  handleSubmit(event) {
-    event.preventDefault();
-    }
-
-
-  render() {
+const PopUpWindow = (props) => {
     return (
+      <>     
+        <Modal show={props.showPopOut} onHide={props.handlePopOut}>
+          <Modal.Header closeButton>
+            <Modal.Title>Music File</Modal.Title>
+          </Modal.Header>
 
-        <div>
-          <h1>React Bootstrap Modal Example</h1>
-        <Button color="success" onClick={this.toggle}>Create</Button>
-        <Modal isOpen={this.state.modal}>
-        <form onSubmit={this.handleSubmit}>
-          <ModalHeader>Music File</ModalHeader>
-          <ModalBody>
-          <div className="row">
-            <div className="form-group col-md-4">
-            <label>Name:</label>
-            <input type="text" value={this.state.name} onChange={this.handleChangeName} className="form-control" />
+          <Modal.Body>
+            <div className="row">
+              <div className="form-group col-md-4">
+                <label>Name:</label>
+                <input type="text" value="name" className="form-control" />
               </div>
-              </div>
-            
-          </ModalBody>
-          <ModalFooter>
-            <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
-            <Button color="danger" onClick={this.toggle}>Cancel</Button>
-          </ModalFooter>
-          </form>
+            </div>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button variant="danger" onClick={props.handlePopOut}>Cancel</Button>
+            <Button Variant="green" onClick ={props.handlePopOut}>Submit</Button>
+          </Modal.Footer>
         </Modal>
-        </div>
-      
+      </>
     );
-  }
 }
 
+export default PopUpWindow;
