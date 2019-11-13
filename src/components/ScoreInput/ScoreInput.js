@@ -42,73 +42,73 @@ class ScoreInput extends Component {
                     <p style={pStyle}>|</p>
                     <ToggleButtonGroup type="checkbox" defaultValue={['', '']} style={toggleStyle}>
                         <ToggleButton value={'0, 0'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'0, 1'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'0, 2'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'0, 3'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     </ToggleButtonGroup>
                     <p style={pStyle}>|</p>
                     <ToggleButtonGroup type="checkbox" defaultValue={['', '']} style={toggleStyle}>
                         <ToggleButton value={'1, 0'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'1, 1'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'1, 2'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'1, 3'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     </ToggleButtonGroup>
                     <p style={pStyle}>|</p>
                     <ToggleButtonGroup type="checkbox" defaultValue={['', '']} style={toggleStyle}>
                         <ToggleButton value={'2, 0'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'2, 1'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'2, 2'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'2, 3'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     </ToggleButtonGroup>
                     <p style={pStyle}>|</p>
                     <ToggleButtonGroup type="checkbox" defaultValue={['', '']} style={toggleStyle}>
                         <ToggleButton value={'3, 0'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'3, 1'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'3, 2'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     
                         <ToggleButton value={'3, 3'} style={buttonStyle}>
-                            <input style={inputStyle} class="note" type="text" maxlength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
+                            <input style={inputStyle} className="note" type="text" maxLength="1" onKeyPress={(inp) => this.numberOnly(inp)}></input> 
                         </ToggleButton>
                     </ToggleButtonGroup>
                     <p style={pStyle}>|</p>
