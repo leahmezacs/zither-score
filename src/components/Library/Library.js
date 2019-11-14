@@ -38,14 +38,14 @@ class Library extends Component {
                                             {/* <input type="checkbox" className="checkbox-morph"></input> */}
                                         </div>
                                         <div className="th row-title sorting">
-
+                                            Name
                                         </div>
                                         <div className="th row-date sorting">
+                                            Date Modified
+                                        </div>
+                                        {/* <div className="th row-sharing">
 
-                                        </div>
-                                        <div className="th row-sharing">
-                                            
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
