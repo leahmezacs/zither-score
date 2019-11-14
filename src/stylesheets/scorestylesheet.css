@@ -81,6 +81,13 @@
     z-index: 1;
 }
 
+.th {
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: .3px;
+    color: #646f8d;
+}
+
 .side-bar {
     flex: 0 0 270px;
 }
