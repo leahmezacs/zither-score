@@ -52,9 +52,9 @@ class Library extends Component {
                         </div>
                     </div>
 
-                    <div className="right-bar">
+                    <div className="list-actions">
                         <div className="inner">
-                            <button ></button>
+                            <button className="btn-lg btn-teal-gradient main-action">Create new score</button>
                         </div>
                     </div>
                 </div>
