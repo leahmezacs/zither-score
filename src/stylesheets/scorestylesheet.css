@@ -40,8 +40,65 @@
     max-height: calc(100vh - var(--vh-offset) - 64px);
 }
 
+.main-bar {
+    display: flex;
+    flex: 1 1 auto;
+    background: #fff;
+}
+
+.head-container {
+    height: 85px;
+}
+
+.header {
+    background: #fff;
+    position: fixed;
+    z-index: 2;
+    height: inherit;
+    width: calc(100vh - 540px);
+    padding: 30px 0 15px 40px;
+}
+
+.list-container {
+    padding: 0 0 0 40px;
+}
+
+.library-list {
+    position: relative;
+    border: 0;
+}
+
+.thead {
+    display: flex;
+    height: 46px;
+    width: calc(100vw - 580px);
+}
+
+.tr {
+    position: fixed;
+    height: inherit;
+    width: inherit;
+    z-index: 1;
+}
+
 .side-bar {
     flex: 0 0 270px;
+}
+
+.list-item {
+    display: flex;
+    height: 34px;
+    width: 100%;
+    align-items: center;
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    transition: all .2s ease-in-out;
+}
+
+.sub-item {
+    padding: 20px;
 }
 
 .inner {
