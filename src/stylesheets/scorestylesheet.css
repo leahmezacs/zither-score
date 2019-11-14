@@ -88,6 +88,16 @@
     color: #646f8d;
 }
 
+.cb {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+    width: 40px;
+    top: 0;
+    left: -40px;
+}
+
 .side-bar {
     flex: 0 0 270px;
 }
