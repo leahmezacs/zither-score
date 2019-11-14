@@ -1,4 +1,6 @@
-/* This style sheet is used for creating the basic outline of the score sheet. */
+/* Zither Score styling (used from FlatIO styling) */
+
+/* EditScore */
 
 .score-sheet {
     display: block;
@@ -27,4 +29,19 @@
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 25px;
+}
+
+/* Library */
+
+.side-bar {
+    flex: 0 0 270px;
+}
+
+.inner {
+    position: fixed;
+    height: calc(100vh - 64px);
+    width: 270px;
+    background: #fafafb;
+    padding: 30px;
+    overflow: auto;
 }
