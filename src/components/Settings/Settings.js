@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
+import { Button } from "react-bootstrap";
 import './Settings.css'
 
 class Settings extends Component {
@@ -7,6 +8,7 @@ class Settings extends Component {
         super(props);
         this.state = {
             userInfo: {}
+
         };
     }
    
@@ -17,7 +19,6 @@ class Settings extends Component {
 
     render () {
         console.log(this.state.userInfo.attributes);
-        // console.log(this.state.userInfo.attributes.email);
         return (
             <div className = "container">
                 <div className = "content">
@@ -27,6 +28,7 @@ class Settings extends Component {
                     <p>*********</p><hr />
                     <h4>Email</h4>
                     <p>{this.state.userInfo.attributes ? this.state.userInfo.attributes.email : ''}</p><hr />
+                    <Button variant="outline-primary" >Change Password</Button>
                 </div>
             </div>
         )  
