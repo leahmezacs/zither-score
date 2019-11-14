@@ -5,18 +5,20 @@ class Library extends Component {
         return (
             <div className="main-library">
                 <div className="side-bar">
-                    <div className="inner">
-                            <a className="list-item">
-                                <span className="t">Scores</span>
-                            </a>
-                            <div className="sub-item">
+                    <div className="list-tree">
+                        <div className="inner">
                                 <a className="list-item">
-                                    <span className="t em">New collection</span>
+                                    <span className="t">Scores</span>
                                 </a>
-                            </div>
-                            <a className="list-item">
-                                <span className="t">Trash</span>
-                            </a>
+                                <div className="sub-item">
+                                    <a className="list-item">
+                                        <span className="t em">New collection</span>
+                                    </a>
+                                </div>
+                                <a className="list-item">
+                                    <span className="t">Trash</span>
+                                </a>
+                        </div>
                     </div>
                 </div>
             

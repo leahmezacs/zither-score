@@ -182,7 +182,7 @@
     flex: 0 0 270px;
 }
 
-.side-bar .list-item {
+.list-tree .list-item {
     display: flex;
     height: 34px;
     width: 100%;
