@@ -5,9 +5,7 @@ class HomePage extends Component{
     render () {
         return (
             <div className="MainCard">
-                <div className="title">
-                    <p>Welcome to NumScore!</p>
-                </div>
+                <p className="title">Welcome to NumScore!</p>
             </div>
         )  
     }

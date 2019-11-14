@@ -32,7 +32,7 @@ class EditScore extends Component {
             </div>
         )
     }
->>>>>>> 2d8fffb211bb92a213b34008981bf931cb95912d
+
 }
 
 export default EditScore;
