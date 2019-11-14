@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
+import './Settings.css'
 
 class Settings extends Component {
     constructor(props) {
@@ -19,9 +20,14 @@ class Settings extends Component {
         // console.log(this.state.userInfo.attributes.email);
         return (
             <div className = "container">
-                <p>Username: {this.state.userInfo.username}</p>
-                <p>password: </p> 
-                <p>email: {this.state.userInfo.attributes ? this.state.userInfo.attributes.email : ''}</p>
+                <div className = "content">
+                    <h4>Username</h4> 
+                    <p>{this.state.userInfo.username}</p><hr />
+                    <h4>Password</h4> 
+                    <p>*********</p><hr />
+                    <h4>Email</h4>
+                    <p>{this.state.userInfo.attributes ? this.state.userInfo.attributes.email : ''}</p><hr />
+                </div>
             </div>
         )  
     }

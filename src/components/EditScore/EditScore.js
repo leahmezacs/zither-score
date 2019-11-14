@@ -30,7 +30,7 @@ class EditScore extends Component {
                       fontSize="40"
                       transform="translate(431.024, 80)"
                     >
-                      ABC
+                      
                     </text>
                   </g>
                 </g>

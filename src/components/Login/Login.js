@@ -35,7 +35,10 @@ class Login extends Component {
             const cognitoUser = await Auth.currentAuthenticatedUser();
             const userExists = await getUser(cognitoUser.username);
             if (!userExists) {
-                const createdUser = await createUser({id: cognitoUser.username, username: cognitoUser.username });
+                const createdUser = await createUser(
+                    {id: cognitoUser.username, 
+                    username: cognitoUser.username,
+                    email: cognitoUser.attributes.email });
                 this.props.onLogin(cognitoUser);
             } else {
                 this.props.onLogin(cognitoUser);

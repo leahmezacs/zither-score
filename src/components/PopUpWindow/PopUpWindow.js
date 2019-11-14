@@ -14,7 +14,7 @@ const PopUpWindow = (props) => {
             <div className="row">
               <div className="form-group col-md-4">
                 <label>Name:</label>
-                <input type="text" value="" className="form-control" />
+                <input type="text" name="name" className="form-control" />
               </div>
             </div>
           </Modal.Body>
