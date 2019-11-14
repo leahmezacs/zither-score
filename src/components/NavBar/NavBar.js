@@ -3,7 +3,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
-import "./NavBar.css";
+import "../../stylesheets/NavBar_ToolBar.css";
 import PopUpWindow from "../PopUpWindow/PopUpWindow";
 import {
   Navbar,

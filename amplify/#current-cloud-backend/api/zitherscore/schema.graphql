@@ -9,6 +9,7 @@ type User
 
 type Score @model {
   id: ID!
+  name: String
   notes: [Note] @connection(name: "ScoreNotes")
   user: User @connection(name: "UserScores", sortField: "createdDate")
   createdDate: AWSDateTime
@@ -28,7 +29,8 @@ type Note @model {
   line: Int
   doubleLine: Int
   curve: Int
-  position: Int
+  row: Int
+  column: Int
   score: Score @connection(name: "ScoreNotes")
 }
 
