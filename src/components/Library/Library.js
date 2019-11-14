@@ -6,16 +6,16 @@ class Library extends Component {
             <div className="main-library">
                 <div className="side-bar">
                     <div className="inner">
-                            <a className="list-item" href="#">
-                                <span>Scores</span>
+                            <a className="list-item">
+                                <span className="t">Scores</span>
                             </a>
                             <div className="sub-item">
-                                <a className="list-item" href="#">
-                                    <span>New collection</span>
+                                <a className="list-item">
+                                    <span className="t em">New collection</span>
                                 </a>
                             </div>
-                            <a className="list-item" href="#">
-                                <span>Trash</span>
+                            <a className="list-item">
+                                <span className="t">Trash</span>
                             </a>
                     </div>
                 </div>
@@ -43,12 +43,18 @@ class Library extends Component {
                                         <div className="th row-date sorting">
                                             Date Modified
                                         </div>
-                                        {/* <div className="th row-sharing">
-
-                                        </div> */}
+                                        <div className="th row-sharing">
+                                            Sharing
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div className="right-bar">
+                        <div className="inner">
+                            <button ></button>
                         </div>
                     </div>
                 </div>
