@@ -140,6 +140,10 @@
     flex: 0 0 185px;
 }
 
+.library-list .row-sharing {
+    flex: 0 0 160px;
+}
+
 .side-bar {
     flex: 0 0 270px;
 }
@@ -156,10 +160,6 @@
     transition: all .2s ease-in-out;
 }
 
-.sub-item {
-    padding: 20px;
-}
-
 .side-bar .inner {
     position: fixed;
     height: calc(100vh - 64px);
@@ -167,6 +167,10 @@
     background: #fafafb;
     padding: 30px;
     overflow: auto;
+}
+
+.sub-item {
+    padding: 20px;
 }
 
 .a {
@@ -196,4 +200,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.list-tree .list-item .t.em {
+    font-style: italic;
 }
