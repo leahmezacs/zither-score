@@ -98,6 +98,10 @@
     left: -40px;
 }
 
+.sorting {
+    cursor: pointer;
+}
+
 .side-bar {
     flex: 0 0 270px;
 }
