@@ -33,6 +33,13 @@
 
 /* Library */
 
+.main-library {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 64px);
+    max-height: calc(100vh - var(--vh-offset) - 64px);
+}
+
 .side-bar {
     flex: 0 0 270px;
 }
