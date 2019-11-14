@@ -9,8 +9,8 @@ class Library extends Component {
                 <Container>
                     <Row>
                         <Col lg xl={2}>
-                            <div id="side-bar">
-                                <div id="inner">
+                            <div className="side-bar">
+                                <div className="inner">
                                         <a href="#">
                                             <Row>Scores</Row>
                                         </a>
@@ -24,9 +24,9 @@ class Library extends Component {
                             </div>
                         </Col>
                         <Col lg xl={10}>
-                            <div id="main-bar">
-                                <div id="library-content">
-                                    <div id="header">
+                            <div className="main-bar">
+                                <div className="library-content">
+                                    <div className="header">
                                         <h1>
                                             Scores
                                         </h1>
