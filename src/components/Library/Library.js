@@ -33,7 +33,20 @@ class Library extends Component {
                         <div className="list-container">
                             <div className="library-list">
                                 <div className="thead">
+                                    <div className="tr">
+                                        <div className="th cb">
+                                            {/* <input type="checkbox" className="checkbox-morph"></input> */}
+                                        </div>
+                                        <div className="th row-title sorting">
 
+                                        </div>
+                                        <div className="th row-date sorting">
+
+                                        </div>
+                                        <div className="th row-sharing">
+                                            
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
