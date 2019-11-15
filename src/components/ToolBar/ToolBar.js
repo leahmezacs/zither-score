@@ -4,7 +4,7 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
 import Grid from "@material-ui/core/Grid";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
-import "../style.css";
+import "../../stylesheets/style.css";
 
 class ToolBar extends Component {
   render() {

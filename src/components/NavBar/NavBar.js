@@ -3,7 +3,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
-import "../style.css";
+import "../../stylesheets/style.css";
 import PopUpWindow from "../PopUpWindow/PopUpWindow";
 import {
   Navbar,
@@ -43,7 +43,7 @@ class NavBar extends Component {
               <Nav.Link href="#">Discover</Nav.Link>
             </Nav>
 
-            <Form inline className="mx-auto">
+            <Form inline className="mr-auto">
               <SearchIcon className="text-white SearchIcon" fontSize="large" />
               <FormControl
                 type="text"
