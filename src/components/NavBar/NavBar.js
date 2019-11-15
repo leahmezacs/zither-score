@@ -40,7 +40,7 @@ class NavBar extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="#">Discover</Nav.Link>
+              <Nav.Link className="text-light" href="#">Discover</Nav.Link>
             </Nav>
 
             <Form inline className="mr-auto">
@@ -50,7 +50,7 @@ class NavBar extends Component {
                 placeholder="Search"
                 className="mr-sm-2"
               />
-              <Button variant="outline-warning">Search</Button>
+              <Button variant="outline-light">Search</Button>
             </Form>
 
             {this.props.loggedInUser ? (
@@ -72,7 +72,7 @@ class NavBar extends Component {
                 </NavDropdown>
               </>
             ) : (
-              <Nav.Link href="/Login">Login</Nav.Link>
+              <Nav.Link className="text-light" href="/Login">Login</Nav.Link>
             )}
           </Navbar.Collapse>
         </Navbar>
