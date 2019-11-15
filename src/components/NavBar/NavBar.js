@@ -43,7 +43,7 @@ class NavBar extends Component {
               <Nav.Link href="#">Discover</Nav.Link>
             </Nav>
 
-            <Form inline className="mx-auto">
+            <Form inline className="mr-auto">
               <SearchIcon className="text-white SearchIcon" fontSize="large" />
               <FormControl
                 type="text"
