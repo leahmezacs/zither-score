@@ -50,6 +50,10 @@ class Library extends Component {
                                         </div>
                                     </div>
                                 </div>
+
+                                <div infinite-scroll-disabled="infiniteScrollBusy" infinite-scroll-distance="250" className="tbody">
+
+                                </div>
                             </div>
                         </div>
                     </div>
