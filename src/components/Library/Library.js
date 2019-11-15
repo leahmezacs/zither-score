@@ -26,9 +26,9 @@ class Library extends Component {
                     <div className="library-content">
                         <div className="head-container">
                             <div className="header">
-                                <h1>
+                                <h2>
                                     Scores
-                                </h1>
+                                </h2>
                             </div>
                         </div>
                         
