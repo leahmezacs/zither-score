@@ -11,12 +11,3 @@
 
 
 /* ToolBar Page styling */
-.toolBarbackground {
-    background: linear-gradient(45deg, #2196F3 30%, #21CBF3 90%);
-  }
-.toolBarspace {
-    margin-right: 10px;
-}
-.colorBlack {
-    color: black;
-}
