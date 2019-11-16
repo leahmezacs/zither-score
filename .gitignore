@@ -28,3 +28,4 @@ awsconfiguration.json
 
 # Wiki page
 zither-score.wiki
+*.wiki
