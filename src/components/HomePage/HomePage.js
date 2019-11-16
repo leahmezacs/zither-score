@@ -32,14 +32,10 @@ class HomePage extends Component{
                 <div className="jumbotron text-center">
                     <h1>Company</h1> 
                     <p>We specialize in blablabla</p> 
-                    <form>
-                        <div className="input-group">
-                        <input type="email" className="form-control" size="50" placeholder="Email Address" required />
-                            <div className="input-group-btn">
-                                <button type="button" className="btn btn-light">Subscribe</button>
-                            </div>
-                        </div>
-                    </form>
+                    <br />
+                    <button className="btn btn-light" href="">Sign up today!</button>
+                    <br />
+                    <a href="/Login" className="text-light">Have an account already?</a>
                 </div>
 
                 <div id="about" className="container-fluid">
@@ -74,7 +70,7 @@ class HomePage extends Component{
                     <h2>SERVICES</h2>
                     <h4>What we offer</h4>
                     <br/>
-                    <div className="row slideanim">
+                    <div>
                         <div className="col-sm-3">
                             <span className="icon glyphicon-off logo-small"></span>
                             <h4>POWER</h4>
@@ -95,7 +91,7 @@ class HomePage extends Component{
 
                 <br/><br/>
 
-                <div className="row slideanim">
+                <div className="slideanim">
                     <div className="col-sm-4">
                         <span className="glyphicon glyphicon-leaf logo-small"></span>
                         <h4>GREEN</h4>
@@ -114,86 +110,34 @@ class HomePage extends Component{
                 </div>
                 
                 <br/>
+
+                <div id="review" className="container-fluid-b text-center bg-grey">
+                    <h2>What our customers say</h2>
+                </div>
                 
-                <h2 className="text-center">What our customers say</h2>
-                <Carousel className="carousel slide text-center">
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="holder.js/800x400?text=First slide&bg=373940"
-                            alt="First slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <span>Nulla vitae elit libero, a pharetra augue mollis interdum.</span>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="holder.js/800x400?text=Second slide&bg=282c34"
-                            alt="Third slide"
-                        />
+                <div id="myCarousel" className="carousel slide text-center bg-grey" data-ride="carousel">
 
-                        <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="holder.js/800x400?text=Third slide&bg=20232a"
-                            alt="Third slide"
-                        />
+                    <Carousel>
+                        <Carousel.Item className="item">
+                            <h3>First slide</h3>
+                        </Carousel.Item>
+                        <Carousel.Item className="item">
+                            <h3>Second slide</h3>
+                        </Carousel.Item>
+                        <Carousel.Item className="item">
+                            <h3>Third slide</h3>
+                        </Carousel.Item>
+                    </Carousel>
 
-                        <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <span>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</span>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
-                {/* <div id="myCarousel" className="carousel slide text-center" data-ride="carousel">
-                    
-                    <ol className="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ol>
-
-                    <div className="carousel-inner" role="listbox">
-                        <div className="item active">
-                            <h4>"This company is the best. I am so happy with the result!"<br/>
-                            <span>Michael Roe, Vice President, Comment Box</span>
-                            </h4>
-                        </div>
-                        <div className="item">
-                            <h4>"One word... WOW!!"<br/><span>John Doe, Salesman, Rep Inc</span></h4>
-                        </div>
-                            <div className="item">
-                                <h4>"Could I... BE any more happy with this company?"<br/>
-                                <span>Chandler Bing, Actor, FriendsAlot</span></h4>
-                            </div>
-                        </div>
-
-                        <a className="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                            <span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span className="sr-only">Previous</span>
-                        </a>
-                        <a className="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                            <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span className="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div> */}
+                </div>
 
                 <div id="pricing" className="container-fluid">
                     <div className="text-center">
                         <h2>Pricing</h2>
-                        <h4>Choose a payment plan that works for you</h4>
+                        <h4>Start free now and upgrade later</h4>
                     </div>
-                    <div className="row slideanim">
-                        <div className="col-sm-4 col-xs-12">
+                    <div >
+                        <div className="a-col-sm-4 col-xs-12">
                             <div className="panel panel-default text-center">
                                 <div className="panel-heading">
                                     <h1>Basic</h1>
@@ -206,13 +150,13 @@ class HomePage extends Component{
                                     <p><strong>Endless</strong> Amet</p>
                                 </div>
                                 <div className="panel-footer">
-                                    <h3>$19</h3>
+                                    <h3>$0</h3>
                                     <h4>per month</h4>
                                     <button className="btn btn-lg">Sign Up</button>
                                 </div>
                             </div>      
                         </div>     
-                        <div className="col-sm-4 col-xs-12">
+                        {/* <div className="col-sm-4 col-xs-12">
                             <div className="panel panel-default text-center">
                                 <div className="panel-heading">
                                     <h1>Pro</h1>
@@ -230,26 +174,7 @@ class HomePage extends Component{
                                     <button className="btn btn-lg">Sign Up</button>
                                 </div>
                             </div>      
-                        </div>       
-                        <div className="col-sm-4 col-xs-12">
-                            <div className="panel panel-default text-center">
-                                <div className="panel-heading">
-                                    <h1>Premium</h1>
-                                </div>
-                                <div className="panel-body">
-                                    <p><strong>100</strong> Lorem</p>
-                                    <p><strong>50</strong> Ipsum</p>
-                                    <p><strong>25</strong> Dolor</p>
-                                    <p><strong>10</strong> Sit</p>
-                                    <p><strong>Endless</strong> Amet</p>
-                                </div>
-                                <div className="panel-footer">
-                                    <h3>$49</h3>
-                                    <h4>per month</h4>
-                                    <button className="btn btn-lg">Sign Up</button>
-                                </div>
-                            </div>      
-                        </div>    
+                        </div>        */}
                     </div>
                 </div>
 
@@ -258,9 +183,9 @@ class HomePage extends Component{
                     <div className="row">
                         <div className="col-sm-5">
                             <p>Contact us and we'll get back to you within 24 hours.</p>
-                            <p><span className="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
-                            <p><span className="glyphicon glyphicon-phone"></span> +00 1515151515</p>
-                            <p><span className="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
+                            <p><span className="icon glyphicon-map-marker"></span> Chicago, US</p>
+                            <p><span className="icon glyphicon-phone"></span> +00 1515151515</p>
+                            <p><span className="icon glyphicon-envelope"></span> myemail@something.com</p>
                         </div>
                         <div className="col-sm-7 slideanim">
                             <div className="row">
@@ -287,7 +212,7 @@ class HomePage extends Component{
                     <a href="#myPage" title="To Top">
                         <span className="glyphicon glyphicon-chevron-up"></span>
                     </a>
-                    <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
+                    <p>Bootstrap theme made by: <a href="https://www.w3schools.com" target="_blank">www.w3schools.com</a></p>
                 </footer>
             </div>
         )  
