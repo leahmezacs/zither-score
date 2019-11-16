@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
-import { Authenticator, SignIn, Greetings } from 'aws-amplify-react';
+import { Authenticator, Greetings } from 'aws-amplify-react';
 import { createUser } from '../../mutationHelper';
 import { getUser } from '../../queryHelper';
 import awsmobile from '../../aws-exports';
@@ -17,18 +17,17 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <Authenticator
-                        hide={[Greetings]}                        
-                        onStateChange={this.handleAuthStateChange}  
-                        amplifyConfig={awsmobile}
-                        errorMessage={authErrorMessageMapper}
-                    >
-                    </Authenticator>
-                </div>
+                <Authenticator
+                    hide={[Greetings]}                        
+                    onStateChange={this.handleAuthStateChange}  
+                    amplifyConfig={awsmobile}
+                    errorMessage={authErrorMessageMapper}
+                >
+                </Authenticator>
             </div>
         )
     }
+    
     handleAuthStateChange = async (state) => {
         if (state === 'signedIn') {
             const cognitoUser = await Auth.currentAuthenticatedUser();
@@ -44,6 +43,6 @@ class Login extends Component {
             }
         }
     }
-    
 }
+
 export default Login;

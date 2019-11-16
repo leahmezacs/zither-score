@@ -12,10 +12,7 @@ class Settings extends Component {
         };
     }
    
-    async componentDidMount() {
-        const info = await Auth.currentAuthenticatedUser();
-        this.setState({ userInfo: info });
-    } 
+    
 
     render () {
         console.log(this.state.userInfo.attributes);
@@ -33,6 +30,10 @@ class Settings extends Component {
             </div>
         )  
     }
+    async componentDidMount() {
+        const info = await Auth.currentAuthenticatedUser();
+        this.setState({ userInfo: info });
+    } 
 }
 
 export default Settings;

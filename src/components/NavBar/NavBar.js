@@ -3,25 +3,18 @@ import { withRouter, Redirect } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
-<<<<<<< HEAD
-import "../../stylesheets/NavBar_ToolBar.css";
-=======
 import "../../stylesheets/style.css";
->>>>>>> 246c64ee3ee1a4858c6e80725eef61ee71ecad84
 import PopUpWindow from "../PopUpWindow/PopUpWindow";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button
-} from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
+import { createScore } from "../../mutationHelper";
+import { Auth } from 'aws-amplify';
 
 class NavBar extends Component {
   state = {
-    showPopOut: false
+    showPopOut: false,
+    name: "test"
   };
+
   handlePopOut = () => {
     this.setState(prevState => {
       return {
@@ -29,12 +22,33 @@ class NavBar extends Component {
       };
     });
   };
+
+  handleName = (e) => {
+    this.setState({
+      name: e.target.name
+    });
+  };
+/*
+  async handleCreateScore() {
+    const user = await Auth.currentAuthenticatedUser();
+    const userId = user.username;
+    const score = await createScore(
+      {id: this.state.name,
+      name: this.state.name,
+      status: "PRIVATE",
+      createdDate: Date.now(),
+      updatedDate: Date.now(),
+      userId: userId
+      }
+    )
+  }
+*/
   render() {
-    console.log(this.props.location);
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
       return <Redirect to="/" />;
     }
 
+    console.log(this.state.name);
     return (
       <div>
         <Navbar className="NavBarBackground" expand="lg">
@@ -81,8 +95,10 @@ class NavBar extends Component {
           </Navbar.Collapse>
         </Navbar>
         <PopUpWindow
-          showPopOut={this.state.showPopOut}
-          handlePopOut={this.handlePopOut}
+          showPopOut = {this.state.showPopOut}
+          handlePopOut = {this.handlePopOut}
+          name = {this.state.name}
+          handleName = {this.handleName}
         />
       </div>
     );

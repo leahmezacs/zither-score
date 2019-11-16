@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Modal} from 'react-bootstrap';
-import EditScore from '../EditScore/EditScore'
 
 const PopUpWindow = (props) => {
     return (
@@ -14,7 +13,7 @@ const PopUpWindow = (props) => {
             <div className="row">
               <div className="form-group col-md-4">
                 <label>Name:</label>
-                <input type="text" name="name" className="form-control" />
+                <input type="text" value={props.name} onChange={props.handleName} className="form-control" />
               </div>
             </div>
           </Modal.Body>
@@ -27,5 +26,13 @@ const PopUpWindow = (props) => {
       </>
     );
 }
+/*
+this.props.history.psuh({
+  pathname: '/EditScore',
+  state: {
+    name: props.name
+  }
+});
+*/
 
 export default PopUpWindow;
