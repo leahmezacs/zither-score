@@ -49,7 +49,7 @@ class NavBar extends Component {
                 placeholder="Search"
                 className="mr-sm-1"
               />
-              <SearchIcon className="SearchIcon" fontSize="default" />
+              <button className="btn btn-sm btn-light"><SearchIcon /></button>
             </Form>
 
             {this.props.loggedInUser ? (
