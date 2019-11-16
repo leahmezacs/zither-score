@@ -26,9 +26,9 @@ class Library extends Component {
                     <div className="library-content">
                         <div className="head-container">
                             <div className="header">
-                                <h1>
+                                <h2>
                                     Scores
-                                </h1>
+                                </h2>
                             </div>
                         </div>
                         
@@ -49,6 +49,10 @@ class Library extends Component {
                                             Sharing
                                         </div>
                                     </div>
+                                </div>
+
+                                <div infinite-scroll-disabled="infiniteScrollBusy" infinite-scroll-distance="250" className="tbody">
+
                                 </div>
                             </div>
                         </div>
