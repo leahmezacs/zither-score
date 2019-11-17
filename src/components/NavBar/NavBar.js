@@ -12,7 +12,7 @@ import * as mutations from '../../graphql/mutations';
 class NavBar extends Component {
   state = {
     showPopOut: false,
-    name: ""
+    name: "test"
   };
 
   handlePopOut = () => {
@@ -21,6 +21,13 @@ class NavBar extends Component {
         showPopOut: !prevState.showPopOut
       };
     });
+
+    let path = {
+      pathname: '/EditScore',
+      query: this.state.name,
+    }
+
+    this.props.history.push(path);
   };
 
   handleName = (e) => {
