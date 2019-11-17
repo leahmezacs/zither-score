@@ -28,9 +28,9 @@ class ScoreInput extends Component {
                     <ControlPointIcon />
                 </button>
                 <form>
-                    {this.state.lineLength.map((line) => (
-                        <SingleLineScoreInput key={this.state.lineLength} />
-                ))}
+                    {/* {this.state.lineLength.map((line) => ( */}
+                        <SingleLineScoreInput lineLength={this.state.lineLength} key={this.state.lineLength} />
+                {/* ))} */}
                     {/* <SingleLineScoreInput /> */}
                 </form>
             </Container>

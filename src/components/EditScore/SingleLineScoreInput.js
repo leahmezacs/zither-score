@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState  } from "react";
 import SingleScoreInput from "./SingleScoreInput";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -7,13 +7,14 @@ import Grid from "@material-ui/core/Grid";
 const SingleLineScoreInput = (props) => {
   // constructor(props) {
     // super(props);
-    const nodeLength = [];
-    for (let i = 0; i < 4; i++) {
-      nodeLength.push(i);
-    }
-    this.state = {
-      nodeLength
-    };
+    // const nodeLength = [];
+    // for (let i = 0; i < 4; i++) {
+    //   nodeLength.push(i);
+    // }
+    // this.state = {
+    //   nodeLength: [0, 1, 2, 3]
+    // };
+    const nodeLength = [0, 1, 2, 3];
   // }
   // render() {
     return (
@@ -23,7 +24,7 @@ const SingleLineScoreInput = (props) => {
           <Grid item xs={12}>
             <Grid key={value} container justify="center" spacing={2}>
               <span>||</span>
-              {this.state.nodeLength.map(value => (
+              {nodeLength.map(value => (
                 <Grid key={value} item>
                   <SingleScoreInput />
                 </Grid>
