@@ -50,8 +50,13 @@ class CreateModal extends Component {
               </Modal.Body>
 
               <Modal.Footer>
+                <select>
+                  <option value="private">Private</option>
+                  <option value="public">Public</option>
+                </select>
                 <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
                 <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
+  
               </Modal.Footer>
             </form>
           </Modal>
