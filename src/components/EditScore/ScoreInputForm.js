@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SingleScoreInput  from "./SingleScoreInput";
+import SingleLineScoreInput  from "./SingleLineScoreInput";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
@@ -41,7 +41,7 @@ class ScoreInputForm extends Component {
           <span>||</span>
             {this.state.nodeLength.map(value => (
               <Grid key={value} item>
-                <SingleScoreInput />
+                <SingleLineScoreInput />
               </Grid>
             ))}
             <p>|</p>

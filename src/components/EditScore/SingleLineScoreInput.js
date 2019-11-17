@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SingleScoreInput extends Component {
+class SingleLineScoreInput extends Component {
   render() {
     return (
       <div>
@@ -42,4 +42,4 @@ class SingleScoreInput extends Component {
   }
 }
 
-export default SingleScoreInput;
+export default SingleLineScoreInput;
