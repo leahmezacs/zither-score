@@ -10,8 +10,8 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
       items {
         id
         name
-        createdDate
-        updatedDate
+        createdAt
+        updatedAt
         status
       }
       nextToken
@@ -28,8 +28,8 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
       items {
         id
         name
-        createdDate
-        updatedDate
+        createdAt
+        updatedAt
         status
       }
       nextToken
@@ -46,8 +46,8 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
       items {
         id
         name
-        createdDate
-        updatedDate
+        createdAt
+        updatedAt
         status
       }
       nextToken
@@ -80,8 +80,8 @@ export const createScore = `mutation CreateScore($input: CreateScoreInput!) {
         nextToken
       }
     }
-    createdDate
-    updatedDate
+    createdAt
+    updatedAt
     status
   }
 }
@@ -111,8 +111,8 @@ export const updateScore = `mutation UpdateScore($input: UpdateScoreInput!) {
         nextToken
       }
     }
-    createdDate
-    updatedDate
+    createdAt
+    updatedAt
     status
   }
 }
@@ -142,8 +142,8 @@ export const deleteScore = `mutation DeleteScore($input: DeleteScoreInput!) {
         nextToken
       }
     }
-    createdDate
-    updatedDate
+    createdAt
+    updatedAt
     status
   }
 }
@@ -169,8 +169,8 @@ export const createNote = `mutation CreateNote($input: CreateNoteInput!) {
         username
         email
       }
-      createdDate
-      updatedDate
+      createdAt
+      updatedAt
       status
     }
   }
@@ -197,8 +197,8 @@ export const updateNote = `mutation UpdateNote($input: UpdateNoteInput!) {
         username
         email
       }
-      createdDate
-      updatedDate
+      createdAt
+      updatedAt
       status
     }
   }
@@ -225,8 +225,8 @@ export const deleteNote = `mutation DeleteNote($input: DeleteNoteInput!) {
         username
         email
       }
-      createdDate
-      updatedDate
+      createdAt
+      updatedAt
       status
     }
   }
