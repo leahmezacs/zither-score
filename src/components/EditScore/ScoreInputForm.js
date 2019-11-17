@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import { SingleScoreInput } from "./SingleScoreInput"
+import Container from '@material-ui/core/Container';
+import SingleScoreInput  from "./SingleScoreInput";
 
 class ScoreInputForm extends Component {
   render() {
     return (
-      <ScoreInputForm />
+        <Container maxWidth="xs">
+            <SingleScoreInput />
+        </Container>
+      
     );
   }
 }
