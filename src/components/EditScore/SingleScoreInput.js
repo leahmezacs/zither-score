@@ -8,7 +8,7 @@ class SingleScoreInput extends Component {
         <input
           key="0"
           className="singleNote"
-          type="number"
+          type="text"
           maxLength="1"
           min="1"
           max="7"
@@ -16,7 +16,7 @@ class SingleScoreInput extends Component {
         <input
           key="1"
           className="singleNote"
-          type="number"
+          type="text"
           maxLength="1"
           min="1"
           max="7"
@@ -24,7 +24,7 @@ class SingleScoreInput extends Component {
         <input
           key="2"
           className="singleNote"
-          type="number"
+          type="text"
           maxLength="1"
           min="1"
           max="7"
@@ -32,7 +32,7 @@ class SingleScoreInput extends Component {
         <input
           key="3"
           className="singleNote"
-          type="number"
+          type="text"
           maxLength="1"
           min="1"
           max="7"
