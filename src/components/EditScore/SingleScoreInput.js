@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../../stylesheets/style.css"
 
 class SingleScoreInput extends Component {
   render() {
