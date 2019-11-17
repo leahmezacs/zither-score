@@ -5,9 +5,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
 import "../../stylesheets/style.css";
 import CreateModal from "../CreateModal/CreateModal";
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
-import { Auth, graphqlOperation, API } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
+import { Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
 
 class NavBar extends Component {
   constructor(props) {
@@ -25,21 +23,6 @@ class NavBar extends Component {
       };
     });
   };
-
-  async handleCreateScore() {
-    const user = await Auth.currentAuthenticatedUser();
-    const userId = user.username;
-    const score = await API.graphql(graphqlOperation(mutations.createScore, {
-      input: {
-        id: this.state.name,
-        name: this.state.name,
-        status: "PRIVATE",
-        createdDate: Date.now(),
-        updatedDate: Date.now(),
-        userId: userId
-      }
-    }));
-  }
   
   render() {
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
