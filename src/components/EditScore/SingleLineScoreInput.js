@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
 
-class SingleScoreLineInput extends Component {
+class SingleLineScoreInput extends Component {
   constructor(props) {
     super(props);
     const nodeLength = [];
@@ -36,4 +36,4 @@ class SingleScoreLineInput extends Component {
   }
 }
 
-export default SingleScoreLineInput;
+export default SingleLineScoreInput;

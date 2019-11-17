@@ -7,7 +7,7 @@ import Login from './components/Login/Login';
 import NavBar from './components/NavBar/NavBar';
 import Library from './components/Library/Library';
 import EditScore from './components/EditScore/EditScore';
-import SingleScoreLineInput from './components/EditScore/SingleScoreLineInput';
+import SingleScore from './components/EditScore/ScoreInput';
 
 
 
@@ -61,7 +61,7 @@ class App extends Component {
                     <Route exact path="/Settings" component={Settings}/>
                     <Route exact path="/Library" component={Library}/>
                     <Route exact path="/EditScore" component={EditScore}/>
-                    <Route exact path="/ScoreInput" component={SingleScoreLineInput}/>
+                    <Route exact path="/ScoreInput" component={SingleScore}/>
                     
                     
                 </div>
