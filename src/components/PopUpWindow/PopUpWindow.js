@@ -27,7 +27,7 @@ const PopUpWindow = (props) => {
     );
 }
 /*
-this.props.history.psuh({
+this.props.history.push({
   pathname: '/EditScore',
   state: {
     name: props.name

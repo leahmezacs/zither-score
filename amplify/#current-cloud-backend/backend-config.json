@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"zitherscore16ff211d": {
+		"zitherscore457f832c": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
@@ -22,7 +22,7 @@
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
-							"userPoolId": "authzitherscore16ff211d"
+							"userPoolId": "authzitherscore457f832c"
 						}
 					}
 				}

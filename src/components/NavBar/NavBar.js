@@ -6,13 +6,12 @@ import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
 import "../../stylesheets/style.css";
 import PopUpWindow from "../PopUpWindow/PopUpWindow";
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
-import { createScore } from "../../mutationHelper";
 import { Auth } from 'aws-amplify';
 
 class NavBar extends Component {
   state = {
     showPopOut: false,
-    name: "test"
+    name: ""
   };
 
   handlePopOut = () => {
@@ -25,10 +24,11 @@ class NavBar extends Component {
 
   handleName = (e) => {
     this.setState({
-      name: e.target.name
+      name: e.target.value
     });
   };
-/*
+
+  /*
   async handleCreateScore() {
     const user = await Auth.currentAuthenticatedUser();
     const userId = user.username;
@@ -42,7 +42,8 @@ class NavBar extends Component {
       }
     )
   }
-*/
+  */
+
   render() {
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
       return <Redirect to="/" />;

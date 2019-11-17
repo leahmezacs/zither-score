@@ -26,8 +26,8 @@ type Note @model {
   number: Int
   dot: dotStatus
   doubleDot: dotStatus
-  line: Int
-  doubleLine: Int
+  line: Boolean
+  doubleLine: Boolean
   curve: Int
   row: Int
   column: Int
