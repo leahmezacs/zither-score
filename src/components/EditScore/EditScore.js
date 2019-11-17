@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ToolBar from '../ToolBar/ToolBar';
 import '../../stylesheets/scorestylesheet.css';
-import ScoreInput from '../ScoreInput/ScoreInput';
+import ScoreInput from './ScoreInput';
 
 class EditScore extends Component {
     render () {
@@ -19,7 +19,7 @@ class EditScore extends Component {
                             </g>
                             
                             <g className="page-main">
-                                <foreignObject x="50" y="140" width="1150" height="1650">
+                                <foreignObject x="-10" y="100" width="1150" height="1650">
                                     <ScoreInput />
                                 </foreignObject>
                             </g>
