@@ -46,10 +46,7 @@ class CreateModal extends Component {
                     <label>Name:</label>
                     <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" />
                     
-                    <select>
-                      <option value="private">Private</option>
-                      <option value="public">Public</option>
-                    </select>
+                    
                   </div>
                   
                 </div>
@@ -59,7 +56,11 @@ class CreateModal extends Component {
                 
                 <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
                 <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
-  
+
+                <select>
+                      <option value="private">Private</option>
+                      <option value="public">Public</option>
+                </select>
               </Modal.Footer>
             </form>
           </Modal>
