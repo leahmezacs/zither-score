@@ -44,7 +44,7 @@ class CreateModal extends Component {
                 <div className="row">
                   <div className="form-group col-md-4">
                     <label>Name:</label>
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" />
+                    <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" required/>
                     
                     
                   </div>
