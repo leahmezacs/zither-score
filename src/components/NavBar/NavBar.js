@@ -4,35 +4,25 @@ import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
 import "../../stylesheets/style.css";
-import PopUpWindow from "../PopUpWindow/PopUpWindow";
+import CreateModal from "../CreateModal/CreateModal";
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 
 class NavBar extends Component {
-  state = {
-    showPopOut: false,
-    name: "test"
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    }
+    this.handleShow = this.handleShow.bind(this);
+  }
 
-  handlePopOut = () => {
+  handleShow = () => {
     this.setState(prevState => {
       return {
-        showPopOut: !prevState.showPopOut
+        modal: !prevState.modal
       };
-    });
-
-    let path = {
-      pathname: '/EditScore',
-      query: this.state.name,
-    }
-
-    this.props.history.push(path);
-  };
-
-  handleName = (e) => {
-    this.setState({
-      name: e.target.value
     });
   };
 
@@ -51,13 +41,11 @@ class NavBar extends Component {
     }));
   }
   
-
   render() {
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
       return <Redirect to="/" />;
     }
 
-    console.log(this.state.name);
     return (
       <div>
         <Navbar className="NavBarBackground" expand="lg">
@@ -82,7 +70,7 @@ class NavBar extends Component {
             {this.props.loggedInUser ? (
               <>
                 <Nav className="ml-auto">
-                  <Nav.Link onClick={this.handlePopOut}>Create</Nav.Link>
+                  <Nav.Link onClick={this.handleShow}>Create</Nav.Link>
                   <Nav.Link href="#">Notification</Nav.Link>
                 </Nav>
 
@@ -102,11 +90,9 @@ class NavBar extends Component {
             )}
           </Navbar.Collapse>
         </Navbar>
-        <PopUpWindow
-          showPopOut = {this.state.showPopOut}
-          handlePopOut = {this.handlePopOut}
-          name = {this.state.name}
-          handleName = {this.handleName}
+        <CreateModal
+          modal = {this.state.modal}
+          handleShow = {this.handleShow}
         />
       </div>
     );
