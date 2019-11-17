@@ -4,6 +4,23 @@ import Container from "@material-ui/core/Container";
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
 
 class ScoreInput extends Component {
+    constructor(props) {
+        super(props);
+        // const lineLength = []
+        this.state = {
+            lineLength: []
+        }
+
+        this.handleNewLine = this.handleNewLine.bind(this);
+    }
+
+    handleNewLine = (event) =>{
+        event.preventDefault();
+        this.setState((preState) => ({
+            lineLength: [...preState.lineLength, 1]
+        }))
+    }
+
     render() {
         return (
             <Container maxWidth="lg">
@@ -11,7 +28,10 @@ class ScoreInput extends Component {
                     <ControlPointIcon />
                 </button>
                 <form>
-                    <SingleLineScoreInput />
+                    {this.state.lineLength.map((line) => (
+                        <SingleLineScoreInput key={this.state.lineLength} />
+                ))}
+                    {/* <SingleLineScoreInput /> */}
                 </form>
             </Container>
         )
