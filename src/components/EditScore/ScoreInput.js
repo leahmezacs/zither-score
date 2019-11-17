@@ -8,6 +8,7 @@ class ScoreInput extends Component {
         super(props);
         // const lineLength = []
         this.state = {
+            line: 0,
             lineLength: []
         }
 
@@ -17,7 +18,8 @@ class ScoreInput extends Component {
     handleNewLine = (event) =>{
         event.preventDefault();
         this.setState((preState) => ({
-            lineLength: [...preState.lineLength, 1]
+            line: this.state.line + 1,
+            lineLength: [...preState.lineLength, this.state.line]
         }))
     }
 
@@ -29,7 +31,7 @@ class ScoreInput extends Component {
                 </button>
                 <form>
                     {/* {this.state.lineLength.map((line) => ( */}
-                        <SingleLineScoreInput lineLength={this.state.lineLength} key={this.state.lineLength} />
+                        <SingleLineScoreInput lineLength={this.state.lineLength} key={this.state.line} />
                 {/* ))} */}
                     {/* <SingleLineScoreInput /> */}
                 </form>
