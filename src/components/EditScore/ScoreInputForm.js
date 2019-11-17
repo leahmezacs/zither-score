@@ -24,13 +24,13 @@ class ScoreInputForm extends Component {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Grid container justify="center" spacing={2}>
-          <p>||</p>
+          <span>||</span>
             {this.state.nodeLength.map(value => (
               <Grid key={value} item>
                 <SingleScoreInput />
               </Grid>
             ))}
-            <p>||</p>
+            <p>|</p>
           </Grid>
         </Grid>
       </Grid>
