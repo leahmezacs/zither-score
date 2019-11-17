@@ -33,7 +33,7 @@ class Login extends Component {
             const cognitoUser = await Auth.currentAuthenticatedUser();
             const userExists = API.graphql(graphqlOperation(queries.getUser, {id: cognitoUser.username}));
             if (!userExists) {
-                const createdUser = await API.graphql(graphqlOperation(mutations.createUser,{
+                await API.graphql(graphqlOperation(mutations.createUser,{
                     input: {
                         id: cognitoUser.username, 
                         username: cognitoUser.username,

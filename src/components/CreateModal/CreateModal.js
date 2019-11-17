@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Button, Modal} from 'react-bootstrap';
+import { Auth, graphqlOperation, API } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 class CreateModal extends Component {
     constructor(props) {
@@ -11,6 +13,7 @@ class CreateModal extends Component {
 
       this.handleNameChange = this.handleNameChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleCreateScore = this.handleCreateScore.bind(this);
     }
 
     handleNameChange(event) {
@@ -22,13 +25,31 @@ class CreateModal extends Component {
     handleSubmit(event) {
       event.preventDefault();
       this.props.handleShow();
-
-      let path = {
+      this.handleCreateScore();
+      
+      
+      this.props.history.push({
         pathname: '/EditScore',
-        query: this.state.name,
-      }
-      console.log(path);
-      this.props.history.push(path);
+        state: {
+          name: this.state.name
+        }
+      });
+      console.log(this.props.history.state);
+      
+    }
+
+    handleCreateScore = async () => {
+      const user = await Auth.currentAuthenticatedUser();
+      const userId = user.username;
+      const scoreCreated = await API.graphql(graphqlOperation(mutations.createScore, {
+          input: {
+              id: this.state.name,
+              name: this.state.name,
+              status: "PRIVATE",
+              scoreUserId: userId
+          }
+      }));
+      console.log(scoreCreated);
     }
 
     render(){

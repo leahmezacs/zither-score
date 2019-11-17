@@ -4,16 +4,16 @@ type User
   id: ID!
   username: String! 
   email: String!
-  scores: [Score] @connection(name: "UserScores", sortField: "createdDate")
+  scores: [Score] @connection(name: "UserScores", sortField: "createdAt")
 }
 
 type Score @model {
   id: ID!
   name: String
   notes: [Note] @connection(name: "ScoreNotes")
-  user: User @connection(name: "UserScores", sortField: "createdDate")
-  createdDate: AWSDateTime
-  updatedDate: AWSDateTime
+  user: User @connection(name: "UserScores", sortField: "createdAt")
+  createdAt: String
+  updatedAt: String
   status: ScoreStatus
 }
 
