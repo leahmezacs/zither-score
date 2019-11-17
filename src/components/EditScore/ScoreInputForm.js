@@ -20,14 +20,21 @@ class ScoreInputForm extends Component {
         this.state = {
             nodeLength
         };
+
+        this.handleNewLine = this.handleNewLine.bind(this);
     }
+
+    handleNewLine(event) {
+        event.preventDefault();
+    }
+
   render() {
     return (
         <Container maxWidth="lg">
 
         <form>
     {/* <Grid container spacing={2}> */}
-        <button>
+        <button onClick="handleNewLine">
             <ControlPointIcon />
         </button>
         <Grid item xs={12}>
