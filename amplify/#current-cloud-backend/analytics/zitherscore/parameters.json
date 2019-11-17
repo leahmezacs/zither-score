@@ -1,10 +1,10 @@
 {
     "appName": "zitherscore",
-    "roleName": "pinpointLambdaRolea958c807",
-    "cloudWatchPolicyName": "cloudWatchPolicya958c807",
-    "pinpointPolicyName": "pinpointPolicya958c807",
-    "authPolicyName": "pinpoint_amplify_a958c807",
-    "unauthPolicyName": "pinpoint_amplify_a958c807",
+    "roleName": "pinpointLambdaRolecae7d277",
+    "cloudWatchPolicyName": "cloudWatchPolicycae7d277",
+    "pinpointPolicyName": "pinpointPolicycae7d277",
+    "authPolicyName": "pinpoint_amplify_cae7d277",
+    "unauthPolicyName": "pinpoint_amplify_cae7d277",
     "authRoleName": {
         "Ref": "AuthRoleName"
     },

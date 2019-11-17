@@ -1,18 +1,18 @@
 {
     "local": {
         "awscloudformation": {
-            "AuthRoleName": "zitherscore-local-20191105130630-authRole",
-            "UnauthRoleArn": "arn:aws:iam::579217758069:role/zitherscore-local-20191105130630-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::579217758069:role/zitherscore-local-20191105130630-authRole",
+            "AuthRoleName": "zitherscore-local-20191117013744-authRole",
+            "UnauthRoleArn": "arn:aws:iam::579217758069:role/zitherscore-local-20191117013744-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::579217758069:role/zitherscore-local-20191117013744-authRole",
             "Region": "us-east-2",
-            "DeploymentBucketName": "zitherscore-local-20191105130630-deployment",
-            "UnauthRoleName": "zitherscore-local-20191105130630-unauthRole",
-            "StackName": "zitherscore-local-20191105130630",
-            "StackId": "arn:aws:cloudformation:us-east-2:579217758069:stack/zitherscore-local-20191105130630/fd7f3200-fff6-11e9-b48f-0247ef85be9c"
+            "DeploymentBucketName": "zitherscore-local-20191117013744-deployment",
+            "UnauthRoleName": "zitherscore-local-20191117013744-unauthRole",
+            "StackName": "zitherscore-local-20191117013744",
+            "StackId": "arn:aws:cloudformation:us-east-2:579217758069:stack/zitherscore-local-20191117013744/c3993ba0-0904-11ea-8ffa-021e2396e2cc"
         },
         "categories": {
             "auth": {
-                "zitherscore7de0a299": {}
+                "zitherscore457f832c": {}
             }
         }
     }

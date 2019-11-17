@@ -4,29 +4,44 @@ import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
 import "../../stylesheets/style.css";
-import PopUpWindow from "../PopUpWindow/PopUpWindow";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button
-} from "react-bootstrap";
+import CreateModal from "../CreateModal/CreateModal";
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
+import { Auth, graphqlOperation, API } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 class NavBar extends Component {
-  state = {
-    showPopOut: false
-  };
-  handlePopOut = () => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    }
+    this.handleShow = this.handleShow.bind(this);
+  }
+
+  handleShow = () => {
     this.setState(prevState => {
       return {
-        showPopOut: !prevState.showPopOut
+        modal: !prevState.modal
       };
     });
   };
+
+  async handleCreateScore() {
+    const user = await Auth.currentAuthenticatedUser();
+    const userId = user.username;
+    const score = await API.graphql(graphqlOperation(mutations.createScore, {
+      input: {
+        id: this.state.name,
+        name: this.state.name,
+        status: "PRIVATE",
+        createdDate: Date.now(),
+        updatedDate: Date.now(),
+        userId: userId
+      }
+    }));
+  }
+  
   render() {
-    console.log(this.props.location);
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
       return <Redirect to="/" />;
     }
@@ -55,7 +70,7 @@ class NavBar extends Component {
             {this.props.loggedInUser ? (
               <>
                 <Nav className="ml-auto">
-                  <Nav.Link onClick={this.handlePopOut}>Create</Nav.Link>
+                  <Nav.Link onClick={this.handleShow}>Create</Nav.Link>
                   <Nav.Link href="#">Notification</Nav.Link>
                 </Nav>
 
@@ -75,9 +90,9 @@ class NavBar extends Component {
             )}
           </Navbar.Collapse>
         </Navbar>
-        <PopUpWindow
-          showPopOut={this.state.showPopOut}
-          handlePopOut={this.handlePopOut}
+        <CreateModal
+          modal = {this.state.modal}
+          handleShow = {this.handleShow}
         />
       </div>
     );

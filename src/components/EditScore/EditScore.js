@@ -4,6 +4,7 @@ import '../../stylesheets/scorestylesheet.css';
 import ScoreInput from '../ScoreInput/ScoreInput';
 
 class EditScore extends Component {
+
     render () {
         return (
             <div>
@@ -29,6 +30,7 @@ class EditScore extends Component {
             </div>
         )
     }
+
 }
 
 export default EditScore;
