@@ -30,8 +30,8 @@ class ScoreInput extends Component {
         </button>
         <form>
           <SingleLineScoreInput
-            lineLength={this.state.lineLength}
             key={this.state.line}
+            lineLength={this.state.lineLength}
           />
         </form>
       </Container>

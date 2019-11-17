@@ -7,13 +7,13 @@ const SingleLineScoreInput = props => {
   const nodeLength = [0, 1, 2, 3];
 
   return props.lineLength.map(value => (
-    <Container maxWidth="lg">
+    <Container key={value} maxWidth="lg">
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Grid key={value} container justify="center" spacing={2}>
+          <Grid container justify="center" spacing={2}>
             <span>||</span>
             {nodeLength.map(value => (
-              <Grid item>
+              <Grid key={value} item>
                 <SingleScoreInput key={value} />
               </Grid>
             ))}

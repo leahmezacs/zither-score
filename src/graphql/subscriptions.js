@@ -1,97 +1,234 @@
-export const onCreateUser = `
-    subscription onCreateUser {
-        onCreateUser {
-            id
-            username
-            email
-        }
-    }
-`
+/* eslint-disable */
+// this is an auto generated file. This will be overwritten
 
-export const onUpdateUser = `
-    subscription onUpdateUser {
-        onUpdateUser {
-            id
-            username
-            email
-        }
+export const onCreateUser = `subscription OnCreateUser($id: String!) {
+  onCreateUser(id: $id) {
+    id
+    username
+    email
+    scores {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        status
+      }
+      nextToken
     }
-`
-
-export const onDeleteUser = `
-    subscription onDeleteUser {
-        onDeleteUser {
-            id
-        }
+  }
+}
+`;
+export const onUpdateUser = `subscription OnUpdateUser($id: String!) {
+  onUpdateUser(id: $id) {
+    id
+    username
+    email
+    scores {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        status
+      }
+      nextToken
     }
-`
-
-export const onCreateScore = `
-    subscription onCreateScore {
-        onCreateScore {
-            id
-            createdDate
-            updatedDate
-            status
-            scoreUserId
-        }
+  }
+}
+`;
+export const onDeleteUser = `subscription OnDeleteUser($id: String!) {
+  onDeleteUser(id: $id) {
+    id
+    username
+    email
+    scores {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        status
+      }
+      nextToken
     }
-`
-
-export const onUpdateScore = `
-    subscription onUpdateScore {
-        onUpdateScore {
-            id
-            createdDate
-            updatedDate
-            status
-            scoreUserId
-        }
+  }
+}
+`;
+export const onCreateScore = `subscription OnCreateScore {
+  onCreateScore {
+    id
+    name
+    notes {
+      items {
+        number
+        dot
+        doubleDot
+        line
+        doubleLine
+        curve
+        row
+        column
+      }
+      nextToken
     }
-`
-
-export const onDeleteScore = `
-    subscription onDeleteScore {
-        onDeleteScore {
-            id
-        }
+    user {
+      id
+      username
+      email
+      scores {
+        nextToken
+      }
     }
-`
-
-export const onCreateNote = `
-    subscription onCreateNote {
-        onCreateNote {
-            number
-            dot
-            doubleDot
-            line
-            doubleLine
-            curve
-            position
-            noteScoreId
-        }
+    createdAt
+    updatedAt
+    status
+  }
+}
+`;
+export const onUpdateScore = `subscription OnUpdateScore {
+  onUpdateScore {
+    id
+    name
+    notes {
+      items {
+        number
+        dot
+        doubleDot
+        line
+        doubleLine
+        curve
+        row
+        column
+      }
+      nextToken
     }
-`
-
-export const onUpdateNote = `
-    subscription onUpdateNote {
-        onUpdateNote {
-            number
-            dot
-            doubleDot
-            line
-            doubleLine
-            curve
-            position
-            noteScoreId
-        }
+    user {
+      id
+      username
+      email
+      scores {
+        nextToken
+      }
     }
-`
-
-export const onDeleteNote = `
-    subscription onDeleteNote {
-        onDeleteNote {
-            id
-        }
+    createdAt
+    updatedAt
+    status
+  }
+}
+`;
+export const onDeleteScore = `subscription OnDeleteScore {
+  onDeleteScore {
+    id
+    name
+    notes {
+      items {
+        number
+        dot
+        doubleDot
+        line
+        doubleLine
+        curve
+        row
+        column
+      }
+      nextToken
     }
-`
+    user {
+      id
+      username
+      email
+      scores {
+        nextToken
+      }
+    }
+    createdAt
+    updatedAt
+    status
+  }
+}
+`;
+export const onCreateNote = `subscription OnCreateNote {
+  onCreateNote {
+    number
+    dot
+    doubleDot
+    line
+    doubleLine
+    curve
+    row
+    column
+    score {
+      id
+      name
+      notes {
+        nextToken
+      }
+      user {
+        id
+        username
+        email
+      }
+      createdAt
+      updatedAt
+      status
+    }
+  }
+}
+`;
+export const onUpdateNote = `subscription OnUpdateNote {
+  onUpdateNote {
+    number
+    dot
+    doubleDot
+    line
+    doubleLine
+    curve
+    row
+    column
+    score {
+      id
+      name
+      notes {
+        nextToken
+      }
+      user {
+        id
+        username
+        email
+      }
+      createdAt
+      updatedAt
+      status
+    }
+  }
+}
+`;
+export const onDeleteNote = `subscription OnDeleteNote {
+  onDeleteNote {
+    number
+    dot
+    doubleDot
+    line
+    doubleLine
+    curve
+    row
+    column
+    score {
+      id
+      name
+      notes {
+        nextToken
+      }
+      user {
+        id
+        username
+        email
+      }
+      createdAt
+      updatedAt
+      status
+    }
+  }
+}
+`;
