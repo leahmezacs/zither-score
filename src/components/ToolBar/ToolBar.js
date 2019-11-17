@@ -8,7 +8,7 @@ class ToolBar extends Component {
         <div className="score-toolbar-inner">
           <div className="score-toolbar-main">
             <div className="score-toolbar-main-tabs">
-              <button id="toolbar-mode-note" className>Note</button>
+              <button id="toolbar-mode-note" >Note</button>
               {/* <button id="toolbar-mode-articulation" className>Articulation</button>
               <button id="toolbar-mode-ornament">Ornament</button>
               <button id="toolbar-mode-measure">Measure</button> */}

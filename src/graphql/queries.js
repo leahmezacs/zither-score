@@ -10,8 +10,8 @@ export const getUser = `query GetUser($id: ID!) {
       items {
         id
         name
-        createdDate
-        updatedDate
+        createdAt
+        updatedAt
         status
       }
       nextToken
@@ -62,8 +62,8 @@ export const getScore = `query GetScore($id: ID!) {
         nextToken
       }
     }
-    createdDate
-    updatedDate
+    createdAt
+    updatedAt
     status
   }
 }
@@ -85,8 +85,8 @@ export const listScores = `query ListScores(
         username
         email
       }
-      createdDate
-      updatedDate
+      createdAt
+      updatedAt
       status
     }
     nextToken
@@ -114,8 +114,8 @@ export const getNote = `query GetNote($id: ID!) {
         username
         email
       }
-      createdDate
-      updatedDate
+      createdAt
+      updatedAt
       status
     }
   }
@@ -139,8 +139,8 @@ export const listNotes = `query ListNotes(
       score {
         id
         name
-        createdDate
-        updatedDate
+        createdAt
+        updatedAt
         status
       }
     }

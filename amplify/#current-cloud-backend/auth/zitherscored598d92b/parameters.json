@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "zitherscore457f832c_identitypool_457f832c",
+    "identityPoolName": "zitherscored598d92b_identitypool_d598d92b",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "zither457f832c",
-    "userPoolName": "zitherscore457f832c_userpool_457f832c",
+    "resourceNameTruncated": "zitherd598d92b",
+    "userPoolName": "zitherscored598d92b_userpool_d598d92b",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "zither457f832c_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "zitherd598d92b_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "zitherscore457f832c",
+    "resourceName": "zitherscored598d92b",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
