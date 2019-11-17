@@ -5,19 +5,16 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
 import "../../stylesheets/style.css";
 import PopUpWindow from "../PopUpWindow/PopUpWindow";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button
-} from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
+import { Auth, graphqlOperation, API } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 class NavBar extends Component {
   state = {
-    showPopOut: false
+    showPopOut: false,
+    name: ""
   };
+
   handlePopOut = () => {
     this.setState(prevState => {
       return {
@@ -25,12 +22,35 @@ class NavBar extends Component {
       };
     });
   };
+
+  handleName = (e) => {
+    this.setState({
+      name: e.target.value
+    });
+  };
+
+  async handleCreateScore() {
+    const user = await Auth.currentAuthenticatedUser();
+    const userId = user.username;
+    const score = await API.graphql(graphqlOperation(mutations.createScore, {
+      input: {
+        id: this.state.name,
+        name: this.state.name,
+        status: "PRIVATE",
+        createdDate: Date.now(),
+        updatedDate: Date.now(),
+        userId: userId
+      }
+    }));
+  }
+  
+
   render() {
-    console.log(this.props.location);
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
       return <Redirect to="/" />;
     }
 
+    console.log(this.state.name);
     return (
       <div>
         <Navbar className="NavBarBackground" expand="lg">
@@ -76,8 +96,10 @@ class NavBar extends Component {
           </Navbar.Collapse>
         </Navbar>
         <PopUpWindow
-          showPopOut={this.state.showPopOut}
-          handlePopOut={this.handlePopOut}
+          showPopOut = {this.state.showPopOut}
+          handlePopOut = {this.handlePopOut}
+          name = {this.state.name}
+          handleName = {this.handleName}
         />
       </div>
     );
