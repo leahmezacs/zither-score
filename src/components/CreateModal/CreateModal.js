@@ -30,6 +30,7 @@ class CreateModal extends Component {
       
       this.props.history.push({
         pathname: '/EditScore',
+        search: this.state.name,
         state: {
           name: this.state.name
         }
