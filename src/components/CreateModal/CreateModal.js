@@ -53,7 +53,7 @@ class CreateModal extends Component {
               </Modal.Body>
 
               <Modal.Footer>
-
+                <label>Privacy:</label>
                 <select>
                       <option value="private">Private</option>
                       <option value="public">Public</option>
