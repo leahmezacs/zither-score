@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Auth, graphqlOperation, Analytics, API } from 'aws-amplify';
+import { Auth, graphqlOperation, API } from 'aws-amplify';
 import { Authenticator, Greetings } from 'aws-amplify-react';
 import awsmobile from '../../aws-exports';
 import * as mutations from '../../graphql/mutations';
@@ -34,7 +34,7 @@ class Login extends Component {
             const userExists = API.graphql(graphqlOperation(queries.getUser, {id: cognitoUser.username}));
             if (!userExists) {
                 const createdUser = await API.graphql(graphqlOperation(mutations.createUser,{
-                    input : {
+                    input: {
                         id: cognitoUser.username, 
                         username: cognitoUser.username,
                         email: cognitoUser.attributes.email

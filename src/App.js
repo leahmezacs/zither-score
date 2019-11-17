@@ -39,6 +39,13 @@ class App extends Component {
         })
     }
 
+    const EditScore = ({match}) => (
+        <div>
+          <h2>Score Title{match.params.id}</h2>
+          ...
+        </div>
+    )
+
     render () {
         return ( 
             <Router>
@@ -50,7 +57,7 @@ class App extends Component {
                     />
                     <Route exact path="/Settings" component={Settings}/>
                     <Route exact path="/Library" component={Library}/>
-                    <Route exact path="/EditScore" component={EditScore}/> 
+                    <Route exact path="/EditScore/:id" component={EditScore}/> 
                 </div>
             </Router>
         ); 
