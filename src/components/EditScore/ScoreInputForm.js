@@ -12,7 +12,7 @@ class ScoreInputForm extends Component {
         super(props);
 
         const nodeLength = [];
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < 4; i++) {
             nodeLength.push(i);
         }
         this.state = {
@@ -24,44 +24,14 @@ class ScoreInputForm extends Component {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Grid container justify="center" spacing={2}>
+          <p>||</p>
             {this.state.nodeLength.map(value => (
               <Grid key={value} item>
-                {/* <SingleScoreInput /> */}
-                <input
-                  className="singleNote"
-                  type="number"
-                  maxLength="1"
-                  min="1"
-                  max="7"
-                />
+                <SingleScoreInput />
               </Grid>
             ))}
+            <p>||</p>
           </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper>
-            <Grid container>
-              <Grid item>
-                <FormLabel>spacing</FormLabel>
-                <RadioGroup
-                  name="spacing"
-                  aria-label="spacing"
-                  // value={spacing.toString()}
-                  // onChange={handleChange}
-                  row
-                >
-                  {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => (
-                    <FormControlLabel
-                      key={value}
-                      value={value.toString()}
-                      control={<Radio />}
-                      label={value.toString()}
-                    />
-                  ))}
-                </RadioGroup>
-              </Grid>
-            </Grid>
-          </Paper>
         </Grid>
       </Grid>
     );
