@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import SingleScoreInput from "./SingleScoreInput";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import ControlPointIcon from "@material-ui/icons/ControlPoint";
 
 class SingleLineScoreInput extends Component {
   constructor(props) {
