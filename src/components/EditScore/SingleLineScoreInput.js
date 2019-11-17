@@ -1,4 +1,4 @@
-import React, { useState  } from "react";
+import React from "react";
 import SingleScoreInput from "./SingleScoreInput";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";

@@ -17,7 +17,7 @@ class ScoreInput extends Component {
     handleNewLine = (event) =>{
         event.preventDefault();
         this.setState((preState) => ({
-            lineLength: [...preState.lineLength]
+            lineLength: [...preState.lineLength, 1]
         }))
     }
 
