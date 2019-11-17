@@ -31,17 +31,18 @@ class Login extends Component {
     handleAuthStateChange = async (state) => {
         if (state === 'signedIn') {
             const cognitoUser = await Auth.currentAuthenticatedUser();
-            const userExists = API.graphql(graphqlOperation(queries.getUser, {id: cognitoUser.username}));
-            if (!userExists) {
-                await API.graphql(graphqlOperation(mutations.createUser,{
-                    input: {
+            const userExists = await API.graphql(graphqlOperation(queries.getUser, {id: cognitoUser.username}));
+            if (!userExists.data.getUser) {
+                const createdUser = await API.graphql(graphqlOperation(mutations.createUser,{
+                    input : {
                         id: cognitoUser.username, 
                         username: cognitoUser.username,
                         email: cognitoUser.attributes.email
                     }
                 }));
                 this.props.onLogin(cognitoUser);
-            } else {
+            } 
+            else {
                 this.props.onLogin(cognitoUser);
             }
         }
