@@ -3,9 +3,10 @@ import SingleScoreInput from "./SingleScoreInput";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 
-class SingleLineScoreInput extends Component {
-  constructor(props) {
-    super(props);
+// class SingleLineScoreInput extends Component {
+const SingleLineScoreInput = (props) => {
+  // constructor(props) {
+    // super(props);
     const nodeLength = [];
     for (let i = 0; i < 4; i++) {
       nodeLength.push(i);
@@ -13,13 +14,14 @@ class SingleLineScoreInput extends Component {
     this.state = {
       nodeLength
     };
-  }
-  render() {
+  // }
+  // render() {
     return (
+      props.lineLength.map(value => (
       <Container maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Grid container justify="center" spacing={2}>
+            <Grid key={value} container justify="center" spacing={2}>
               <span>||</span>
               {this.state.nodeLength.map(value => (
                 <Grid key={value} item>
@@ -31,8 +33,9 @@ class SingleLineScoreInput extends Component {
           </Grid>
         </Grid>
       </Container>
+      ))
     );
-  }
+  // }
 }
 
 export default SingleLineScoreInput;
