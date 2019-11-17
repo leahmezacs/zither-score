@@ -1,26 +1,33 @@
 import React, {Component} from "react";
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-import RemoveIcon from "@material-ui/icons/Remove";
-import DragHandleIcon from "@material-ui/icons/DragHandle";
-import Grid from "@material-ui/core/Grid";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
-import "../style.css";
+import "../../stylesheets/style.css";
 
 class ToolBar extends Component {
   render() {
     return (
-      <div className="toolBarbackground">
-        <Grid container justify="center">
-          <Navbar expand="lg">
-            <NavDropdown title={<FiberManualRecordIcon fontSize="default" className="colorBlack"/>} id="basic-nav-dropdown">
-              <NavDropdown.Item>Top</NavDropdown.Item>
-              <NavDropdown.Item>Buttom</NavDropdown.Item>
-            </NavDropdown>
-            <Nav className="toolBarspace">{<RemoveIcon />}</Nav>
-            <Nav>{<DragHandleIcon />}</Nav>
-          </Navbar>
-        </Grid>
-    </div>
+      <div className="score-toolbar reg">
+        <div className="score-toolbar-inner">
+          <div className="score-toolbar-main">
+            <div className="score-toolbar-main-tabs">
+              <button id="toolbar-mode-note" className>Note</button>
+              {/* <button id="toolbar-mode-articulation" className>Articulation</button>
+              <button id="toolbar-mode-ornament">Ornament</button>
+              <button id="toolbar-mode-measure">Measure</button> */}
+            </div>
+            <div className="score-toolbar-doc">
+              <div className="toolbar-group">
+                
+              </div>
+            </div>
+          </div>
+          <div className="score-toolbar-div"></div>
+          <div className="score-toolbar-sub">
+            <button className="toolbar-icon mr-2 ml-3">Dot</button>
+            <button className="toolbar-icon mr-2 ml-2">Double Dot</button>
+            <button className="toolbar-icon mr-2 ml-2">Line</button>
+            <button className="toolbar-icon mr-2 ml-3">Double Line</button>
+          </div>
+        </div>
+      </div>
     )
   }
 }

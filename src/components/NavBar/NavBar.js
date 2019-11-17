@@ -3,7 +3,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
-import "../style.css";
+import "../../stylesheets/style.css";
 import PopUpWindow from "../PopUpWindow/PopUpWindow";
 import {
   Navbar,
@@ -35,22 +35,21 @@ class NavBar extends Component {
       <div>
         <Navbar className="NavBarBackground" expand="lg">
           <Navbar.Brand href="/">
-            <LibraryMusicIcon fontSize="large" />
+            <LibraryMusicIcon fontSize="default" className="text-light"/>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="#">Discover</Nav.Link>
+              <Nav.Link className="text-light font-weight-bold" href="#">Discover</Nav.Link>
             </Nav>
 
-            <Form inline className="mx-auto">
-              <SearchIcon className="text-white SearchIcon" fontSize="large" />
+            <Form inline className="mr-auto">
               <FormControl
                 type="text"
                 placeholder="Search"
-                className="mr-sm-2"
+                className="mr-sm-1"
               />
-              <Button variant="outline-warning">Search</Button>
+              <button className="btn btn-sm btn-light"><SearchIcon /></button>
             </Form>
 
             {this.props.loggedInUser ? (
@@ -72,7 +71,7 @@ class NavBar extends Component {
                 </NavDropdown>
               </>
             ) : (
-              <Nav.Link href="/Login">Login</Nav.Link>
+              <Nav.Link className="text-light font-weight-bold" href="/Login">Login</Nav.Link>
             )}
           </Navbar.Collapse>
         </Navbar>

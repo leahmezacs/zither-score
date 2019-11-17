@@ -8,9 +8,7 @@ class EditScore extends Component {
     render () {
         return (
             <div>
-                <div id="toolbar">
-                    <ToolBar />
-                </div>
+                <ToolBar />
                 
                 <div id="main-content" className="score-scrollable">
                     <svg width="1150" height="1650" className="score-sheet">
