@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import SingleScoreInput  from "./SingleScoreInput";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-// import FormLabel from '@material-ui/core/FormLabel';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import RadioGroup from '@material-ui/core/RadioGroup';
-// import Radio from '@material-ui/core/Radio';
-// import Paper from '@material-ui/core/Paper';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 
 class ScoreInputForm extends Component {
@@ -18,7 +13,8 @@ class ScoreInputForm extends Component {
             nodeLength.push(i);
         }
         this.state = {
-            nodeLength
+            nodeLength,
+            newLine: false
         };
 
         this.handleNewLine = this.handleNewLine.bind(this);
@@ -26,6 +22,9 @@ class ScoreInputForm extends Component {
 
     handleNewLine(event) {
         event.preventDefault();
+        this.setState({
+            newLine: true
+        })
     }
 
   render() {
@@ -33,10 +32,10 @@ class ScoreInputForm extends Component {
         <Container maxWidth="lg">
 
         <form>
-    {/* <Grid container spacing={2}> */}
-        <button onClick="handleNewLine">
+        <button onClick={this.handleNewLine}>
             <ControlPointIcon />
         </button>
+        {this.state.newLine ? 
         <Grid item xs={12}>
           <Grid container justify="center" spacing={2}>
           <span>||</span>
@@ -48,7 +47,9 @@ class ScoreInputForm extends Component {
             <p>|</p>
           </Grid>
         </Grid>
-     {/* </Grid> */}
+        :
+        ""
+        }
      </form>
      </Container>
     );
