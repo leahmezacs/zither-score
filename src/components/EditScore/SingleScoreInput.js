@@ -5,7 +5,7 @@ class SingleScoreInput extends Component {
     return (
       <div>
         <input
-          id="0"
+          key="0"
           className="singleNote"
           type="number"
           maxLength="1"
@@ -13,7 +13,7 @@ class SingleScoreInput extends Component {
           max="7"
         />
         <input
-          id="1"
+          key="1"
           className="singleNote"
           type="number"
           maxLength="1"
@@ -21,7 +21,7 @@ class SingleScoreInput extends Component {
           max="7"
         />
         <input
-          id="2"
+          key="2"
           className="singleNote"
           type="number"
           maxLength="1"
@@ -29,7 +29,7 @@ class SingleScoreInput extends Component {
           max="7"
         />
         <input
-          id="3"
+          key="3"
           className="singleNote"
           type="number"
           maxLength="1"

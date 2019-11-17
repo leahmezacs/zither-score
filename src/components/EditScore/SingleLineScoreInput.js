@@ -13,8 +13,8 @@ const SingleLineScoreInput = props => {
           <Grid key={value} container justify="center" spacing={2}>
             <span>||</span>
             {nodeLength.map(value => (
-              <Grid key={value} item>
-                <SingleScoreInput />
+              <Grid item>
+                <SingleScoreInput key={value} />
               </Grid>
             ))}
             <span>|</span>
