@@ -8,38 +8,32 @@ class SingleLineScoreInput extends Component {
     super(props);
 
     const nodeLength = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 19; i++) {
       nodeLength.push(i);
     }
     this.state = {
-      nodeLength,
-      newLine: false
+      nodeLength
     };
-
-    this.handleNewLine = this.handleNewLine.bind(this);
-  }
-
-  handleNewLine(event) {
-    event.preventDefault();
-    this.setState({
-      newLine: true
-    });
   }
 
   render() {
     return (
       <Container maxWidth="lg">
         <form>
-          <button onClick={this.handleNewLine}>
-            <ControlPointIcon />
-          </button>
           {this.state.newLine ? (
             <Grid item xs={12}>
               <Grid container justify="center" spacing={2}>
                 <span>||</span>
                 {this.state.nodeLength.map(value => (
                   <Grid key={value} item>
-                    <SingleLineScoreInput />
+                    <input
+                      id="1"
+                      className="singleNote"
+                      type="number"
+                      maxLength="1"
+                      min="1"
+                      max="7"
+                    />
                   </Grid>
                 ))}
                 <p>|</p>
@@ -65,14 +59,7 @@ maxLength="1"
 min="1"
 max="7"
 />
-<input
-id="1"
-className="singleNote"
-type="number"
-maxLength="1"
-min="1"
-max="7"
-/>
+
 <input
 id="2"
 className="singleNote"
