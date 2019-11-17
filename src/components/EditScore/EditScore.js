@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import ScoreInput from '../ScoreInput/ScoreInput'
 import ToolBar from '../ToolBar/ToolBar';
 import '../../stylesheets/scorestylesheet.css';
-import ScoreInput from '../ScoreInput/ScoreInput';
+import ScoreInput from '../ScoreInput/ScoreInput'
 
 class EditScore extends Component {
     render () {
