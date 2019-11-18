@@ -21,7 +21,7 @@ class EditScore extends Component {
                             </g>
                             
                             <g className="page-main">
-                                <foreignObject x="-10" y="100" width="1150" height="1650">
+                                <foreignObject x="-150" y="100" width="1150" height="1650">
                                     <ScoreInput />
                                 </foreignObject>
                             </g>

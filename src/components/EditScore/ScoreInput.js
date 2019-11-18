@@ -25,19 +25,27 @@ class ScoreInput extends Component {
 
   render() {
     return (
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <ControlPointIcon
           onClick={this.handleNewLine}
           variant="outlined"
           color="primary"
           fontSize="large"
+          className="scoreInputIcon"
         />
         <form>
           <SingleLineScoreInput
             key={this.state.line}
             lineLength={this.state.lineLength}
           />
-          <Button type="submit" size="large" variant="outlined" color="primary">
+          <br />
+          <Button
+            type="submit"
+            size="large"
+            variant="outlined"
+            color="primary"
+            className="float-right"
+          >
             Save
           </Button>
         </form>

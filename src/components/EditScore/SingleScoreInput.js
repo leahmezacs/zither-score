@@ -33,7 +33,7 @@ class SingleScoreInput extends Component {
           min="1"
           max="7"
         />
-        <span>|</span>
+        <span className="lineInBetween">|</span>
       </div>
     );
   }

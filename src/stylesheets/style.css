@@ -13,6 +13,19 @@ input {
     text-align: center;
 }
 
+/* ScoreInput Page Styling */
+.scoreInputIcon {
+    margin-bottom: 20px;
+}
+.lineInBetween {
+    font-size: 25px;
+    padding-left: 10px;
+}
+.lineBegin {
+    font-size: 25px;
+    margin-top: 7px;
+}
+
 
 /* NavBar Page Styling */
 .NavBarBackground {
