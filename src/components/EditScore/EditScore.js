@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import ToolBar from '../ToolBar/ToolBar';
 import '../../stylesheets/scorestylesheet.css';
-import ScoreInput from '../ScoreInput/ScoreInput';
+import ScoreInput from '../ScoreInput/ScoreInput'
 
 
 class EditScore extends Component {
