@@ -10,8 +10,8 @@ export const onCreateUser = `subscription OnCreateUser($id: String!) {
       items {
         id
         name
-        createdDate
-        updatedDate
+        createdAt
+        updatedAt
         status
       }
       nextToken
@@ -28,8 +28,8 @@ export const onUpdateUser = `subscription OnUpdateUser($id: String!) {
       items {
         id
         name
-        createdDate
-        updatedDate
+        createdAt
+        updatedAt
         status
       }
       nextToken
@@ -46,8 +46,8 @@ export const onDeleteUser = `subscription OnDeleteUser($id: String!) {
       items {
         id
         name
-        createdDate
-        updatedDate
+        createdAt
+        updatedAt
         status
       }
       nextToken
@@ -80,8 +80,8 @@ export const onCreateScore = `subscription OnCreateScore {
         nextToken
       }
     }
-    createdDate
-    updatedDate
+    createdAt
+    updatedAt
     status
   }
 }
@@ -111,8 +111,8 @@ export const onUpdateScore = `subscription OnUpdateScore {
         nextToken
       }
     }
-    createdDate
-    updatedDate
+    createdAt
+    updatedAt
     status
   }
 }
@@ -142,8 +142,8 @@ export const onDeleteScore = `subscription OnDeleteScore {
         nextToken
       }
     }
-    createdDate
-    updatedDate
+    createdAt
+    updatedAt
     status
   }
 }
@@ -169,8 +169,8 @@ export const onCreateNote = `subscription OnCreateNote {
         username
         email
       }
-      createdDate
-      updatedDate
+      createdAt
+      updatedAt
       status
     }
   }
@@ -197,8 +197,8 @@ export const onUpdateNote = `subscription OnUpdateNote {
         username
         email
       }
-      createdDate
-      updatedDate
+      createdAt
+      updatedAt
       status
     }
   }
@@ -225,8 +225,8 @@ export const onDeleteNote = `subscription OnDeleteNote {
         username
         email
       }
-      createdDate
-      updatedDate
+      createdAt
+      updatedAt
       status
     }
   }
