@@ -1,7 +1,7 @@
 # Don't track these folders
 
 # images
-/host_images/*
+host_images/*
 
 # dependencies
 node_modules
@@ -14,18 +14,13 @@ node_modules/
 # aws-exports.js
 awsconfiguration.json
 
+# Wiki page
+zither-score.wiki
+
 #amplify
-amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/mock-data
-amplify/backend/amplify-meta.json
-amplify/backend/awscloudformation
 build/
 dist/
 node_modules/
-aws-exports.js
 awsconfiguration.json
-
-# Wiki page
-zither-score.wiki
-*.wiki
