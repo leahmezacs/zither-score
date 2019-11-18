@@ -11,8 +11,6 @@ class Settings extends Component {
 
         };
     }
-   
-    
 
     render () {
         console.log(this.state.userInfo.attributes);
