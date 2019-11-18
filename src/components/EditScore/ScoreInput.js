@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SingleLineScoreInput from "./SingleLineScoreInput";
 import Container from "@material-ui/core/Container";
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
+import Button from "@material-ui/core/Button";
 
 class ScoreInput extends Component {
   constructor(props) {
@@ -25,15 +26,20 @@ class ScoreInput extends Component {
   render() {
     return (
       <Container maxWidth="lg">
-        <button onClick={this.handleNewLine}>
-          <ControlPointIcon />
-        </button>
+        <ControlPointIcon
+          onClick={this.handleNewLine}
+          variant="outlined"
+          color="primary"
+          fontSize="large"
+        />
         <form>
           <SingleLineScoreInput
             key={this.state.line}
             lineLength={this.state.lineLength}
           />
-          <button type="submit">Save</button>
+          <Button type="submit" size="large" variant="outlined" color="primary">
+            Save
+          </Button>
         </form>
       </Container>
     );
