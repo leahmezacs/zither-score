@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Button, Modal} from 'react-bootstrap';
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
+import "../../stylesheets/CreateModal.css"
 
 class CreateModal extends Component {
     constructor(props) {
