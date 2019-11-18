@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
-import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
+import CreateModal from "../CreateModal/CreateModal";
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 class Library extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          modal: false
+        }
+        this.handleShow = this.handleShow.bind(this);
+    }
     
+    handleShow = () => {
+    this.setState(prevState => {
+        return {
+        modal: !prevState.modal
+        };
+    });
+    };
 
     render () {
         return (
@@ -65,10 +80,14 @@ class Library extends Component {
 
                     <div className="list-actions">
                         <div className="inner">
-                            <button className="btn-lg btn-teal-gradient main-action">Create new score</button>
+                            <button onClick={this.handleShow} className="btn-lg btn-teal-gradient main-action">Create new score</button>
                         </div>
                     </div>
                 </div>
+                <CreateModal
+                    modal = {this.state.modal}
+                    handleShow = {this.handleShow}
+                />
             </div>
         )
     }

@@ -66,14 +66,22 @@ class CreateModal extends Component {
                 <div className="row">
                   <div className="form-group col-md-4">
                     <label>Name:</label>
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" />
-                  </div>
+                    <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" required/>                   
+                  </div>  
                 </div>
               </Modal.Body>
 
               <Modal.Footer>
+                <label>Privacy:</label>
+                <select>
+                      <option value="private">Private</option>
+                      <option value="public">Public</option>
+                </select>
+                
                 <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
                 <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
+
+                
               </Modal.Footer>
             </form>
           </Modal>
