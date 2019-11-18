@@ -36,9 +36,9 @@ class Library extends Component {
                 {data.map(function(score, index){
                     return (
                         <tr key={index}>
-                            <th>{score.name}</th>
-                            <th>{score.updatedAt}</th>
-                            <th>{score.status}</th>
+                            <th className="score_name">{score.name}</th>
+                            <th className="score_updatedAt">{score.updatedAt}</th>
+                            <th className="score_status">{score.status}</th>
                         </tr>
                     )
                 })}
