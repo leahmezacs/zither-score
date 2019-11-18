@@ -4,7 +4,6 @@ import ToolBar from '../ToolBar/ToolBar';
 import '../../stylesheets/scorestylesheet.css';
 import ScoreInput from '../ScoreInput/ScoreInput'
 
-
 class EditScore extends Component {
     
     render () {

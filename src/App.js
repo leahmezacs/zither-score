@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Analytics, Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import HomePage from './components/HomePage/HomePage';
 import Settings from './components/Settings/Settings';
 import Login from './components/Login/Login';
@@ -17,10 +17,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-        Analytics.startSession();
-        window.addEventListener('beforeunload', () => {
-            Analytics.stopSession();
-        })
         Auth.currentAuthenticatedUser().then(user => {
             this.updateCurrentUser(user)
         });

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CreateModal from "../CreateModal/CreateModal";
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 
@@ -14,12 +13,16 @@ class Library extends Component {
     }
     
     handleShow = () => {
-    this.setState(prevState => {
-        return {
-        modal: !prevState.modal
-        };
-    });
+        this.setState(prevState => {
+          return {
+            modal: !prevState.modal
+          };
+        });
     };
+
+    handleListScores = async() => {
+        
+    }
 
     render () {
         return (
