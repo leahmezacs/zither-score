@@ -33,6 +33,7 @@ class ScoreInput extends Component {
             key={this.state.line}
             lineLength={this.state.lineLength}
           />
+          <button type="submit">Save</button>
         </form>
       </Container>
     );
