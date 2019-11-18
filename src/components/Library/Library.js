@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import * as mutations from '../../graphql/mutations';
+import * as queries from '../../graphql/queries';
+import { Auth, graphqlOperation, API } from 'aws-amplify';
 
 class Library extends Component {
+    
+
     render () {
         return (
             <div className="main-library">
