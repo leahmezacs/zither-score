@@ -30,20 +30,25 @@ class Library extends Component {
 
     
     handleListScores(){
-        const list = this.state.scores.map((score, index) => {
-            return (
-                <tr key={score}>
-                    <td>{score.name}</td>
-                    <td>{score.updatedAt}</td>
-                    <td>{score.status}</td>
-                </tr>
-            )
-        });
+        const data = this.state.scores;
+        return (
+            <div>
+                {data.map(function(score, index){
+                    return (
+                        <tr key={index}>
+                            <th>{score.name}</th>
+                            <th>{score.updatedAt}</th>
+                            <th>{score.status}</th>
+                        </tr>
+                    )
+                })}
+            </div>
+        );
     }
     
 
     render () {
-        //console.log(this.state.scores);
+        console.log(this.state.scores);
         return (
             <div className="main-library">
                 <div className="side-bar">
@@ -93,6 +98,9 @@ class Library extends Component {
                                     </div>
                                     
                                 </div>
+                            <div className="tbody">
+                                {this.handleListScores()}
+                            </div>
 
                                 <div infinite-scroll-disabled="infiniteScrollBusy" infinite-scroll-distance="250" className="tbody">
 
