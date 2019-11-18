@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import ToolBar from '../ToolBar/ToolBar';
 import '../../stylesheets/scorestylesheet.css';
-<<<<<<< HEAD
-import ScoreInput from '../ScoreInput/ScoreInput'
-=======
 import ScoreInput from './ScoreInput';
->>>>>>> d8f56780a7b43ea0390fe913842c319a50fe356f
 
 class EditScore extends Component {
     
@@ -20,7 +16,7 @@ class EditScore extends Component {
                         <g className="page-contents" transform="scale(1.25, 1.25) translate(32.126, 32.126)">
                             <g className="inside-margin" transform="translate(0,0)">
                                 <g className="page-title">
-                                    <text fontFamily="Noto Serif TC" fontStyle="medium" textAnchor="middle" fontSize="40" transform="translate(431.024, 80)">ABC</text>
+                                    <text fontFamily="Noto Serif TC" fontStyle="medium" textAnchor="middle" fontSize="40" transform="translate(431.024, 80)">{this.props.location.state.name}</text>
                                 </g>
                             </g>
                             

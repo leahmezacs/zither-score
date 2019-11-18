@@ -28,22 +28,22 @@ class Library extends Component {
         });
     }
 
+    
     handleListScores(){
-        return Object.entries(this.state.scores).map(r, i) => {
+        const list = this.state.scores.map((score, index) => {
             return (
-                <div className="table-row" key={i} value={i}>
-                    <tr>
-                        <th className="name">{this.state.scores[i].name}</th>
-                        <th className="modified">{this.state.scores[i].updatedAt}</th>
-                        <th className="sharing">{this.state.scores[i].status}</th>
-                    </tr>
-                </div>
+                <tr key={score}>
+                    <td>{score.name}</td>
+                    <td>{score.updatedAt}</td>
+                    <td>{score.status}</td>
+                </tr>
             )
-        }
+        });
     }
+    
 
     render () {
-        console.log(this.state.scores);
+        //console.log(this.state.scores);
         return (
             <div className="main-library">
                 <div className="side-bar">
@@ -91,6 +91,7 @@ class Library extends Component {
                                             Sharing
                                         </div>
                                     </div>
+                                    
                                 </div>
 
                                 <div infinite-scroll-disabled="infiniteScrollBusy" infinite-scroll-distance="250" className="tbody">
