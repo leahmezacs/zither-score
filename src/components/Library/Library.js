@@ -7,7 +7,8 @@ class Library extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          modal: false
+          modal: false,
+          scores: []
         }
         this.handleShow = this.handleShow.bind(this);
     }
@@ -20,15 +21,14 @@ class Library extends Component {
         });
     };
 
-    handleListScores = async() => {
-        var scores = [];
-        const result = await API.graphql(graphqlOperation(queries.listScores));
-        console.log(result);
+    async componentDidMount() {
+        const result = await API.graphql(graphqlOperation(queries.listScores));  
+        this.setState({
+            scores: result
+        });
     }
 
     render () {
-        const result = this.handleListScores();
-        console.log(result.data.listScores);
         return (
             <div className="main-library">
                 <div className="side-bar">
