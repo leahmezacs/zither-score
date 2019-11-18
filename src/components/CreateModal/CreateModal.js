@@ -8,8 +8,8 @@ class CreateModal extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        name: '',
-        status: ''
+        name: "",
+        status: "PRIVATE"
       };
 
       this.handleNameChange = this.handleNameChange.bind(this);
@@ -71,21 +71,22 @@ class CreateModal extends Component {
               </Modal.Header>
 
               <Modal.Body>
-                <div className="row">
+                <div className="column">
                   <div className="form-group col-md-4">
                     <label>Name:</label>
                     <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" required/>                   
                   </div>  
+                  <div className="form-group col-md-4">
+                    <label>Privacy:</label>
+                    <select value={this.state.status} onchange={this.handleStatusChange} className="browser-default custom-select">
+                          <option value="PRIVATE">Private</option>
+                          <option value="PUBLIC">Public</option>
+                    </select>
+                  </div>
                 </div>
               </Modal.Body>
 
               <Modal.Footer>
-                <label>Privacy:</label>
-                <select value={this.state.status}>
-                      <option value="PRIVATE">Private</option>
-                      <option value="PUBLIC">Public</option>
-                </select>
-                
                 <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
                 <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
 
