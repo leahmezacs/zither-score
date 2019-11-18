@@ -78,7 +78,7 @@ class CreateModal extends Component {
                   </div>  
                   <div className="form-group col-md-4">
                     <label>Privacy:</label>
-                    <select value={this.state.status} onchange={this.handleStatusChange} className="browser-default custom-select">
+                    <select value={this.state.status} onChange={this.handleStatusChange} className="browser-default custom-select">
                           <option value="PRIVATE">Private</option>
                           <option value="PUBLIC">Public</option>
                     </select>
@@ -89,8 +89,6 @@ class CreateModal extends Component {
               <Modal.Footer>
                 <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
                 <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
-
-                
               </Modal.Footer>
             </form>
           </Modal>
