@@ -4,9 +4,13 @@ import { Button, Modal} from 'react-bootstrap';
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 
+
+
+
 class CreateModal extends Component {
     constructor(props) {
       super(props);
+
       this.state = {
         name: "",
         status: "PRIVATE"
@@ -71,6 +75,7 @@ class CreateModal extends Component {
               </Modal.Header>
 
               <Modal.Body>
+
                 <div className="column">
                   <div className="form-group col-md-4">
                     <label>Name:</label>
@@ -95,6 +100,7 @@ class CreateModal extends Component {
         </>
       );
     }
+
 }
 
 export default withRouter(CreateModal);
