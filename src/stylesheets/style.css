@@ -25,6 +25,9 @@ input {
     font-size: 25px;
     margin-top: 7px;
 }
+.lineSpacing {
+    height: 100px;
+}
 
 
 /* NavBar Page Styling */
