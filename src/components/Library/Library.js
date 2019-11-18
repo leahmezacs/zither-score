@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CreateModal from "../CreateModal/CreateModal";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
+import * as queries from '../../graphql/queries';
 
 class Library extends Component {
     constructor(props) {
@@ -21,10 +21,14 @@ class Library extends Component {
     };
 
     handleListScores = async() => {
-        
+        var scores = [];
+        const result = await API.graphql(graphqlOperation(queries.listScores));
+        console.log(result);
     }
 
     render () {
+        const result = this.handleListScores();
+        console.log(result.data.listScores);
         return (
             <div className="main-library">
                 <div className="side-bar">
