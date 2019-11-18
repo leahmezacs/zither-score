@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import { Button, Modal} from 'react-bootstrap';
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
+import "../../stylesheets/modal.css"
+
 
 
 class CreateModal extends Component {
@@ -64,7 +66,7 @@ class CreateModal extends Component {
               </Modal.Header>
 
               <Modal.Body>
-                
+                <div className="modal">
                   <div className="row">
                     <div className="form-group col-md-4">
                       <label>Name:</label>
@@ -74,7 +76,7 @@ class CreateModal extends Component {
                     </div>
                   
                   </div>
-                  
+                </div>  
                 </Modal.Body>
 
                 <Modal.Footer>
