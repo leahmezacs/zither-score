@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Button, Modal} from 'react-bootstrap';
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
-import "../../stylesheets/CreateModal.css"
+
 
 class CreateModal extends Component {
     constructor(props) {
@@ -64,34 +64,37 @@ class CreateModal extends Component {
               </Modal.Header>
 
               <Modal.Body>
-                <div className="row">
-                  <div className="form-group col-md-4">
-                    <label>Name:</label>
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" required/>
+                
+                  <div className="row">
+                    <div className="form-group col-md-4">
+                      <label>Name:</label>
+                      <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" required/>
                     
                     
+                    </div>
+                  
                   </div>
                   
-                </div>
-              </Modal.Body>
+                </Modal.Body>
 
-              <Modal.Footer>
-                <label>Privacy:</label>
-                <select>
-                      <option value="private">Private</option>
-                      <option value="public">Public</option>
-                </select>
+                <Modal.Footer>
+                  <label>Privacy:</label>
+                  <select>
+                        <option value="private">Private</option>
+                        <option value="public">Public</option>
+                  </select>
                 
-                <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
-                <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
+                  <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
+                  <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
 
                 
-              </Modal.Footer>
-            </form>
-          </Modal>
-        </>
-      );
-    }
+                </Modal.Footer>
+              </form>
+              
+            </Modal>
+          </>
+       );
+   }
 }
 
 export default withRouter(CreateModal);
