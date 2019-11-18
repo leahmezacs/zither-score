@@ -24,11 +24,26 @@ class Library extends Component {
     async componentDidMount() {
         const result = await API.graphql(graphqlOperation(queries.listScores));  
         this.setState({
-            scores: result
+            scores: result.data.listScores.items
         });
     }
 
+    handleListScores(){
+        return Object.entries(this.state.scores).map(r, i) => {
+            return (
+                <div className="table-row" key={i} value={i}>
+                    <tr>
+                        <th className="name">{this.state.scores[i].name}</th>
+                        <th className="modified">{this.state.scores[i].updatedAt}</th>
+                        <th className="sharing">{this.state.scores[i].status}</th>
+                    </tr>
+                </div>
+            )
+        }
+    }
+
     render () {
+        console.log(this.state.scores);
         return (
             <div className="main-library">
                 <div className="side-bar">

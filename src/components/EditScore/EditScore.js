@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import ToolBar from '../ToolBar/ToolBar';
 import '../../stylesheets/scorestylesheet.css';
+<<<<<<< HEAD
 import ScoreInput from '../ScoreInput/ScoreInput'
+=======
+import ScoreInput from './ScoreInput';
+>>>>>>> d8f56780a7b43ea0390fe913842c319a50fe356f
 
 class EditScore extends Component {
     
@@ -21,7 +25,7 @@ class EditScore extends Component {
                             </g>
                             
                             <g className="page-main">
-                                <foreignObject x="50" y="140" width="1150" height="1650">
+                                <foreignObject x="-150" y="100" width="1150" height="1650">
                                     <ScoreInput />
                                 </foreignObject>
                             </g>
