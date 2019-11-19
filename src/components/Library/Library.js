@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CreateModal from "../CreateModal/CreateModal";
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Dropdown } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 
@@ -21,6 +23,8 @@ class Library extends Component {
           };
         });
     };
+
+    
 
     async componentDidMount() {
         const user = await Auth.currentAuthenticatedUser();
@@ -49,7 +53,19 @@ class Library extends Component {
                             <div className="td row-title">{score.name}</div>
                             <div className="td row-date">{score.updatedAt}</div>
                             <div className="td row-sharing">{score.status}</div>
-                            <div className="td row-options"></div>
+                            <div className="td row-options">
+                                <Dropdown>
+                                    <Dropdown.Toggle className="score_options" id="dropdown-basic">
+                                        <MoreVertIcon />
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="#/action-1">View</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-2">Edit</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-3">Delete</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </div>
                         </div>
                     )
                 })}
@@ -118,12 +134,9 @@ class Library extends Component {
                             </div>
                         </div>
                     </div>
-
-                    <div className="list-actions">
-                        <div className="inner">
-                            <button onClick={this.handleShow} className="btn-lg btn-teal-gradient main-action">Create new score</button>
-                        </div>
-                    </div>
+                    <div className="inner">
+                        <button onClick={this.handleShow} className="btn-lg btn-teal-gradient main-action">Create new score</button>
+                    </div>          
                 </div>
                 <CreateModal
                     modal = {this.state.modal}
