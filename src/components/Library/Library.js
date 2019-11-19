@@ -35,11 +35,12 @@ class Library extends Component {
             <div>
                 {data.map(function(score, index){
                     return (
-                        <tr key={index}>
-                            <th className="score_name">{score.name}</th>
-                            <th className="score_updatedAt">{score.updatedAt}</th>
-                            <th className="score_status">{score.status}</th>
-                        </tr>
+                        <div className="tr" key={index}>
+                            <div className="td row-title">{score.name}</div>
+                            <div className="td row-date">{score.updatedAt}</div>
+                            <div className="td row-sharing">{score.status}</div>
+                            <div className="td row-options"></div>
+                        </div>
                     )
                 })}
             </div>
@@ -95,16 +96,15 @@ class Library extends Component {
                                         <div className="th row-sharing">
                                             Sharing
                                         </div>
+                                        <div className="th row-options">
+
+                                        </div>
                                     </div>
-                                    
                                 </div>
-                            <div className="tbody">
-                                {this.handleListScores()}
-                            </div>
-
-                                <div infinite-scroll-disabled="infiniteScrollBusy" infinite-scroll-distance="250" className="tbody">
-
+                                <div className="tbody">
+                                    {this.handleListScores()}
                                 </div>
+                                <div infinite-scroll-disabled="infiniteScrollBusy" infinite-scroll-distance="250" className="tbody"></div>
                             </div>
                         </div>
                     </div>
