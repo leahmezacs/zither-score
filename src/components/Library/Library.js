@@ -32,17 +32,16 @@ class Library extends Component {
         });
     };
 
-    handleDeleteScore(e) {
+    async handleDeleteScore(e) {
     /*     this.setState({
             scores: this.state.score.filter(el => el !== e.target.value)
         }) */
-        (async() => {
-            await API.graphql(graphqlOperation(mutations.deleteScore,{
-                input:{
-                    id : e.target.value
-                }
-            }));
-        })();
+        
+        await API.graphql(graphqlOperation(mutations.deleteScore,{
+            input:{
+                id : e.target.value
+            }
+        }));
     }
 
     async componentDidMount() {
@@ -56,16 +55,15 @@ class Library extends Component {
         //console.log(this.state.scores);
     }
 
-    handleEditScore(e) {
-        e.preventDefault();
+    handleEditScore(score_name) {
         this.props.history.push({
             pathname: '/EditScore',
-            search: e.target.value,
+            search: score_name,
             state: {
-              name: e.target.value
+              name: score_name
             }
+            
         });
-        console.log(this.props.history.state);
     }
 
     handleListScores() {
@@ -92,10 +90,9 @@ class Library extends Component {
                                     <Dropdown.Toggle className="btn btn-sm btn-light">
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
-
                                     <Dropdown.Menu>
                                         <Dropdown.Item href="#">View</Dropdown.Item>
-                                        <Dropdown.Item onClick={this.handleEditScore}>Edit</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={this.handleDeleteScore}>Delete</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
