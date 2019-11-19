@@ -23,6 +23,7 @@ class Library extends Component {
         
     }
 
+    //get list of scores from all users 
     async componentDidMount() {
         const limit = 50;
         const user = await Auth.currentAuthenticatedUser();
@@ -59,14 +60,15 @@ class Library extends Component {
             state: {
               name: score_name
             }
-            
         });
     }
-
+    
+    //list scores in table
     handleListScores() {
         const temp = this.state.scores;
         let data = [];
         
+        //filter scores so it only contains current user's scores
         for(let i = 0; i < temp.length; ++i){
             if(temp[i].user.id === this.state.userId) data.push(temp[i]);
         } 

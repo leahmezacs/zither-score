@@ -9,14 +9,17 @@ import * as queries from '../../graphql/queries';
 class EditScore extends Component {
     constructor(props) {
         super(props);
+        const url = window.location.href;
         this.state = {
-          score: []
+            score_name: url.slice(url.lastIndexOf('?') + 1, url.length),
+            score: []
         };
+        console.log(this.state.score_name);
     }
 
     async componentDidMount() {
         const result = await API.graphql(graphqlOperation(queries.getScore, {
-            id: this.props.location.state.name
+            id: this.state.score_name
         }));  
         this.setState({
             score: result.data.getScore
