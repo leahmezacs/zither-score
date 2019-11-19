@@ -1,18 +1,39 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import CreateModal from "../CreateModal/CreateModal";
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Dropdown } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
+import * as mutations from '../../graphql/mutations';
+import * as subscriptions from '../../graphql/subscriptions';
 
 class Library extends Component {
     constructor(props) {
         super(props);
         this.state = {
           modal: false,
+          userId: '',
           scores: []
         }
         this.handleShow = this.handleShow.bind(this);
+        this.handleListScores = this.handleListScores.bind(this);
+        this.handleDeleteScore = this.handleDeleteScore.bind(this);
+        this.handleEditScore = this.handleEditScore.bind(this);
+        
     }
-    
+
+    async componentDidMount() {
+        const limit = 50;
+        const user = await Auth.currentAuthenticatedUser();
+        const result = await API.graphql(graphqlOperation(queries.listScores, {limit}));  
+        this.setState({
+            scores: result.data.listScores.items,
+            userId: user.username
+        });
+        //console.log(this.state.scores);
+    }
+
     handleShow = () => {
         this.setState(prevState => {
           return {
@@ -21,25 +42,59 @@ class Library extends Component {
         });
     };
 
-    async componentDidMount() {
-        const result = await API.graphql(graphqlOperation(queries.listScores));  
-        this.setState({
-            scores: result.data.listScores.items
+    async handleDeleteScore(score_name) {
+        const deletedScore = await API.graphql(graphqlOperation(mutations.deleteScore,{
+            input:{
+                id : score_name
+            }
+        }));
+        console.log(deletedScore);
+        //console.log(this.state.scores);
+    }
+
+    handleEditScore(score_name) {
+        this.props.history.push({
+            pathname: '/EditScore',
+            search: score_name,
+            state: {
+              name: score_name
+            }
+            
         });
     }
 
-    
-    handleListScores(){
-        const data = this.state.scores;
+    handleListScores() {
+        const temp = this.state.scores;
+        let data = [];
+        
+        for(let i = 0; i < temp.length; ++i){
+            if(temp[i].user.id === this.state.userId) data.push(temp[i]);
+        } 
+        console.log(this.state.userId);
+        //console.log(temp);
+        //console.log(data);
+
         return (
             <div>
-                {data.map(function(score, index){
+                {data.map((score, index) =>{
                     return (
-                        <tr key={index}>
-                            <th className="score_name">{score.name}</th>
-                            <th className="score_updatedAt">{score.updatedAt}</th>
-                            <th className="score_status">{score.status}</th>
-                        </tr>
+                        <div className="tr" key={index}>
+                            <div className="td row-title">{score.name}</div>
+                            <div className="td row-date">{score.updatedAt}</div>
+                            <div className="td row-sharing">{score.status}</div>
+                            <div className="td row-options">
+                                <Dropdown>
+                                    <Dropdown.Toggle className="btn btn-sm btn-light">
+                                        <MoreVertIcon />
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="#">View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </div>
+                        </div>
                     )
                 })}
             </div>
@@ -48,7 +103,7 @@ class Library extends Component {
     
 
     render () {
-        console.log(this.state.scores);
+        //console.log(this.state.scores);
         return (
             <div className="main-library">
                 <div className="side-bar">
@@ -95,25 +150,21 @@ class Library extends Component {
                                         <div className="th row-sharing">
                                             Sharing
                                         </div>
+                                        <div className="th row-options">
+
+                                        </div>
                                     </div>
-                                    
                                 </div>
-                            <div className="tbody">
-                                {this.handleListScores()}
-                            </div>
-
-                                <div infinite-scroll-disabled="infiniteScrollBusy" infinite-scroll-distance="250" className="tbody">
-
+                                <div className="tbody">
+                                    {this.handleListScores()}
                                 </div>
+                                <div infinite-scroll-disabled="infiniteScrollBusy" infinite-scroll-distance="250" className="tbody"></div>
                             </div>
                         </div>
                     </div>
-
-                    <div className="list-actions">
-                        <div className="inner">
-                            <button onClick={this.handleShow} className="btn-lg btn-teal-gradient main-action">Create new score</button>
-                        </div>
-                    </div>
+                    <div className="inner">
+                        <button onClick={this.handleShow} className="btn-lg btn-teal-gradient main-action">Create new score</button>
+                    </div>          
                 </div>
                 <CreateModal
                     modal = {this.state.modal}
@@ -124,4 +175,4 @@ class Library extends Component {
     }
 }
 
-export default Library;
+export default withRouter(Library);
