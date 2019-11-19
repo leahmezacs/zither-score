@@ -172,15 +172,11 @@
     width: calc(100vw - 580px);
 }
 
-.list-actions {
-    flex: 0 0 200px;
-    margin: 30px 30px 0;
-}
-
-.list-actions .main-action {
+.main-action {
+    flex: 0 0 20px;
     display: block;
     text-align: center;
-    margin: 0 0 10px;
+    margin: 30px 30px 0;
     width: 100%;
 }
 
