@@ -4,14 +4,20 @@ import { Button, Modal} from 'react-bootstrap';
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 
+
+
+
 class CreateModal extends Component {
     constructor(props) {
       super(props);
+
       this.state = {
-        name: ''
+        name: "",
+        status: "PRIVATE"
       };
 
       this.handleNameChange = this.handleNameChange.bind(this);
+      this.handleStatusChange = this.handleStatusChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleCreateScore = this.handleCreateScore.bind(this);
     }
@@ -19,6 +25,12 @@ class CreateModal extends Component {
     handleNameChange(event) {
       this.setState({
         name: event.target.value
+      });
+    }
+
+    handleStatusChange(event) {
+      this.setState({
+        status: event.target.value
       });
     }
 
@@ -46,7 +58,7 @@ class CreateModal extends Component {
           input: {
               id: this.state.name,
               name: this.state.name,
-              status: "PRIVATE",
+              status: this.state.status,
               scoreUserId: userId
           }
       }));
@@ -63,34 +75,32 @@ class CreateModal extends Component {
               </Modal.Header>
 
               <Modal.Body>
-                <div className="row">
+
+                <div className="column">
                   <div className="form-group col-md-4">
                     <label>Name:</label>
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" required/>
-                    
-                    
+                    <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" required/>                   
+                  </div>  
+                  <div className="form-group col-md-4">
+                    <label>Privacy:</label>
+                    <select value={this.state.status} onChange={this.handleStatusChange} className="browser-default custom-select">
+                          <option value="PRIVATE">Private</option>
+                          <option value="PUBLIC">Public</option>
+                    </select>
                   </div>
-                  
                 </div>
               </Modal.Body>
 
               <Modal.Footer>
-                <label>Privacy:</label>
-                <select>
-                      <option value="private">Private</option>
-                      <option value="public">Public</option>
-                </select>
-                
                 <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
                 <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
-
-                
               </Modal.Footer>
             </form>
           </Modal>
         </>
       );
     }
+
 }
 
 export default withRouter(CreateModal);

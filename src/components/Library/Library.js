@@ -1,42 +1,54 @@
 import React, { Component } from 'react';
 import CreateModal from "../CreateModal/CreateModal";
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
+import * as queries from '../../graphql/queries';
 
 class Library extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          modal: false
+          modal: false,
+          scores: []
         }
         this.handleShow = this.handleShow.bind(this);
-      }
+    }
     
-      handleShow = () => {
+    handleShow = () => {
         this.setState(prevState => {
           return {
             modal: !prevState.modal
           };
         });
-      };
+    };
+
+    async componentDidMount() {
+        const result = await API.graphql(graphqlOperation(queries.listScores));  
+        this.setState({
+            scores: result.data.listScores.items
+        });
+    }
+
     
-      async handleCreateScore() {
-        const user = await Auth.currentAuthenticatedUser();
-        const userId = user.username;
-        const score = await API.graphql(graphqlOperation(mutations.createScore, {
-          input: {
-            id: this.state.name,
-            name: this.state.name,
-            status: "PRIVATE",
-            createdDate: Date.now(),
-            updatedDate: Date.now(),
-            userId: userId
-          }
-        }));
-      }
+    handleListScores(){
+        const data = this.state.scores;
+        return (
+            <div>
+                {data.map(function(score, index){
+                    return (
+                        <tr key={index}>
+                            <th className="score_name">{score.name}</th>
+                            <th className="score_updatedAt">{score.updatedAt}</th>
+                            <th className="score_status">{score.status}</th>
+                        </tr>
+                    )
+                })}
+            </div>
+        );
+    }
+    
 
     render () {
+        console.log(this.state.scores);
         return (
             <div className="main-library">
                 <div className="side-bar">
@@ -84,7 +96,11 @@ class Library extends Component {
                                             Sharing
                                         </div>
                                     </div>
+                                    
                                 </div>
+                            <div className="tbody">
+                                {this.handleListScores()}
+                            </div>
 
                                 <div infinite-scroll-disabled="infiniteScrollBusy" infinite-scroll-distance="250" className="tbody">
 
@@ -100,8 +116,8 @@ class Library extends Component {
                     </div>
                 </div>
                 <CreateModal
-                modal = {this.state.modal}
-                handleShow = {this.handleShow}
+                    modal = {this.state.modal}
+                    handleShow = {this.handleShow}
                 />
             </div>
         )
