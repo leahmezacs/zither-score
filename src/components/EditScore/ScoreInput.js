@@ -17,10 +17,14 @@ class ScoreInput extends Component {
 
   handleNewLine = event => {
     event.preventDefault();
-    this.setState(preState => ({
-      line: this.state.line + 1,
-      lineLength: [...preState.lineLength, this.state.line]
-    }));
+    if(this.state.line < 8){
+      this.setState({
+        line: this.state.line + 1,
+        lineLength: [...this.state.lineLength, this.state.line]
+      })
+    }
+    
+    console.log(this.state.lineLength);
   };
 
   render() {
