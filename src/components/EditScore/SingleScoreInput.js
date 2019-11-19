@@ -24,9 +24,9 @@ class SingleScoreInput extends Component {
               />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item><FiberManualRecordIcon /></Dropdown.Item>
-              <Dropdown.Item><MinimizeIcon /></Dropdown.Item>
-              <Dropdown.Item><DragHandleIcon /></Dropdown.Item>
+              <Dropdown.Item><FiberManualRecordIcon fontSize="small" /></Dropdown.Item>
+              <Dropdown.Item><MinimizeIcon fontSize="small"/></Dropdown.Item>
+              <Dropdown.Item><DragHandleIcon fontSize="small" /></Dropdown.Item>
               <Dropdown.Item>double dots</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -48,9 +48,9 @@ class SingleScoreInput extends Component {
                 fontSize="small" />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item><FiberManualRecordIcon /></Dropdown.Item>
-              <Dropdown.Item><MinimizeIcon /></Dropdown.Item>
-              <Dropdown.Item><DragHandleIcon /></Dropdown.Item>
+              <Dropdown.Item><FiberManualRecordIcon fontSize="small" /></Dropdown.Item>
+              <Dropdown.Item><MinimizeIcon fontSize="small" /></Dropdown.Item>
+              <Dropdown.Item><DragHandleIcon fontSize="small" /></Dropdown.Item>
               <Dropdown.Item>double dots</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -74,9 +74,9 @@ class SingleScoreInput extends Component {
                 fontSize="small" />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item><FiberManualRecordIcon /></Dropdown.Item>
-              <Dropdown.Item><MinimizeIcon /></Dropdown.Item>
-              <Dropdown.Item><DragHandleIcon /></Dropdown.Item>
+              <Dropdown.Item><FiberManualRecordIcon fontSize="small" /></Dropdown.Item>
+              <Dropdown.Item><MinimizeIcon fontSize="small" /></Dropdown.Item>
+              <Dropdown.Item><DragHandleIcon fontSize="small" /></Dropdown.Item>
               <Dropdown.Item>double dots</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -100,9 +100,9 @@ class SingleScoreInput extends Component {
                 fontSize="small" />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item><FiberManualRecordIcon /></Dropdown.Item>
-              <Dropdown.Item><MinimizeIcon /></Dropdown.Item>
-              <Dropdown.Item><DragHandleIcon /></Dropdown.Item>
+              <Dropdown.Item><FiberManualRecordIcon fontSize="small" /></Dropdown.Item>
+              <Dropdown.Item><MinimizeIcon fontSize="small" /></Dropdown.Item>
+              <Dropdown.Item><DragHandleIcon fontSize="small" /></Dropdown.Item>
               <Dropdown.Item>double dots</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
