@@ -4,6 +4,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Dropdown } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
+import * as mutations from '../../graphql/mutations';
 
 class Library extends Component {
     constructor(props) {
@@ -11,9 +12,14 @@ class Library extends Component {
         this.state = {
           modal: false,
           userId: '',
+          score_id: '',
           scores: []
         }
         this.handleShow = this.handleShow.bind(this);
+        this.handleListScores = this.handleListScores.bind(this);
+        //this.handleDeleteScore = this.handleDeleteScore.bind(this);
+        this.handleClickEdit = this.handleClickEdit.bind(this);
+        
     }
     
     handleShow = () => {
@@ -24,7 +30,19 @@ class Library extends Component {
         });
     };
 
-    
+    /* handleDeleteScore(e) {
+        e.preventDefault();
+        this.setState({
+            scores: this.state.score.filter(el => el !== e.target.value)
+        })
+        (async() => {
+            await API.graphql(graphqlOperation(mutations.deleteScore,{
+                input:{
+                    id : e.target.value
+                }
+            }));
+        })();
+    } */
 
     async componentDidMount() {
         const user = await Auth.currentAuthenticatedUser();
@@ -35,6 +53,18 @@ class Library extends Component {
         });
     }
 
+    handleClickEdit(e) {
+        e.preventDefault();
+        this.props.history.push({
+            pathname: '/EditScore',
+            search: e.target.value,
+            state: {
+              name: e.target.value
+            }
+        });
+        console.log(this.props.history.state);
+    }
+
     handleListScores() {
         const temp = this.state.scores;
         let data = [];
@@ -42,8 +72,8 @@ class Library extends Component {
         for(let i = 0; i < temp.length; ++i){
             if(temp[i].user.id === this.state.userId) data.push(temp[i]);
         } 
-        /* console.log(this.state.userId);
-        console.log(data); */
+        console.log(this.state.userId);
+        console.log(data);
 
         return (
             <div>
@@ -55,14 +85,14 @@ class Library extends Component {
                             <div className="td row-sharing">{score.status}</div>
                             <div className="td row-options">
                                 <Dropdown>
-                                    <Dropdown.Toggle className="score_options" id="dropdown-basic">
+                                    <Dropdown.Toggle className="btn btn-sm btn-light">
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                        <Dropdown.Item href="#/action-1">View</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Edit</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">Delete</Dropdown.Item>
+                                        <Dropdown.Item href="#">View</Dropdown.Item>
+                                        <Dropdown.Item href="#">Edit</Dropdown.Item>
+                                        <Dropdown.Item href="#">Delete</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>

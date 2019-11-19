@@ -5,7 +5,7 @@ import '../../stylesheets/scorestylesheet.css';
 import ScoreInput from './ScoreInput';
 
 class EditScore extends Component {
-    constructor(props) {
+    /* constructor(props) {
         super(props);
         this.state = {
           score_name: ''
@@ -16,10 +16,10 @@ class EditScore extends Component {
         this.setState({
             score_name: this.props.location.state.name
         });
-    }
+    } */
     
     render () {
-        console.log(this.state.score_name);
+        //console.log(this.state.score_name);
         return (
             <div>
                 <ToolBar />
@@ -29,7 +29,7 @@ class EditScore extends Component {
                         <g className="page-contents" transform="scale(1.25, 1.25) translate(32.126, 32.126)">
                             <g className="inside-margin" transform="translate(0,0)">
                                 <g className="page-title">
-                                    <text fontFamily="Noto Serif TC" fontStyle="medium" textAnchor="middle" fontSize="40" transform="translate(431.024, 80)">{this.state.score_name}</text>
+                                    <text fontFamily="Noto Serif TC" fontStyle="medium" textAnchor="middle" fontSize="40" transform="translate(431.024, 80)">ABC</text>
                                 </g>
                             </g>
                             
