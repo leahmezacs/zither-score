@@ -5,6 +5,7 @@ import { Dropdown } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
+import * as subscriptions from '../../graphql/subscriptions';
 
 class Library extends Component {
     constructor(props) {
@@ -45,12 +46,14 @@ class Library extends Component {
     } */
 
     async componentDidMount() {
+        const limit = 50;
         const user = await Auth.currentAuthenticatedUser();
-        const result = await API.graphql(graphqlOperation(queries.listScores));  
+        const result = await API.graphql(graphqlOperation(queries.listScores, {limit}));  
         this.setState({
             scores: result.data.listScores.items,
             userId: user.username
         });
+        console.log(this.state.scores);
     }
 
     handleClickEdit(e) {
@@ -73,7 +76,8 @@ class Library extends Component {
             if(temp[i].user.id === this.state.userId) data.push(temp[i]);
         } 
         console.log(this.state.userId);
-        console.log(data);
+        //console.log(temp);
+        //console.log(data);
 
         return (
             <div>
