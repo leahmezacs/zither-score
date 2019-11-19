@@ -8,6 +8,7 @@ class Library extends Component {
         super(props);
         this.state = {
           modal: false,
+          userId: '',
           scores: []
         }
         this.handleShow = this.handleShow.bind(this);
@@ -22,15 +23,24 @@ class Library extends Component {
     };
 
     async componentDidMount() {
+        const user = await Auth.currentAuthenticatedUser();
         const result = await API.graphql(graphqlOperation(queries.listScores));  
         this.setState({
-            scores: result.data.listScores.items
+            scores: result.data.listScores.items,
+            userId: user.username
         });
     }
 
-    
-    handleListScores(){
-        const data = this.state.scores;
+    handleListScores() {
+        const temp = this.state.scores;
+        let data = [];
+        
+        for(let i = 0; i < temp.length; ++i){
+            if(temp[i].user.id === this.state.userId) data.push(temp[i]);
+        } 
+        /* console.log(this.state.userId);
+        console.log(data); */
+
         return (
             <div>
                 {data.map(function(score, index){
@@ -49,7 +59,7 @@ class Library extends Component {
     
 
     render () {
-        console.log(this.state.scores);
+        //console.log(this.state.scores);
         return (
             <div className="main-library">
                 <div className="side-bar">
