@@ -8,11 +8,13 @@ class SingleScoreInput extends Component {
   render() {
     return (
       <div>
-        <ControlPointIcon
-          color="primary"
-          fontSize="large"
-          className="scoreInputIcon"
-        />
+        <div>
+          <ControlPointIcon
+            color="grey"
+            fontSize="large"
+            className="plus"
+          />
+        </div>
         <input
           key="0"
           className="singleNote"
@@ -20,11 +22,13 @@ class SingleScoreInput extends Component {
           min="0"
           max="7"
         />
-        <ControlPointIcon
-          color="primary"
-          fontSize="large"
-          className="scoreInputIcon"
-        />
+        <div>
+          <ControlPointIcon
+            color="grey"
+            fontSize="large"
+            className="plus"
+          />
+        </div>
         <input
           key="1"
           className="singleNote"
@@ -33,11 +37,13 @@ class SingleScoreInput extends Component {
           max="7"
         />
         
-        <ControlPointIcon
-          color="primary"
-          fontSize="large"
-          className="scoreInputIcon"
-        />
+        <div>
+          <ControlPointIcon
+            color="grey"
+            fontSize="large"
+            className="plus"
+          />
+        </div>
         <input
           key="2"
           className="singleNote"
@@ -45,11 +51,13 @@ class SingleScoreInput extends Component {
           min="1"
           max="7"
         />
-        <ControlPointIcon
-          color="primary"
-          fontSize="large"
-          className="scoreInputIcon"
-        />
+       <div>
+          <ControlPointIcon
+            color="grey"
+            fontSize="large"
+            className="plus"
+          />
+        </div>
         
         <input
           key="3"
