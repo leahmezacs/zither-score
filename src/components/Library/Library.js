@@ -14,7 +14,6 @@ class Library extends Component {
         this.state = {
           modal: false,
           userId: '',
-          score_id: '',
           scores: []
         }
         this.handleShow = this.handleShow.bind(this);
@@ -22,26 +21,6 @@ class Library extends Component {
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
         
-    }
-    
-    handleShow = () => {
-        this.setState(prevState => {
-          return {
-            modal: !prevState.modal
-          };
-        });
-    };
-
-    async handleDeleteScore(e) {
-    /*     this.setState({
-            scores: this.state.score.filter(el => el !== e.target.value)
-        }) */
-        
-        await API.graphql(graphqlOperation(mutations.deleteScore,{
-            input:{
-                id : e.target.value
-            }
-        }));
     }
 
     async componentDidMount() {
@@ -52,6 +31,24 @@ class Library extends Component {
             scores: result.data.listScores.items,
             userId: user.username
         });
+        //console.log(this.state.scores);
+    }
+
+    handleShow = () => {
+        this.setState(prevState => {
+          return {
+            modal: !prevState.modal
+          };
+        });
+    };
+
+    async handleDeleteScore(score_name) {
+        const deletedScore = await API.graphql(graphqlOperation(mutations.deleteScore,{
+            input:{
+                id : score_name
+            }
+        }));
+        console.log(deletedScore);
         //console.log(this.state.scores);
     }
 
@@ -93,7 +90,7 @@ class Library extends Component {
                                     <Dropdown.Menu>
                                         <Dropdown.Item href="#">View</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
-                                        <Dropdown.Item onClick={this.handleDeleteScore}>Delete</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
