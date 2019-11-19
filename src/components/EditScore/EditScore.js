@@ -3,23 +3,29 @@ import { withRouter } from "react-router-dom";
 import ToolBar from '../ToolBar/ToolBar';
 import '../../stylesheets/scorestylesheet.css';
 import ScoreInput from './ScoreInput';
+import { graphqlOperation, API } from 'aws-amplify';
+import * as queries from '../../graphql/queries';
 
 class EditScore extends Component {
-    /* constructor(props) {
+    constructor(props) {
         super(props);
         this.state = {
-          score_name: ''
+          score: []
         };
     }
 
     async componentDidMount() {
+        const result = await API.graphql(graphqlOperation(queries.getScore, {
+            id: this.props.location.state.name
+        }));  
         this.setState({
-            score_name: this.props.location.state.name
+            score: result.data.getScore
         });
-    } */
+        console.log(result);
+        //console.log(this.state.score);
+    }
     
     render () {
-        //console.log(this.state.score_name);
         return (
             <div>
                 <ToolBar />
@@ -29,7 +35,7 @@ class EditScore extends Component {
                         <g className="page-contents" transform="scale(1.25, 1.25) translate(32.126, 32.126)">
                             <g className="inside-margin" transform="translate(0,0)">
                                 <g className="page-title">
-                                    <text fontFamily="Noto Serif TC" fontStyle="medium" textAnchor="middle" fontSize="40" transform="translate(431.024, 80)">ABC</text>
+                                    <text fontFamily="Noto Serif TC" fontStyle="medium" textAnchor="middle" fontSize="40" transform="translate(431.024, 80)">{this.state.score.name}</text>
                                 </g>
                             </g>
                             
