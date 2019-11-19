@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import CreateModal from "../CreateModal/CreateModal";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Dropdown } from "react-bootstrap";
@@ -18,8 +19,8 @@ class Library extends Component {
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
-        //this.handleDeleteScore = this.handleDeleteScore.bind(this);
-        this.handleClickEdit = this.handleClickEdit.bind(this);
+        this.handleDeleteScore = this.handleDeleteScore.bind(this);
+        this.handleEditScore = this.handleEditScore.bind(this);
         
     }
     
@@ -31,11 +32,10 @@ class Library extends Component {
         });
     };
 
-    /* handleDeleteScore(e) {
-        e.preventDefault();
-        this.setState({
+    handleDeleteScore(e) {
+    /*     this.setState({
             scores: this.state.score.filter(el => el !== e.target.value)
-        })
+        }) */
         (async() => {
             await API.graphql(graphqlOperation(mutations.deleteScore,{
                 input:{
@@ -43,7 +43,7 @@ class Library extends Component {
                 }
             }));
         })();
-    } */
+    }
 
     async componentDidMount() {
         const limit = 50;
@@ -53,10 +53,10 @@ class Library extends Component {
             scores: result.data.listScores.items,
             userId: user.username
         });
-        console.log(this.state.scores);
+        //console.log(this.state.scores);
     }
 
-    handleClickEdit(e) {
+    handleEditScore(e) {
         e.preventDefault();
         this.props.history.push({
             pathname: '/EditScore',
@@ -81,7 +81,7 @@ class Library extends Component {
 
         return (
             <div>
-                {data.map(function(score, index){
+                {data.map((score, index) =>{
                     return (
                         <div className="tr" key={index}>
                             <div className="td row-title">{score.name}</div>
@@ -95,8 +95,8 @@ class Library extends Component {
 
                                     <Dropdown.Menu>
                                         <Dropdown.Item href="#">View</Dropdown.Item>
-                                        <Dropdown.Item href="#">Edit</Dropdown.Item>
-                                        <Dropdown.Item href="#">Delete</Dropdown.Item>
+                                        <Dropdown.Item onClick={this.handleEditScore}>Edit</Dropdown.Item>
+                                        <Dropdown.Item onClick={this.handleDeleteScore}>Delete</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
@@ -181,4 +181,4 @@ class Library extends Component {
     }
 }
 
-export default Library;
+export default withRouter(Library);
