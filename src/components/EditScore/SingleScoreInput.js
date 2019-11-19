@@ -1,16 +1,29 @@
 import React, { Component } from "react";
 import "../../stylesheets/style.css"
+import Container from "@material-ui/core/Container";
+import ControlPointIcon from "@material-ui/icons/ControlPoint";
+import Button from "@material-ui/core/Button";
 
 class SingleScoreInput extends Component {
   render() {
     return (
       <div>
+        <ControlPointIcon
+          color="primary"
+          fontSize="large"
+          className="scoreInputIcon"
+        />
         <input
           key="0"
           className="singleNote"
           type="number"
           min="0"
           max="7"
+        />
+        <ControlPointIcon
+          color="primary"
+          fontSize="large"
+          className="scoreInputIcon"
         />
         <input
           key="1"
@@ -19,6 +32,12 @@ class SingleScoreInput extends Component {
           min="1"
           max="7"
         />
+        
+        <ControlPointIcon
+          color="primary"
+          fontSize="large"
+          className="scoreInputIcon"
+        />
         <input
           key="2"
           className="singleNote"
@@ -26,6 +45,12 @@ class SingleScoreInput extends Component {
           min="1"
           max="7"
         />
+        <ControlPointIcon
+          color="primary"
+          fontSize="large"
+          className="scoreInputIcon"
+        />
+        
         <input
           key="3"
           className="singleNote"
