@@ -3,6 +3,7 @@ import SingleScoreInput from "./SingleScoreInput";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 
+// Map through singleInput for one line score input
 const SingleLineScoreInput = props => {
   const nodeLength = [0, 1, 2, 3]; 
 
@@ -14,7 +15,11 @@ const SingleLineScoreInput = props => {
             <span className="lineBegin">|</span>
             {nodeLength.map(value => (
               <Grid key={value} item>
-                <SingleScoreInput key={value} />
+                <SingleScoreInput
+                  key={value}
+                  lineLength={props.lineLength}
+                  nodeLength={value}
+                />
               </Grid>
             ))}
           </Grid>

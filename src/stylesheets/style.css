@@ -7,15 +7,37 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield;
 }
-input {
+.singleNote {
     width: 40px;
     height: 40px;
     text-align: center;
+}
+.button-style {
+    color: #cccccc;
+    background-color: transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+.add-button-div {
+    position: relative;
+}
+.add-button-overlap {
+    position: absolute;
+    display: none;
+}
+.add-button-div:hover .add-button-overlap {
+    display: block;
 }
 
 /* ScoreInput Page Styling */
 .scoreInputIcon {
     margin-bottom: 20px;
+}
+.plus{
+    position:top;
 }
 .lineInBetween {
     font-size: 25px;
