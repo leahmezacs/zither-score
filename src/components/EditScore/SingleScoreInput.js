@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import AddIcon from '@material-ui/icons/Add';
 import "../../stylesheets/style.css"
-import Container from "@material-ui/core/Container";
+import AddIcon from '@material-ui/icons/Add';
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
-import Button from "@material-ui/core/Button";
-import { Dropdown } from "react-bootstrap";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import MinimizeIcon from '@material-ui/icons/Minimize';
-import DragHandleIcon from '@material-ui/icons/DragHandle';
+import Dot from '@material-ui/icons/FiberManualRecord';
+import Line from '@material-ui/icons/Remove';
+import DoubleLine from '@material-ui/icons/DragHandle';
 
 
 
@@ -16,27 +13,38 @@ class SingleScoreInput extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className="dropdown">
           <button
             key="0"
-            className="button-style"
+            type="button"
+            className="button-style dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
             <AddIcon fontsize="small"/>
           </button>
+            <div className="dropdown-menu">
+              <a className="dropdown-item"><Dot /></a>
+              <a className="dropdown-item">Double Dot</a>
+            </div>
           <button
             key="1"
+            type="button"
             className="button-style"
           >
             <AddIcon fontsize="small"/>
           </button>
           <button
             key="2"
+            type="button"
             className="button-style"
           >
             <AddIcon fontsize="small"/>
           </button>
           <button
             key="3"
+            type="button"
             className="button-style"
           >
             <AddIcon fontsize="small"/>
@@ -75,24 +83,28 @@ class SingleScoreInput extends Component {
           <div>
             <button
               key="0"
+              type="button"
               className="button-style"
             >
               <AddIcon fontsize="small"/>
             </button>
             <button
               key="1"
+              type="button"
               className="button-style"
             >
               <AddIcon fontsize="small"/>
             </button>
             <button
               key="2"
+              type="button"
               className="button-style"
             >
               <AddIcon fontsize="small"/>
             </button>
             <button
               key="3"
+              type="button"
               className="button-style"
             >
               <AddIcon fontsize="small"/>
