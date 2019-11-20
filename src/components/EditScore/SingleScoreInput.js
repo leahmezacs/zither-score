@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import AddIcon from '@material-ui/icons/Add';
 import "../../stylesheets/style.css"
+import Container from "@material-ui/core/Container";
+import ControlPointIcon from "@material-ui/icons/ControlPoint";
+import Button from "@material-ui/core/Button";
+import { Dropdown } from "react-bootstrap";
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import MinimizeIcon from '@material-ui/icons/Minimize';
+import DragHandleIcon from '@material-ui/icons/DragHandle';
+
+
 
 class SingleScoreInput extends Component {
   render() {

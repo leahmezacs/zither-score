@@ -36,6 +36,9 @@ input[type=number] {
 .scoreInputIcon {
     margin-bottom: 20px;
 }
+.plus{
+    position:top;
+}
 .lineInBetween {
     font-size: 25px;
     padding-left: 10px;
