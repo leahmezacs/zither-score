@@ -63,12 +63,6 @@ class CreateModal extends Component {
       console.log(scoreCreated);
     }
 
-    async componentDidMount(){
-      const scoreCreationSubscription = API.graphql(graphqlOperation(subscriptions.onCreateScore)).subscribe({
-        next: (scoreData) => console.log(scoreData)
-      });
-    }
-
     render(){
       return (
         <>     

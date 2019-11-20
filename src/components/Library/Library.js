@@ -35,7 +35,13 @@ class Library extends Component {
             scores: result.data.listScores.items,
             userId: user.username
         });
-        //console.log(this.state.scores);
+
+        /* this.scoreCreationSubscription = API.graphql(graphqlOperation(subscriptions.onCreateScore)).subscribe({
+            next: (scoreData) => {
+              
+            }
+        }); */
+        
         this.scoreDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteScore)).subscribe({
             next: (scoreData) => {
                 const scoreId = scoreData.value.data.onDeleteScore.id;
@@ -48,8 +54,6 @@ class Library extends Component {
                 });
             },
         });
-        
-        //console.log(this.state.scores);
     }
 
     componentWillUnmount() {
