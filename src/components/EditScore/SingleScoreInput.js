@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import AddIcon from '@material-ui/icons/Add';
 import "../../stylesheets/style.css"
+import { Auth, graphqlOperation, API } from 'aws-amplify';
+import * as queries from '../../graphql/queries';
+import * as mutations from '../../graphql/mutations';
+import * as subscriptions from '../../graphql/subscriptions';
 import Container from "@material-ui/core/Container";
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
 import Button from "@material-ui/core/Button";
@@ -10,9 +14,8 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import MinimizeIcon from '@material-ui/icons/Minimize';
 import DragHandleIcon from '@material-ui/icons/DragHandle';
 
-
-
 class SingleScoreInput extends Component {
+
   render() {
     return (
       <div>
@@ -49,27 +52,31 @@ class SingleScoreInput extends Component {
             type="number"
             min="0"
             max="7"
+            pos="0"
           />
           <input
             key="1"
             className="singleNote"
             type="number"
-            min="1"
+            min="0"
             max="7"
+            pos="1"
           />
           <input
             key="2"
             className="singleNote"
             type="number"
-            min="1"
+            min="0"
             max="7"
+            pos="2"
           />
           <input
             key="3"
             className="singleNote"
             type="number"
-            min="1"
+            min="0"
             max="7"
+            pos="3"
           />
           <span className="lineInBetween">|</span>
           <div>
