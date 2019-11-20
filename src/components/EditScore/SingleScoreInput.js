@@ -52,27 +52,31 @@ class SingleScoreInput extends Component {
             type="number"
             min="0"
             max="7"
+            pos="0"
           />
           <input
             key="1"
             className="singleNote"
             type="number"
-            min="1"
+            min="0"
             max="7"
+            pos="1"
           />
           <input
             key="2"
             className="singleNote"
             type="number"
-            min="1"
+            min="0"
             max="7"
+            pos="2"
           />
           <input
             key="3"
             className="singleNote"
             type="number"
-            min="1"
+            min="0"
             max="7"
+            pos="3"
           />
           <span className="lineInBetween">|</span>
           <div>

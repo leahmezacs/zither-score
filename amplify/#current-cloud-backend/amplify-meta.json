@@ -20,7 +20,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191117150340-deployment/amplify-cfn-templates/auth/zitherscored598d92b-cloudformation-template.yml",
 				"logicalId": "authzitherscored598d92b"
 			},
-			"lastPushTimeStamp": "2019-11-17T20:10:02.941Z",
+			"lastPushTimeStamp": "2019-11-20T07:17:22.316Z",
 			"output": {
 				"AppClientSecret": "a80covhnlgenab1dpi2i0rsvf6bp93vcseealgp3ucumvrbv37g",
 				"UserPoolId": "us-east-2_mjQ1ziSxH",
@@ -41,7 +41,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191117150340-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
 				"logicalId": "analyticszitherscore"
 			},
-			"lastPushTimeStamp": "2019-11-17T20:10:02.941Z",
+			"lastPushTimeStamp": "2019-11-20T07:17:22.317Z",
 			"output": {
 				"appName": "zitherscore-local",
 				"Region": "us-east-1",
@@ -71,8 +71,26 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191117150340-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apizitherscore"
 			},
-			"lastPushTimeStamp": "2019-11-17T20:10:02.941Z",
-			"lastPushDirHash": "gHrMZN2Iob60CwRw1LL4w250LGY="
+			"lastPushTimeStamp": "2019-11-20T07:17:24.309Z",
+			"lastPushDirHash": "DkMd1ivH4rit3RGJc2DxHTHs5+s="
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191117150340-deployment/amplify-cfn-templates/hosting/template.json",
+				"logicalId": "hostingS3AndCloudFront"
+			},
+			"lastPushTimeStamp": "2019-11-20T07:17:22.321Z",
+			"output": {
+				"S3BucketSecureURL": "https://zitherscore-20191120005605-hostingbucket-local.s3.amazonaws.com",
+				"WebsiteURL": "http://zitherscore-20191120005605-hostingbucket-local.s3-website.us-east-2.amazonaws.com",
+				"Region": "us-east-2",
+				"HostingBucketName": "zitherscore-20191120005605-hostingbucket-local"
+			},
+			"lastPushDirHash": "M+PiaA+sdsLAt080/bhuvBiVmGs="
 		}
 	}
 }

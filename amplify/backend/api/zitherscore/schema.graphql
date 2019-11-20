@@ -31,6 +31,7 @@ type Note @model {
   curve: Int
   row: Int
   column: Int
+  index: Int
   score: Score @connection(name: "ScoreNotes")
 }
 

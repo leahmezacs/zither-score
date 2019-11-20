@@ -69,6 +69,7 @@ export const createScore = `mutation CreateScore($input: CreateScoreInput!) {
         curve
         row
         column
+        index
       }
       nextToken
     }
@@ -100,6 +101,7 @@ export const updateScore = `mutation UpdateScore($input: UpdateScoreInput!) {
         curve
         row
         column
+        index
       }
       nextToken
     }
@@ -131,6 +133,7 @@ export const deleteScore = `mutation DeleteScore($input: DeleteScoreInput!) {
         curve
         row
         column
+        index
       }
       nextToken
     }
@@ -158,6 +161,7 @@ export const createNote = `mutation CreateNote($input: CreateNoteInput!) {
     curve
     row
     column
+    index
     score {
       id
       name
@@ -186,6 +190,7 @@ export const updateNote = `mutation UpdateNote($input: UpdateNoteInput!) {
     curve
     row
     column
+    index
     score {
       id
       name
@@ -214,6 +219,7 @@ export const deleteNote = `mutation DeleteNote($input: DeleteNoteInput!) {
     curve
     row
     column
+    index
     score {
       id
       name

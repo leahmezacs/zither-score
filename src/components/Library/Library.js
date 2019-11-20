@@ -103,7 +103,7 @@ class Library extends Component {
 
         return (
             <div>
-                {data.map((score, index) =>{
+                {data.map((score, index) => {
                     return (
                         <div className="tr" key={index}>
                             <div className="td row-title">{score.name}</div>
