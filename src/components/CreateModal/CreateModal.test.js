@@ -1,6 +1,5 @@
 import React from 'react';
-import {renderer, shallow} from 'enzyme';
-import NavBar from '../NavBar/NavBar'
+import {shallow} from 'enzyme';
 import CreateModal from './CreateModal'
 
 describe("CreateModal", () => {
