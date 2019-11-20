@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AddIcon from '@material-ui/icons/Add';
 import "../../stylesheets/style.css"
 import Container from "@material-ui/core/Container";
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
@@ -16,22 +17,32 @@ class SingleScoreInput extends Component {
     return (
       <div>
         <div>
-
-          <Dropdown>
-            <Dropdown.Toggle className="btn btn-sm btn-light">
-              <MoreHorizIcon
-                fontSize="small"
-              />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item><FiberManualRecordIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item><MinimizeIcon fontSize="small"/></Dropdown.Item>
-              <Dropdown.Item><DragHandleIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item>double dots</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-
-
+          <button
+            key="0"
+            className="button-style"
+          >
+            <AddIcon fontsize="small"/>
+          </button>
+          <button
+            key="1"
+            className="button-style"
+          >
+            <AddIcon fontsize="small"/>
+          </button>
+          <button
+            key="2"
+            className="button-style"
+          >
+            <AddIcon fontsize="small"/>
+          </button>
+          <button
+            key="3"
+            className="button-style"
+          >
+            <AddIcon fontsize="small"/>
+          </button>
+        </div>
+        <div>
           <input
             key="0"
             className="singleNote"
@@ -39,23 +50,6 @@ class SingleScoreInput extends Component {
             min="0"
             max="7"
           />
-        </div>
-
-        <div>
-          <Dropdown>
-            <Dropdown.Toggle className="btn btn-sm btn-light">
-              <MoreHorizIcon
-                fontSize="small" />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item><FiberManualRecordIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item><MinimizeIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item><DragHandleIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item>double dots</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-
-
           <input
             key="1"
             className="singleNote"
@@ -63,27 +57,6 @@ class SingleScoreInput extends Component {
             min="1"
             max="7"
           />
-
-
-        </div>
-
-        <div>
-          <Dropdown>
-            <Dropdown.Toggle className="btn btn-sm btn-light">
-              <MoreHorizIcon
-                fontSize="small" />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item><FiberManualRecordIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item><MinimizeIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item><DragHandleIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item>double dots</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-
-
-
-
           <input
             key="2"
             className="singleNote"
@@ -91,24 +64,6 @@ class SingleScoreInput extends Component {
             min="1"
             max="7"
           />
-        </div>
-
-        <div>
-          <Dropdown>
-            <Dropdown.Toggle className="btn btn-sm btn-light">
-              <MoreHorizIcon
-                fontSize="small" />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item><FiberManualRecordIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item><MinimizeIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item><DragHandleIcon fontSize="small" /></Dropdown.Item>
-              <Dropdown.Item>double dots</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-
-
-
           <input
             key="3"
             className="singleNote"
@@ -117,8 +72,33 @@ class SingleScoreInput extends Component {
             max="7"
           />
           <span className="lineInBetween">|</span>
+          <div>
+            <button
+              key="0"
+              className="button-style"
+            >
+              <AddIcon fontsize="small"/>
+            </button>
+            <button
+              key="1"
+              className="button-style"
+            >
+              <AddIcon fontsize="small"/>
+            </button>
+            <button
+              key="2"
+              className="button-style"
+            >
+              <AddIcon fontsize="small"/>
+            </button>
+            <button
+              key="3"
+              className="button-style"
+            >
+              <AddIcon fontsize="small"/>
+            </button>
+          </div>
         </div>
-
       </div>
     );
   }
