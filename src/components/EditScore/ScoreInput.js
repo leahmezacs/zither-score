@@ -4,6 +4,10 @@ import Container from "@material-ui/core/Container";
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
 import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
+import { Auth, graphqlOperation, API } from 'aws-amplify';
+import * as queries from '../../graphql/queries';
+import * as mutations from '../../graphql/mutations';
+import * as subscriptions from '../../graphql/subscriptions';
 
 class ScoreInput extends Component {
   constructor(props) {
@@ -24,7 +28,7 @@ class ScoreInput extends Component {
     }));
   };
 
-  async handleSave() {
+  async handleSubmit() {
 
   }
 

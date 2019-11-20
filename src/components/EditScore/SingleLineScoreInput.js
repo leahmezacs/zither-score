@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 
 const SingleLineScoreInput = props => {
-  const nodeLength = [0, 1, 2, 3];
+  const nodeLength = [0, 1, 2, 3]; 
 
   return props.lineLength.map(value => (
     <Container className="lineSpacing" key={value} maxWidth="lg">
