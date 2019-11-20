@@ -1,20 +1,18 @@
 import React from 'react';
-import {renderer, mount } from 'enzyme';
+import {renderer, shallow} from 'enzyme';
 import NavBar from '../NavBar/NavBar'
 import CreateModal from './CreateModal'
+import { Button, Modal} from 'react-bootstrap';
 
 describe("CreateModal", () => {
     it('renders modal when show is true', () => {
         const props = { show: true }; 
-        const wrapper = mount(
-          <div id="root">
-            <CreateModal {...props} />
-          </div>
+        const wrapper = shallow(
+          <Modal.Header closeButton>
+            <Modal.Title id="title">Music File</Modal.Title>
+          </Modal.Header>
         );
       
-        wrapper.update();
-        
-        expect(wrapper.find('.my-modal-window').exists()).toEqual(true);
-        expect(wrapper.text()).toContain('Hello World');
+        expect(wrapper.text()).toContain('Music File');
       });
 });
