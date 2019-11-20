@@ -12,7 +12,7 @@ class NavBar extends Component {
     super(props);
     this.state = {
       modal: false
-    }
+    };
     this.handleShow = this.handleShow.bind(this);
   }
 
@@ -23,7 +23,7 @@ class NavBar extends Component {
       };
     });
   };
-  
+
   render() {
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
       return <Redirect to="/" />;
@@ -33,12 +33,14 @@ class NavBar extends Component {
       <div>
         <Navbar className="NavBarBackground" expand="lg">
           <Navbar.Brand href="/">
-            <LibraryMusicIcon fontSize="default" className="text-light"/>
+            <LibraryMusicIcon fontSize="default" className="text-light" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link className="text-light font-weight-bold" href="#">Discover</Nav.Link>
+              <Nav.Link className="text-light font-weight-bold" href="#">
+                Discover
+              </Nav.Link>
             </Nav>
 
             <Form inline className="mr-auto">
@@ -47,7 +49,9 @@ class NavBar extends Component {
                 placeholder="Search"
                 className="mr-sm-1"
               />
-              <button className="btn btn-sm btn-light"><SearchIcon /></button>
+              <button className="btn btn-sm btn-light">
+                <SearchIcon />
+              </button>
             </Form>
 
             {this.props.loggedInUser ? (
@@ -57,7 +61,10 @@ class NavBar extends Component {
                   <Nav.Link href="#">Notification</Nav.Link>
                 </Nav>
 
-                <NavDropdown title={<AccountCircle />} id="basic-nav-dropdown">
+                <NavDropdown
+                  title={<AccountCircle fontSize="large" color="disabled" />}
+                  id="basic-nav-dropdown"
+                >
                   <NavDropdown.Item href="#">Profile</NavDropdown.Item>
                   <NavDropdown.Item href="/Library">Library</NavDropdown.Item>
                   <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
@@ -69,14 +76,13 @@ class NavBar extends Component {
                 </NavDropdown>
               </>
             ) : (
-              <Nav.Link className="text-light font-weight-bold" href="/Login">Login</Nav.Link>
+              <Nav.Link className="text-light font-weight-bold" href="/Login">
+                Login
+              </Nav.Link>
             )}
           </Navbar.Collapse>
         </Navbar>
-        <CreateModal
-          modal = {this.state.modal}
-          handleShow = {this.handleShow}
-        />
+        <CreateModal modal={this.state.modal} handleShow={this.handleShow} />
       </div>
     );
   }
