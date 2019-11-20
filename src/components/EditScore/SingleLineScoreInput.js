@@ -3,6 +3,7 @@ import SingleScoreInput from "./SingleScoreInput";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 
+// Map through singleInput for one line score input
 const SingleLineScoreInput = props => {
   const nodeLength = [0, 1, 2, 3];
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../../stylesheets/style.css"
 
+// Four inputs in one componenet
 class SingleScoreInput extends Component {
   render() {
     return (
