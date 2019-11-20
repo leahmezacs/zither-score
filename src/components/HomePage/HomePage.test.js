@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import HomePage from './HomePage'
 
 describe("HomePage", () => {
-    it("Renders properly", () => {
-        const wrapper = shallow(<HomePage />);
-        expect(wrapper.find(".homepage-header").text()).toEqual("NumScore");
-      });
+    it('render a homepage component', () => {  
+        const HomePageComp = shallow(<div><HomePage /></div>);
+        expect(HomePageComp).toMatchSnapshot();
+    });
 });
