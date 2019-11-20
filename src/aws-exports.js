@@ -11,7 +11,10 @@ const awsmobile = {
     "aws_mobile_analytics_app_region": "us-east-1",
     "aws_appsync_graphqlEndpoint": "https://ytisqgyfufajjbrxaoen4tzfme.appsync-api.us-east-2.amazonaws.com/graphql",
     "aws_appsync_region": "us-east-2",
-    "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS"
+    "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
+    "aws_content_delivery_bucket": "zitherscore-20191120005605-hostingbucket-local",
+    "aws_content_delivery_bucket_region": "us-east-2",
+    "aws_content_delivery_url": "http://zitherscore-20191120005605-hostingbucket-local.s3-website.us-east-2.amazonaws.com"
 };
 
 

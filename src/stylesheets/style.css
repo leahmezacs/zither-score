@@ -26,7 +26,6 @@ input[type=number] {
 }
 .add-button-overlap {
     position: absolute;
-    z-index: 2;
     display: none;
 }
 .add-button-div:hover .add-button-overlap {

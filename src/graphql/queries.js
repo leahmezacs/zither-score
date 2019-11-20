@@ -51,6 +51,7 @@ export const getScore = `query GetScore($id: ID!) {
         curve
         row
         column
+        index
       }
       nextToken
     }
@@ -103,6 +104,7 @@ export const getNote = `query GetNote($id: ID!) {
     curve
     row
     column
+    index
     score {
       id
       name
@@ -136,6 +138,7 @@ export const listNotes = `query ListNotes(
       curve
       row
       column
+      index
       score {
         id
         name

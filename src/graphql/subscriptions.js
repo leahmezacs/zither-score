@@ -69,6 +69,7 @@ export const onCreateScore = `subscription OnCreateScore {
         curve
         row
         column
+        index
       }
       nextToken
     }
@@ -100,6 +101,7 @@ export const onUpdateScore = `subscription OnUpdateScore {
         curve
         row
         column
+        index
       }
       nextToken
     }
@@ -131,6 +133,7 @@ export const onDeleteScore = `subscription OnDeleteScore {
         curve
         row
         column
+        index
       }
       nextToken
     }
@@ -158,6 +161,7 @@ export const onCreateNote = `subscription OnCreateNote {
     curve
     row
     column
+    index
     score {
       id
       name
@@ -186,6 +190,7 @@ export const onUpdateNote = `subscription OnUpdateNote {
     curve
     row
     column
+    index
     score {
       id
       name
@@ -214,6 +219,7 @@ export const onDeleteNote = `subscription OnDeleteNote {
     curve
     row
     column
+    index
     score {
       id
       name
