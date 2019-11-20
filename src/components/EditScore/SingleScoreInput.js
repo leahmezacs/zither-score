@@ -1,49 +1,83 @@
 import React, { Component } from "react";
-import AddIcon from '@material-ui/icons/Add';
 import "../../stylesheets/style.css"
-import { Auth, graphqlOperation, API } from 'aws-amplify';
-import * as queries from '../../graphql/queries';
-import * as mutations from '../../graphql/mutations';
-import * as subscriptions from '../../graphql/subscriptions';
-import Container from "@material-ui/core/Container";
+import AddIcon from '@material-ui/icons/Add';
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
-import Button from "@material-ui/core/Button";
-import { Dropdown } from "react-bootstrap";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import MinimizeIcon from '@material-ui/icons/Minimize';
-import DragHandleIcon from '@material-ui/icons/DragHandle';
+import Dot from '@material-ui/icons/FiberManualRecord';
+import Line from '@material-ui/icons/Remove';
+import DoubleLine from '@material-ui/icons/DragHandle';
+
+
 
 class SingleScoreInput extends Component {
-
   render() {
     return (
       <div>
-        <div>
-          <button
-            key="0"
-            className="button-style"
-          >
-            <AddIcon fontsize="small"/>
-          </button>
-          <button
-            key="1"
-            className="button-style"
-          >
-            <AddIcon fontsize="small"/>
-          </button>
-          <button
-            key="2"
-            className="button-style"
-          >
-            <AddIcon fontsize="small"/>
-          </button>
-          <button
-            key="3"
-            className="button-style"
-          >
-            <AddIcon fontsize="small"/>
-          </button>
+        <div className="row">
+          <div className="dropdown col-xs-12">
+            <button
+              key="0"
+              type="button"
+              className="button-style dropdown-toggle singleNote"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <AddIcon />
+            </button>
+            <div className="dropdown-menu">
+              <button className="dropdown-item" type="button"><Dot /></button>
+              <button className="dropdown-item" type="button">Double Dot</button>
+            </div>
+          </div>
+          <div className="dropdown col-xs-12">
+            <button
+              key="1"
+              type="button"
+              className="button-style dropdown-toggle singleNote"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <AddIcon />
+            </button>
+            <div className="dropdown-menu">
+              <button className="dropdown-item" type="button"><Dot /></button>
+              <button className="dropdown-item" type="button">Double Dot</button>
+            </div>
+          </div>
+          <div className="dropdown col-xs-12">
+            <button
+              key="2"
+              type="button"
+              className="button-style dropdown-toggle singleNote"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <AddIcon />
+            </button>
+            <div className="dropdown-menu">
+              <button className="dropdown-item" type="button"><Dot /></button>
+              <button className="dropdown-item" type="button">Double Dot</button>
+            </div>
+          </div>
+          <div className="dropdown col-xs-12">
+            <button
+              key="3"
+              type="button"
+              className="button-style dropdown-toggle singleNote"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <AddIcon />
+            </button>
+            <div className="dropdown-menu">
+              <button className="dropdown-item" type="button"><Dot /></button>
+              <button className="dropdown-item" type="button">Double Dot</button>
+            </div>
+          </div>
         </div>
         <div>
           <input
@@ -52,57 +86,57 @@ class SingleScoreInput extends Component {
             type="number"
             min="0"
             max="7"
-            pos="0"
           />
           <input
             key="1"
             className="singleNote"
             type="number"
-            min="0"
+            min="1"
             max="7"
-            pos="1"
           />
           <input
             key="2"
             className="singleNote"
             type="number"
-            min="0"
+            min="1"
             max="7"
-            pos="2"
           />
           <input
             key="3"
             className="singleNote"
             type="number"
-            min="0"
+            min="1"
             max="7"
-            pos="3"
           />
           <span className="lineInBetween">|</span>
           <div>
             <button
               key="0"
+              type="button"
               className="button-style"
             >
-              <AddIcon fontsize="small"/>
+              <AddIcon />
             </button>
             <button
               key="1"
+              type="button"
               className="button-style"
             >
-              <AddIcon fontsize="small"/>
+              <AddIcon />
             </button>
             <button
               key="2"
+              type="button"
               className="button-style"
             >
-              <AddIcon fontsize="small"/>
+              <AddIcon />
             </button>
             <button
               key="3"
+              type="button"
               className="button-style"
             >
-              <AddIcon fontsize="small"/>
+              <AddIcon />
             </button>
           </div>
         </div>
