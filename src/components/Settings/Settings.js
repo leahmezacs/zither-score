@@ -8,7 +8,6 @@ class Settings extends Component {
         super(props);
         this.state = {
             userInfo: {}
-
         };
     }
 
@@ -23,7 +22,6 @@ class Settings extends Component {
                     <p>*********</p><hr />
                     <h4>Email</h4>
                     <p>{this.state.userInfo.attributes ? this.state.userInfo.attributes.email : ''}</p><hr />
-                    <Button variant="outline-primary" >Change Password</Button>
                 </div>
             </div>
         )  

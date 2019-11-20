@@ -4,9 +4,6 @@ import { Button, Modal} from 'react-bootstrap';
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 
-
-
-
 class CreateModal extends Component {
     constructor(props) {
       super(props);

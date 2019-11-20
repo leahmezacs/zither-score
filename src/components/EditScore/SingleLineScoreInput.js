@@ -15,7 +15,11 @@ const SingleLineScoreInput = props => {
             <span className="lineBegin">|</span>
             {nodeLength.map(value => (
               <Grid key={value} item>
-                <SingleScoreInput key={value} lineLength={props.lineLength} nodeLength={value}/>
+                <SingleScoreInput
+                  key={value}
+                  lineLength={props.lineLength}
+                  nodeLength={value}
+                />
               </Grid>
             ))}
           </Grid>
