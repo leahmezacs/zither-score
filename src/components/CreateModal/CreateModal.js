@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Button, Modal} from 'react-bootstrap';
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
+import * as subscriptions from '../../graphql/subscriptions';
 
 class CreateModal extends Component {
     constructor(props) {
@@ -60,6 +61,12 @@ class CreateModal extends Component {
           }
       }));
       console.log(scoreCreated);
+    }
+
+    async componentDidMount(){
+      const scoreCreationSubscription = API.graphql(graphqlOperation(subscriptions.onCreateScore)).subscribe({
+        next: (scoreData) => console.log(scoreData)
+      });
     }
 
     render(){

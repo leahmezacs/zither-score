@@ -20,6 +20,9 @@ class Library extends Component {
         this.handleListScores = this.handleListScores.bind(this);
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
+
+        this.scoreCreationSubscription = null
+        this.scoreDeletionSubscription = null
         
     }
 
@@ -33,6 +36,26 @@ class Library extends Component {
             userId: user.username
         });
         //console.log(this.state.scores);
+        this.scoreDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteScore)).subscribe({
+            next: (scoreData) => {
+                const scoreId = scoreData.value.data.onDeleteScore.id;
+                console.log("deleted score id: " + scoreId);
+
+                const remainingScores = this.state.scores.filter(scoresData => scoresData.id !== scoreId);
+                console.log(remainingScores);
+                this.setState({
+                    scores: remainingScores
+                });
+            },
+        });
+        
+        //console.log(this.state.scores);
+    }
+
+    componentWillUnmount() {
+        if(this.scoreDeletionSubscription) {
+            this.scoreDeletionSubscription.unsubscribe();
+        }
     }
 
     handleShow = () => {
@@ -49,7 +72,7 @@ class Library extends Component {
                 id : score_name
             }
         }));
-        console.log(deletedScore);
+        //console.log(deletedScore);
         //console.log(this.state.scores);
     }
 
@@ -73,8 +96,6 @@ class Library extends Component {
             if(temp[i].user.id === this.state.userId) data.push(temp[i]);
         } 
         console.log(this.state.userId);
-        //console.log(temp);
-        //console.log(data);
 
         return (
             <div>
