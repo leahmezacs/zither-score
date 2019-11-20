@@ -6,6 +6,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import Dot from '@material-ui/icons/FiberManualRecord';
 import Line from '@material-ui/icons/Remove';
 import DoubleLine from '@material-ui/icons/DragHandle';
+import { Dropdown } from "react-bootstrap";
 
 
 
@@ -15,68 +16,58 @@ class SingleScoreInput extends Component {
       <div>
         <div className="row">
           <div className="dropdown col-xs-12">
-            <button
-              key="0"
-              type="button"
-              className="button-style dropdown-toggle singleNote"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
+            
+            <Dropdown>
+              <Dropdown.Toggle className="btn btn-sm btn-light">
               <AddIcon />
-            </button>
-            <div className="dropdown-menu">
-              <button className="dropdown-item" type="button"><Dot /></button>
-              <button className="dropdown-item" type="button">Double Dot</button>
-            </div>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item ><Dot fontSize="small" /></Dropdown.Item>
+                <Dropdown.Item ><Line fontSize="small" /></Dropdown.Item>
+                <Dropdown.Item ><DoubleLine fontSize="small" /></Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
           <div className="dropdown col-xs-12">
-            <button
-              key="1"
-              type="button"
-              className="button-style dropdown-toggle singleNote"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
+            
+            <Dropdown>
+              <Dropdown.Toggle className="btn btn-sm btn-light">
               <AddIcon />
-            </button>
-            <div className="dropdown-menu">
-              <button className="dropdown-item" type="button"><Dot /></button>
-              <button className="dropdown-item" type="button">Double Dot</button>
-            </div>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item ><Dot fontSize="small" /></Dropdown.Item>
+                <Dropdown.Item ><Line fontSize="small" /></Dropdown.Item>
+                <Dropdown.Item ><DoubleLine fontSize="small" /></Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
           <div className="dropdown col-xs-12">
-            <button
-              key="2"
-              type="button"
-              className="button-style dropdown-toggle singleNote"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
+           
+            <Dropdown>
+              <Dropdown.Toggle className="btn btn-sm btn-light">
               <AddIcon />
-            </button>
-            <div className="dropdown-menu">
-              <button className="dropdown-item" type="button"><Dot /></button>
-              <button className="dropdown-item" type="button">Double Dot</button>
-            </div>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item ><Dot fontSize="small" /></Dropdown.Item>
+                <Dropdown.Item ><Line fontSize="small" /></Dropdown.Item>
+                <Dropdown.Item ><DoubleLine fontSize="small" /></Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
           <div className="dropdown col-xs-12">
-            <button
-              key="3"
-              type="button"
-              className="button-style dropdown-toggle singleNote"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
+          
+              
+            
+            <Dropdown>
+              <Dropdown.Toggle className="btn btn-sm btn-light">
               <AddIcon />
-            </button>
-            <div className="dropdown-menu">
-              <button className="dropdown-item" type="button"><Dot /></button>
-              <button className="dropdown-item" type="button">Double Dot</button>
-            </div>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item ><Dot fontSize="small" /></Dropdown.Item>
+                <Dropdown.Item ><Line fontSize="small" /></Dropdown.Item>
+                <Dropdown.Item ><DoubleLine fontSize="small" /></Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
         </div>
         <div>
@@ -109,36 +100,7 @@ class SingleScoreInput extends Component {
             max="7"
           />
           <span className="lineInBetween">|</span>
-          <div>
-            <button
-              key="0"
-              type="button"
-              className="button-style"
-            >
-              <AddIcon />
-            </button>
-            <button
-              key="1"
-              type="button"
-              className="button-style"
-            >
-              <AddIcon />
-            </button>
-            <button
-              key="2"
-              type="button"
-              className="button-style"
-            >
-              <AddIcon />
-            </button>
-            <button
-              key="3"
-              type="button"
-              className="button-style"
-            >
-              <AddIcon />
-            </button>
-          </div>
+          
         </div>
       </div>
     );
