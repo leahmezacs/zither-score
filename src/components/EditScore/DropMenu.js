@@ -5,12 +5,12 @@ import DoubleLine from '@material-ui/icons/DragHandle';
 
 class DropMenu extends Component {
     render() {
-      return (
-        <div>
-          
-        </div>
-      )
+        return (
+            <div className="dropdown-menu">
+                
+            </div>
+        )
     }
-  }
+}
   
-  export default DropMenu;
+export default DropMenu;
