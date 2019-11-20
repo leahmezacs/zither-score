@@ -14,7 +14,6 @@ class ScoreInput extends Component {
       line: 0,
       lineLength: []
     };
-
     this.handleNewLine = this.handleNewLine.bind(this);
   }
 
