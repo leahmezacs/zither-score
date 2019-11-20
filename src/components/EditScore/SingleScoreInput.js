@@ -16,10 +16,13 @@ class SingleScoreInput extends Component {
       <div>
         <div className="row">
           <div className="dropdown col-xs-12">
-            
-            <Dropdown>
+
+            <Dropdown
+              key="0">
               <Dropdown.Toggle className="btn btn-sm btn-light">
-              <AddIcon />
+                <AddIcon 
+                fontSize="small"
+                color="action"/>
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item ><Dot fontSize="small" /></Dropdown.Item>
@@ -29,10 +32,13 @@ class SingleScoreInput extends Component {
             </Dropdown>
           </div>
           <div className="dropdown col-xs-12">
-            
-            <Dropdown>
+
+            <Dropdown
+              key="1">
               <Dropdown.Toggle className="btn btn-sm btn-light">
-              <AddIcon />
+                <AddIcon 
+                fontSize="small"
+                color="action"/>
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item ><Dot fontSize="small" /></Dropdown.Item>
@@ -42,10 +48,13 @@ class SingleScoreInput extends Component {
             </Dropdown>
           </div>
           <div className="dropdown col-xs-12">
-           
-            <Dropdown>
+
+            <Dropdown
+              key="2">
               <Dropdown.Toggle className="btn btn-sm btn-light">
-              <AddIcon />
+                <AddIcon 
+                fontSize="small"
+                color="action"/>
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item ><Dot fontSize="small" /></Dropdown.Item>
@@ -55,12 +64,15 @@ class SingleScoreInput extends Component {
             </Dropdown>
           </div>
           <div className="dropdown col-xs-12">
-          
-              
-            
-            <Dropdown>
+
+
+
+            <Dropdown
+              key="3">
               <Dropdown.Toggle className="btn btn-sm btn-light">
-              <AddIcon />
+                <AddIcon 
+                fontSize="small"
+                color="action"/>
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item ><Dot fontSize="small" /></Dropdown.Item>
@@ -100,7 +112,7 @@ class SingleScoreInput extends Component {
             max="7"
           />
           <span className="lineInBetween">|</span>
-          
+
         </div>
       </div>
     );
