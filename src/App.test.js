@@ -4,7 +4,7 @@ import App from "./App";
 
 describe("App", () => {
     it("Renders without crashing", () => {
-        const app = mount(<App />);
-        expect(app.find(".homepage-header").text()).toEqual("NumScore");
+        const app = shallow(<App />);
+        expect(app).toMatchSnapshot();
     });
 });

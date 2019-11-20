@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar render a navbar component 1`] = `ShallowWrapper {}`;
+
+exports[`NavBar render navbar without crashing 1`] = `ShallowWrapper {}`;
