@@ -1,16 +1,20 @@
 import React from 'react';
 import {renderer, mount } from 'enzyme';
+import NavBar from '../NavBar/NavBar'
 import CreateModal from './CreateModal'
-import App from '../../App'
 
 describe("CreateModal", () => {
-    it('render modal component properly', () => {
-        const noOp = () => {};
-        mount(
-            <Modal.Title>Music File</Modal.Title>,
-        )
-          .find('Modal.Title')
-          .text()
-          .should.equal('Music File');
-    });
+    it('renders modal when show is true', () => {
+        const props = { show: true }; 
+        const wrapper = mount(
+          <div id="root">
+            <CreateModal {...props} />
+          </div>
+        );
+      
+        wrapper.update();
+        
+        expect(wrapper.find('.my-modal-window').exists()).toEqual(true);
+        expect(wrapper.text()).toContain('Hello World');
+      });
 });
