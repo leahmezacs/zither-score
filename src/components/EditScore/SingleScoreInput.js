@@ -13,42 +13,71 @@ class SingleScoreInput extends Component {
   render() {
     return (
       <div>
-        <div className="dropdown">
-          <button
-            key="0"
-            type="button"
-            className="button-style dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <AddIcon fontsize="small"/>
-          </button>
+        <div className="row">
+          <div className="dropdown col-xs-12">
+            <button
+              key="0"
+              type="button"
+              className="button-style dropdown-toggle singleNote"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <AddIcon />
+            </button>
             <div className="dropdown-menu">
-              <a className="dropdown-item"><Dot /></a>
-              <a className="dropdown-item">Double Dot</a>
+              <button className="dropdown-item" type="button"><Dot /></button>
+              <button className="dropdown-item" type="button">Double Dot</button>
             </div>
-          <button
-            key="1"
-            type="button"
-            className="button-style"
-          >
-            <AddIcon fontsize="small"/>
-          </button>
-          <button
-            key="2"
-            type="button"
-            className="button-style"
-          >
-            <AddIcon fontsize="small"/>
-          </button>
-          <button
-            key="3"
-            type="button"
-            className="button-style"
-          >
-            <AddIcon fontsize="small"/>
-          </button>
+          </div>
+          <div className="dropdown col-xs-12">
+            <button
+              key="1"
+              type="button"
+              className="button-style dropdown-toggle singleNote"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <AddIcon />
+            </button>
+            <div className="dropdown-menu">
+              <button className="dropdown-item" type="button"><Dot /></button>
+              <button className="dropdown-item" type="button">Double Dot</button>
+            </div>
+          </div>
+          <div className="dropdown col-xs-12">
+            <button
+              key="2"
+              type="button"
+              className="button-style dropdown-toggle singleNote"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <AddIcon />
+            </button>
+            <div className="dropdown-menu">
+              <button className="dropdown-item" type="button"><Dot /></button>
+              <button className="dropdown-item" type="button">Double Dot</button>
+            </div>
+          </div>
+          <div className="dropdown col-xs-12">
+            <button
+              key="3"
+              type="button"
+              className="button-style dropdown-toggle singleNote"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <AddIcon />
+            </button>
+            <div className="dropdown-menu">
+              <button className="dropdown-item" type="button"><Dot /></button>
+              <button className="dropdown-item" type="button">Double Dot</button>
+            </div>
+          </div>
         </div>
         <div>
           <input
@@ -86,28 +115,28 @@ class SingleScoreInput extends Component {
               type="button"
               className="button-style"
             >
-              <AddIcon fontsize="small"/>
+              <AddIcon />
             </button>
             <button
               key="1"
               type="button"
               className="button-style"
             >
-              <AddIcon fontsize="small"/>
+              <AddIcon />
             </button>
             <button
               key="2"
               type="button"
               className="button-style"
             >
-              <AddIcon fontsize="small"/>
+              <AddIcon />
             </button>
             <button
               key="3"
               type="button"
               className="button-style"
             >
-              <AddIcon fontsize="small"/>
+              <AddIcon />
             </button>
           </div>
         </div>
