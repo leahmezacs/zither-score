@@ -1,12 +1,10 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import NavBar from './NavBar'
-import App from '../../App'
 
 describe("NavBar", () => {
-    it("displays sign in", () => {
-        const wrapper = shallow(<App />);
-        const NavBarWrapper = wrapper.find(NavBar).dive();
-        expect(NavBarWrapper.text()).toEqual("Login");
-      });
+    it('render a navbar component', () => {  
+        const NavBarComp = shallow(<div><NavBar /></div>);
+        expect(NavBarComp).toMatchSnapshot();
+    });
 });
