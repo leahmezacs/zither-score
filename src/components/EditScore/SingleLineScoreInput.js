@@ -5,22 +5,6 @@ import Grid from "@material-ui/core/Grid";
 
 // Map through singleInput for one line score input
 class SingleLineScoreInput extends Component {
-  /* constructor(props) {
-    super(props);
-    this.state = {
-      row: this.props.lineLength,
-      column: 0,
-      note_pos: 0
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState({
-      note_pos: e.target.pos
-    })
-    console.log(this.state.note_pos);
-  } */
 
   render() {
     const nodeLength = [0, 1, 2, 3]; 
@@ -35,7 +19,7 @@ class SingleLineScoreInput extends Component {
                 <Grid key={value} item>
                   <SingleScoreInput
                     key={value}
-                    onChange={() => this.handleChange()}
+                    
                   /> 
                 </Grid>
               ))}

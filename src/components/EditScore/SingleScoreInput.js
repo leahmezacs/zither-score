@@ -8,15 +8,12 @@ import Line from '@material-ui/icons/Remove';
 import DoubleLine from '@material-ui/icons/DragHandle';
 import { Dropdown } from "react-bootstrap";
 
-
-
 class SingleScoreInput extends Component {
   render() {
     return (
       <div>
         <div className="row">
           <div className="dropdown col-xs-12">
-
             <Dropdown
               key="0">
               <Dropdown.Toggle className="btn btn-sm btn-light">
@@ -31,8 +28,8 @@ class SingleScoreInput extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </div>
-          <div className="dropdown col-xs-12">
 
+          <div className="dropdown col-xs-12">
             <Dropdown
               key="1">
               <Dropdown.Toggle className="btn btn-sm btn-light">
@@ -47,8 +44,8 @@ class SingleScoreInput extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </div>
-          <div className="dropdown col-xs-12">
 
+          <div className="dropdown col-xs-12">
             <Dropdown
               key="2">
               <Dropdown.Toggle className="btn btn-sm btn-light">
@@ -63,10 +60,8 @@ class SingleScoreInput extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </div>
+
           <div className="dropdown col-xs-12">
-
-
-
             <Dropdown
               key="3">
               <Dropdown.Toggle className="btn btn-sm btn-light">
@@ -82,6 +77,7 @@ class SingleScoreInput extends Component {
             </Dropdown>
           </div>
         </div>
+        
         <div>
           <input
             key="0"
