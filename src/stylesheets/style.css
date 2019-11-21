@@ -12,21 +12,42 @@ input[type=number] {
     height: 40px;
     text-align: center;
 }
+.button-style {
+    color: #cccccc;
+    background-color: transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+.add-button-div {
+    position: relative;
+}
+.add-button-overlap {
+    position: absolute;
+    display: none;
+}
+.add-button-div:hover .add-button-overlap {
+    display: block;
+}
 
 /* ScoreInput Page Styling */
 .scoreInputIcon {
     margin-bottom: 20px;
 }
+
+
 .lineInBetween {
     font-size: 25px;
     padding-left: 10px;
 }
 .lineBegin {
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 7px;
 }
 .lineSpacing {
-    height: 100px;
+    height: 150px;
 }
 
 

@@ -3,6 +3,11 @@ import SingleLineScoreInput from "./SingleLineScoreInput";
 import Container from "@material-ui/core/Container";
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
 import Button from "@material-ui/core/Button";
+import { withRouter } from "react-router-dom";
+import { Auth, graphqlOperation, API } from 'aws-amplify';
+import * as queries from '../../graphql/queries';
+import * as mutations from '../../graphql/mutations';
+import * as subscriptions from '../../graphql/subscriptions';
 
 // Map through singleLineScoreinput for the whole page input
 class ScoreInput extends Component {
@@ -35,6 +40,10 @@ class ScoreInput extends Component {
     }
   };
 
+  async handleSubmit() {
+
+  }
+
   render() {
     return (
       <Container maxWidth="md">
@@ -48,7 +57,7 @@ class ScoreInput extends Component {
           className="scoreInputIcon"
           // disabled={!this.state.buttonEnable}
         />
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <SingleLineScoreInput
             key={this.state.line}
             lineLength={this.state.lineLength}
@@ -69,4 +78,4 @@ class ScoreInput extends Component {
   }
 }
 
-export default ScoreInput;
+export default withRouter(ScoreInput);

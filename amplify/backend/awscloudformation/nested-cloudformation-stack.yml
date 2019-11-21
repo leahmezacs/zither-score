@@ -157,7 +157,17 @@
 						]
 					},
 					"S3DeploymentBucket": "zitherscore-local-20191117150340-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/b8fb80efc728965218c5d11a62d1411de9e4201c",
+					"S3DeploymentRootKey": "amplify-appsync-files/56a73dcccd55a3138c49f59fe1a5c2d6ab23c058",
+					"env": "local"
+				}
+			}
+		},
+		"hostingS3AndCloudFront": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191117150340-deployment/amplify-cfn-templates/hosting/template.json",
+				"Parameters": {
+					"bucketName": "zitherscore-20191120005605-hostingbucket",
 					"env": "local"
 				}
 			}
