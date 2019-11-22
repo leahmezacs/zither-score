@@ -14,7 +14,7 @@ class EditScore extends Component {
       score_name: url.slice(url.lastIndexOf('?') + 1, url.length),
       score: []
     };
-    console.log(this.state.score_name);
+    //console.log(this.state.score_name);
   }
   async componentDidMount() {
     const result = await API.graphql(
@@ -25,8 +25,6 @@ class EditScore extends Component {
     this.setState({
       score: result.data.getScore
     });
-    console.log(result);
-    //console.log(this.state.score);
   }
 
   render() {
@@ -57,7 +55,7 @@ class EditScore extends Component {
 
               <g className="page-main">
                 <foreignObject x="-150" y="100" width="1150" height="1650">
-                  <ScoreInput />
+                  <ScoreInput score={this.state.score}/>
                 </foreignObject>
               </g>
             </g>

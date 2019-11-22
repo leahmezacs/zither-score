@@ -1,7 +1,7 @@
 {
     "local": {
         "configLevel": "project",
-        "useProfile": true,
-        "profileName": "zitherscore"
+        "useProfile": false,
+        "awsConfigFilePath": "/home/meng/.amplify/awscloudformation/zfhkw62oTB"
     }
 }

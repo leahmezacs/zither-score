@@ -68,15 +68,15 @@
 				}
 			}
 		},
-		"authzitherscored598d92b": {
+		"authnumscore23475956": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191117150340-deployment/amplify-cfn-templates/auth/zitherscored598d92b-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/auth/numscore23475956-cloudformation-template.yml",
 				"Parameters": {
-					"identityPoolName": "zitherscored598d92b_identitypool_d598d92b",
-					"allowUnauthenticatedIdentities": true,
-					"resourceNameTruncated": "zitherd598d92b",
-					"userPoolName": "zitherscored598d92b_userpool_d598d92b",
+					"identityPoolName": "numscore23475956_identitypool_23475956",
+					"allowUnauthenticatedIdentities": false,
+					"resourceNameTruncated": "numsco23475956",
+					"userPoolName": "numscore23475956_userpool_23475956",
 					"autoVerifiedAttributes": "email",
 					"mfaConfiguration": "OFF",
 					"mfaTypes": "SMS Text Message",
@@ -92,9 +92,9 @@
 					"userpoolClientRefreshTokenValidity": 30,
 					"userpoolClientWriteAttributes": "email",
 					"userpoolClientReadAttributes": "email",
-					"userpoolClientLambdaRole": "zitherd598d92b_userpoolclient_lambda_role",
+					"userpoolClientLambdaRole": "numsco23475956_userpoolclient_lambda_role",
 					"userpoolClientSetAttributes": false,
-					"resourceName": "zitherscored598d92b",
+					"resourceName": "numscore23475956",
 					"authSelections": "identityPoolAndUserPool",
 					"authRoleArn": {
 						"Fn::GetAtt": [
@@ -114,50 +114,23 @@
 				}
 			}
 		},
-		"analyticszitherscore": {
+		"apinumscore": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191117150340-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
-				"Parameters": {
-					"appName": "zitherscore",
-					"roleName": "pinpointLambdaRole9e6acf1a",
-					"cloudWatchPolicyName": "cloudWatchPolicy9e6acf1a",
-					"pinpointPolicyName": "pinpointPolicy9e6acf1a",
-					"authPolicyName": "pinpoint_amplify_9e6acf1a",
-					"unauthPolicyName": "pinpoint_amplify_9e6acf1a",
-					"authRoleName": {
-						"Ref": "AuthRoleName"
-					},
-					"unauthRoleName": {
-						"Ref": "UnauthRoleName"
-					},
-					"authRoleArn": {
-						"Fn::GetAtt": [
-							"AuthRole",
-							"Arn"
-						]
-					},
-					"env": "local"
-				}
-			}
-		},
-		"apizitherscore": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191117150340-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
 					"CreateAPIKey": 0,
-					"AppSyncApiName": "zitherscore",
+					"AppSyncApiName": "numscore",
 					"DynamoDBBillingMode": "PAY_PER_REQUEST",
 					"DynamoDBEnableServerSideEncryption": "false",
 					"AuthCognitoUserPoolId": {
 						"Fn::GetAtt": [
-							"authzitherscored598d92b",
+							"authnumscore23475956",
 							"Outputs.UserPoolId"
 						]
 					},
-					"S3DeploymentBucket": "zitherscore-local-20191117150340-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/56a73dcccd55a3138c49f59fe1a5c2d6ab23c058",
+					"S3DeploymentBucket": "numscore-local-20191122002554-deployment",
+					"S3DeploymentRootKey": "amplify-appsync-files/60c82cd361b3a1747e8680bc727a4b4774faa0f8",
 					"env": "local"
 				}
 			}
@@ -165,9 +138,9 @@
 		"hostingS3AndCloudFront": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/zitherscore-local-20191117150340-deployment/amplify-cfn-templates/hosting/template.json",
+				"TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/hosting/template.json",
 				"Parameters": {
-					"bucketName": "zitherscore-20191120005605-hostingbucket",
+					"bucketName": "numscore",
 					"env": "local"
 				}
 			}
@@ -176,7 +149,7 @@
 			"DependsOn": [
 				"AuthRole",
 				"UnauthRole",
-				"authzitherscored598d92b"
+				"authnumscore23475956"
 			],
 			"Type": "AWS::Lambda::Function",
 			"Properties": {
@@ -259,7 +232,7 @@
 				},
 				"idpId": {
 					"Fn::GetAtt": [
-						"authzitherscored598d92b",
+						"authnumscore23475956",
 						"Outputs.IdentityPoolId"
 					]
 				},

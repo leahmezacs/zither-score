@@ -5,9 +5,15 @@ import SingleScoreInput from "./SingleScoreInput";
 const SingleLineScoreInput = props => {
   const nodeLength = [0, 1, 2, 3];
 
-  return (
-    <SingleScoreInput lineLength={props.lineLength} nodeLength={nodeLength} />
-  );
+  if(props.score) {
+    return (
+      <SingleScoreInput 
+        lineLength={props.lineLength} 
+        nodeLength={nodeLength} 
+        score={props.score}
+      />
+    );
+  }
 };
 
 export default SingleLineScoreInput;
