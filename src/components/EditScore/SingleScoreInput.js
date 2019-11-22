@@ -19,35 +19,88 @@ class SingleScoreInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {}
+      number: null,
+      row: null,
+      column: null,
+      index: null
     };
     console.log(this.props.score);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCreateNote = this.handleCreateNote.bind(this);
+    this.handleUpdateNote = this.handleUpdateNote.bind(this);
   }
 
-  handleChange(e) {
-    const updatedData = { ...this.state.data };
-    let { value, min, max } = e.target;
-    value = Math.max(Number(min), Math.min(Number(max), Number(value)));
-    updatedData[e.target.name] = value;
-    
-    this.setState({
-      data: updatedData
-    });
-    console.log(this.state.data);
+  async componentDidMount() {
+    const result = await API.graphql(graphqlOperation(queries.getNote, {
+      row: this.state.row,
+      column: this.state.column,
+      index: this.state.index
+    }));  
+    if(result) {
+      this.handleUpdateNote();
+    }
+    else {
+      this.handleCreateNote();
+    }
+    console.log(this.state.row);
+  }
+
+  async handleChange(e) {
+    try {
+      let { value, min, max } = e.target;
+      value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+      
+      this.setState({
+        number: value,
+        row: e.target.getAttribute('row'),
+        column: e.target.getAttribute('column'),
+        index: e.target.getAttribute('index')
+      });
+      
+    }
+    catch(e) {
+      alert(e.message);
+    }
   };
 
   async handleCreateNote() {
     try {
+      const scoreId = this.props.score.id;
+      const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
+          input: {
+              number: this.state.number,
+              row: this.state.row,
+              column: this.state.column,
+              index: this.state.index,
+              noteScoreId: scoreId
+          }
+      }));
+      console.log(noteCreated);
+    }
+    catch(e) {
+      alert(e.message);
+    }
+  }
 
+  async handleUpdateNote() {
+    try {
+      const scoreId = this.props.score.id;
+      const noteUpdated = await API.graphql(graphqlOperation(mutations.updateNote, {
+          input: {
+              number: this.state.number,
+              row: this.state.row,
+              column: this.state.column,
+              index: this.state.index,
+              noteScoreId: scoreId
+          }
+      }));
+      console.log(noteUpdated);
     }
     catch(e) {
       alert(e.message);
     }
   }
     
-  
-
   //console.log(props.nodeLength);
   render() {
     return this.props.lineLength.map(row => (
@@ -136,7 +189,9 @@ class SingleScoreInput extends Component {
                     <span key={column}>
                       <input
                         key="0"
-                        name={[row, column, 0]}
+                        row={row}
+                        column={column}
+                        index="0"
                         className="singleNote"
                         type="number"
                         min="0"
@@ -145,7 +200,9 @@ class SingleScoreInput extends Component {
                       />
                       <input
                         key="1"
-                        name={[row, column, 1]}
+                        row={row}
+                        column={column}
+                        index="1"
                         className="singleNote"
                         type="number"
                         min="1"
@@ -154,7 +211,9 @@ class SingleScoreInput extends Component {
                       />
                       <input
                         key="2"
-                        name={[row, column, 2]}
+                        row={row}
+                        column={column}
+                        index="2"
                         className="singleNote"
                         type="number"
                         min="1"
@@ -163,7 +222,9 @@ class SingleScoreInput extends Component {
                       />
                       <input
                         key="3"
-                        name={[row, column, 3]}
+                        row={row}
+                        column={column}
+                        index="3"
                         className="singleNote"
                         type="number"
                         min="1"
