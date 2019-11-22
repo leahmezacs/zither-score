@@ -20,7 +20,6 @@ zither-score.wiki
 #amplify
 amplify/.config/local-*
 amplify/mock-data
-build/
 dist/
 node_modules/
 awsconfiguration.json
