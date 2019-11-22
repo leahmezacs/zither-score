@@ -1,0 +1,41 @@
+type User 
+  @model 
+  @auth(rules: [{ allow: owner, ownerField: "id", queries: null }]) {
+  id: ID!
+  username: String! 
+  email: String!
+  scores: [Score] @connection(name: "UserScores", sortField: "createdAt")
+}
+
+type Score @model {
+  id: ID!
+  name: String
+  notes: [Note] @connection(name: "ScoreNotes")
+  user: User @connection(name: "UserScores", sortField: "createdAt")
+  createdAt: String
+  updatedAt: String
+  status: ScoreStatus
+}
+
+enum ScoreStatus {
+  PRIVATE
+  PUBLIC
+}
+
+type Note @model {
+  number: Int
+  dot: dotStatus
+  doubleDot: dotStatus
+  line: Boolean
+  doubleLine: Boolean
+  curve: Int
+  row: Int
+  column: Int
+  index: Int
+  score: Score @connection(name: "ScoreNotes")
+}
+
+enum dotStatus {
+  TOP
+  BOTTOM
+}
