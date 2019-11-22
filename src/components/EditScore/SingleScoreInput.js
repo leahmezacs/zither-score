@@ -10,11 +10,9 @@ import Line from "@material-ui/icons/Remove";
 import DoubleLine from "@material-ui/icons/DragHandle";
 import { Dropdown } from "react-bootstrap";
 
+
 // Four inputs in one componenet
 const SingleScoreInput = props => {
-  // console.log(props.lineLength)
-  // console.log(props.nodeLength)
-
   const [data, setData] = useState([]);
 
   const handleChange = event => {
