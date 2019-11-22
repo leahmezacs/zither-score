@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/leahmezacs/zither-score/issues"
   },
-  "homepage": "https://github.com/leahmezacs/zither-score",
+  "homepage": "https://github.com/leahmezacs/zither-score/wiki",
   "dependencies": {
     "@aws-amplify/api": "^1.2.3",
     "@aws-amplify/pubsub": "^1.2.3",
