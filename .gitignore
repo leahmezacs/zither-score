@@ -6,7 +6,7 @@ host_images/*
 # dependencies
 node_modules
 build
-
+!build/static/css/*
 build/
 dist/
 node_modules/
