@@ -15,7 +15,7 @@ class ChangePassword extends Component {
             confirmPassword: ""
         };
         this.handleChange = this.handleChange.bind(this);
-        this.handleChangeClick = this.handleChangeClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.validateForm = this.validateForm.bind(this);
     }
 
@@ -33,7 +33,7 @@ class ChangePassword extends Component {
         });
     }
 
-    async handleChangeClick(e) {
+    async handleSubmit(e) {
         e.preventDefault();
         this.setState({
             isChanging: true
@@ -59,7 +59,7 @@ class ChangePassword extends Component {
     render() {
         return (
           <div className="ChangePassword">
-            <form onSubmit={this.handleChangeClick}>
+            <form onSubmit={this.handleSubmit}>
               <FormGroup bsSize="large" controlId="oldPassword">
                 <FormLabel>Old Password</FormLabel>
                 <FormControl
@@ -97,7 +97,6 @@ class ChangePassword extends Component {
             </form>
           </div>
         );
-      
     }
 }
 

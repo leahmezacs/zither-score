@@ -1,19 +1,13 @@
 {
 	"auth": {
-		"zitherscored598d92b": {
+		"numscore23475956": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
 		}
 	},
-	"analytics": {
-		"zitherscore": {
-			"service": "Pinpoint",
-			"providerPlugin": "awscloudformation"
-		}
-	},
 	"api": {
-		"zitherscore": {
+		"numscore": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
@@ -22,7 +16,7 @@
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
-							"userPoolId": "authzitherscored598d92b"
+							"userPoolId": "authnumscore23475956"
 						}
 					}
 				}
