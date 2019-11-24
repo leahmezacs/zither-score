@@ -30,6 +30,7 @@ class SingleScoreInput extends Component {
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
 
     this.noteCreationSubscription = null;
+    this.noteUpdationSubscription = null;
     this.noteDeletionSubscription = null;
   }
 
@@ -48,8 +49,8 @@ class SingleScoreInput extends Component {
 
     this.noteCreationSubscription = API.graphql(graphqlOperation(subscriptions.onCreateNote)).subscribe({
       next: (noteData) => {
-        const noteCreated = noteData.value.data.onCreateNote;
-        const updatedNotes = [...this.state.notes, noteCreated];
+        const createdNote = noteData.value.data.onCreateNote;
+        const updatedNotes = [...this.state.notes, createdNote];
         this.setState({
           notes: updatedNotes
         })
@@ -58,17 +59,25 @@ class SingleScoreInput extends Component {
 
     this.noteDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteNote)).subscribe({
       next: (noteData) => {
-          const noteDeleted = noteData.value.data.onDeleteNote.id;
-          console.log("deleted note id: " + noteDeleted);
+          const deletedNote = noteData.value.data.onDeleteNote.id;
+          console.log("deleted note id: " + deletedNote);
 
-          const remainingNotes = this.state.notes.filter(notesData => notesData.id !== noteDeleted);
+          const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote);
           this.setState({
               note: remainingNotes
           });
       },
     });
 
-    
+    this.noteUpdationSubscription = API.graphql(graphqlOperation(subscriptions.onUpdateNote)).subscribe({
+      next: (noteData) => {
+          const updatedNote = noteData.value.data.onUpdateNote;
+          const updatedNotes = this.state.notes.filter(notesData => notesData.id !== updatedNote.id);
+          this.setState({
+              notes: [...updatedNotes, updatedNote]
+          });
+      },
+    });
 
     console.log(this.state.notes);
   }
