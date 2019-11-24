@@ -50,9 +50,7 @@ class Library extends Component {
     }
 
     componentWillUnmount() {
-        if(this.scoreDeletionSubscription) {
-            this.scoreDeletionSubscription.unsubscribe();
-        }
+        this.scoreDeletionSubscription.unsubscribe();
     }
 
     handleShow = () => {

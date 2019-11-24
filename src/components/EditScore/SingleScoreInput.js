@@ -82,6 +82,13 @@ class SingleScoreInput extends Component {
     console.log(this.state.notes);
   }
 
+  componentWillUnmount() {
+    this.noteCreationSubscription.unsubscribe();
+    this.noteUpdationSubscription.unsubscribe();
+    this.noteDeletionSubscription.unsubscribe();
+    
+}
+
   async handleChange(e) {
     e.preventDefault();
     try {
