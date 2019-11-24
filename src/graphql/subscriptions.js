@@ -61,15 +61,15 @@ export const onCreateScore = `subscription OnCreateScore {
     name
     notes {
       items {
-        id
         number
         dot
         doubleDot
         line
         doubleLine
         curve
-        position
-        scoreId
+        row
+        column
+        index
       }
       nextToken
     }
@@ -93,15 +93,15 @@ export const onUpdateScore = `subscription OnUpdateScore {
     name
     notes {
       items {
-        id
         number
         dot
         doubleDot
         line
         doubleLine
         curve
-        position
-        scoreId
+        row
+        column
+        index
       }
       nextToken
     }
@@ -125,15 +125,15 @@ export const onDeleteScore = `subscription OnDeleteScore {
     name
     notes {
       items {
-        id
         number
         dot
         doubleDot
         line
         doubleLine
         curve
-        position
-        scoreId
+        row
+        column
+        index
       }
       nextToken
     }
@@ -153,14 +153,15 @@ export const onDeleteScore = `subscription OnDeleteScore {
 `;
 export const onCreateNote = `subscription OnCreateNote {
   onCreateNote {
-    id
     number
     dot
     doubleDot
     line
     doubleLine
     curve
-    position
+    row
+    column
+    index
     score {
       id
       name
@@ -176,20 +177,20 @@ export const onCreateNote = `subscription OnCreateNote {
       updatedAt
       status
     }
-    scoreId
   }
 }
 `;
 export const onUpdateNote = `subscription OnUpdateNote {
   onUpdateNote {
-    id
     number
     dot
     doubleDot
     line
     doubleLine
     curve
-    position
+    row
+    column
+    index
     score {
       id
       name
@@ -205,20 +206,20 @@ export const onUpdateNote = `subscription OnUpdateNote {
       updatedAt
       status
     }
-    scoreId
   }
 }
 `;
 export const onDeleteNote = `subscription OnDeleteNote {
   onDeleteNote {
-    id
     number
     dot
     doubleDot
     line
     doubleLine
     curve
-    position
+    row
+    column
+    index
     score {
       id
       name
@@ -234,7 +235,6 @@ export const onDeleteNote = `subscription OnDeleteNote {
       updatedAt
       status
     }
-    scoreId
   }
 }
 `;
