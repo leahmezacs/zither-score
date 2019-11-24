@@ -6,7 +6,7 @@ host_images/*
 # dependencies
 node_modules
 build
-
+!build/static/css/*
 build/
 dist/
 node_modules/
@@ -18,9 +18,9 @@ awsconfiguration.json
 zither-score.wiki
 
 #amplify
+amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/mock-data
-build/
 dist/
 node_modules/
 awsconfiguration.json
