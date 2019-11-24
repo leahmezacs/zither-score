@@ -9,7 +9,7 @@ import Dot from "@material-ui/icons/FiberManualRecord";
 import Line from "@material-ui/icons/Remove";
 import DoubleLine from "@material-ui/icons/DragHandle";
 import { Dropdown } from "react-bootstrap";
-import { Auth, graphqlOperation, API } from 'aws-amplify';
+import { graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
@@ -19,10 +19,9 @@ class SingleScoreInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: null,
-      row: null,
-      column: null,
-      index: null
+      notes: [],
+      num: null,
+      pos: []
     };
     console.log(this.props.score);
     this.handleChange = this.handleChange.bind(this);
@@ -31,74 +30,83 @@ class SingleScoreInput extends Component {
   }
 
   async componentDidMount() {
-    const result = await API.graphql(graphqlOperation(queries.getNote, {
-      row: this.state.row,
-      column: this.state.column,
-      index: this.state.index
-    }));  
-    if(result) {
-      this.handleUpdateNote();
-    }
-    else {
-      this.handleCreateNote();
-    }
-    console.log(this.state.row);
+    const result = await API.graphql(graphqlOperation(queries.listNotes, { limit: 200, 
+      filter: {
+        scoreId: {
+          eq: this.props.score.id
+        }
+      }}));  
+
+    this.setState({
+      notes: result.data.listNotes.items
+    });
+    console.log(this.state.notes);
   }
 
   async handleChange(e) {
+    e.preventDefault();
     try {
       let { value, min, max } = e.target;
       value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+      let result = e.target.getAttribute("position").replace(/, +/g, ",").split(",").map(Number);
       
       this.setState({
-        number: value,
-        row: e.target.getAttribute('row'),
-        column: e.target.getAttribute('column'),
-        index: e.target.getAttribute('index')
+        num: value,
+        pos: result
+      }, () => {
+        const temp = this.state.notes;
+        let exist = false;
+        let note_id = "";
+        for(let i = 0; i < temp.length; ++i) {
+          if(JSON.stringify(temp[i].position) == JSON.stringify(this.state.pos)) {
+            note_id = temp[i].id;
+            exist = true;
+          }
+        }
+        console.log(exist);
+        if(exist) {
+          this.handleUpdateNote(note_id);
+        }
+        else {
+          this.handleCreateNote();
+        }
       });
-      
     }
     catch(e) {
       alert(e.message);
     }
   };
 
-  async handleCreateNote() {
+  async handleCreateNote(id) {
     try {
-      const scoreId = this.props.score.id;
       const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
           input: {
-              number: this.state.number,
-              row: this.state.row,
-              column: this.state.column,
-              index: this.state.index,
-              noteScoreId: scoreId
+            number: this.state.num,
+            position: this.state.pos,
+            noteScoreId: this.props.score.id,
+            scoreId: this.props.score.id
           }
       }));
-      console.log(noteCreated);
+      this.setState({
+        note: noteCreated
+      });
     }
     catch(e) {
       alert(e.message);
     }
   }
 
-  async handleUpdateNote() {
-    try {
-      const scoreId = this.props.score.id;
-      const noteUpdated = await API.graphql(graphqlOperation(mutations.updateNote, {
-          input: {
-              number: this.state.number,
-              row: this.state.row,
-              column: this.state.column,
-              index: this.state.index,
-              noteScoreId: scoreId
-          }
-      }));
-      console.log(noteUpdated);
-    }
-    catch(e) {
-      alert(e.message);
-    }
+  async handleUpdateNote(id) {
+    console.log("inside update");
+    const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
+        input: {
+          id: id,
+          number: this.state.num,
+          position: this.state.pos
+        }
+    }));
+    console.log(updatedNote);
+    
   }
     
   //console.log(props.nodeLength);
@@ -189,9 +197,7 @@ class SingleScoreInput extends Component {
                     <span key={column}>
                       <input
                         key="0"
-                        row={row}
-                        column={column}
-                        index="0"
+                        position={[row, column, 0]}
                         className="singleNote"
                         type="number"
                         min="0"
@@ -200,34 +206,28 @@ class SingleScoreInput extends Component {
                       />
                       <input
                         key="1"
-                        row={row}
-                        column={column}
-                        index="1"
+                        position={[row, column, 1]}
                         className="singleNote"
                         type="number"
-                        min="1"
+                        min="0"
                         max="7"
                         onChange={this.handleChange}
                       />
                       <input
                         key="2"
-                        row={row}
-                        column={column}
-                        index="2"
+                        position={[row, column, 2]}
                         className="singleNote"
                         type="number"
-                        min="1"
+                        min="0"
                         max="7"
                         onChange={this.handleChange}
                       />
                       <input
                         key="3"
-                        row={row}
-                        column={column}
-                        index="3"
+                        position={[row, column, 3]}
                         className="singleNote"
                         type="number"
-                        min="1"
+                        min="0"
                         max="7"
                         onChange={this.handleChange}
                       />
