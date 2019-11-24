@@ -21,7 +21,7 @@ class SingleScoreInput extends Component {
               key="0">
               <Dropdown.Toggle className="btn btn-sm btn-light">
                 <AddIcon 
-                fontSize="small"
+                
                 color="action"/>
               </Dropdown.Toggle>
               <Dropdown.Menu>
@@ -37,7 +37,7 @@ class SingleScoreInput extends Component {
               key="1">
               <Dropdown.Toggle className="btn btn-sm btn-light">
                 <AddIcon 
-                fontSize="small"
+                
                 color="action"/>
               </Dropdown.Toggle>
               <Dropdown.Menu>
@@ -53,7 +53,7 @@ class SingleScoreInput extends Component {
               key="2">
               <Dropdown.Toggle className="btn btn-sm btn-light">
                 <AddIcon 
-                fontSize="small"
+               
                 color="action"/>
               </Dropdown.Toggle>
               <Dropdown.Menu>
@@ -71,7 +71,7 @@ class SingleScoreInput extends Component {
               key="3">
               <Dropdown.Toggle className="btn btn-sm btn-light">
                 <AddIcon 
-                fontSize="small"
+                
                 color="action"/>
               </Dropdown.Toggle>
               <Dropdown.Menu>
