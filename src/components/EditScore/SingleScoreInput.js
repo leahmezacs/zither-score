@@ -30,6 +30,7 @@ class SingleScoreInput extends Component {
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
 
     this.noteCreationSubscription = null;
+    this.noteDeletionSubscription = null;
   }
 
   async componentDidMount() {
@@ -54,6 +55,20 @@ class SingleScoreInput extends Component {
         })
       }
     })
+
+    this.noteDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteNote)).subscribe({
+      next: (noteData) => {
+          const noteDeleted = noteData.value.data.onDeleteNote.id;
+          console.log("deleted note id: " + noteDeleted);
+
+          const remainingNotes = this.state.notes.filter(notesData => notesData.id !== noteDeleted);
+          this.setState({
+              note: remainingNotes
+          });
+      },
+    });
+
+    
 
     console.log(this.state.notes);
   }
