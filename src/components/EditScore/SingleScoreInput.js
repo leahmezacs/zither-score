@@ -27,6 +27,7 @@ class SingleScoreInput extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleCreateNote = this.handleCreateNote.bind(this);
     this.handleUpdateNote = this.handleUpdateNote.bind(this);
+    this.handleDeleteNote = this.handleDeleteNote.bind(this);
   }
 
   async componentDidMount() {
@@ -47,7 +48,12 @@ class SingleScoreInput extends Component {
     e.preventDefault();
     try {
       let { value, min, max } = e.target;
-      value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+      console.log("inside change");
+      console.log(e.target.value);
+      if(value) {
+        value = Math.max(Number(min), Math.min(Number(max), Number(value)));
+      }
+      else value = null;
       let result = e.target.getAttribute("position").replace(/, +/g, ",").split(",").map(Number);
       
       this.setState({
@@ -65,7 +71,7 @@ class SingleScoreInput extends Component {
         }
         console.log(exist);
         if(exist) {
-          this.handleUpdateNote(note_id);
+          this.state.num ? this.handleUpdateNote(note_id) : this.handleDeleteNote(note_id);
         }
         else {
           this.handleCreateNote();
@@ -97,7 +103,6 @@ class SingleScoreInput extends Component {
   }
 
   async handleUpdateNote(id) {
-    console.log("inside update");
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
         input: {
           id: id,
@@ -107,6 +112,14 @@ class SingleScoreInput extends Component {
     }));
     console.log(updatedNote);
     
+  }
+
+  async handleDeleteNote(id) {
+    const deletedNote = await API.graphql(graphqlOperation(mutations.deleteNote,{
+        input:{
+            id : id
+        }
+    }));
   }
     
   //console.log(props.nodeLength);
