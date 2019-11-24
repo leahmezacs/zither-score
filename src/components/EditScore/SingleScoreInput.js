@@ -28,10 +28,13 @@ class SingleScoreInput extends Component {
     this.handleCreateNote = this.handleCreateNote.bind(this);
     this.handleUpdateNote = this.handleUpdateNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
+
+    this.noteCreationSubscription = null;
   }
 
   async componentDidMount() {
-    const result = await API.graphql(graphqlOperation(queries.listNotes, { limit: 200, 
+    const result = await API.graphql(graphqlOperation(queries.listNotes, { 
+      limit: 200, 
       filter: {
         scoreId: {
           eq: this.props.score.id
@@ -41,6 +44,17 @@ class SingleScoreInput extends Component {
     this.setState({
       notes: result.data.listNotes.items
     });
+
+    this.noteCreationSubscription = API.graphql(graphqlOperation(subscriptions.onCreateNote)).subscribe({
+      next: (noteData) => {
+        const noteCreated = noteData.value.data.onCreateNote;
+        const updatedNotes = [...this.state.notes, noteCreated];
+        this.setState({
+          notes: updatedNotes
+        })
+      }
+    })
+
     console.log(this.state.notes);
   }
 
@@ -48,7 +62,6 @@ class SingleScoreInput extends Component {
     e.preventDefault();
     try {
       let { value, min, max } = e.target;
-      console.log("inside change");
       console.log(e.target.value);
       if(value) {
         value = Math.max(Number(min), Math.min(Number(max), Number(value)));
@@ -61,6 +74,7 @@ class SingleScoreInput extends Component {
         pos: result
       }, () => {
         const temp = this.state.notes;
+        console.log(temp);
         let exist = false;
         let note_id = "";
         for(let i = 0; i < temp.length; ++i) {
@@ -68,6 +82,8 @@ class SingleScoreInput extends Component {
             note_id = temp[i].id;
             exist = true;
           }
+          /* console.log(this.state.pos);
+          console.log(temp[i].position); */
         }
         console.log(exist);
         if(exist) {
@@ -76,6 +92,7 @@ class SingleScoreInput extends Component {
         else {
           this.handleCreateNote();
         }
+        
       });
     }
     catch(e) {
@@ -83,7 +100,7 @@ class SingleScoreInput extends Component {
     }
   };
 
-  async handleCreateNote(id) {
+  async handleCreateNote() {
     try {
       const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
           input: {
@@ -96,6 +113,7 @@ class SingleScoreInput extends Component {
       this.setState({
         note: noteCreated
       });
+      console.log("created: ", noteCreated);
     }
     catch(e) {
       alert(e.message);
@@ -110,8 +128,7 @@ class SingleScoreInput extends Component {
           position: this.state.pos
         }
     }));
-    console.log(updatedNote);
-    
+    console.log("updated: ", updatedNote);
   }
 
   async handleDeleteNote(id) {
