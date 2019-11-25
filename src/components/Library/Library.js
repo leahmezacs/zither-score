@@ -93,13 +93,12 @@ class Library extends Component {
 
     handlePreviewScore(score_name) {
         var pdf = new jsPDF('p', 'pt', 'letter');
-        pdf.fromHTML(
-    
-            function (dispose) {
-                pdf.save('Test.pdf');
-            },
-        );
+        pdf.addHTML(document.body,function() {
+            var string = pdf.output('datauristring');
+            $('.preview-pane').attr('src', string);
+        });
     }
+
     //list scores in table
     handleListScores() {
         const temp = this.state.scores;
