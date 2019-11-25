@@ -103,6 +103,11 @@ class Library extends Component {
             doc.line(140, (50+(i*25)), 140, (65+(i*25)));
             doc.line(180, (50+(i*25)), 180, (65+(i*25))); 
         };
+        
+
+        addLineBars(0);
+
+
         doc.output('dataurlnewwindow');
     }
 
