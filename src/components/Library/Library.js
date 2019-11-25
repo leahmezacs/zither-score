@@ -90,6 +90,13 @@ class Library extends Component {
         doc.setProperties({
             title: score_name
         });
+        const addLineBars = function(i) { 
+            doc.line( 20, (50+(i*25)),  20, (65+(i*25))); // horizontal line
+            doc.line( 60, (50+(i*25)),  60, (65+(i*25)));
+            doc.line(100, (50+(i*25)), 100, (65+(i*25)));
+            doc.line(140, (50+(i*25)), 140, (65+(i*25)));
+            doc.line(180, (50+(i*25)), 180, (65+(i*25))); 
+        };
         doc.output('dataurlnewwindow');
     }
 
