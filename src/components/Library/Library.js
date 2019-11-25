@@ -21,7 +21,6 @@ class Library extends Component {
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
 
-        this.scoreCreationSubscription = null;
         this.scoreDeletionSubscription = null;
         
     }

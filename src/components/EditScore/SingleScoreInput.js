@@ -28,10 +28,15 @@ class SingleScoreInput extends Component {
     this.handleCreateNote = this.handleCreateNote.bind(this);
     this.handleUpdateNote = this.handleUpdateNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
+
+    this.noteCreationSubscription = null;
+    this.noteUpdationSubscription = null;
+    this.noteDeletionSubscription = null;
   }
 
   async componentDidMount() {
-    const result = await API.graphql(graphqlOperation(queries.listNotes, { limit: 200, 
+    const result = await API.graphql(graphqlOperation(queries.listNotes, { 
+      limit: 200, 
       filter: {
         scoreId: {
           eq: this.props.score.id
@@ -41,26 +46,64 @@ class SingleScoreInput extends Component {
     this.setState({
       notes: result.data.listNotes.items
     });
+
+    this.noteCreationSubscription = API.graphql(graphqlOperation(subscriptions.onCreateNote)).subscribe({
+      next: (noteData) => {
+        const createdNote = noteData.value.data.onCreateNote;
+        const updatedNotes = [...this.state.notes, createdNote];
+        this.setState({
+          notes: updatedNotes
+        })
+      }
+    })
+
+    this.noteDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteNote)).subscribe({
+      next: (noteData) => {
+          const deletedNote = noteData.value.data.onDeleteNote.id;
+          console.log("deleted note id: " + deletedNote);
+
+          const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote);
+          this.setState({
+              note: remainingNotes
+          });
+      },
+    });
+
+    this.noteUpdationSubscription = API.graphql(graphqlOperation(subscriptions.onUpdateNote)).subscribe({
+      next: (noteData) => {
+          const updatedNote = noteData.value.data.onUpdateNote;
+          const updatedNotes = this.state.notes.filter(notesData => notesData.id !== updatedNote.id);
+          this.setState({
+              notes: [...updatedNotes, updatedNote]
+          });
+      },
+    });
+
     console.log(this.state.notes);
+  }
+
+  componentWillUnmount() {
+    if(this.noteCreationSubscription) this.noteCreationSubscription.unsubscribe();
+    if(this.noteUpdationSubscription) this.noteUpdationSubscription.unsubscribe();
+    if(this.noteDeletionSubscription) this.noteDeletionSubscription.unsubscribe();  
   }
 
   async handleChange(e) {
     e.preventDefault();
     try {
       let { value, min, max } = e.target;
-      console.log("inside change");
       console.log(e.target.value);
       if(value) {
         value = Math.max(Number(min), Math.min(Number(max), Number(value)));
       }
       else value = null;
-      let result = e.target.getAttribute("position").replace(/, +/g, ",").split(",").map(Number);
-      
+      let result = e.target.id.replace(/, +/g, ",").split(",").map(Number);
       this.setState({
         num: value,
         pos: result
       }, () => {
         const temp = this.state.notes;
+        console.log(temp);
         let exist = false;
         let note_id = "";
         for(let i = 0; i < temp.length; ++i) {
@@ -76,6 +119,7 @@ class SingleScoreInput extends Component {
         else {
           this.handleCreateNote();
         }
+        
       });
     }
     catch(e) {
@@ -83,7 +127,7 @@ class SingleScoreInput extends Component {
     }
   };
 
-  async handleCreateNote(id) {
+  async handleCreateNote() {
     try {
       const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
           input: {
@@ -96,6 +140,7 @@ class SingleScoreInput extends Component {
       this.setState({
         note: noteCreated
       });
+      console.log("created: ", noteCreated);
     }
     catch(e) {
       alert(e.message);
@@ -110,8 +155,7 @@ class SingleScoreInput extends Component {
           position: this.state.pos
         }
     }));
-    console.log(updatedNote);
-    
+    console.log("updated: ", updatedNote);
   }
 
   async handleDeleteNote(id) {
@@ -121,7 +165,19 @@ class SingleScoreInput extends Component {
         }
     }));
   }
-    
+
+  componentDidUpdate() {
+    if(this.state.notes){
+      const temp = this.state.notes;
+
+      this.state.notes.forEach((note) => {
+        const pos = note.position.toString();
+        const input = document.getElementById(pos);
+        input.value = note.number;
+      })
+    }
+  }
+
   //console.log(props.nodeLength);
   render() {
     return this.props.lineLength.map(row => (
@@ -130,12 +186,12 @@ class SingleScoreInput extends Component {
           <Grid item xs={12}>
             <Grid container justify="center" spacing={2}>
               <span className="lineBegin">|</span>
-              <Grid item>
+              <Grid class="displayinrow" item>
                 {this.props.nodeLength.map(column => (
-                  <span key={column}>
-                    <span className="row">
-                      <span className="dropdown col-xs-12">
-                        <Dropdown key="0">
+                  <span key={column} className="displayinrow">
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
+                        <Dropdown className="d-inline" key="0">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
                             <AddIcon fontSize="small" color="action" />
                           </Dropdown.Toggle>
@@ -152,101 +208,116 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown>
                       </span>
-                      <span className="dropdown col-xs-12">
-                        <Dropdown key="1">
-                          <Dropdown.Toggle className="btn btn-sm btn-light">
-                            <AddIcon fontSize="small" color="action" />
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                            <Dropdown.Item>
-                              <Dot fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <Line fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <DoubleLine fontSize="small" />
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </span>
-                      <span className="dropdown col-xs-12">
-                        <Dropdown key="2">
-                          <Dropdown.Toggle className="btn btn-sm btn-light">
-                            <AddIcon fontSize="small" color="action" />
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                            <Dropdown.Item>
-                              <Dot fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <Line fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <DoubleLine fontSize="small" />
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </span>
-                      <span className="dropdown col-xs-12">
-                        <Dropdown key="3">
-                          <Dropdown.Toggle className="btn btn-sm btn-light">
-                            <AddIcon fontSize="small" color="action" />
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                            <Dropdown.Item>
-                              <Dot fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <Line fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <DoubleLine fontSize="small" />
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
+                      <span key={column}>
+                        <input
+                          key="0"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          id={[row, column, 0]}
+                          onChange={this.handleChange}
+                        />
                       </span>
                     </span>
-                    <span key={column}>
-                      <input
-                        key="0"
-                        position={[row, column, 0]}
-                        className="singleNote"
-                        type="number"
-                        min="0"
-                        max="7"
-                        onChange={this.handleChange}
-                      />
-                      <input
-                        key="1"
-                        position={[row, column, 1]}
-                        className="singleNote"
-                        type="number"
-                        min="0"
-                        max="7"
-                        onChange={this.handleChange}
-                      />
-                      <input
-                        key="2"
-                        position={[row, column, 2]}
-                        className="singleNote"
-                        type="number"
-                        min="0"
-                        max="7"
-                        onChange={this.handleChange}
-                      />
-                      <input
-                        key="3"
-                        position={[row, column, 3]}
-                        className="singleNote"
-                        type="number"
-                        min="0"
-                        max="7"
-                        onChange={this.handleChange}
-                      />
-                      <span className="lineInBetween">|</span>
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
+                        <Dropdown className="d-inline" key="1">
+                          <Dropdown.Toggle className="btn btn-sm btn-light">
+                            <AddIcon fontSize="small" color="action" />
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu>
+                            <Dropdown.Item>
+                              <Dot fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <Line fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <DoubleLine fontSize="small" />
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </span>
+                      <span key={column}>
+                        <input
+                          key="1"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          id={[row, column, 0]}
+                          onChange={this.handleChange}
+                        />
+                      </span>
                     </span>
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
+                        <Dropdown className="d-inline" key="2">
+                          <Dropdown.Toggle className="btn btn-sm btn-light">
+                            <AddIcon fontSize="small" color="action" />
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu>
+                            <Dropdown.Item>
+                              <Dot fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <Line fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <DoubleLine fontSize="small" />
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </span>
+                      <span key={column}>
+                        <input
+                          key="2"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          id={[row, column, 0]}
+                          onChange={this.handleChange}
+                        />
+                      </span>
+                    </span>
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
+                        <Dropdown className="d-inline" key="3">
+                          <Dropdown.Toggle className="btn btn-sm btn-light">
+                            <AddIcon fontSize="small" color="action" />
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu>
+                            <Dropdown.Item>
+                              <Dot fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <Line fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <DoubleLine fontSize="small" />
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </span>
+                      <span key={column}>
+                        <input
+                          key="0"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          id={[row, column, 0]}
+                          onChange={this.handleChange}
+                        />
+                      </span>
+                    </span>
+
+
+                    <span className="lineInBetween">|</span>
                   </span>
+
                 ))}
               </Grid>
             </Grid>
