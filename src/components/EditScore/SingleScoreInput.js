@@ -83,11 +83,10 @@ class SingleScoreInput extends Component {
   }
 
   componentWillUnmount() {
-    this.noteCreationSubscription.unsubscribe();
-    this.noteUpdationSubscription.unsubscribe();
-    this.noteDeletionSubscription.unsubscribe();
-    
-}
+    if(this.noteCreationSubscription) this.noteCreationSubscription.unsubscribe();
+    if(this.noteUpdationSubscription) this.noteUpdationSubscription.unsubscribe();
+    if(this.noteDeletionSubscription) this.noteDeletionSubscription.unsubscribe();  
+  }
 
   async handleChange(e) {
     e.preventDefault();
@@ -98,8 +97,7 @@ class SingleScoreInput extends Component {
         value = Math.max(Number(min), Math.min(Number(max), Number(value)));
       }
       else value = null;
-      let result = e.target.getAttribute("position").replace(/, +/g, ",").split(",").map(Number);
-      
+      let result = e.target.id.replace(/, +/g, ",").split(",").map(Number);
       this.setState({
         num: value,
         pos: result
@@ -113,8 +111,6 @@ class SingleScoreInput extends Component {
             note_id = temp[i].id;
             exist = true;
           }
-          /* console.log(this.state.pos);
-          console.log(temp[i].position); */
         }
         console.log(exist);
         if(exist) {
@@ -168,6 +164,18 @@ class SingleScoreInput extends Component {
             id : id
         }
     }));
+  }
+
+  componentDidUpdate() {
+    if(this.state.notes){
+      const temp = this.state.notes;
+
+      this.state.notes.forEach((note) => {
+        const pos = note.position.toString();
+        const input = document.getElementById(pos);
+        input.value = note.number;
+      })
+    }
   }
     
   //console.log(props.nodeLength);
@@ -258,38 +266,38 @@ class SingleScoreInput extends Component {
                     <span key={column}>
                       <input
                         key="0"
-                        position={[row, column, 0]}
                         className="singleNote"
                         type="number"
                         min="0"
                         max="7"
+                        id={[row, column, 0]}
                         onChange={this.handleChange}
                       />
                       <input
                         key="1"
-                        position={[row, column, 1]}
                         className="singleNote"
                         type="number"
                         min="0"
                         max="7"
+                        id={[row, column, 1]}
                         onChange={this.handleChange}
                       />
                       <input
                         key="2"
-                        position={[row, column, 2]}
                         className="singleNote"
                         type="number"
                         min="0"
                         max="7"
+                        id={[row, column, 2]}
                         onChange={this.handleChange}
                       />
                       <input
                         key="3"
-                        position={[row, column, 3]}
                         className="singleNote"
                         type="number"
                         min="0"
                         max="7"
+                        id={[row, column, 3]}
                         onChange={this.handleChange}
                       />
                       <span className="lineInBetween">|</span>
@@ -301,7 +309,7 @@ class SingleScoreInput extends Component {
           </Grid>
         </Grid>
       </Container>
-    ));
+    ));      
   }
 };
 
