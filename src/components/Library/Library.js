@@ -93,6 +93,7 @@ class Library extends Component {
 
     handlePreviewScore(score_name) {
         var pdf = new jsPDF('p', 'pt', 'letter');
+        margins = { top: 80, bottom: 60, left: 40, width: 522 };
         pdf.addHTML(document.body,function() {
             var string = pdf.output('datauristring');
             $('.preview-pane').attr('src', string);
@@ -124,7 +125,6 @@ class Library extends Component {
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item href="#">View</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handlePreviewScore(score.name)}>View</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
@@ -137,7 +137,7 @@ class Library extends Component {
             </div>
         );
     }
-    
+
 
     render () {
         //console.log(this.state.scores);
