@@ -86,11 +86,11 @@ class Library extends Component {
     }
 
     handlePreviewScore(score_name) {
-        var doc = new jsPDF("landscape", "mm", "a4");
-        doc.setFontSize(22);
-        doc.text(20, 20, 'Example');
-        doc.autoPrint();
-        window.open(doc.output('bloburl'), '_blank');
+        var doc = new jsPDF();
+        doc.setProperties({
+            title: score_name
+        });
+        doc.output('dataurlnewwindow');
     }
 
     //list scores in table
