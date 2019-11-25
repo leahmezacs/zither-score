@@ -125,6 +125,7 @@ class Library extends Component {
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item href="#">View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name)}>View</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
                                     </Dropdown.Menu>
