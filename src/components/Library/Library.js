@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import CreateModal from "../CreateModal/CreateModal";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Dropdown } from "react-bootstrap";
+import jsPDF from "jspdf";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
