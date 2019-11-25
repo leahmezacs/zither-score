@@ -93,12 +93,11 @@ class Library extends Component {
     }
 
     handlePreviewScore(score_name) {
-        var pdf = new jsPDF('p', 'pt', 'letter');
-        margins = { top: 80, bottom: 60, left: 40, width: 522 };
-        pdf.addHTML(document.body,function() {
-            var string = pdf.output('datauristring');
-            $('.preview-pane').attr('src', string);
-        });
+        var doc = new jsPDF("landscape", "mm", "a4");
+        doc.setFontSize(22);
+        doc.text(20, 20, 'Example');
+        doc.autoPrint();
+        window.open(doc.output('bloburl'), '_blank');
     }
 
     //list scores in table
