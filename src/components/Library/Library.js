@@ -90,7 +90,10 @@ class Library extends Component {
             }
         });
     }
+
+    handlePreviewScore(score_name) {
     
+    }
     //list scores in table
     handleListScores() {
         const temp = this.state.scores;
