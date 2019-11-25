@@ -1,4 +1,4 @@
-# Welcome to the Zither Score app!
+# Welcome to the Num Score app!
 
 This website application is almost exactly like [FlatIO](https://flat.io), _including_ the appearance! It allows users to create score sheets in the cipher / jianpu / numbered musical notation.
 
@@ -9,4 +9,6 @@ Please be advised that there are certainly main missing features in creating mus
 #### Note to developers:
 For those using npm... install react-scripts: `npm i react-scripts`
 
-The Zither Score will be host at http://localhost:3000/
+The Num Score will be host at http://localhost:3000/
+
+The Num Score livesite url is http://numscore-local.s3-website-us-east-1.amazonaws.com

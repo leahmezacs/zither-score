@@ -23,8 +23,7 @@ class Library extends Component {
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
 
-        this.scoreCreationSubscription = null
-        this.scoreDeletionSubscription = null
+        this.scoreDeletionSubscription = null;
         
     }
 
@@ -37,12 +36,6 @@ class Library extends Component {
             scores: result.data.listScores.items,
             userId: user.username
         });
-
-        /* this.scoreCreationSubscription = API.graphql(graphqlOperation(subscriptions.onCreateScore)).subscribe({
-            next: (scoreData) => {
-              
-            }
-        }); */
         
         this.scoreDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteScore)).subscribe({
             next: (scoreData) => {
@@ -117,7 +110,7 @@ class Library extends Component {
                     return (
                         <div className="tr" key={index}>
                             <div className="td row-title">{score.name}</div>
-                            <div className="td row-date">{score.updatedAt}</div>
+                            <div className="td row-date">{new Date(score.updatedAt).toDateString()}</div>
                             <div className="td row-sharing">{score.status}</div>
                             <div className="td row-options">
                                 <Dropdown>
@@ -188,7 +181,7 @@ class Library extends Component {
                                             Sharing
                                         </div>
                                         <div className="th row-options">
-
+                                            
                                         </div>
                                     </div>
                                 </div>
