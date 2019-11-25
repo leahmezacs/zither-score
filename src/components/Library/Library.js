@@ -18,6 +18,7 @@ class Library extends Component {
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
+        this.handlePreviewScore = this.handlePreviewScore.bind(this);
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
 
