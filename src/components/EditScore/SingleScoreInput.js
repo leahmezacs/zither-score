@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import ReactDOM from "react-dom";
 import "../../stylesheets/style.css";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -13,6 +14,7 @@ import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
+
 
 // Four inputs in one componenet
 class SingleScoreInput extends Component {
@@ -45,7 +47,6 @@ class SingleScoreInput extends Component {
       alert(e.message);
     }
   }
-    
   
 
   //console.log(props.nodeLength);
@@ -78,6 +79,9 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown>
                       </span>
+                      <span>
+
+                      </span>
                       <span className="dropdown col-xs-12">
                         <Dropdown key="1">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
@@ -96,6 +100,9 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown>
                       </span>
+                      <span>
+
+                      </span>
                       <span className="dropdown col-xs-12">
                         <Dropdown key="2">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
@@ -113,6 +120,9 @@ class SingleScoreInput extends Component {
                             </Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
+                      </span>
+                      <span>
+                        
                       </span>
                       <span className="dropdown col-xs-12">
                         <Dropdown key="3">
