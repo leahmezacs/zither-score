@@ -92,6 +92,7 @@ class Library extends Component {
     }
 
     handlePreviewScore(score_name) {
+        var pdf = new jsPDF('p', 'pt', 'letter');
     
     }
     //list scores in table
