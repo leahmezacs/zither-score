@@ -189,9 +189,9 @@ class SingleScoreInput extends Component {
               <Grid item>
                 {this.props.nodeLength.map(column => (
                   <span key={column}>
-                    <span className="row">
+                    <span>
                       <span className="dropdown col-xs-12">
-                        <Dropdown key="0">
+                        <Dropdown className="d-inline" key="0">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
                             <AddIcon fontSize="small" color="action" />
                           </Dropdown.Toggle>
@@ -209,7 +209,7 @@ class SingleScoreInput extends Component {
                         </Dropdown>
                       </span>
                       <span className="dropdown col-xs-12">
-                        <Dropdown key="1">
+                        <Dropdown className="d-inline" key="1">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
                             <AddIcon fontSize="small" color="action" />
                           </Dropdown.Toggle>
@@ -227,7 +227,7 @@ class SingleScoreInput extends Component {
                         </Dropdown>
                       </span>
                       <span className="dropdown col-xs-12">
-                        <Dropdown key="2">
+                        <Dropdown className="d-inline" key="2">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
                             <AddIcon fontSize="small" color="action" />
                           </Dropdown.Toggle>
@@ -245,7 +245,7 @@ class SingleScoreInput extends Component {
                         </Dropdown>
                       </span>
                       <span className="dropdown col-xs-12">
-                        <Dropdown key="3">
+                        <Dropdown className="d-inline" key="3">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
                             <AddIcon fontSize="small" color="action" />
                           </Dropdown.Toggle>
