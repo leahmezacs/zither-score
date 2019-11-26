@@ -117,6 +117,17 @@
 
 import React, { Component } from 'react';
 import MaterialTable from 'material-table';
+import Search from '@material-ui/icons/Search'
+import ViewColumn from '@material-ui/icons/ViewColumn'
+import SaveAlt from '@material-ui/icons/SaveAlt'
+import ChevronLeft from '@material-ui/icons/ChevronLeft'
+import ChevronRight from '@material-ui/icons/ChevronRight'
+import FirstPage from '@material-ui/icons/FirstPage'
+import LastPage from '@material-ui/icons/LastPage'
+import Add from '@material-ui/icons/Add'
+import Check from '@material-ui/icons/Check'
+import FilterList from '@material-ui/icons/FilterList'
+import Remove from '@material-ui/icons/Remove'
 // import Table from '@material-ui/core/Table';
 
 // export default function MaterialTableDemo() {
@@ -151,6 +162,18 @@ class Discovery extends Component {
   render(){
   return (
     <MaterialTable
+      icons={{ 
+              Check: Check,
+              DetailPanel: ChevronRight,
+              Export: SaveAlt,
+              Filter: FilterList,
+              FirstPage: FirstPage,
+              LastPage: LastPage,
+              NextPage: ChevronRight,
+              PreviousPage: ChevronLeft,
+              Search: Search,
+              ThirdStateCheck: Remove,
+            }}
       title="Editable Example"
       columns={this.state.columns}
       data={this.state.data}
@@ -195,3 +218,5 @@ class Discovery extends Component {
   );
     }
 }
+
+export default Discovery;
