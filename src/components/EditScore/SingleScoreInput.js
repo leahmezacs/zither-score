@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../stylesheets/style.css";
+import popSymbol from "../EditScore/popSymbol";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import AddIcon from "@material-ui/icons/Add";
@@ -35,13 +36,14 @@ class SingleScoreInput extends Component {
   }
 
   async componentDidMount() {
-    const result = await API.graphql(graphqlOperation(queries.listNotes, { 
-      limit: 200, 
+    const result = await API.graphql(graphqlOperation(queries.listNotes, {
+      limit: 200,
       filter: {
         scoreId: {
           eq: this.props.score.id
         }
-      }}));  
+      }
+    }));
 
     this.setState({
       notes: result.data.listNotes.items
@@ -59,23 +61,23 @@ class SingleScoreInput extends Component {
 
     this.noteDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteNote)).subscribe({
       next: (noteData) => {
-          const deletedNote = noteData.value.data.onDeleteNote.id;
-          console.log("deleted note id: " + deletedNote);
+        const deletedNote = noteData.value.data.onDeleteNote.id;
+        console.log("deleted note id: " + deletedNote);
 
-          const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote);
-          this.setState({
-              note: remainingNotes
-          });
+        const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote);
+        this.setState({
+          note: remainingNotes
+        });
       },
     });
 
     this.noteUpdationSubscription = API.graphql(graphqlOperation(subscriptions.onUpdateNote)).subscribe({
       next: (noteData) => {
-          const updatedNote = noteData.value.data.onUpdateNote;
-          const updatedNotes = this.state.notes.filter(notesData => notesData.id !== updatedNote.id);
-          this.setState({
-              notes: [...updatedNotes, updatedNote]
-          });
+        const updatedNote = noteData.value.data.onUpdateNote;
+        const updatedNotes = this.state.notes.filter(notesData => notesData.id !== updatedNote.id);
+        this.setState({
+          notes: [...updatedNotes, updatedNote]
+        });
       },
     });
 
@@ -83,9 +85,9 @@ class SingleScoreInput extends Component {
   }
 
   componentWillUnmount() {
-    if(this.noteCreationSubscription) this.noteCreationSubscription.unsubscribe();
-    if(this.noteUpdationSubscription) this.noteUpdationSubscription.unsubscribe();
-    if(this.noteDeletionSubscription) this.noteDeletionSubscription.unsubscribe();  
+    if (this.noteCreationSubscription) this.noteCreationSubscription.unsubscribe();
+    if (this.noteUpdationSubscription) this.noteUpdationSubscription.unsubscribe();
+    if (this.noteDeletionSubscription) this.noteDeletionSubscription.unsubscribe();
   }
 
   async handleChange(e) {
@@ -93,7 +95,7 @@ class SingleScoreInput extends Component {
     try {
       let { value, min, max } = e.target;
       console.log(e.target.value);
-      if(value) {
+      if (value) {
         value = Math.max(Number(min), Math.min(Number(max), Number(value)));
       }
       else value = null;
@@ -106,23 +108,23 @@ class SingleScoreInput extends Component {
         console.log(temp);
         let exist = false;
         let note_id = "";
-        for(let i = 0; i < temp.length; ++i) {
-          if(JSON.stringify(temp[i].position) == JSON.stringify(this.state.pos)) {
+        for (let i = 0; i < temp.length; ++i) {
+          if (JSON.stringify(temp[i].position) == JSON.stringify(this.state.pos)) {
             note_id = temp[i].id;
             exist = true;
           }
         }
         console.log(exist);
-        if(exist) {
+        if (exist) {
           this.state.num ? this.handleUpdateNote(note_id) : this.handleDeleteNote(note_id);
         }
         else {
           this.handleCreateNote();
         }
-        
+
       });
     }
-    catch(e) {
+    catch (e) {
       alert(e.message);
     }
   };
@@ -130,44 +132,44 @@ class SingleScoreInput extends Component {
   async handleCreateNote() {
     try {
       const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
-          input: {
-            number: this.state.num,
-            position: this.state.pos,
-            noteScoreId: this.props.score.id,
-            scoreId: this.props.score.id
-          }
+        input: {
+          number: this.state.num,
+          position: this.state.pos,
+          noteScoreId: this.props.score.id,
+          scoreId: this.props.score.id
+        }
       }));
       this.setState({
         note: noteCreated
       });
       console.log("created: ", noteCreated);
     }
-    catch(e) {
+    catch (e) {
       alert(e.message);
     }
   }
 
   async handleUpdateNote(id) {
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
-        input: {
-          id: id,
-          number: this.state.num,
-          position: this.state.pos
-        }
+      input: {
+        id: id,
+        number: this.state.num,
+        position: this.state.pos
+      }
     }));
     console.log("updated: ", updatedNote);
   }
 
   async handleDeleteNote(id) {
-    const deletedNote = await API.graphql(graphqlOperation(mutations.deleteNote,{
-        input:{
-            id : id
-        }
+    const deletedNote = await API.graphql(graphqlOperation(mutations.deleteNote, {
+      input: {
+        id: id
+      }
     }));
   }
 
   componentDidUpdate() {
-    if(this.state.notes){
+    if (this.state.notes) {
       const temp = this.state.notes;
 
       this.state.notes.forEach((note) => {
@@ -177,6 +179,7 @@ class SingleScoreInput extends Component {
       })
     }
   }
+
 
   //console.log(props.nodeLength);
   render() {
@@ -197,7 +200,7 @@ class SingleScoreInput extends Component {
                           </Dropdown.Toggle>
                           <Dropdown.Menu>
                             <Dropdown.Item>
-                              <Dot fontSize="small" />
+                              <Dot fontSize="small" onClick={}/>
                             </Dropdown.Item>
                             <Dropdown.Item>
                               <Line fontSize="small" />
@@ -208,6 +211,9 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown>
                       </span>
+                      <div id="paragraph"> 
+                        hello
+                      </div>
                       <span key={column}>
                         <input
                           key="0"
