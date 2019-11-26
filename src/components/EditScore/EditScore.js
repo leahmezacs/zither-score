@@ -22,6 +22,7 @@ class EditScore extends Component {
         id: this.state.score_name
       })
     );
+    
     this.setState({
       score: result.data.getScore
     });

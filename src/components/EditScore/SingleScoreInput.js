@@ -49,6 +49,8 @@ class SingleScoreInput extends Component {
       notes: result.data.listNotes.items
     });
 
+    console.log("notes", this.state.notes);
+
     this.noteCreationSubscription = API.graphql(graphqlOperation(subscriptions.onCreateNote)).subscribe({
       next: (noteData) => {
         const createdNote = noteData.value.data.onCreateNote;
@@ -108,8 +110,10 @@ class SingleScoreInput extends Component {
         console.log(temp);
         let exist = false;
         let note_id = "";
-        for (let i = 0; i < temp.length; ++i) {
-          if (JSON.stringify(temp[i].position) == JSON.stringify(this.state.pos)) {
+        for(let i = 0; i < temp.length; ++i) {
+          if(JSON.stringify(temp[i].position) == JSON.stringify(this.state.pos)) {
+            /* console.log("temp: ", temp[i].position);
+            console.log("pos: ", this.state.pos); */
             note_id = temp[i].id;
             exist = true;
           }
@@ -142,7 +146,7 @@ class SingleScoreInput extends Component {
       this.setState({
         note: noteCreated
       });
-      console.log("created: ", noteCreated);
+      console.log("created: ", noteCreated.data.createNote);
     }
     catch (e) {
       alert(e.message);
@@ -157,7 +161,7 @@ class SingleScoreInput extends Component {
         position: this.state.pos
       }
     }));
-    console.log("updated: ", updatedNote);
+    console.log("updated: ", updatedNote.data.updateNote);
   }
 
   async handleDeleteNote(id) {
@@ -173,9 +177,14 @@ class SingleScoreInput extends Component {
       const temp = this.state.notes;
 
       this.state.notes.forEach((note) => {
-        const pos = note.position.toString();
-        const input = document.getElementById(pos);
-        input.value = note.number;
+        /* console.log("row: ", note.position[0]);
+        console.log("linelength: ", this.props.lineLength.length); */
+        if(note.position[0] < this.props.lineLength.length) {
+          const pos = note.position.toString();
+          const input = document.getElementById(pos);
+          
+          input.value = note.number;
+        }
       })
     }
   }
@@ -252,7 +261,7 @@ class SingleScoreInput extends Component {
                           type="number"
                           min="0"
                           max="7"
-                          id={[row, column, 0]}
+                          id={[row, column, 1]}
                           onChange={this.handleChange}
                         />
                       </span>
@@ -283,7 +292,7 @@ class SingleScoreInput extends Component {
                           type="number"
                           min="0"
                           max="7"
-                          id={[row, column, 0]}
+                          id={[row, column, 2]}
                           onChange={this.handleChange}
                         />
                       </span>
@@ -314,7 +323,7 @@ class SingleScoreInput extends Component {
                           type="number"
                           min="0"
                           max="7"
-                          id={[row, column, 0]}
+                          id={[row, column, 3]}
                           onChange={this.handleChange}
                         />
                       </span>
