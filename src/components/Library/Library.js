@@ -110,6 +110,11 @@ class Library extends Component {
             }
         }
 
+        var my_array=[["1", "2", "3", "4"], ["5", "6", "7", "8"], ["9", "10", "11", "12"], ["13", "14", "15", "16"]];
+        addNumRow(0, my_array);
+        addLineBars(0);
+        addLineBars(1);
+        
         doc.output('dataurlnewwindow');
     }
 
