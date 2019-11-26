@@ -98,9 +98,6 @@ class Library extends Component {
                 doc.line( (20+(j*40)), (50+(i*25)),  (20+(j*40)), (65+(i*25))); // horizontal line
             }
         };
-        
-
-        addLineBars(0);
 
 
         doc.output('dataurlnewwindow');
