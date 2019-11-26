@@ -65,9 +65,11 @@ class Discovery extends Component {
             <div className="tr" key={index}>
               <div className="td row-title">{score.name}</div>
               <div className="td row-date">
+                {score.user.username}
+              </div>
+              <div className="td row-sharing">
                 {new Date(score.updatedAt).toDateString()}
               </div>
-              <div className="td row-sharing">{score.status}</div>
             </div>
           );
         })}
@@ -83,7 +85,7 @@ class Discovery extends Component {
           <div className="library-content">
             <div className="head-container">
               <div className="header">
-                <h2>Scores</h2>
+                <h2>Public Scores</h2>
               </div>
             </div>
 
@@ -92,9 +94,8 @@ class Discovery extends Component {
                 <div className="thead">
                   <div className="tr">
                     <div className="th row-title sorting">Name</div>
-                    <div className="th row-date sorting">Date Modified</div>
-                    <div className="th row-sharing">Sharing</div>
-                    <div className="th row-options"></div>
+                    <div className="th row-date sorting">Author</div>
+                    <div className="th row-sharing">Date Modified</div>
                   </div>
                 </div>
                 <div className="tbody">{this.handleListScores()}</div>
