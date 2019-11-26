@@ -90,9 +90,7 @@ class Library extends Component {
         doc.setProperties({
             title: score_name
         });
-        doc.setFontSize(25);    
-        doc.setFont("helvetica");   
-        doc.text(20, 35, score_name);
+        doc.setFontSize(25); doc.setFont("helvetica"); doc.text(20, 35, score_name);
         doc.line(20, 36, 180, 36);
         doc.setFontSize(14);    
         doc.text(20, 44, "By:"+ this.state.userId);
