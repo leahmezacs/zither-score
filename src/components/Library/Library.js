@@ -92,14 +92,11 @@ class Library extends Component {
         });
         doc.setFontSize(25); doc.setFont("helvetica"); doc.text(20, 35, score_name);
         doc.line(20, 36, 180, 36);
-        doc.setFontSize(14);    
-        doc.text(20, 44, "By:"+ this.state.userId);
-        const addLineBars = function(i) { 
-            doc.line( 20, (50+(i*25)),  20, (65+(i*25))); // horizontal line
-            doc.line( 60, (50+(i*25)),  60, (65+(i*25)));
-            doc.line(100, (50+(i*25)), 100, (65+(i*25)));
-            doc.line(140, (50+(i*25)), 140, (65+(i*25)));
-            doc.line(180, (50+(i*25)), 180, (65+(i*25))); 
+        doc.setFontSize(14); doc.text(20, 44, "By:"+ this.state.userId);
+        var addLineBars = function(i) {
+            for (var j=0; j <= 4; j++) {
+                doc.line( (20+(j*40)), (50+(i*25)),  (20+(j*40)), (65+(i*25))); // horizontal line
+            }
         };
         
 
