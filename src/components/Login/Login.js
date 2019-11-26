@@ -10,7 +10,7 @@ const authErrorMessageMapper = (message) => {
         return 'Incorrect username or password';
     }
     console.log("ERROR: " + message);
-    return message;
+    return <div className="error_msg">{message}</div>;
 }
 
 class Login extends Component {

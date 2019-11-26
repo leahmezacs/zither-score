@@ -21,13 +21,19 @@ class SingleScoreInput extends Component {
     this.state = {
       notes: [],
       num: null,
-      pos: []
+      pos: [],
+      line: false,
+      doubleline: false
     };
     console.log(this.props.score);
     this.handleChange = this.handleChange.bind(this);
     this.handleCreateNote = this.handleCreateNote.bind(this);
     this.handleUpdateNote = this.handleUpdateNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
+    this.handleShowLine = this.handleShowLine.bind(this);
+    this.handleLineClick = this.handleLineClick.bind(this);
+    this.handleShowDoubleLine = this.handleShowDoubleLine.bind(this);
+    this.handleShowSymbols = this.handleShowSymbols.bind(this);
 
     this.noteCreationSubscription = null;
     this.noteUpdationSubscription = null;
@@ -46,6 +52,8 @@ class SingleScoreInput extends Component {
     this.setState({
       notes: result.data.listNotes.items
     });
+
+    console.log("notes", this.state.notes);
 
     this.noteCreationSubscription = API.graphql(graphqlOperation(subscriptions.onCreateNote)).subscribe({
       next: (noteData) => {
@@ -108,6 +116,8 @@ class SingleScoreInput extends Component {
         let note_id = "";
         for(let i = 0; i < temp.length; ++i) {
           if(JSON.stringify(temp[i].position) == JSON.stringify(this.state.pos)) {
+            /* console.log("temp: ", temp[i].position);
+            console.log("pos: ", this.state.pos); */
             note_id = temp[i].id;
             exist = true;
           }
@@ -140,7 +150,7 @@ class SingleScoreInput extends Component {
       this.setState({
         note: noteCreated
       });
-      console.log("created: ", noteCreated);
+      console.log("created: ", noteCreated.data.createNote);
     }
     catch(e) {
       alert(e.message);
@@ -155,7 +165,7 @@ class SingleScoreInput extends Component {
           position: this.state.pos
         }
     }));
-    console.log("updated: ", updatedNote);
+    console.log("updated: ", updatedNote.data.updateNote);
   }
 
   async handleDeleteNote(id) {
@@ -171,11 +181,61 @@ class SingleScoreInput extends Component {
       const temp = this.state.notes;
 
       this.state.notes.forEach((note) => {
-        const pos = note.position.toString();
-        const input = document.getElementById(pos);
-        input.value = note.number;
+        /* console.log("row: ", note.position[0]);
+        console.log("linelength: ", this.props.lineLength.length); */
+        if(note.position[0] < this.props.lineLength.length) {
+          const pos = note.position.toString();
+          const input = document.getElementById(pos);
+          
+          input.value = note.number;
+
+          this.handleShowSymbols();
+        }
       })
     }
+  }
+
+  handleLineClick = () => {
+    this.setState(prevState => {
+      return {
+        line: !prevState.line
+      };
+    }, () => console.log(this.state.line));
+  }
+
+  handleDoubleLineClick = () => {
+    console.log("inside double");
+    this.setState(prevState => {
+      return {
+        doubleline: !prevState.doubleline
+      };
+    }, () => console.log(this.state.doubleline));
+  }
+
+  handleShowSymbols() {
+    console.log("inside show symbol");
+    if(this.state.line) return this.handleShowLine();
+    else if(this.state.doubleline) return this.handleShowDoubleLine();
+    
+  }
+
+  handleShowLine() {
+    return (
+      <div>
+        <p>▁▁▁</p>
+      </div>
+    );
+  }
+
+  handleShowDoubleLine() {
+    return (
+      
+        <div>
+          <p>▁▁▁</p>
+          <p>▁▁▁</p>
+        </div>
+      
+    );
   }
 
   //console.log(props.nodeLength);
@@ -200,10 +260,10 @@ class SingleScoreInput extends Component {
                               <Dot fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
-                              <Line fontSize="small" />
+                              <Line onClick={this.handleLineClick} fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
-                              <DoubleLine fontSize="small" />
+                              <DoubleLine onClick={this.handleDoubleLineClick} fontSize="small" />
                             </Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
@@ -215,6 +275,8 @@ class SingleScoreInput extends Component {
                           type="number"
                           min="0"
                           max="7"
+                          line={this.state.line}
+                          doubleline={this.state.doubleline}
                           id={[row, column, 0]}
                           onChange={this.handleChange}
                         />
@@ -246,7 +308,7 @@ class SingleScoreInput extends Component {
                           type="number"
                           min="0"
                           max="7"
-                          id={[row, column, 0]}
+                          id={[row, column, 1]}
                           onChange={this.handleChange}
                         />
                       </span>
@@ -277,7 +339,7 @@ class SingleScoreInput extends Component {
                           type="number"
                           min="0"
                           max="7"
-                          id={[row, column, 0]}
+                          id={[row, column, 2]}
                           onChange={this.handleChange}
                         />
                       </span>
@@ -308,7 +370,7 @@ class SingleScoreInput extends Component {
                           type="number"
                           min="0"
                           max="7"
-                          id={[row, column, 0]}
+                          id={[row, column, 3]}
                           onChange={this.handleChange}
                         />
                       </span>
