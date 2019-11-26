@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import CreateModal from "../CreateModal/CreateModal";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { Dropdown } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as queries from "../../graphql/queries";
-import * as mutations from "../../graphql/mutations";
-import * as subscriptions from "../../graphql/subscriptions";
 
 class Discovery extends Component {
   constructor(props) {
@@ -18,16 +12,14 @@ class Discovery extends Component {
     };
     this.handleListScores = this.handleListScores.bind(this);
     // this.handleEditScore = this.handleEditScore.bind(this);
-
-    this.scoreDeletionSubscription = null;
   }
 
   //get list of scores from all users
   async componentDidMount() {
-    const limit = 50;
+    // const limit = 50;
     const user = await Auth.currentAuthenticatedUser();
     const result = await API.graphql(
-      graphqlOperation(queries.listScores, { limit })
+      graphqlOperation(queries.listScores)
     );
     console.log(result);
     this.setState({
@@ -35,22 +27,6 @@ class Discovery extends Component {
       userId: user.username
     });
     console.log(this.state.scores);
-    this.scoreDeletionSubscription = API.graphql(
-      graphqlOperation(subscriptions.onDeleteScore)
-    ).subscribe({
-      next: scoreData => {
-        const scoreId = scoreData.value.data.onDeleteScore.id;
-        console.log("deleted score id: " + scoreId);
-
-        const remainingScores = this.state.scores.filter(
-          scoresData => scoresData.id !== scoreId
-        );
-        console.log(remainingScores);
-        this.setState({
-          scores: remainingScores
-        });
-      }
-    });
   }
 
 //   componentWillUnmount() {
@@ -74,11 +50,13 @@ class Discovery extends Component {
     const temp = this.state.scores;
     let data = [];
 
-    //filter scores so it only contains current user's scores
+    //filter scores so it only contains only public score
     for (let i = 0; i < temp.length; ++i) {
-      if (temp[i].user.id === this.state.userId) data.push(temp[i]);
+      if (temp[i].status === "PUBLIC") data.push(temp[i]);
+    //   console.log(temp[i].status);
     }
-    console.log(this.state.userId);
+    console.log(data);
+    
 
     return (
       <div>
