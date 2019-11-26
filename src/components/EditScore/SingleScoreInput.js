@@ -21,13 +21,19 @@ class SingleScoreInput extends Component {
     this.state = {
       notes: [],
       num: null,
-      pos: []
+      pos: [],
+      line: false,
+      doubleline: false
     };
     console.log(this.props.score);
     this.handleChange = this.handleChange.bind(this);
     this.handleCreateNote = this.handleCreateNote.bind(this);
     this.handleUpdateNote = this.handleUpdateNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
+    this.handleShowLine = this.handleShowLine.bind(this);
+    this.handleLineClick = this.handleLineClick.bind(this);
+    this.handleShowDoubleLine = this.handleShowDoubleLine.bind(this);
+    this.handleShowSymbols = this.handleShowSymbols.bind(this);
 
     this.noteCreationSubscription = null;
     this.noteUpdationSubscription = null;
@@ -182,9 +188,54 @@ class SingleScoreInput extends Component {
           const input = document.getElementById(pos);
           
           input.value = note.number;
+
+          this.handleShowSymbols();
         }
       })
     }
+  }
+
+  handleLineClick = () => {
+    this.setState(prevState => {
+      return {
+        line: !prevState.line
+      };
+    }, () => console.log(this.state.line));
+  }
+
+  handleDoubleLineClick = () => {
+    console.log("inside double");
+    this.setState(prevState => {
+      return {
+        doubleline: !prevState.doubleline
+      };
+    }, () => console.log(this.state.doubleline));
+  }
+
+  handleShowSymbols() {
+    console.log("inside show symbol");
+    if(this.state.line) return this.handleShowLine();
+    else if(this.state.doubleline) return this.handleShowDoubleLine();
+    
+  }
+
+  handleShowLine() {
+    return (
+      <div>
+        <p>▁▁▁</p>
+      </div>
+    );
+  }
+
+  handleShowDoubleLine() {
+    return (
+      
+        <div>
+          <p>▁▁▁</p>
+          <p>▁▁▁</p>
+        </div>
+      
+    );
   }
 
   //console.log(props.nodeLength);
@@ -209,10 +260,10 @@ class SingleScoreInput extends Component {
                               <Dot fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
-                              <Line fontSize="small" />
+                              <Line onClick={this.handleLineClick} fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
-                              <DoubleLine fontSize="small" />
+                              <DoubleLine onClick={this.handleDoubleLineClick} fontSize="small" />
                             </Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
@@ -224,6 +275,8 @@ class SingleScoreInput extends Component {
                           type="number"
                           min="0"
                           max="7"
+                          line={this.state.line}
+                          doubleline={this.state.doubleline}
                           id={[row, column, 0]}
                           onChange={this.handleChange}
                         />
