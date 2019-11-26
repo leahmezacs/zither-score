@@ -1,24 +1,3 @@
-// import React, { Component } from "react";
-
-// class Discovery extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       scores: []
-//     };
-//   }
-
-//   render() {
-//     return (
-//         <div>
-
-//         </div>
-//     );
-//   }
-// }
-
-// export default Discovery;
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import CreateModal from "../CreateModal/CreateModal";
@@ -29,7 +8,7 @@ import * as queries from "../../graphql/queries";
 import * as mutations from "../../graphql/mutations";
 import * as subscriptions from "../../graphql/subscriptions";
 
-class Library extends Component {
+class Discovery extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,10 +16,8 @@ class Library extends Component {
       userId: "",
       scores: []
     };
-    this.handleShow = this.handleShow.bind(this);
     this.handleListScores = this.handleListScores.bind(this);
-    this.handleDeleteScore = this.handleDeleteScore.bind(this);
-    this.handleEditScore = this.handleEditScore.bind(this);
+    // this.handleEditScore = this.handleEditScore.bind(this);
 
     this.scoreDeletionSubscription = null;
   }
@@ -52,11 +29,12 @@ class Library extends Component {
     const result = await API.graphql(
       graphqlOperation(queries.listScores, { limit })
     );
+    console.log(result);
     this.setState({
       scores: result.data.listScores.items,
       userId: user.username
     });
-
+    console.log(this.state.scores);
     this.scoreDeletionSubscription = API.graphql(
       graphqlOperation(subscriptions.onDeleteScore)
     ).subscribe({
@@ -75,41 +53,21 @@ class Library extends Component {
     });
   }
 
-  componentWillUnmount() {
-    if (this.scoreDeletionSubscription) {
-      this.scoreDeletionSubscription.unsubscribe();
-    }
-  }
+//   componentWillUnmount() {
+//     if (this.scoreDeletionSubscription) {
+//       this.scoreDeletionSubscription.unsubscribe();
+//     }
+//   }
 
-  handleShow = () => {
-    this.setState(prevState => {
-      return {
-        modal: !prevState.modal
-      };
-    });
-  };
-
-  async handleDeleteScore(score_name) {
-    const deletedScore = await API.graphql(
-      graphqlOperation(mutations.deleteScore, {
-        input: {
-          id: score_name
-        }
-      })
-    );
-    //console.log(deletedScore);
-    //console.log(this.state.scores);
-  }
-
-  handleEditScore(score_name) {
-    this.props.history.push({
-      pathname: "/EditScore",
-      search: score_name,
-      state: {
-        name: score_name
-      }
-    });
-  }
+//   handleEditScore(score_name) {
+//     this.props.history.push({
+//       pathname: "/EditScore",
+//       search: score_name,
+//       state: {
+//         name: score_name
+//       }
+//     });
+//   }
 
   //list scores in table
   handleListScores() {
@@ -132,26 +90,6 @@ class Library extends Component {
                 {new Date(score.updatedAt).toDateString()}
               </div>
               <div className="td row-sharing">{score.status}</div>
-              <div className="td row-options">
-                <Dropdown>
-                  <Dropdown.Toggle className="btn btn-sm btn-light">
-                    <MoreVertIcon />
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#">View</Dropdown.Item>
-                    <Dropdown.Item
-                      onClick={() => this.handleEditScore(score.name)}
-                    >
-                      Edit
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      onClick={() => this.handleDeleteScore(score.name)}
-                    >
-                      Delete
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
             </div>
           );
         })}
@@ -196,4 +134,4 @@ class Library extends Component {
   }
 }
 
-export default withRouter(Library);
+export default Discovery;
