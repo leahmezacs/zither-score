@@ -15,16 +15,15 @@ class Library extends Component {
           modal: false,
           userId: '',
           scores: [],
-          name: '',
-          readOnly_name: true,
-          readOnly_status: true
+          status: '',
+          scoreId: ''
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
-        this.handleChangeName = this.handleChangeName.bind(this);
-        this.handleRenameCick = this.handleRenameCick.bind(this);
+        this.handleChangeStatus = this.handleChangeStatus.bind(this);
+        this.handleUpdateScore = this.handleUpdateScore.bind(this);
 
         this.scoreDeletionSubscription = null;
         this.scoreUpdationSubscription = null;
@@ -97,24 +96,28 @@ class Library extends Component {
         });
     }
 
-    handleRenameCick(score_name) {
-        this.setState(
-            prevState => ({
-                readOnly_name: !prevState.readOnly_name,
-                name: score_name
-            }     
-        ), () => { console.log("name: " + this.state.name);})
+    handleChangeStatus(current_status, score_id) {
+        this.setState({
+            scoreId: score_id,
+            status: current_status === "PRIVATE" ? "PUBLIC" : "PRIVATE"
+        }, () => {
+            console.log("status: " + this.state.status);
+            console.log("id: " + score_id);
+            this.handleUpdateScore();
+        });
     }
 
-    async handleChangeName(e) {
+    async handleUpdateScore() {
+        console.log("inside update");
+        console.log(this.state.scoreId);
         const updatedScore = await API.graphql(graphqlOperation(mutations.updateScore, {
             input: {
-              id: e.target.value,
-              name: e.target.value
+                id: this.state.scoreId,
+                status: this.state.status
             }
         }));
         console.log("updated: ", updatedScore); 
-    } 
+    }
     
     //list scores in table
     handleListScores() {
@@ -132,15 +135,7 @@ class Library extends Component {
                 {data.map((score, index) => {
                     return (
                         <div className="tr" key={index}>
-                            <div className="td row-title">
-                                <FormControl
-                                    plaintext 
-                                    readOnly={this.state.readOnly_name}
-                                    type="text"
-                                    value={score.name}
-                                    onChange={this.handleChangeName}
-                                />
-                            </div>
+                            <div className="td row-title">{score.name}</div>
                             <div className="td row-date">{new Date(score.updatedAt).toDateString()}</div>
                             <div className="td row-sharing">{score.status}</div>
                             <div className="td row-options">
@@ -152,8 +147,7 @@ class Library extends Component {
                                         <Dropdown.Item href="#">View</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.handleRenameCick(score.name)}>Rename</Dropdown.Item>
-                                        <Dropdown.Item href="#">Mark as Public</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.name)}>Change Status</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
