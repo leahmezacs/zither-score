@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import CreateModal from "../CreateModal/CreateModal";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import jsPDF from "jspdf";
 import { Dropdown, FormControl } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
@@ -15,11 +16,13 @@ class Library extends Component {
           modal: false,
           userId: '',
           scores: [],
+          notes: [],
           status: '',
           scoreId: ''
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
+        this.handlePreviewScore = this.handlePreviewScore.bind(this);
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
@@ -96,6 +99,35 @@ class Library extends Component {
         });
     }
 
+    handlePreviewScore(score_name, score_id) {
+        var doc = new jsPDF(); //pdf created
+        doc.setProperties({
+            title: score_name
+        });
+        doc.setFontSize(25); doc.setFont("helvetica"); doc.text(20, 35, score_name); //title
+        doc.line(20, 36, 180, 36);
+        doc.setFontSize(14); doc.text(20, 44, "By: "+ this.state.userId); //creator
+        var addLineBars = function(i) {
+            for (var j=0; j <= 4; j++) {
+                doc.line( (20+(j*40)), (50+(i*25)),  (20+(j*40)), (65+(i*25))); // horizontal line
+            }
+        };
+        var addNumRow = function(i, arr) {
+            doc.setFontSize(11);
+            for(var index=0; index < arr.length; index++) {
+                if(arr[index].length === 4){
+                    for(var note=0; note < arr[0].length; note++) {
+                        doc.text( (23+(note*40)+(index*10)),  (58+(i*25)), arr[note][index]);
+            }}}
+        };
+
+        var my_array=[["1", "2", "3", "4"], ["5", "6", "7", "8"], ["9", "10", "11", "12"], ["13", "14", "15", "16"]];
+        addNumRow(0, my_array);
+        addLineBars(0);
+        
+        doc.output('dataurlnewwindow'); //pdf exported to new window
+    }
+
     handleChangeStatus(current_status, score_id) {
         this.setState({
             scoreId: score_id,
@@ -118,7 +150,7 @@ class Library extends Component {
         }));
         console.log("updated: ", updatedScore); 
     }
-    
+
     //list scores in table
     handleListScores() {
         const temp = this.state.scores;
@@ -144,7 +176,7 @@ class Library extends Component {
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item href="#">View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name)}>View</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.name)}>Change Status</Dropdown.Item>
@@ -157,7 +189,7 @@ class Library extends Component {
             </div>
         );
     }
-    
+
 
     render () {
         //console.log(this.state.scores);
