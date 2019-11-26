@@ -27,7 +27,7 @@ class Library extends Component {
 
     //get list of scores from all users 
     async componentDidMount() {
-        const limit = 50;
+        const limit = 1000;
         const user = await Auth.currentAuthenticatedUser();
         const result = await API.graphql(graphqlOperation(queries.listScores, {limit}));  
         this.setState({
