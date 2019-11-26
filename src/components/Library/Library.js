@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import CreateModal from "../CreateModal/CreateModal";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, FormControl } from "react-bootstrap";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
@@ -14,15 +14,20 @@ class Library extends Component {
         this.state = {
           modal: false,
           userId: '',
-          scores: []
+          scores: [],
+          name: '',
+          readOnly_name: true,
+          readOnly_status: true
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleRenameCick = this.handleRenameCick.bind(this);
 
         this.scoreDeletionSubscription = null;
-        
+        this.scoreUpdationSubscription = null;
     }
 
     //get list of scores from all users 
@@ -47,12 +52,21 @@ class Library extends Component {
                 });
             },
         });
+
+        this.scoreUpdationSubscription = API.graphql(graphqlOperation(subscriptions.onUpdateScore)).subscribe({
+            next: (scoreData) => {
+                const updatedScore = scoreData.value.data.onUpdateScore;
+                const updatedScores = this.state.scores.filter(scoresData => scoresData.id !== updatedScore.id);
+                this.setState({
+                    scores: [...updatedScores, updatedScore]
+                });
+            },
+        });
     }
 
     componentWillUnmount() {
-        if(this.scoreDeletionSubscription) {
-            this.scoreDeletionSubscription.unsubscribe();
-        }
+        if(this.scoreDeletionSubscription) this.scoreDeletionSubscription.unsubscribe();
+        if(this.scoreUpdationSubscription) this.scoreUpdationSubscription.unsubscribe();
     }
 
     handleShow = () => {
@@ -82,6 +96,25 @@ class Library extends Component {
             }
         });
     }
+
+    handleRenameCick(score_name) {
+        this.setState(
+            prevState => ({
+                readOnly_name: !prevState.readOnly_name,
+                name: score_name
+            }     
+        ), () => { console.log("name: " + this.state.name);})
+    }
+
+    async handleChangeName(e) {
+        const updatedScore = await API.graphql(graphqlOperation(mutations.updateScore, {
+            input: {
+              id: e.target.value,
+              name: e.target.value
+            }
+        }));
+        console.log("updated: ", updatedScore); 
+    } 
     
     //list scores in table
     handleListScores() {
@@ -92,14 +125,22 @@ class Library extends Component {
         for(let i = 0; i < temp.length; ++i){
             if(temp[i].user.id === this.state.userId) data.push(temp[i]);
         } 
-        console.log(this.state.userId);
+        //console.log(this.state.userId);
 
         return (
             <div>
                 {data.map((score, index) => {
                     return (
                         <div className="tr" key={index}>
-                            <div className="td row-title">{score.name}</div>
+                            <div className="td row-title">
+                                <FormControl
+                                    plaintext 
+                                    readOnly={this.state.readOnly_name}
+                                    type="text"
+                                    value={score.name}
+                                    onChange={this.handleChangeName}
+                                />
+                            </div>
                             <div className="td row-date">{new Date(score.updatedAt).toDateString()}</div>
                             <div className="td row-sharing">{score.status}</div>
                             <div className="td row-options">
@@ -111,6 +152,8 @@ class Library extends Component {
                                         <Dropdown.Item href="#">View</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleRenameCick(score.name)}>Rename</Dropdown.Item>
+                                        <Dropdown.Item href="#">Mark as Public</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
