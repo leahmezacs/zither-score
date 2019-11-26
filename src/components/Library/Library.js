@@ -16,6 +16,8 @@ class Library extends Component {
           modal: false,
           userId: '',
           scores: []
+          scores: [],
+          notes: []
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
