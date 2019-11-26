@@ -177,7 +177,7 @@ class SingleScoreInput extends Component {
       })
     }
   }
-    
+
   //console.log(props.nodeLength);
   render() {
     return this.props.lineLength.map(row => (
@@ -186,11 +186,11 @@ class SingleScoreInput extends Component {
           <Grid item xs={12}>
             <Grid container justify="center" spacing={2}>
               <span className="lineBegin">|</span>
-              <Grid item>
+              <Grid class="displayinrow" item>
                 {this.props.nodeLength.map(column => (
-                  <span key={column}>
-                    <span>
-                      <span className="dropdown col-xs-12">
+                  <span key={column} className="displayinrow">
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
                         <Dropdown className="d-inline" key="0">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
                             <AddIcon fontSize="small" color="action" />
@@ -208,7 +208,20 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown>
                       </span>
-                      <span className="dropdown col-xs-12">
+                      <span key={column}>
+                        <input
+                          key="0"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          id={[row, column, 0]}
+                          onChange={this.handleChange}
+                        />
+                      </span>
+                    </span>
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
                         <Dropdown className="d-inline" key="1">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
                             <AddIcon fontSize="small" color="action" />
@@ -226,7 +239,20 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown>
                       </span>
-                      <span className="dropdown col-xs-12">
+                      <span key={column}>
+                        <input
+                          key="1"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          id={[row, column, 0]}
+                          onChange={this.handleChange}
+                        />
+                      </span>
+                    </span>
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
                         <Dropdown className="d-inline" key="2">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
                             <AddIcon fontSize="small" color="action" />
@@ -244,7 +270,20 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown>
                       </span>
-                      <span className="dropdown col-xs-12">
+                      <span key={column}>
+                        <input
+                          key="2"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          id={[row, column, 0]}
+                          onChange={this.handleChange}
+                        />
+                      </span>
+                    </span>
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
                         <Dropdown className="d-inline" key="3">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
                             <AddIcon fontSize="small" color="action" />
@@ -262,54 +301,30 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown>
                       </span>
+                      <span key={column}>
+                        <input
+                          key="0"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          id={[row, column, 0]}
+                          onChange={this.handleChange}
+                        />
+                      </span>
                     </span>
-                    <span key={column}>
-                      <input
-                        key="0"
-                        className="singleNote"
-                        type="number"
-                        min="0"
-                        max="7"
-                        id={[row, column, 0]}
-                        onChange={this.handleChange}
-                      />
-                      <input
-                        key="1"
-                        className="singleNote"
-                        type="number"
-                        min="0"
-                        max="7"
-                        id={[row, column, 1]}
-                        onChange={this.handleChange}
-                      />
-                      <input
-                        key="2"
-                        className="singleNote"
-                        type="number"
-                        min="0"
-                        max="7"
-                        id={[row, column, 2]}
-                        onChange={this.handleChange}
-                      />
-                      <input
-                        key="3"
-                        className="singleNote"
-                        type="number"
-                        min="0"
-                        max="7"
-                        id={[row, column, 3]}
-                        onChange={this.handleChange}
-                      />
-                      <span className="lineInBetween">|</span>
-                    </span>
+
+
+                    <span className="lineInBetween">|</span>
                   </span>
+
                 ))}
               </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Container>
-    ));      
+    ));
   }
 };
 

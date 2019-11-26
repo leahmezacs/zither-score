@@ -166,10 +166,6 @@
     flex: 0 0 160px;
 }
 
-.library-list .row-options {
-    flex: 0 0 160px;
-}
-
 .library-list .tbody {
     display: flex;
     flex-direction: column;
