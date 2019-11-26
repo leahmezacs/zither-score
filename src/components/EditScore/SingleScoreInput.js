@@ -188,8 +188,11 @@ class SingleScoreInput extends Component {
           const input = document.getElementById(pos);
           
           input.value = note.number;
+          
 
-          this.handleShowSymbols();
+          /* console.log("line", this.state.line);
+          console.log("doubleline", this.state.doubleline);
+          return this.handleShowSymbols(); */
         }
       })
     }
@@ -280,6 +283,7 @@ class SingleScoreInput extends Component {
                           id={[row, column, 0]}
                           onChange={this.handleChange}
                         />
+                        {this.handleShowSymbols()}
                       </span>
                     </span>
                     <span className="displayincolumn">

@@ -140,7 +140,6 @@ class Library extends Component {
     }
 
     async handleUpdateScore() {
-        console.log("inside update");
         console.log(this.state.scoreId);
         const updatedScore = await API.graphql(graphqlOperation(mutations.updateScore, {
             input: {
