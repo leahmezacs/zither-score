@@ -99,6 +99,16 @@ class Library extends Component {
             }
         };
 
+        var addNumRow = function(i, arr) {
+            doc.setFontSize(11);
+            for(var index=0; index < arr.length; index++) {
+                if(arr[index].length >= 4){
+                    for(var note=0; note < arr[0].length; note++) {
+                        doc.text( (23+(note*40)+(index*10)),  (58+(i*25)), arr[index][note]);
+                    }
+                }
+            }
+        }
 
         doc.output('dataurlnewwindow');
     }
