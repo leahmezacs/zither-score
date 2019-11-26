@@ -51,10 +51,12 @@ input[type=number] {
 .lineInBetween {
     font-size: 25px;
     padding-left: 10px;
+    padding-top: 30px;
 }
 .lineBegin {
     font-size: 20px;
     margin-top: 7px;
+    padding-top: 30px;
 }
 .lineSpacing {
     height: 150px;
@@ -200,4 +202,15 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.displayinrow{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.displayincolumn{
+    display: flex;
+    flex-direction: column;
 }
