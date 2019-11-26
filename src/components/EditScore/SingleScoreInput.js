@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../../stylesheets/style.css";
-import popSymbol from "../EditScore/popSymbol";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import AddIcon from "@material-ui/icons/Add";
@@ -33,8 +32,10 @@ class SingleScoreInput extends Component {
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleShowLine = this.handleShowLine.bind(this);
     this.handleLineClick = this.handleLineClick.bind(this);
+    //this.handleDotClick = this.handleDotClick.bind(this)
     this.handleShowDoubleLine = this.handleShowDoubleLine.bind(this);
     this.handleShowSymbols = this.handleShowSymbols.bind(this);
+    //this.handleShowDot = this.handleShowDot.bind(this)
 
     this.noteCreationSubscription = null;
     this.noteUpdationSubscription = null;
@@ -42,14 +43,13 @@ class SingleScoreInput extends Component {
   }
 
   async componentDidMount() {
-    const result = await API.graphql(graphqlOperation(queries.listNotes, {
-      limit: 200,
+    const result = await API.graphql(graphqlOperation(queries.listNotes, { 
+      limit: 200, 
       filter: {
         scoreId: {
           eq: this.props.score.id
         }
-      }
-    }));
+      }}));  
 
     this.setState({
       notes: result.data.listNotes.items
@@ -69,23 +69,23 @@ class SingleScoreInput extends Component {
 
     this.noteDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteNote)).subscribe({
       next: (noteData) => {
-        const deletedNote = noteData.value.data.onDeleteNote.id;
-        console.log("deleted note id: " + deletedNote);
+          const deletedNote = noteData.value.data.onDeleteNote.id;
+          console.log("deleted note id: " + deletedNote);
 
-        const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote);
-        this.setState({
-          note: remainingNotes
-        });
+          const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote);
+          this.setState({
+              note: remainingNotes
+          });
       },
     });
 
     this.noteUpdationSubscription = API.graphql(graphqlOperation(subscriptions.onUpdateNote)).subscribe({
       next: (noteData) => {
-        const updatedNote = noteData.value.data.onUpdateNote;
-        const updatedNotes = this.state.notes.filter(notesData => notesData.id !== updatedNote.id);
-        this.setState({
-          notes: [...updatedNotes, updatedNote]
-        });
+          const updatedNote = noteData.value.data.onUpdateNote;
+          const updatedNotes = this.state.notes.filter(notesData => notesData.id !== updatedNote.id);
+          this.setState({
+              notes: [...updatedNotes, updatedNote]
+          });
       },
     });
 
@@ -93,9 +93,9 @@ class SingleScoreInput extends Component {
   }
 
   componentWillUnmount() {
-    if (this.noteCreationSubscription) this.noteCreationSubscription.unsubscribe();
-    if (this.noteUpdationSubscription) this.noteUpdationSubscription.unsubscribe();
-    if (this.noteDeletionSubscription) this.noteDeletionSubscription.unsubscribe();
+    if(this.noteCreationSubscription) this.noteCreationSubscription.unsubscribe();
+    if(this.noteUpdationSubscription) this.noteUpdationSubscription.unsubscribe();
+    if(this.noteDeletionSubscription) this.noteDeletionSubscription.unsubscribe();  
   }
 
   async handleChange(e) {
@@ -103,7 +103,7 @@ class SingleScoreInput extends Component {
     try {
       let { value, min, max } = e.target;
       console.log(e.target.value);
-      if (value) {
+      if(value) {
         value = Math.max(Number(min), Math.min(Number(max), Number(value)));
       }
       else value = null;
@@ -123,16 +123,16 @@ class SingleScoreInput extends Component {
           }
         }
         console.log(exist);
-        if (exist) {
+        if(exist) {
           this.state.num ? this.handleUpdateNote(note_id) : this.handleDeleteNote(note_id);
         }
         else {
           this.handleCreateNote();
         }
-
+        
       });
     }
-    catch (e) {
+    catch(e) {
       alert(e.message);
     }
   };
@@ -140,44 +140,44 @@ class SingleScoreInput extends Component {
   async handleCreateNote() {
     try {
       const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
-        input: {
-          number: this.state.num,
-          position: this.state.pos,
-          noteScoreId: this.props.score.id,
-          scoreId: this.props.score.id
-        }
+          input: {
+            number: this.state.num,
+            position: this.state.pos,
+            noteScoreId: this.props.score.id,
+            scoreId: this.props.score.id
+          }
       }));
       this.setState({
         note: noteCreated
       });
       console.log("created: ", noteCreated.data.createNote);
     }
-    catch (e) {
+    catch(e) {
       alert(e.message);
     }
   }
 
   async handleUpdateNote(id) {
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
-      input: {
-        id: id,
-        number: this.state.num,
-        position: this.state.pos
-      }
+        input: {
+          id: id,
+          number: this.state.num,
+          position: this.state.pos
+        }
     }));
     console.log("updated: ", updatedNote.data.updateNote);
   }
 
   async handleDeleteNote(id) {
-    const deletedNote = await API.graphql(graphqlOperation(mutations.deleteNote, {
-      input: {
-        id: id
-      }
+    const deletedNote = await API.graphql(graphqlOperation(mutations.deleteNote,{
+        input:{
+            id : id
+        }
     }));
   }
 
   componentDidUpdate() {
-    if (this.state.notes) {
+    if(this.state.notes){
       const temp = this.state.notes;
 
       this.state.notes.forEach((note) => {
@@ -189,7 +189,7 @@ class SingleScoreInput extends Component {
           
           input.value = note.number;
 
-          this.handleShowSymbols();
+         
         }
       })
     }
@@ -211,6 +211,14 @@ class SingleScoreInput extends Component {
       };
     }, () => console.log(this.state.doubleline));
   }
+
+  /*handleDotClick = () => {
+    this.setState(prevState => {
+      return {
+        Dot: !prevState.Dot
+      };
+    }, () => console.log(this.state.line));
+  } */
 
   handleShowSymbols() {
     console.log("inside show symbol");
@@ -238,6 +246,14 @@ class SingleScoreInput extends Component {
     );
   }
 
+ /*handleShowDot() {
+    return (
+      <div>
+        <Dot fontSize="small" />
+      </div>
+    )
+  }*/
+
   //console.log(props.nodeLength);
   render() {
     return this.props.lineLength.map(row => (
@@ -257,7 +273,7 @@ class SingleScoreInput extends Component {
                           </Dropdown.Toggle>
                           <Dropdown.Menu>
                             <Dropdown.Item>
-                              <Dot fontSize="small" onClick={}/>
+                              <Dot /*onClick={this.handleDotClick}*/ fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
                               <Line onClick={this.handleLineClick} fontSize="small" />
@@ -268,9 +284,6 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown>
                       </span>
-                      <div id="paragraph"> 
-                        hello
-                      </div>
                       <span key={column}>
                         <input
                           key="0"
@@ -283,6 +296,8 @@ class SingleScoreInput extends Component {
                           id={[row, column, 0]}
                           onChange={this.handleChange}
                         />
+                        <div>{this.handleShowSymbols()} </div>
+                         
                       </span>
                     </span>
                     <span className="displayincolumn">
@@ -296,10 +311,10 @@ class SingleScoreInput extends Component {
                               <Dot fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
-                              <Line fontSize="small" />
+                              <Line onClick={this.handleLineClick} fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
-                              <DoubleLine fontSize="small" />
+                              <DoubleLine onClick={this.handleDoubleLineClick} fontSize="small" />
                             </Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
@@ -314,6 +329,7 @@ class SingleScoreInput extends Component {
                           id={[row, column, 1]}
                           onChange={this.handleChange}
                         />
+                        {this.handleShowSymbols()}
                       </span>
                     </span>
                     <span className="displayincolumn">
@@ -323,11 +339,11 @@ class SingleScoreInput extends Component {
                             <AddIcon fontSize="small" color="action" />
                           </Dropdown.Toggle>
                           <Dropdown.Menu>
-                            <Dropdown.Item>
-                              <Dot fontSize="small" />
+                          <Dropdown.Item>
+                              <Line onClick={this.handleLineClick} fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
-                              <Line fontSize="small" />
+                              <DoubleLine onClick={this.handleDoubleLineClick} fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
                               <DoubleLine fontSize="small" />
@@ -345,6 +361,7 @@ class SingleScoreInput extends Component {
                           id={[row, column, 2]}
                           onChange={this.handleChange}
                         />
+                        {this.handleShowSymbols()}
                       </span>
                     </span>
                     <span className="displayincolumn">
@@ -358,10 +375,10 @@ class SingleScoreInput extends Component {
                               <Dot fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
-                              <Line fontSize="small" />
+                              <Line onClick={this.handleLineClick} fontSize="small" />
                             </Dropdown.Item>
                             <Dropdown.Item>
-                              <DoubleLine fontSize="small" />
+                              <DoubleLine onClick={this.handleDoubleLineClick} fontSize="small" />
                             </Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
@@ -376,11 +393,12 @@ class SingleScoreInput extends Component {
                           id={[row, column, 3]}
                           onChange={this.handleChange}
                         />
+                        {this.handleShowSymbols()}
                       </span>
                     </span>
 
 
-                    <span className="lineInBetween">|</span>
+                    <span className="lineInBetween">| </span>
                   </span>
 
                 ))}
