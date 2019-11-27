@@ -1,5 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Carousel } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import "./HomePage.css";
 
 class HomePage extends Component{
@@ -71,41 +74,22 @@ class HomePage extends Component{
                     <h4>What we offer</h4>
                     <br/>
                     <div>
-                        <div className="col-sm-3">
-                            <span className="icon glyphicon-off logo-small"></span>
-                            <h4>POWER</h4>
-                            <p>Lorem ipsum dolor sit amet..</p>
-                        </div>
-                        <div className="col-sm-3">
-                            <span className="icon glyphicon-heart logo-small"></span>
-                            <h4>LOVE</h4>
-                            <p>Lorem ipsum dolor sit amet..</p>
-                        </div>
-                        <div className="col-sm-3">
-                            <span className="icon glyphicon-lock logo-small"></span>
-                            <h4>JOB DONE</h4>
-                            <p>Lorem ipsum dolor sit amet..</p>
-                        </div>
-                    </div>
-                </div>
-
-                <br/><br/>
-
-                <div className="slideanim">
-                    <div className="col-sm-4">
-                        <span className="glyphicon glyphicon-leaf logo-small"></span>
-                        <h4>GREEN</h4>
-                        <p>Lorem ipsum dolor sit amet..</p>
-                    </div>
-                    <div className="col-sm-4">
-                        <span className="glyphicon glyphicon-certificate logo-small"></span>
-                        <h4>CERTIFIED</h4>
-                        <p>Lorem ipsum dolor sit amet..</p>
-                    </div>
-                    <div className="col-sm-4">
-                        <span className="glyphicon glyphicon-wrench logo-small"></span>
-                        <h4 className="h4">HARD WORK</h4>
-                        <p>Lorem ipsum dolor sit amet..</p>
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <h4>SIMPLICITY</h4>
+                                    <p>Lorem ipsum dolor sit amet..</p>
+                                </Col>
+                                <Col>
+                                    <h4>LOVE</h4>
+                                    <p>Lorem ipsum dolor sit amet..</p>
+                                </Col>
+                                <Col>
+                                    <h4>JOB DONE</h4>
+                                    <p>Lorem ipsum dolor sit amet..</p>
+                                </Col>
+                            </Row>
+                        </Container>
                     </div>
                 </div>
                 
