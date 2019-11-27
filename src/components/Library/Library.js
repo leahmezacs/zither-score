@@ -182,10 +182,10 @@ class Library extends Component {
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name, score.id)}>View</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name, score.id)}>View/Print</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit score</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.name)}>Change status</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.name)}>Change Status</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
