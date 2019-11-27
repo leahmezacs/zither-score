@@ -49,16 +49,13 @@ class HomePage extends Component{
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <br/><button className="btn btn-default btn-lg">Get in Touch</button>
                         </div>
-                        <div className="col-sm-4">
-                            <span className="glyphicon glyphicon-signal logo"></span>
-                        </div>
                     </div>
                 </div>
 
                 <div className="container-fluid bg-grey">
                     <div className="row">
                         <div className="col-sm-4">
-                            <span className="glyphicon glyphicon-globe logo slideanim"></span>
+                            
                         </div>
                         <div className="col-sm-8">
                             <h2>Our Values</h2><br/>
@@ -167,9 +164,9 @@ class HomePage extends Component{
                     <div className="row">
                         <div className="col-sm-5">
                             <p>Contact us and we'll get back to you within 24 hours.</p>
-                            <p><span className="icon glyphicon-map-marker"></span> Chicago, US</p>
-                            <p><span className="icon glyphicon-phone"></span> +00 1515151515</p>
-                            <p><span className="icon glyphicon-envelope"></span> myemail@something.com</p>
+                            <p> Chicago, US</p>
+                            <p> +00 1515151515</p>
+                            <p> myemail@something.com</p>
                         </div>
                         <div className="col-sm-7 slideanim">
                             <div className="row">
@@ -194,7 +191,7 @@ class HomePage extends Component{
 
                 <footer className="container-fluid text-center">
                     <a href="#myPage" title="To Top">
-                        <span className="glyphicon glyphicon-chevron-up"></span>
+                        
                     </a>
                     <p>Bootstrap theme made by: <a href="https://www.w3schools.com" target="_blank">www.w3schools.com</a></p>
                 </footer>
