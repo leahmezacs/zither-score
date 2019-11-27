@@ -131,9 +131,9 @@ class Discovery extends Component {
           { title: 'Author', field: 'author' },
           { title: 'Modify Date', field: 'modifyDate' },
         ],
-        data: [ {}
-          // { scoreName: 'happy', author: 'sad', modifyDate: 1987 },
-          // { scoreName: 'test', author: 'sad', modifyDate: 1987 },
+        data: [ 
+          { scoreName: 'happy', author: 'sad', modifyDate: 1987 },
+          { scoreName: 'test', author: 'sad', modifyDate: 1987 },
         ],
       }
     }
@@ -163,28 +163,25 @@ class Discovery extends Component {
     console.log(result);
     this.setState({
       scores: result.data.listScores.items,
-      data: [
-        // this.state.scores.map((score) => {
-        //   const scoreName = score.name;
-        //   const author = score.user.username;
-        //   const date = score.updatedAt;
-        //   return(
-        //     { scoreName: scoreName, author: author, modifyDate: date }
-        //   )
-        // })
-      ]
     });
-    console.log(this.state.scores);
+    // console.log(this.state.scores);
 
     // console.log(this.state.scores.name);
-    this.state.scores.map((score) => {
-      const scoreName = score.name;
-      const author = score.user.username;
-      const date = score.updatedAt;
-      return(
-        { scoreName: scoreName, author: author, modifyDate: date }
-      )
+    this.setState({
+      datas: [
+        this.state.scores.map((score) => {
+          const scoreName = score.name;
+          const author = score.user.username;
+          const date = score.updatedAt;
+          return(
+            { scoreName: scoreName, author: author, modifyDate: date }
+          )
+        }),
+      ]
     })
+    console.log({...[this.state.datas]})
+    console.log(typeof(this.state.data));
+
   }
 
   render(){
