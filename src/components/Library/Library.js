@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import CreateModal from "../CreateModal/CreateModal";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-<<<<<<< HEAD
-import { Dropdown } from "react-bootstrap";
 import jsPDF from "jspdf";
-=======
 import { Dropdown, FormControl } from "react-bootstrap";
->>>>>>> 1a34ab61dca3709f30267763647cbaadd081ecca
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
@@ -20,12 +16,9 @@ class Library extends Component {
           modal: false,
           userId: '',
           scores: [],
-<<<<<<< HEAD
-          notes: []
-=======
+          notes: [],
           status: '',
           scoreId: ''
->>>>>>> 1a34ab61dca3709f30267763647cbaadd081ecca
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
@@ -106,7 +99,6 @@ class Library extends Component {
         });
     }
 
-<<<<<<< HEAD
     handlePreviewScore(score_name, score_id) {
         var doc = new jsPDF(); //pdf created
         doc.setProperties({
@@ -136,7 +128,6 @@ class Library extends Component {
         doc.output('dataurlnewwindow'); //pdf exported to new window
     }
 
-=======
     handleChangeStatus(current_status, score_id) {
         this.setState({
             scoreId: score_id,
@@ -149,7 +140,6 @@ class Library extends Component {
     }
 
     async handleUpdateScore() {
-        console.log("inside update");
         console.log(this.state.scoreId);
         const updatedScore = await API.graphql(graphqlOperation(mutations.updateScore, {
             input: {
@@ -159,8 +149,7 @@ class Library extends Component {
         }));
         console.log("updated: ", updatedScore); 
     }
-    
->>>>>>> 1a34ab61dca3709f30267763647cbaadd081ecca
+
     //list scores in table
     handleListScores() {
         const temp = this.state.scores;

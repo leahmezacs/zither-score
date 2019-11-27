@@ -32,10 +32,6 @@ class SingleScoreInput extends Component {
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleShowLine = this.handleShowLine.bind(this);
     this.handleLineClick = this.handleLineClick.bind(this);
-    //this.handleDotClick = this.handleDotClick.bind(this)
-    this.handleShowDoubleLine = this.handleShowDoubleLine.bind(this);
-    this.handleShowSymbols = this.handleShowSymbols.bind(this);
-    //this.handleShowDot = this.handleShowDot.bind(this)
 
     this.noteCreationSubscription = null;
     this.noteUpdationSubscription = null;
@@ -190,8 +186,6 @@ class SingleScoreInput extends Component {
           const input = document.getElementById(pos);
           
           input.value = note.number;
-
-         
         }
       })
     }
@@ -213,14 +207,6 @@ class SingleScoreInput extends Component {
       };
     }, () => console.log(this.state.doubleline));
   }
-
-  /*handleDotClick = () => {
-    this.setState(prevState => {
-      return {
-        Dot: !prevState.Dot
-      };
-    }, () => console.log(this.state.line));
-  } */
 
   handleShowSymbols() {
     console.log("inside show symbol");
@@ -247,15 +233,6 @@ class SingleScoreInput extends Component {
       
     );
   }
-
- /*handleShowDot() {
-    return (
-      <div>
-        <Dot fontSize="small" />
-      </div>
-    )
-  }*/
-
   //console.log(props.nodeLength);
   render() {
     return this.props.lineLength.map(row => (
@@ -298,8 +275,7 @@ class SingleScoreInput extends Component {
                           id={[row, column, 0]}
                           onChange={this.handleChange}
                         />
-                        <div>{this.handleShowSymbols()} </div>
-                         
+      
                       </span>
                     </span>
                     <span className="displayincolumn">
