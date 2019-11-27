@@ -112,10 +112,8 @@ class SingleScoreInput extends Component {
         console.log(temp);
         let exist = false;
         let note_id = "";
-        for(let i = 0; i < temp.length; ++i) {
-          if(JSON.stringify(temp[i].position) == JSON.stringify(this.state.pos)) {
-            /* console.log("temp: ", temp[i].position);
-            console.log("pos: ", this.state.pos); */
+        for (let i = 0; i < temp.length; ++i) {
+          if (JSON.stringify(temp[i].position) == JSON.stringify(this.state.pos)) {
             note_id = temp[i].id;
             exist = true;
           }
@@ -207,6 +205,14 @@ class SingleScoreInput extends Component {
       };
     }, () => console.log(this.state.doubleline));
   }
+
+  /*handleDotClick = () => {
+    this.setState(prevState => {
+      return {
+        Dot: !prevState.Dot
+      };
+    }, () => console.log(this.state.line));
+  } */
 
   handleShowSymbols() {
     console.log("inside show symbol");
