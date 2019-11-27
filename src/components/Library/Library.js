@@ -119,23 +119,20 @@ class Library extends Component {
             limit: 200, 
             filter: {
               scoreId: {
-                eq: this.props.score_id
+                eq: score_id
               }
-            }}));  
-      
+            }
+        }));  
         this.setState({
             notes: noteList.data.listNotes.items
         });
+        //Map notes to their corresponding position 
         this.state.notes.forEach((note) => {
-            const pos = note.position.toString();
-            const input = document.getElementById(pos);
-            input.value = note.number;
-        })
-
-        var my_array=[["1", "2", "3", "4"], ["5", "6", "7", "8"], ["9", "10", "11", "12"], ["13", "14", "15", "16"]];
-        addNumRow(0, my_array);
-        addLineBars(0);
-        
+            var pos = note.position; //array of coordinates [row, column, index]
+            var data = note.number;
+            doc.text( (23+(pos[1]*40)+(pos[2]*10)),  (58+(pos[0]*25)), data.toString());
+            addLineBars(pos[0]);
+        });
         doc.output('dataurlnewwindow'); //pdf exported to new window
     }
 
@@ -186,7 +183,7 @@ class Library extends Component {
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name)}>View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name, score.id)}>View</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.name)}>Change Status</Dropdown.Item>
