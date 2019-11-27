@@ -32,8 +32,6 @@ class SingleScoreInput extends Component {
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleShowLine = this.handleShowLine.bind(this);
     this.handleLineClick = this.handleLineClick.bind(this);
-    this.handleShowDoubleLine = this.handleShowDoubleLine.bind(this);
-    this.handleShowSymbols = this.handleShowSymbols.bind(this);
 
     this.noteCreationSubscription = null;
     this.noteUpdationSubscription = null;
@@ -235,7 +233,6 @@ class SingleScoreInput extends Component {
       
     );
   }
-
   //console.log(props.nodeLength);
   render() {
     return this.props.lineLength.map(row => (
@@ -250,6 +247,104 @@ class SingleScoreInput extends Component {
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">
                         <Dropdown className="d-inline" key="0">
+                          <Dropdown.Toggle className="btn btn-sm btn-light">
+                            <AddIcon fontSize="small" color="action" />
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu>
+                            <Dropdown.Item>
+                              <Dot /*onClick={this.handleDotClick}*/ fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <Line onClick={this.handleLineClick} fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <DoubleLine onClick={this.handleDoubleLineClick} fontSize="small" />
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </span>
+                      <span key={column}>
+                        <input
+                          key="0"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          line={this.state.line}
+                          doubleline={this.state.doubleline}
+                          id={[row, column, 0]}
+                          onChange={this.handleChange}
+                        />
+      
+                      </span>
+                    </span>
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
+                        <Dropdown className="d-inline" key="1">
+                          <Dropdown.Toggle className="btn btn-sm btn-light">
+                            <AddIcon fontSize="small" color="action" />
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu>
+                            <Dropdown.Item>
+                              <Dot fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <Line onClick={this.handleLineClick} fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <DoubleLine onClick={this.handleDoubleLineClick} fontSize="small" />
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </span>
+                      <span key={column}>
+                        <input
+                          key="1"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          id={[row, column, 1]}
+                          onChange={this.handleChange}
+                        />
+                        {this.handleShowSymbols()}
+                      </span>
+                    </span>
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
+                        <Dropdown className="d-inline" key="2">
+                          <Dropdown.Toggle className="btn btn-sm btn-light">
+                            <AddIcon fontSize="small" color="action" />
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu>
+                          <Dropdown.Item>
+                              <Line onClick={this.handleLineClick} fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <DoubleLine onClick={this.handleDoubleLineClick} fontSize="small" />
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <DoubleLine fontSize="small" />
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </span>
+                      <span key={column}>
+                        <input
+                          key="2"
+                          className="singleNote"
+                          type="number"
+                          min="0"
+                          max="7"
+                          id={[row, column, 2]}
+                          onChange={this.handleChange}
+                        />
+                        {this.handleShowSymbols()}
+                      </span>
+                    </span>
+                    <span className="displayincolumn">
+                      <span className="dropdown d-inline col-xs-12">
+                        <Dropdown className="d-inline" key="3">
                           <Dropdown.Toggle className="btn btn-sm btn-light">
                             <AddIcon fontSize="small" color="action" />
                           </Dropdown.Toggle>
@@ -273,110 +368,15 @@ class SingleScoreInput extends Component {
                           type="number"
                           min="0"
                           max="7"
-                          line={this.state.line}
-                          doubleline={this.state.doubleline}
-                          id={[row, column, 0]}
+                          id={[row, column, 3]}
                           onChange={this.handleChange}
                         />
                         {this.handleShowSymbols()}
                       </span>
                     </span>
-                    <span className="displayincolumn">
-                      <span className="dropdown d-inline col-xs-12">
-                        <Dropdown className="d-inline" key="1">
-                          <Dropdown.Toggle className="btn btn-sm btn-light">
-                            <AddIcon fontSize="small" color="action" />
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                            <Dropdown.Item>
-                              <Dot fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <Line fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <DoubleLine fontSize="small" />
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </span>
-                      <span key={column}>
-                        <input
-                          key="1"
-                          className="singleNote"
-                          type="number"
-                          min="0"
-                          max="7"
-                          id={[row, column, 1]}
-                          onChange={this.handleChange}
-                        />
-                      </span>
-                    </span>
-                    <span className="displayincolumn">
-                      <span className="dropdown d-inline col-xs-12">
-                        <Dropdown className="d-inline" key="2">
-                          <Dropdown.Toggle className="btn btn-sm btn-light">
-                            <AddIcon fontSize="small" color="action" />
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                            <Dropdown.Item>
-                              <Dot fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <Line fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <DoubleLine fontSize="small" />
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </span>
-                      <span key={column}>
-                        <input
-                          key="2"
-                          className="singleNote"
-                          type="number"
-                          min="0"
-                          max="7"
-                          id={[row, column, 2]}
-                          onChange={this.handleChange}
-                        />
-                      </span>
-                    </span>
-                    <span className="displayincolumn">
-                      <span className="dropdown d-inline col-xs-12">
-                        <Dropdown className="d-inline" key="3">
-                          <Dropdown.Toggle className="btn btn-sm btn-light">
-                            <AddIcon fontSize="small" color="action" />
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                            <Dropdown.Item>
-                              <Dot fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <Line fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <DoubleLine fontSize="small" />
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </span>
-                      <span key={column}>
-                        <input
-                          key="0"
-                          className="singleNote"
-                          type="number"
-                          min="0"
-                          max="7"
-                          id={[row, column, 3]}
-                          onChange={this.handleChange}
-                        />
-                      </span>
-                    </span>
 
 
-                    <span className="lineInBetween">|</span>
+                    <span className="lineInBetween">| </span>
                   </span>
 
                 ))}
