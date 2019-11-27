@@ -32,10 +32,6 @@ class SingleScoreInput extends Component {
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleShowLine = this.handleShowLine.bind(this);
     this.handleLineClick = this.handleLineClick.bind(this);
-    //this.handleDotClick = this.handleDotClick.bind(this)
-    this.handleShowDoubleLine = this.handleShowDoubleLine.bind(this);
-    this.handleShowSymbols = this.handleShowSymbols.bind(this);
-    //this.handleShowDot = this.handleShowDot.bind(this)
 
     this.noteCreationSubscription = null;
     this.noteUpdationSubscription = null;
@@ -188,8 +184,6 @@ class SingleScoreInput extends Component {
           const input = document.getElementById(pos);
           
           input.value = note.number;
-
-         
         }
       })
     }
@@ -245,15 +239,6 @@ class SingleScoreInput extends Component {
       
     );
   }
-
- /*handleShowDot() {
-    return (
-      <div>
-        <Dot fontSize="small" />
-      </div>
-    )
-  }*/
-
   //console.log(props.nodeLength);
   render() {
     return this.props.lineLength.map(row => (
@@ -262,7 +247,7 @@ class SingleScoreInput extends Component {
           <Grid item xs={12}>
             <Grid container justify="center" spacing={2}>
               <span className="lineBegin">|</span>
-              <Grid class="displayinrow" item>
+              <Grid className="displayinrow" item>
                 {this.props.nodeLength.map(column => (
                   <span key={column} className="displayinrow">
                     <span className="displayincolumn">
@@ -296,8 +281,7 @@ class SingleScoreInput extends Component {
                           id={[row, column, 0]}
                           onChange={this.handleChange}
                         />
-                        <div>{this.handleShowSymbols()} </div>
-                         
+      
                       </span>
                     </span>
                     <span className="displayincolumn">
