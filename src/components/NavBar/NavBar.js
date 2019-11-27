@@ -57,7 +57,7 @@ class NavBar extends Component {
             {this.props.loggedInUser ? (
               <>
                 <Nav className="ml-auto">
-                  <Nav.Link onClick={this.handleShow}>Create</Nav.Link>
+                  <Nav.Link onClick={this.handleShow} className="text-light font-weight-bold">Create</Nav.Link>
                 </Nav>
 
                 <NavDropdown 
