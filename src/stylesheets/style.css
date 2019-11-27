@@ -222,6 +222,7 @@ button, html input[type=button], input[type=reset], input[type=submit] {
 
 .select {
     background: transparent;
+    font-weight: bold;
     width: 40px;
     padding: 5px;
     font-size: 15px;
@@ -231,10 +232,17 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     height: 34px;
     -webkit-appearance: none;
     font-family:helvetica-roman;
-    color:#9C9C9C;   
-     background-color: rgba(0, 0, 0, 0);
-     -webkit-appearance: none;
-     border: none;
-     text-indent: 0.01px;
-     text-overflow: '';
+    color:black;   
+    background-color: rgba(0, 0, 0, 0);
+    -webkit-appearance: none;
+    border: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    font-size: 20px;
+    text-align-last:center;
+ }
+
+ .option {
+     color:black;
+
  }
