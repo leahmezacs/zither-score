@@ -74,7 +74,6 @@
 
 .header {
     background: #fff;
-    position: fixed;
     z-index: 2;
     height: inherit;
     width: calc(100vh - 540px);
@@ -103,7 +102,6 @@
 }
 
 .library-list .thead .tr {
-    position: fixed;
     height: inherit;
     width: inherit;
     z-index: 1;
@@ -196,11 +194,12 @@
     transition: all .2s ease-in-out;
 }
 
-.side-bar .inner {
-    position: fixed;
-    height: calc(100vh - 64px);
-    width: 270px;
+.side-bar {
     background: #fafafb;
+}
+
+.side-bar .inner {
+    width: 270px;
     padding: 30px;
     overflow: auto;
 }
