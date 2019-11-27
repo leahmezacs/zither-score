@@ -219,3 +219,31 @@ button, html input[type=button], input[type=reset], input[type=submit] {
 {
   display:none;
 }
+
+.select {
+    background: transparent;
+    font-weight: bold;
+    width: 40px;
+    padding: 5px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
+    font-family:helvetica-roman;
+    color:black;   
+    background-color: rgba(0, 0, 0, 0);
+    -webkit-appearance: none;
+    border: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    font-size: 20px;
+    text-align-last:center;
+ }
+
+ .option {
+     color:black;
+     font-weight: bold;
+     
+
+ }
