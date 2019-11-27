@@ -161,12 +161,12 @@ class HomePage extends Component{
                     <h2 className="text-center">CONTACT</h2>
                     <div className="row">
                         <div className="col-sm-5">
-                            <p>Contact us and we'll get back to you within 24 hours.</p>
-                            <p> Chicago, US</p>
-                            <p> +00 1515151515</p>
+                            <h5>Contact us and we'll get back to you within 24 hours.</h5>
+                            <p> New York, US</p>
+                            <p> +1 (111) 222-3333</p>
                             <p> myemail@something.com</p>
                         </div>
-                        <div className="col-sm-7 slideanim">
+                        <div className="col-sm-7">
                             <div className="row">
                                 <div className="col-sm-6 form-group">
                                     <input className="form-control" id="name" name="name" placeholder="Name" type="text" required/>
