@@ -108,6 +108,13 @@ class Library extends Component {
             }}}
         };
 
+        const noteList = API.graphql(graphqlOperation(queries.listNotes, { 
+            limit: 200, 
+            filter: {
+              scoreId: {
+                eq: this.props.score_id
+              }
+            }}));  
         var my_array=[["1", "2", "3", "4"], ["5", "6", "7", "8"], ["9", "10", "11", "12"], ["13", "14", "15", "16"]];
         addNumRow(0, my_array);
         addLineBars(0);
