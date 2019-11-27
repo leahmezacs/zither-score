@@ -188,11 +188,6 @@ class SingleScoreInput extends Component {
           const input = document.getElementById(pos);
           
           input.value = note.number;
-          
-
-          /* console.log("line", this.state.line);
-          console.log("doubleline", this.state.doubleline);
-          return this.handleShowSymbols(); */
         }
       })
     }
