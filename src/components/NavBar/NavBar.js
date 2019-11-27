@@ -38,7 +38,7 @@ class NavBar extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link className="text-light font-weight-bold" href="#">
+              <Nav.Link className="text-light font-weight-bold" href="/Discovery">
                 Discover
               </Nav.Link>
             </Nav>
@@ -61,7 +61,7 @@ class NavBar extends Component {
                   <Nav.Link href="#">Notification</Nav.Link>
                 </Nav>
 
-                <NavDropdown
+                <NavDropdown 
                   title={<AccountCircle fontSize="large" color="disabled" />}
                   id="basic-nav-dropdown"
                 >
