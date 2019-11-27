@@ -14,6 +14,7 @@ const SingleLineScoreInput = props => {
       />
     );
   }
+  else return null;
 };
 
 export default SingleLineScoreInput;

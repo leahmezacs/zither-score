@@ -61,7 +61,7 @@ class NavBar extends Component {
                   <Nav.Link href="#">Notification</Nav.Link>
                 </Nav>
 
-                <NavDropdown
+                <NavDropdown 
                   title={<AccountCircle fontSize="large" color="disabled" />}
                   id="basic-nav-dropdown"
                 >
