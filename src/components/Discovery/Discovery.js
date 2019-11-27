@@ -140,15 +140,6 @@ class Discovery extends Component {
 
   //get public scores from all users
   async componentDidMount() {
-    // const result = await API.graphql(graphqlOperation(queries.listScores, { 
-    //   limit: 200, 
-    //   filter: {
-    //     status: 'PUBLIC'
-    //   }})); 
-    // console.log(result);
-    // this.setState({
-    //   scores: result.data.listScores.items,
-    // });
     const limit = 50;
     const result = await API.graphql(
       graphqlOperation(queries.listScores, {
@@ -168,7 +159,7 @@ class Discovery extends Component {
 
     // console.log(this.state.scores.name);
     this.setState({
-      datas: [
+      datas: (
         this.state.scores.map((score) => {
           const scoreName = score.name;
           const author = score.user.username;
@@ -176,11 +167,24 @@ class Discovery extends Component {
           return(
             { scoreName: scoreName, author: author, modifyDate: date }
           )
-        }),
-      ]
+          })
+      )
     })
-    console.log({...[this.state.datas]})
-    console.log(typeof(this.state.data));
+
+    // const convertArrayToObject = (array) => {
+    //   const initialValue = {};
+    //   return array.reduce((obj, item) => {
+    //     return {
+    //       ...obj,
+    //       [item]: item,
+    //     };
+    //   }, initialValue);
+    // };
+
+    console.log(this.state.datas);
+    
+    // console.log(convertArrayToObject(this.state.datas))
+    console.log(this.state.data);
 
   }
 
@@ -192,7 +196,7 @@ class Discovery extends Component {
       // icons={tableIcons}
       title="Public Score"
       columns={this.state.columns}
-      data={this.state.data}
+      data={this.state.datas}
       // editable={{
       //   onRowAdd: newData =>
       //     new Promise(resolve => {
