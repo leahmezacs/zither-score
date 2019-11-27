@@ -1,5 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Carousel } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import "./HomePage.css";
 
 class HomePage extends Component{
@@ -33,9 +36,7 @@ class HomePage extends Component{
                     <h1 className="homepage-header">NumScore</h1> 
                     <p>We specialize in blablabla</p> 
                     <br />
-                    <button className="btn btn-light" href="">Sign up today!</button>
-                    <br />
-                    <a href="/Login" className="text-light">Have an account already?</a>
+                    <a href="/Login" className="btn btn-light">Sign up or login here!</a>
                 </div>
 
                 <div id="about" className="container-fluid">
@@ -46,16 +47,13 @@ class HomePage extends Component{
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <br/><button className="btn btn-default btn-lg">Get in Touch</button>
                         </div>
-                        <div className="col-sm-4">
-                            <span className="glyphicon glyphicon-signal logo"></span>
-                        </div>
                     </div>
                 </div>
 
                 <div className="container-fluid bg-grey">
                     <div className="row">
                         <div className="col-sm-4">
-                            <span className="glyphicon glyphicon-globe logo slideanim"></span>
+                            
                         </div>
                         <div className="col-sm-8">
                             <h2>Our Values</h2><br/>
@@ -71,41 +69,22 @@ class HomePage extends Component{
                     <h4>What we offer</h4>
                     <br/>
                     <div>
-                        <div className="col-sm-3">
-                            <span className="icon glyphicon-off logo-small"></span>
-                            <h4>POWER</h4>
-                            <p>Lorem ipsum dolor sit amet..</p>
-                        </div>
-                        <div className="col-sm-3">
-                            <span className="icon glyphicon-heart logo-small"></span>
-                            <h4>LOVE</h4>
-                            <p>Lorem ipsum dolor sit amet..</p>
-                        </div>
-                        <div className="col-sm-3">
-                            <span className="icon glyphicon-lock logo-small"></span>
-                            <h4>JOB DONE</h4>
-                            <p>Lorem ipsum dolor sit amet..</p>
-                        </div>
-                    </div>
-                </div>
-
-                <br/><br/>
-
-                <div className="slideanim">
-                    <div className="col-sm-4">
-                        <span className="glyphicon glyphicon-leaf logo-small"></span>
-                        <h4>GREEN</h4>
-                        <p>Lorem ipsum dolor sit amet..</p>
-                    </div>
-                    <div className="col-sm-4">
-                        <span className="glyphicon glyphicon-certificate logo-small"></span>
-                        <h4>CERTIFIED</h4>
-                        <p>Lorem ipsum dolor sit amet..</p>
-                    </div>
-                    <div className="col-sm-4">
-                        <span className="glyphicon glyphicon-wrench logo-small"></span>
-                        <h4 className="h4">HARD WORK</h4>
-                        <p>Lorem ipsum dolor sit amet..</p>
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <h4>SIMPLICITY</h4>
+                                    <p>Lorem ipsum dolor sit amet..</p>
+                                </Col>
+                                <Col>
+                                    <h4>LOVE</h4>
+                                    <p>Lorem ipsum dolor sit amet..</p>
+                                </Col>
+                                <Col>
+                                    <h4>JOB DONE</h4>
+                                    <p>Lorem ipsum dolor sit amet..</p>
+                                </Col>
+                            </Row>
+                        </Container>
                     </div>
                 </div>
                 
@@ -182,12 +161,12 @@ class HomePage extends Component{
                     <h2 className="text-center">CONTACT</h2>
                     <div className="row">
                         <div className="col-sm-5">
-                            <p>Contact us and we'll get back to you within 24 hours.</p>
-                            <p><span className="icon glyphicon-map-marker"></span> Chicago, US</p>
-                            <p><span className="icon glyphicon-phone"></span> +00 1515151515</p>
-                            <p><span className="icon glyphicon-envelope"></span> myemail@something.com</p>
+                            <h5>Contact us and we'll get back to you within 24 hours.</h5>
+                            <p> New York, US</p>
+                            <p> +1 (111) 222-3333</p>
+                            <p> myemail@something.com</p>
                         </div>
-                        <div className="col-sm-7 slideanim">
+                        <div className="col-sm-7">
                             <div className="row">
                                 <div className="col-sm-6 form-group">
                                     <input className="form-control" id="name" name="name" placeholder="Name" type="text" required/>
@@ -210,7 +189,7 @@ class HomePage extends Component{
 
                 <footer className="container-fluid text-center">
                     <a href="#myPage" title="To Top">
-                        <span className="glyphicon glyphicon-chevron-up"></span>
+                        
                     </a>
                     <p>Bootstrap theme made by: <a href="https://www.w3schools.com" target="_blank">www.w3schools.com</a></p>
                 </footer>
