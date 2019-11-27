@@ -69,7 +69,7 @@ class CreateModal extends Component {
           <Modal show={this.props.modal} onHide={this.props.handleShow}>
             <form onSubmit={this.handleSubmit}>
               <Modal.Header closeButton>
-                <Modal.Title>Music File</Modal.Title>
+                <Modal.Title>New score</Modal.Title>
               </Modal.Header>
 
               <Modal.Body>
