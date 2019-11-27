@@ -64,6 +64,7 @@ class NavBar extends Component {
                 <NavDropdown 
                   title={<AccountCircle fontSize="large" color="disabled" />}
                   id="basic-nav-dropdown"
+                  className="float-right"
                 >
                   <NavDropdown.Item href="#">Profile</NavDropdown.Item>
                   <NavDropdown.Item href="/Library">Library</NavDropdown.Item>
