@@ -101,7 +101,7 @@ class Library extends Component {
         });
     }
 
-    handlePreviewScore(score_name, score_id) {
+    async handlePreviewScore(score_name, score_id) {
         var doc = new jsPDF(); //pdf created
         doc.setProperties({
             title: score_name
@@ -123,7 +123,8 @@ class Library extends Component {
             }}}
         };
 
-        const noteList = API.graphql(graphqlOperation(queries.listNotes, { 
+        //Get list of notes belonging to this score id
+        const noteList = await API.graphql(graphqlOperation(queries.listNotes, { 
             limit: 200, 
             filter: {
               scoreId: {
