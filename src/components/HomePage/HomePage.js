@@ -36,9 +36,7 @@ class HomePage extends Component{
                     <h1 className="homepage-header">NumScore</h1> 
                     <p>We specialize in blablabla</p> 
                     <br />
-                    <button className="btn btn-light" href="">Sign up today!</button>
-                    <br />
-                    <a href="/Login" className="text-light">Have an account already?</a>
+                    <a href="/Login" className="btn btn-light">Sign up or login here!</a>
                 </div>
 
                 <div id="about" className="container-fluid">
