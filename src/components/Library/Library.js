@@ -157,7 +157,6 @@ class Library extends Component {
         }));
         console.log("updated: ", updatedScore); 
     }
-
     //list scores in table
     handleListScores() {
         const temp = this.state.scores;
