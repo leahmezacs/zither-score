@@ -37,6 +37,8 @@ class Library extends Component {
             scores: result.data.listScores.items,
             userId: user.username
         });
+    
+
         
         this.scoreDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteScore)).subscribe({
             next: (scoreData) => {
@@ -115,6 +117,16 @@ class Library extends Component {
                 eq: this.props.score_id
               }
             }}));  
+      
+        this.setState({
+            notes: noteList.data.listNotes.items
+        });
+        this.state.notes.forEach((note) => {
+            const pos = note.position.toString();
+            const input = document.getElementById(pos);
+            input.value = note.number;
+        })
+
         var my_array=[["1", "2", "3", "4"], ["5", "6", "7", "8"], ["9", "10", "11", "12"], ["13", "14", "15", "16"]];
         addNumRow(0, my_array);
         addLineBars(0);
