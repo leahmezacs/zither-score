@@ -41,6 +41,8 @@ class Library extends Component {
             scores: result.data.listScores.items,
             userId: user.username
         });
+    
+
         
         this.scoreDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteScore)).subscribe({
             next: (scoreData) => {
@@ -99,7 +101,7 @@ class Library extends Component {
         });
     }
 
-    handlePreviewScore(score_name, score_id) {
+    async handlePreviewScore(score_name, score_id) {
         var doc = new jsPDF(); //pdf created
         doc.setProperties({
             title: score_name
@@ -112,19 +114,25 @@ class Library extends Component {
                 doc.line( (20+(j*40)), (50+(i*25)),  (20+(j*40)), (65+(i*25))); // horizontal line
             }
         };
-        var addNumRow = function(i, arr) {
-            doc.setFontSize(11);
-            for(var index=0; index < arr.length; index++) {
-                if(arr[index].length === 4){
-                    for(var note=0; note < arr[0].length; note++) {
-                        doc.text( (23+(note*40)+(index*10)),  (58+(i*25)), arr[note][index]);
-            }}}
-        };
-
-        var my_array=[["1", "2", "3", "4"], ["5", "6", "7", "8"], ["9", "10", "11", "12"], ["13", "14", "15", "16"]];
-        addNumRow(0, my_array);
-        addLineBars(0);
-        
+        //Get list of notes belonging to this score id
+        const noteList = await API.graphql(graphqlOperation(queries.listNotes, { 
+            limit: 200, 
+            filter: {
+              scoreId: {
+                eq: score_id
+              }
+            }
+        }));  
+        this.setState({
+            notes: noteList.data.listNotes.items
+        });
+        //Map notes to their corresponding position 
+        this.state.notes.forEach((note) => {
+            var pos = note.position; //array of coordinates [row, column, index]
+            var data = note.number;
+            doc.text( (23+(pos[1]*40)+(pos[2]*10)),  (58+(pos[0]*25)), data.toString());
+            addLineBars(pos[0]);
+        });
         doc.output('dataurlnewwindow'); //pdf exported to new window
     }
 
@@ -174,7 +182,7 @@ class Library extends Component {
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name)}>View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name, score.id)}>View</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.name)}>Change Status</Dropdown.Item>
