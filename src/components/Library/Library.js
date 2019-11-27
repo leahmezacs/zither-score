@@ -114,15 +114,6 @@ class Library extends Component {
                 doc.line( (20+(j*40)), (50+(i*25)),  (20+(j*40)), (65+(i*25))); // horizontal line
             }
         };
-        var addNumRow = function(i, arr) {
-            doc.setFontSize(11);
-            for(var index=0; index < arr.length; index++) {
-                if(arr[index].length === 4){
-                    for(var note=0; note < arr[0].length; note++) {
-                        doc.text( (23+(note*40)+(index*10)),  (58+(i*25)), arr[note][index]);
-            }}}
-        };
-
         //Get list of notes belonging to this score id
         const noteList = await API.graphql(graphqlOperation(queries.listNotes, { 
             limit: 200, 
