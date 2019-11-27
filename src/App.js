@@ -6,6 +6,7 @@ import Settings from './components/Settings/Settings';
 import Login from './components/Login/Login';
 import NavBar from './components/NavBar/NavBar';
 import Library from './components/Library/Library';
+import Discovery from './components/Discovery/Discovery';
 import EditScore from './components/EditScore/EditScore';
 import SingleScore from './components/EditScore/ScoreInput';
 import ChangePassword from './components/Settings/ChangePassword';
@@ -49,6 +50,7 @@ class App extends Component {
                     <Route exact path="/Settings" component={Settings}/>
                     <Route exact path="/Settings/ChangePassword" component={ChangePassword}/>
                     <Route exact path="/Library" component={Library}/>
+                    <Route exact path="/Discovery" component={Discovery}/>
                     <Route exact path="/EditScore" component={EditScore}/>
                     <Route exact path="/ScoreInput" component={SingleScore}/>           
                 </div>

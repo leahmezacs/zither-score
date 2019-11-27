@@ -241,7 +241,7 @@ class SingleScoreInput extends Component {
           <Grid item xs={12}>
             <Grid container justify="center" spacing={2}>
               <span className="lineBegin">|</span>
-              <Grid class="displayinrow" item>
+              <Grid className="displayinrow" item>
                 {this.props.nodeLength.map(column => (
                   <span key={column} className="displayinrow">
                     <span className="displayincolumn">
