@@ -65,7 +65,7 @@ class CreateModal extends Component {
 
     render(){
       return (
-        <>     
+        <div>     
           <Modal show={this.props.modal} onHide={this.props.handleShow}>
             <form onSubmit={this.handleSubmit}>
               <Modal.Header closeButton>
@@ -95,7 +95,7 @@ class CreateModal extends Component {
               </Modal.Footer>
             </form>
           </Modal>
-        </>
+        </div>
       );
     }
 
