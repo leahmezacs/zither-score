@@ -65,11 +65,11 @@ class CreateModal extends Component {
 
     render(){
       return (
-        <>     
+        <div>     
           <Modal show={this.props.modal} onHide={this.props.handleShow}>
             <form onSubmit={this.handleSubmit}>
               <Modal.Header closeButton>
-                <Modal.Title>Music File</Modal.Title>
+                <Modal.Title>New score</Modal.Title>
               </Modal.Header>
 
               <Modal.Body>
@@ -90,12 +90,12 @@ class CreateModal extends Component {
               </Modal.Body>
 
               <Modal.Footer>
-                <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
-                <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
+                <Button variant="danger" onClick={this.props.handleShow} className="btn-outline-danger">Cancel</Button>
+                <input type="submit" value="Submit" color="primary" className="btn btn-outline-primary" />
               </Modal.Footer>
             </form>
           </Modal>
-        </>
+        </div>
       );
     }
 
