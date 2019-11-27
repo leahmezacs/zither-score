@@ -312,7 +312,8 @@ class SingleScoreInput extends Component {
                         </Dropdown>*/}
                         <select className="select">
                           <option>   </option>
-                          <option> . </option>
+                          <option className="option"> . </option>
+                          <option className="option"> : </option>
                         </select>
                       </span>
                       <span key={column}>
@@ -330,6 +331,8 @@ class SingleScoreInput extends Component {
                       </span>
                       <select className="select">
                           <option>   </option>
+                          <option className="option"> . </option>
+                          <option className="option"> : </option>
                           <option className="option">______</option>
                           <option className="option">======</option>
                         </select>
@@ -354,8 +357,9 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown> */}
                         <select className="select">
-                          <option>   </option>
-                          <option> . </option>
+                          <option>  </option>
+                          <option className="option"> . </option>
+                          <option className="option"> : </option>
                         </select>
                       </span>
                       <span key={column}>
@@ -371,6 +375,8 @@ class SingleScoreInput extends Component {
                       </span>
                       <select className="select">
                           <option>   </option>
+                          <option className="option"> . </option>
+                          <option className="option"> : </option>
                           <option className="option">______</option>
                           <option className="option">======</option>
                         </select>
@@ -395,8 +401,9 @@ class SingleScoreInput extends Component {
                           </Dropdown.Menu>
                         </Dropdown> */}
                         <select className="select">
-                          <option>   </option>
-                          <option> . </option>
+                          <option> </option>
+                          <option className="option"> . </option>
+                          <option className="option"> : </option>
                         </select>
                       </span>
                       <span key={column}>
@@ -412,6 +419,8 @@ class SingleScoreInput extends Component {
                       </span>
                       <select className="select">
                           <option>   </option>
+                          <option className="option"> . </option>
+                          <option className="option"> : </option>
                           <option className="option">______</option>
                           <option className="option">======</option>
                         </select>
@@ -437,7 +446,8 @@ class SingleScoreInput extends Component {
                         </Dropdown> */}
                         <select className="select">
                           <option>   </option>
-                          <option> . </option>
+                          <option className="option"> . </option>
+                          <option className="option"> : </option>
                         </select>
                       </span>
 
@@ -454,6 +464,8 @@ class SingleScoreInput extends Component {
                       </span>
                       <select className="select">
                           <option>   </option>
+                          <option className="option"> . </option>
+                          <option className="option"> : </option>
                           <option className="option">______</option>
                           <option className="option">======</option>
                         </select>
