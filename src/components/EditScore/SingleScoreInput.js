@@ -40,10 +40,13 @@ class SingleScoreInput extends Component {
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     /*this.handleShowLine = this.handleShowLine.bind(this);
     this.handleLineClick = this.handleLineClick.bind(this);
+<<<<<<< HEAD
     this.handleDotClick = this.handleDotClick.bind(this)
     this.handleShowDoubleLine = this.handleShowDoubleLine.bind(this);
     this.handleShowSymbols = this.handleShowSymbols.bind(this);
     this.handleShowDot = this.handleShowDot.bind(this)*/
+=======
+>>>>>>> ac36ae5dc00a357d828b51966358c2afa9dc20ff
 
     this.noteCreationSubscription = null;
     this.noteUpdationSubscription = null;
@@ -208,8 +211,11 @@ class SingleScoreInput extends Component {
           const input = document.getElementById(pos);
 
           input.value = note.number;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ac36ae5dc00a357d828b51966358c2afa9dc20ff
         }
       })
     }
@@ -232,6 +238,7 @@ class SingleScoreInput extends Component {
     }, () => console.log(this.state.doubleline));
   }
 
+<<<<<<< HEAD
   handleDotClick = () => {
     this.setState(prevState => {
       return {
@@ -240,6 +247,8 @@ class SingleScoreInput extends Component {
     }, () => console.log(this.state.line));
   } 
 
+=======
+>>>>>>> ac36ae5dc00a357d828b51966358c2afa9dc20ff
   handleShowSymbols() {
     console.log("inside show symbol");
     if(this.state.line) return this.handleShowLine();
@@ -266,6 +275,7 @@ class SingleScoreInput extends Component {
       
     );
   }
+<<<<<<< HEAD
 
  handleShowDot() {
     return (
@@ -280,6 +290,8 @@ class SingleScoreInput extends Component {
 
 
 
+=======
+>>>>>>> ac36ae5dc00a357d828b51966358c2afa9dc20ff
   //console.log(props.nodeLength);
   render() {
     return this.props.lineLength.map(row => (
@@ -327,6 +339,10 @@ class SingleScoreInput extends Component {
                           id={[row, column, 0]}
                           onChange={this.handleChange}
                         />
+<<<<<<< HEAD
+=======
+      
+>>>>>>> ac36ae5dc00a357d828b51966358c2afa9dc20ff
                       </span>
                     </span>
 
