@@ -5,6 +5,7 @@ type User
   username: String! 
   email: String!
   scores: [Score] @connection(name: "UserScores", sortField: "createdAt")
+  comments: [Comment] @connection(name: "UserComments", sortField: "createdAt")
 }
 
 type Score @model {
@@ -15,6 +16,14 @@ type Score @model {
   createdAt: String
   updatedAt: String
   status: ScoreStatus
+  comments: [Comment] @connection(name: "ScoreComments", sortField: "createdAt")
+}
+
+type Comment @model {
+  id: ID!
+  content: String
+  score: Score @connection(name: "ScoreComments", sortField: "createdAt")
+  user: User @connection(name: "UserComments", sortField: "createdAt")
 }
 
 enum ScoreStatus {
@@ -29,7 +38,6 @@ type Note @model {
   doubleDot: dotStatus
   line: Boolean
   doubleLine: Boolean
-  curve: Int
   position: [Int]!
   score: Score @connection(name: "ScoreNotes")
   scoreId: String!
