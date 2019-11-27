@@ -115,7 +115,7 @@
 
 // export default Discovery;
 import React, { Component } from 'react';
-import { Auth, graphqlOperation, API } from "aws-amplify";
+import { graphqlOperation, API } from "aws-amplify";
 import * as queries from "../../graphql/queries";
 
 import MaterialTable from 'material-table';
@@ -131,26 +131,61 @@ class Discovery extends Component {
           { title: 'Author', field: 'author' },
           { title: 'Modify Date', field: 'modifyDate' },
         ],
-        data: [
-          { scoreName: 'happy', author: 'sad', modifyDate: 1987 },
-          { scoreName: 'test', author: 'sad', modifyDate: 1987 },
+        data: [ {}
+          // { scoreName: 'happy', author: 'sad', modifyDate: 1987 },
+          // { scoreName: 'test', author: 'sad', modifyDate: 1987 },
         ],
       }
     }
 
   //get public scores from all users
-  // async componentDidMount() {
-  //   const result = await API.graphql(graphqlOperation(queries.listNotes, { 
-  //     limit: 200, 
-  //     filter: {
-  //       status: 'PUBLIC'
-  //     }})); 
-  //   console.log(result);
-  //   this.setState({
-  //     scores: result.data.listScores.items,
-  //   });
-  //   console.log(this.state.scores);
-  // }
+  async componentDidMount() {
+    // const result = await API.graphql(graphqlOperation(queries.listScores, { 
+    //   limit: 200, 
+    //   filter: {
+    //     status: 'PUBLIC'
+    //   }})); 
+    // console.log(result);
+    // this.setState({
+    //   scores: result.data.listScores.items,
+    // });
+    const limit = 50;
+    const result = await API.graphql(
+      graphqlOperation(queries.listScores, {
+        limit,
+        filter: {
+          status: {
+            eq: "PUBLIC"
+          }
+        }
+      })
+    );
+    console.log(result);
+    this.setState({
+      scores: result.data.listScores.items,
+      data: [
+        // this.state.scores.map((score) => {
+        //   const scoreName = score.name;
+        //   const author = score.user.username;
+        //   const date = score.updatedAt;
+        //   return(
+        //     { scoreName: scoreName, author: author, modifyDate: date }
+        //   )
+        // })
+      ]
+    });
+    console.log(this.state.scores);
+
+    // console.log(this.state.scores.name);
+    this.state.scores.map((score) => {
+      const scoreName = score.name;
+      const author = score.user.username;
+      const date = score.updatedAt;
+      return(
+        { scoreName: scoreName, author: author, modifyDate: date }
+      )
+    })
+  }
 
   render(){
   return (
