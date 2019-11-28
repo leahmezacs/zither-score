@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { Modal } from 'react-bootstrap';
 import CreateModal from './CreateModal';
 
@@ -27,7 +27,7 @@ let componentToTest = {
 
 const app = mount (
     <Router initialEntries={[ '/random' ]}>
-      componentToTest.html
+        componentToTest.html
     </Router>
 )
 
