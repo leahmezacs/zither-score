@@ -43,6 +43,14 @@ class Dashboard extends Component {
           })
         });
       }
+
+      async handleDeleteUser(user_id) {
+        const deletedUser = await API.graphql(graphqlOperation(mutations.deleteUser,{
+            input:{
+                id : user_id
+            }
+        }));
+      }
     
       render() {
         return (
@@ -52,6 +60,20 @@ class Dashboard extends Component {
               title="Users"
               columns={this.state.columns}
               data={this.state.data}
+              editable={{
+                onRowDelete: oldData =>
+                  new Promise(resolve => {
+                    setTimeout(() => {
+                      resolve();
+                      this.setState(prevState => {
+                        const data = [...prevState.data];
+                        data.splice(data.indexOf(oldData), 1);
+                        return { ...prevState, data };
+                      });
+                      this.handleDeleteUser(oldData.username);
+                    }, 600);
+                  }),
+              }}
             />
           </Container>
         );
