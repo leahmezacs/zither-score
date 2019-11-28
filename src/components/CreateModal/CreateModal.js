@@ -34,18 +34,19 @@ class CreateModal extends Component {
     }
 
     handleSubmit(event) {
-      this.handleCreateScore().then(result => this.setState({
-        score: result
-      }))
       event.preventDefault();
       this.props.handleShow();
       this.handleCreateScore().then(result => {
-        this.props.history.push({
-          pathname: '/EditScore',
-          search: result.data.createScore.id,
-          state: {
-            score_id: result.data.createScore.id
-          }
+        this.setState({
+          score: result
+        }, () => {
+          this.props.history.push({
+            pathname: '/EditScore',
+            search: result.data.createScore.id,
+            state: {
+              score_id: result.data.createScore.id
+            }
+          });
         });
       });      
     }

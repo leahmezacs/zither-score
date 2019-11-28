@@ -14,7 +14,7 @@ class EditScore extends Component {
       score_id: url.slice(url.lastIndexOf('?') + 1, url.length),
       score: []
     };
-    //console.log(this.state.score_name);
+    //console.log(this.state.score_id);
   }
   async componentDidMount() {
     const result = await API.graphql(
@@ -22,7 +22,7 @@ class EditScore extends Component {
         id: this.state.score_id
       })
     );
-    console.log("id: ", this.state.score_id);
+   // console.log("id: ", this.state.score_id);
 
     this.setState({
       score: result.data.getScore
