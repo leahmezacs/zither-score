@@ -1,7 +1,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateUser = `subscription OnCreateUser($id: String!) {
+export const onCreateUser = `subscription OnCreateUser($id: String) {
   onCreateUser(id: $id) {
     id
     username
@@ -16,10 +16,11 @@ export const onCreateUser = `subscription OnCreateUser($id: String!) {
       }
       nextToken
     }
+    group
   }
 }
 `;
-export const onUpdateUser = `subscription OnUpdateUser($id: String!) {
+export const onUpdateUser = `subscription OnUpdateUser($id: String) {
   onUpdateUser(id: $id) {
     id
     username
@@ -34,10 +35,11 @@ export const onUpdateUser = `subscription OnUpdateUser($id: String!) {
       }
       nextToken
     }
+    group
   }
 }
 `;
-export const onDeleteUser = `subscription OnDeleteUser($id: String!) {
+export const onDeleteUser = `subscription OnDeleteUser($id: String) {
   onDeleteUser(id: $id) {
     id
     username
@@ -52,6 +54,7 @@ export const onDeleteUser = `subscription OnDeleteUser($id: String!) {
       }
       nextToken
     }
+    group
   }
 }
 `;
@@ -67,7 +70,6 @@ export const onCreateScore = `subscription OnCreateScore {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -80,6 +82,7 @@ export const onCreateScore = `subscription OnCreateScore {
       scores {
         nextToken
       }
+      group
     }
     createdAt
     updatedAt
@@ -99,7 +102,6 @@ export const onUpdateScore = `subscription OnUpdateScore {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -112,6 +114,7 @@ export const onUpdateScore = `subscription OnUpdateScore {
       scores {
         nextToken
       }
+      group
     }
     createdAt
     updatedAt
@@ -131,7 +134,6 @@ export const onDeleteScore = `subscription OnDeleteScore {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -144,10 +146,41 @@ export const onDeleteScore = `subscription OnDeleteScore {
       scores {
         nextToken
       }
+      group
     }
     createdAt
     updatedAt
     status
+  }
+}
+`;
+export const onCreateComment = `subscription OnCreateComment {
+  onCreateComment {
+    id
+    content
+    createdAt
+    userId
+    scoreId
+  }
+}
+`;
+export const onUpdateComment = `subscription OnUpdateComment {
+  onUpdateComment {
+    id
+    content
+    createdAt
+    userId
+    scoreId
+  }
+}
+`;
+export const onDeleteComment = `subscription OnDeleteComment {
+  onDeleteComment {
+    id
+    content
+    createdAt
+    userId
+    scoreId
   }
 }
 `;
@@ -159,7 +192,6 @@ export const onCreateNote = `subscription OnCreateNote {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id
@@ -171,6 +203,7 @@ export const onCreateNote = `subscription OnCreateNote {
         id
         username
         email
+        group
       }
       createdAt
       updatedAt
@@ -188,7 +221,6 @@ export const onUpdateNote = `subscription OnUpdateNote {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id
@@ -200,6 +232,7 @@ export const onUpdateNote = `subscription OnUpdateNote {
         id
         username
         email
+        group
       }
       createdAt
       updatedAt
@@ -217,7 +250,6 @@ export const onDeleteNote = `subscription OnDeleteNote {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id
@@ -229,6 +261,7 @@ export const onDeleteNote = `subscription OnDeleteNote {
         id
         username
         email
+        group
       }
       createdAt
       updatedAt

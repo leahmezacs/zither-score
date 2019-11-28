@@ -10,6 +10,7 @@ class CreateModal extends Component {
       super(props);
 
       this.state = {
+        score_id: "",
         name: "",
         status: "PRIVATE"
       };
@@ -35,18 +36,19 @@ class CreateModal extends Component {
     handleSubmit(event) {
       event.preventDefault();
       this.props.handleShow();
-      this.handleCreateScore();
-      
-      
-      this.props.history.push({
-        pathname: '/EditScore',
-        search: this.state.name,
-        state: {
-          name: this.state.name
-        }
-      });
-      console.log(this.props.history.state);
-      
+      this.handleCreateScore().then(result => {
+        this.setState({
+          score: result
+        }, () => {
+          this.props.history.push({
+            pathname: '/EditScore',
+            search: result.data.createScore.id,
+            state: {
+              score_id: result.data.createScore.id
+            }
+          });
+        });
+      });      
     }
 
     handleCreateScore = async () => {
@@ -54,22 +56,22 @@ class CreateModal extends Component {
       const userId = user.username;
       const scoreCreated = await API.graphql(graphqlOperation(mutations.createScore, {
           input: {
-              id: this.state.name,
               name: this.state.name,
               status: this.state.status,
               scoreUserId: userId
           }
       }));
       console.log(scoreCreated);
+      return scoreCreated;
     }
 
     render(){
       return (
-        <div>     
+        <>     
           <Modal show={this.props.modal} onHide={this.props.handleShow}>
             <form onSubmit={this.handleSubmit}>
               <Modal.Header closeButton>
-                <Modal.Title>New score</Modal.Title>
+                <Modal.Title>Music File</Modal.Title>
               </Modal.Header>
 
               <Modal.Body>
@@ -90,12 +92,12 @@ class CreateModal extends Component {
               </Modal.Body>
 
               <Modal.Footer>
-                <Button variant="danger" onClick={this.props.handleShow} className="btn-outline-danger">Cancel</Button>
-                <input type="submit" value="Submit" color="primary" className="btn btn-outline-primary" />
+                <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
+                <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
               </Modal.Footer>
             </form>
           </Modal>
-        </div>
+        </>
       );
     }
 

@@ -1,10 +1,14 @@
 type User 
   @model 
-  @auth(rules: [{ allow: owner, ownerField: "id", queries: null }]) {
+  @auth(rules: [
+    { allow: owner, ownerField: "id" },
+    { allow: groups, groups: ["Admin"] }
+    { allow: groups, groups: ["User"], operations: [read] }]) {
   id: ID!
   username: String! 
   email: String!
   scores: [Score] @connection(name: "UserScores", sortField: "createdAt")
+  group: String!
 }
 
 type Score @model {
@@ -15,6 +19,14 @@ type Score @model {
   createdAt: String
   updatedAt: String
   status: ScoreStatus
+}
+
+type Comment @model {
+  id: ID!
+  content: String
+  createdAt: String!
+  userId: String!
+  scoreId: String!
 }
 
 enum ScoreStatus {
@@ -29,7 +41,6 @@ type Note @model {
   doubleDot: dotStatus
   line: Boolean
   doubleLine: Boolean
-  curve: Int
   position: [Int]!
   score: Score @connection(name: "ScoreNotes")
   scoreId: String!

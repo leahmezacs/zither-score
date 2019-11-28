@@ -42,8 +42,6 @@ class Library extends Component {
             userId: user.username
         });
     
-
-        
         this.scoreDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteScore)).subscribe({
             next: (scoreData) => {
                 const scoreId = scoreData.value.data.onDeleteScore.id;
@@ -81,22 +79,22 @@ class Library extends Component {
         });
     };
 
-    async handleDeleteScore(score_name) {
+    async handleDeleteScore(score_id) {
         const deletedScore = await API.graphql(graphqlOperation(mutations.deleteScore,{
             input:{
-                id : score_name
+                id : score_id
             }
         }));
         //console.log(deletedScore);
         //console.log(this.state.scores);
     }
 
-    handleEditScore(score_name) {
+    handleEditScore(score_id) {
         this.props.history.push({
             pathname: '/EditScore',
-            search: score_name,
+            search: score_id,
             state: {
-              name: score_name
+              score_id: score_id
             }
         });
     }
@@ -182,10 +180,10 @@ class Library extends Component {
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name, score.id)}>View/Print</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit score</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.name)}>Change status</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name, score.id)}>View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleEditScore(score.id)}>Edit</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleDeleteScore(score.id)}>Delete</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.id)}>Change Status</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
