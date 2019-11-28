@@ -16,6 +16,7 @@ export const onCreateUser = `subscription OnCreateUser($id: String) {
       }
       nextToken
     }
+    group
   }
 }
 `;
@@ -34,6 +35,7 @@ export const onUpdateUser = `subscription OnUpdateUser($id: String) {
       }
       nextToken
     }
+    group
   }
 }
 `;
@@ -52,6 +54,7 @@ export const onDeleteUser = `subscription OnDeleteUser($id: String) {
       }
       nextToken
     }
+    group
   }
 }
 `;
@@ -79,6 +82,7 @@ export const onCreateScore = `subscription OnCreateScore {
       scores {
         nextToken
       }
+      group
     }
     createdAt
     updatedAt
@@ -110,6 +114,7 @@ export const onUpdateScore = `subscription OnUpdateScore {
       scores {
         nextToken
       }
+      group
     }
     createdAt
     updatedAt
@@ -141,6 +146,7 @@ export const onDeleteScore = `subscription OnDeleteScore {
       scores {
         nextToken
       }
+      group
     }
     createdAt
     updatedAt
@@ -197,6 +203,7 @@ export const onCreateNote = `subscription OnCreateNote {
         id
         username
         email
+        group
       }
       createdAt
       updatedAt
@@ -225,6 +232,7 @@ export const onUpdateNote = `subscription OnUpdateNote {
         id
         username
         email
+        group
       }
       createdAt
       updatedAt
@@ -253,6 +261,7 @@ export const onDeleteNote = `subscription OnDeleteNote {
         id
         username
         email
+        group
       }
       createdAt
       updatedAt

@@ -37,7 +37,8 @@ class Login extends Component {
                     input : {
                         id: cognitoUser.username, 
                         username: cognitoUser.username,
-                        email: cognitoUser.attributes.email
+                        email: cognitoUser.attributes.email,
+                        group: cognitoUser.signInUserSession.accessToken.payload['cognito:groups']
                     }
                 }));
                 this.props.onLogin(cognitoUser);

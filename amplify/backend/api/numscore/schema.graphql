@@ -8,6 +8,7 @@ type User
   username: String! 
   email: String!
   scores: [Score] @connection(name: "UserScores", sortField: "createdAt")
+  group: String!
 }
 
 type Score @model {
