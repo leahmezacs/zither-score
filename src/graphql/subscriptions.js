@@ -67,7 +67,6 @@ export const onCreateScore = `subscription OnCreateScore {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -99,7 +98,6 @@ export const onUpdateScore = `subscription OnUpdateScore {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -131,7 +129,6 @@ export const onDeleteScore = `subscription OnDeleteScore {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -151,6 +148,36 @@ export const onDeleteScore = `subscription OnDeleteScore {
   }
 }
 `;
+export const onCreateComment = `subscription OnCreateComment {
+  onCreateComment {
+    id
+    content
+    createdAt
+    userId
+    scoreId
+  }
+}
+`;
+export const onUpdateComment = `subscription OnUpdateComment {
+  onUpdateComment {
+    id
+    content
+    createdAt
+    userId
+    scoreId
+  }
+}
+`;
+export const onDeleteComment = `subscription OnDeleteComment {
+  onDeleteComment {
+    id
+    content
+    createdAt
+    userId
+    scoreId
+  }
+}
+`;
 export const onCreateNote = `subscription OnCreateNote {
   onCreateNote {
     id
@@ -159,7 +186,6 @@ export const onCreateNote = `subscription OnCreateNote {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id
@@ -188,7 +214,6 @@ export const onUpdateNote = `subscription OnUpdateNote {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id
@@ -217,7 +242,6 @@ export const onDeleteNote = `subscription OnDeleteNote {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id

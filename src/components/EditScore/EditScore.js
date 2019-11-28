@@ -11,7 +11,7 @@ class EditScore extends Component {
     super(props);
     const url = window.location.href;
     this.state = {
-      score_name: url.slice(url.lastIndexOf('?') + 1, url.length),
+      score_id: url.slice(url.lastIndexOf('?') + 1, url.length),
       score: []
     };
     //console.log(this.state.score_name);
@@ -19,10 +19,11 @@ class EditScore extends Component {
   async componentDidMount() {
     const result = await API.graphql(
       graphqlOperation(queries.getScore, {
-        id: this.state.score_name
+        id: this.state.score_id
       })
     );
-    
+    console.log("id: ", this.state.score_id);
+
     this.setState({
       score: result.data.getScore
     });
@@ -49,7 +50,7 @@ class EditScore extends Component {
                     fontSize="40"
                     transform="translate(431.024, 80)"
                   >
-                    {this.state.score_name}
+                    {this.state.score.name}
                   </text>
                 </g>
               </g>

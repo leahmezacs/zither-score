@@ -49,7 +49,6 @@ export const getScore = `query GetScore($id: ID!) {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -94,6 +93,33 @@ export const listScores = `query ListScores(
   }
 }
 `;
+export const getComment = `query GetComment($id: ID!) {
+  getComment(id: $id) {
+    id
+    content
+    createdAt
+    userId
+    scoreId
+  }
+}
+`;
+export const listComments = `query ListComments(
+  $filter: ModelCommentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      content
+      createdAt
+      userId
+      scoreId
+    }
+    nextToken
+  }
+}
+`;
 export const getNote = `query GetNote($id: ID!) {
   getNote(id: $id) {
     id
@@ -102,7 +128,6 @@ export const getNote = `query GetNote($id: ID!) {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id
@@ -136,7 +161,6 @@ export const listNotes = `query ListNotes(
       doubleDot
       line
       doubleLine
-      curve
       position
       score {
         id

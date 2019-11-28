@@ -25,25 +25,16 @@ class SingleScoreInput extends Component {
       line: false,
       doubleline: false,
       displayLine: false
-
-
     };
 
     this.refList = [];
     this.a = React.createRef();
-
 
     console.log(this.props.score);
     this.handleChange = this.handleChange.bind(this);
     this.handleCreateNote = this.handleCreateNote.bind(this);
     this.handleUpdateNote = this.handleUpdateNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
-    /*this.handleShowLine = this.handleShowLine.bind(this);
-    this.handleLineClick = this.handleLineClick.bind(this);
-    this.handleDotClick = this.handleDotClick.bind(this)
-    this.handleShowDoubleLine = this.handleShowDoubleLine.bind(this);
-    this.handleShowSymbols = this.handleShowSymbols.bind(this);
-    this.handleShowDot = this.handleShowDot.bind(this)*/
 
     this.noteCreationSubscription = null;
     this.noteUpdationSubscription = null;
@@ -208,77 +199,10 @@ class SingleScoreInput extends Component {
           const input = document.getElementById(pos);
 
           input.value = note.number;
-
-
         }
       })
     }
   }
-
-  /*handleLineClick = () => {
-    this.setState(prevState => {
-      return {
-        line: !prevState.line
-      };
-    }, () => console.log(this.state.line));
-  }
-
-  handleDoubleLineClick = () => {
-    console.log("inside double");
-    this.setState(prevState => {
-      return {
-        doubleline: !prevState.doubleline
-      };
-    }, () => console.log(this.state.doubleline));
-  }
-
-  handleDotClick = () => {
-    this.setState(prevState => {
-      return {
-        Dot: !prevState.Dot
-      };
-    }, () => console.log(this.state.line));
-  } 
-
-  handleShowSymbols() {
-    console.log("inside show symbol");
-    if(this.state.line) return this.handleShowLine();
-    else if(this.state.doubleline) return this.handleShowDoubleLine();
-    else if(this.state.dot) return this.handleShowDot();
-    
-  }
-
-  handleShowLine() {
-    return (
-      <div>
-        <p>▁▁▁</p>
-      </div>
-    );
-  }
-
-  handleShowDoubleLine() {
-    return (
-      
-        <div>
-          <p>▁▁▁</p>
-          <p>▁▁▁</p>
-        </div>
-      
-    );
-  }
-
- handleShowDot() {
-    return (
-      <div>
-        <p>.</p>
-      </div>
-    )
-  }
-  */
-
-
-
-
 
   //console.log(props.nodeLength);
   render() {
@@ -294,22 +218,6 @@ class SingleScoreInput extends Component {
                   <span key={column} className="displayinrow">
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">
-                        {/*<Dropdown className="d-inline" key="0">
-                          <Dropdown.Toggle className="btn btn-sm btn-light">
-                            <AddIcon fontSize="small" color="action" />
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                            <Dropdown.Item>
-                              <Dot fontSize = "small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <Line  fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <DoubleLine  fontSize="small" />
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>*/}
                         <select className="select">
                           <option>   </option>
                           <option className="option"> . </option>
@@ -339,23 +247,7 @@ class SingleScoreInput extends Component {
                     </span>
 
                     <span className="displayincolumn">
-                      <span className="dropdown d-inline col-xs-12">
-                        {/* Dropdown className="d-inline" key="1">
-                          <Dropdown.Toggle className="btn btn-sm btn-light">
-                            <AddIcon fontSize="small" color="action" />
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                            <Dropdown.Item>
-                              <Dot onClick={this.handleDotClick} fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <Line onClick={this.handleLineClick} fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <DoubleLine onClick={this.handleDoubleLineClick} fontSize="small" />
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown> */}
+                      <span className="dropdown d-inline col-xs-12">                     
                         <select className="select">
                           <option>  </option>
                           <option className="option"> . </option>
@@ -383,23 +275,7 @@ class SingleScoreInput extends Component {
                     </span>
                    
                     <span className="displayincolumn">
-                      <span className="dropdown d-inline col-xs-12">
-                        {/*<Dropdown className="d-inline" key="2">
-                          <Dropdown.Toggle className="btn btn-sm btn-light">
-                            <AddIcon fontSize="small" color="action" />
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                          <Dropdown.Item>
-                              <Dot  fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <Line fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <DoubleLine  fontSize="small" />
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown> */}
+                      <span className="dropdown d-inline col-xs-12">                       
                         <select className="select">
                           <option> </option>
                           <option className="option"> . </option>
@@ -427,23 +303,7 @@ class SingleScoreInput extends Component {
                     </span>
 
                     <span className="displayincolumn">
-                      <span className="dropdown d-inline col-xs-12">
-                        {/*<Dropdown className="d-inline" key="2">
-                          <Dropdown.Toggle className="btn btn-sm btn-light">
-                            <AddIcon fontSize="small" color="action" />
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu>
-                          <Dropdown.Item>
-                              <Dot  fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <Line fontSize="small" />
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <DoubleLine  fontSize="small" />
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown> */}
+                      <span className="dropdown d-inline col-xs-12">                       
                         <select className="select">
                           <option>   </option>
                           <option className="option"> . </option>
@@ -470,10 +330,8 @@ class SingleScoreInput extends Component {
                           <option className="option">======</option>
                         </select>
                     </span>
-
                     <span className="lineInBetween">|  </span>
                   </span>
-
                 ))}
               </Grid>
             </Grid>

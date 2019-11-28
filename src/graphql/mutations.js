@@ -67,7 +67,6 @@ export const createScore = `mutation CreateScore($input: CreateScoreInput!) {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -99,7 +98,6 @@ export const updateScore = `mutation UpdateScore($input: UpdateScoreInput!) {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -131,7 +129,6 @@ export const deleteScore = `mutation DeleteScore($input: DeleteScoreInput!) {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -151,6 +148,36 @@ export const deleteScore = `mutation DeleteScore($input: DeleteScoreInput!) {
   }
 }
 `;
+export const createComment = `mutation CreateComment($input: CreateCommentInput!) {
+  createComment(input: $input) {
+    id
+    content
+    createdAt
+    userId
+    scoreId
+  }
+}
+`;
+export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!) {
+  updateComment(input: $input) {
+    id
+    content
+    createdAt
+    userId
+    scoreId
+  }
+}
+`;
+export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!) {
+  deleteComment(input: $input) {
+    id
+    content
+    createdAt
+    userId
+    scoreId
+  }
+}
+`;
 export const createNote = `mutation CreateNote($input: CreateNoteInput!) {
   createNote(input: $input) {
     id
@@ -159,7 +186,6 @@ export const createNote = `mutation CreateNote($input: CreateNoteInput!) {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id
@@ -188,7 +214,6 @@ export const updateNote = `mutation UpdateNote($input: UpdateNoteInput!) {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id
@@ -217,7 +242,6 @@ export const deleteNote = `mutation DeleteNote($input: DeleteNoteInput!) {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id

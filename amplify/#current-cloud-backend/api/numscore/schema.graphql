@@ -17,6 +17,14 @@ type Score @model {
   status: ScoreStatus
 }
 
+type Comment @model {
+  id: ID!
+  content: String
+  createdAt: String!
+  userId: String!
+  scoreId: String!
+}
+
 enum ScoreStatus {
   PRIVATE
   PUBLIC
@@ -29,7 +37,6 @@ type Note @model {
   doubleDot: dotStatus
   line: Boolean
   doubleLine: Boolean
-  curve: Int
   position: [Int]!
   score: Score @connection(name: "ScoreNotes")
   scoreId: String!
