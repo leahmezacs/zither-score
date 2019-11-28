@@ -84,7 +84,7 @@ class NavBar extends Component {
                     id="basic-nav-dropdown"
                     className="float-right"
                   >
-                    <NavDropdown.Item href="#">Dashboard</NavDropdown.Item>
+                    <NavDropdown.Item href="/Dashboard">Dashboard</NavDropdown.Item>
                     <NavDropdown.Item href="/" onClick={this.props.onSignOut}>
                       Logout
                     </NavDropdown.Item>
