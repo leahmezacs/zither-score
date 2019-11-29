@@ -85,8 +85,9 @@ class SingleScoreInput extends Component {
 
         const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote);
         this.setState({
-          note: remainingNotes
+          notes: remainingNotes
         });
+        console.log(this.state.notes);
       },
     });
 
@@ -124,8 +125,6 @@ class SingleScoreInput extends Component {
         pos: result
       }, () => {
         const temp = this.state.notes;
-        /* console.log(this.state.num);
-        console.log(temp); */
         let exist = false;
         let note_id = "";
         for (let i = 0; i < temp.length; ++i) {
@@ -137,6 +136,7 @@ class SingleScoreInput extends Component {
           }
         }
         console.log(exist);
+        console.log("is there num: ", this.state.num);
         if (exist) {
           this.state.num ? this.handleUpdateNote(note_id) : this.handleDeleteNote(note_id);
         }
@@ -235,8 +235,7 @@ class SingleScoreInput extends Component {
 
   componentDidUpdate() {
     if (this.state.notes) {
-      const temp = this.state.notes;
-      console.log("component update: ", temp);
+      console.log("component update: ", this.state.notes);
       this.state.notes.forEach((note) => {
         if (note.position[0] < this.props.lineLength.length) {
           const pos = note.position.toString();
@@ -245,21 +244,16 @@ class SingleScoreInput extends Component {
           const symbol_bottom = document.getElementsByName(pos)[1];
 
           note.dot === "TOP" ? symbol_top.value = "dot-top" 
-            : note.doubledot === "TOP" ? symbol_top.value = "doubledot-top"
-            : symbol_top.value = null; 
-
-          note.dot === "BOTTOM" ? symbol_bottom.value = "dot-bottom" 
-            : note.doubledot === "BOTTOM" ? symbol_bottom.value = "doubledot-bottom" 
-            : symbol_bottom.value = null;
-
-          note.line === true ? symbol_bottom.value = "line" 
-            : note.doubleline === true ? symbol_bottom.value = "doubleline" 
+            : note.doubleDot === "TOP" ? symbol_top.value = "doubledot-top"
+            : note.dot === "BOTTOM" ? symbol_bottom.value = "dot-bottom"
+            : note.doubleDot === "BOTTOM" ? symbol_bottom.value = "doubledot-bottom" 
+            : note.line === true ? symbol_bottom.value = "line" 
+            : note.doubleLine === true ? symbol_bottom.value = "doubleline" 
             : symbol_bottom.value = null;
 
           input.value = note.number;
-          console.log("top: ", symbol_top);
-          console.log("bottom: ", symbol_bottom);
-          console.log("dot", note.dot);
+          console.log("note.number: ", note.number);
+          console.log(this.state.num);
         }
       })
     }
