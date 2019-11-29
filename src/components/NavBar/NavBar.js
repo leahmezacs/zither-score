@@ -28,7 +28,7 @@ class NavBar extends Component {
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
       return <Redirect to="/" />;
     }
-    if(this.props.loggedInUser) console.log("user: ", this.props.loggedInUser.signInUserSession);
+    if(this.props.loggedInUser) console.log("user: ", this.props.loggedInUser.signInUserSession.accessToken.payload['cognito:groups']);
     return (
       <div>
         <Navbar className="NavBarBackground" expand="lg">
@@ -55,7 +55,7 @@ class NavBar extends Component {
             </Form>
 
             { this.props.loggedInUser ? (          
-               this.props.loggedInUser.signInUserSession.accessToken.payload['cognito:groups'] === "User" ? (
+               this.props.loggedInUser.signInUserSession.accessToken.payload['cognito:groups'] == "User" ? (
                 <>
                   <Nav className="ml-auto">
                     <Nav.Link onClick={this.handleShow}>Create</Nav.Link>
