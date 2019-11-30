@@ -22,7 +22,7 @@ class Library extends Component {
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
-        this.handlePreviewScore = this.handlePreviewScore.bind(this);
+        this.handlePrintScore = this.handlePrintScore.bind(this);
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
@@ -99,7 +99,7 @@ class Library extends Component {
         });
     }
 
-    async handlePreviewScore(score_name, score_id) {
+    async handlePrintScore(score_name, score_id) {
         var doc = new jsPDF(); //pdf created
         doc.setProperties({
             title: score_name
@@ -180,7 +180,8 @@ class Library extends Component {
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name, score.id)}>View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleViewScore(score.id)}>View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handlePrintScore(score.name, score.id)}>Print</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.id)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.id)}>Delete</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.id)}>Change Status</Dropdown.Item>
