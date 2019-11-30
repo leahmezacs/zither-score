@@ -22,6 +22,7 @@ class Library extends Component {
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
+        this.handleViewScore = this.handleViewScore.bind(this);
         this.handlePrintScore = this.handlePrintScore.bind(this);
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
@@ -92,6 +93,16 @@ class Library extends Component {
     handleEditScore(score_id) {
         this.props.history.push({
             pathname: '/EditScore',
+            search: score_id,
+            state: {
+              score_id: score_id
+            }
+        });
+    }
+
+    handleViewScore(score_id) {
+        this.props.history.push({
+            pathname: '/ViewScore',
             search: score_id,
             state: {
               score_id: score_id
