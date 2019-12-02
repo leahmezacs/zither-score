@@ -128,6 +128,11 @@ class Library extends Component {
         this.state.notes.forEach((note) => {
             var pos = note.position; //array of coordinates [row, column, index]
             var data = note.number;
+            if(note.dot === "TOP") { doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (50+(pos[0]*25)), .7, .7, 'F'); }
+            if(note.doubleDot === "TOP") { doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (48+(pos[0]*25)), .7, .7, 'F'); }
+            if(note.dot === "BOTTOM") { doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (62+(pos[0]*25)), .7, .7, "F"); }
+            if(note.doubleDot === )
+doc.ellipse(25, 64, .7, .7, "F")
             doc.text( (23+(pos[1]*40)+(pos[2]*10)),  (58+(pos[0]*25)), data.toString());
             addLineBars(pos[0]);
         });
