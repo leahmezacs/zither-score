@@ -6,12 +6,15 @@ import LibraryMusicIcon from "@material-ui/icons/LibraryMusicOutlined";
 import "../../stylesheets/style.css";
 import CreateModal from "../CreateModal/CreateModal";
 import { Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
+import { graphqlOperation, API } from 'aws-amplify';
+import * as queries from '../../graphql/queries';
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      group: ""
     };
     this.handleShow = this.handleShow.bind(this);
   }
@@ -28,7 +31,7 @@ class NavBar extends Component {
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
       return <Redirect to="/" />;
     }
-    if(this.props.loggedInUser) console.log("user: ", this.props.loggedInUser.signInUserSession.accessToken.payload['cognito:groups']);
+    
     return (
       <div>
         <Navbar className="NavBarBackground" expand="lg">
@@ -77,7 +80,7 @@ class NavBar extends Component {
                     </NavDropdown.Item>
                   </NavDropdown>
                 </>
-            ) : (
+            ) : /* this.props.loggedInUser.signInUserSession.accessToken.payload['cognito:groups'] == "Admin" ? */ (
                 <>
                   <NavDropdown 
                     title={<AccountCircle fontSize="large" color="disabled" />}
@@ -90,6 +93,10 @@ class NavBar extends Component {
                     </NavDropdown.Item>
                   </NavDropdown>
                 </>
+            /* ) : (
+              <Nav.Link className="text-light font-weight-bold" href="/Login">
+                Login
+              </Nav.Link> */
             )) : (
               <Nav.Link className="text-light font-weight-bold" href="/Login">
                 Login

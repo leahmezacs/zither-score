@@ -15,12 +15,31 @@
 		"numscore23475956": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
-			"dependsOn": [],
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "numscore23475956PostConfirmation",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				},
+				{
+					"category": "function",
+					"resourceName": "numscore23475956PreSignup",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				}
+			],
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/auth/numscore23475956-cloudformation-template.yml",
 				"logicalId": "authnumscore23475956"
 			},
-			"lastPushTimeStamp": "2019-11-28T22:49:51.374Z",
+			"lastPushTimeStamp": "2019-12-02T17:34:24.417Z",
 			"output": {
 				"AppClientSecret": "1ujie8p3ecj547c6chappapnnme4f0qqvtdcmbhisq6pp5dqsukk",
 				"UserPoolId": "us-east-1_Sbh7qj4nQ",
@@ -30,7 +49,7 @@
 				"IdentityPoolName": "numscore23475956_identitypool_23475956__local",
 				"UserPoolName": "numscore23475956_userpool_23475956"
 			},
-			"lastPushDirHash": "LmBcBG17qLpDdkQbFzl8p1dj/vg="
+			"lastPushDirHash": "9cim4cmhsYaJvd7Iv+oQ+aeHgh0="
 		}
 	},
 	"api": {
@@ -54,7 +73,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apinumscore"
 			},
-			"lastPushTimeStamp": "2019-11-28T22:49:53.119Z",
+			"lastPushTimeStamp": "2019-12-02T17:34:24.407Z",
 			"lastPushDirHash": "G7aC/5BMpmapJofoU8tnt+eBUtQ="
 		}
 	},
@@ -66,7 +85,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/hosting/template.json",
 				"logicalId": "hostingS3AndCloudFront"
 			},
-			"lastPushTimeStamp": "2019-11-28T22:49:51.378Z",
+			"lastPushTimeStamp": "2019-12-02T17:34:24.409Z",
 			"output": {
 				"S3BucketSecureURL": "https://numscore-local.s3.amazonaws.com",
 				"WebsiteURL": "http://numscore-local.s3-website-us-east-1.amazonaws.com",
@@ -74,6 +93,46 @@
 				"HostingBucketName": "numscore-local"
 			},
 			"lastPushDirHash": "q8yyA79iAQfVcyHytGSqHyYr4Ro="
+		}
+	},
+	"function": {
+		"numscore23475956PostConfirmation": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"lastBuildTimeStamp": "2019-12-02T17:31:17.033Z",
+			"lastPackageTimeStamp": "2019-12-02T17:31:18.934Z",
+			"distZipFilename": "numscore23475956PostConfirmation-525a583873484b6a4e75-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/function/numscore23475956PostConfirmation-cloudformation-template.json",
+				"logicalId": "functionnumscore23475956PostConfirmation"
+			},
+			"lastPushTimeStamp": "2019-12-02T17:34:24.417Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:579217758069:function:numscore23475956PostConfirmation-local",
+				"Name": "numscore23475956PostConfirmation-local"
+			},
+			"lastPushDirHash": "VxGPuav6X+6VkOZ1NLD/FbJx7CY="
+		},
+		"numscore23475956PreSignup": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"lastBuildTimeStamp": "2019-12-02T17:31:18.188Z",
+			"lastPackageTimeStamp": "2019-12-02T17:31:18.364Z",
+			"distZipFilename": "numscore23475956PreSignup-4b644433573674316f76-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/function/numscore23475956PreSignup-cloudformation-template.json",
+				"logicalId": "functionnumscore23475956PreSignup"
+			},
+			"lastPushTimeStamp": "2019-12-02T17:34:24.417Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:579217758069:function:numscore23475956PreSignup-local",
+				"Name": "numscore23475956PreSignup-local"
+			},
+			"lastPushDirHash": "uK4yR2L/qxYFPmpWEPUUbePon7g="
 		}
 	}
 }
