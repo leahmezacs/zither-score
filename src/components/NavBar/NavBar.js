@@ -43,17 +43,6 @@ class NavBar extends Component {
               </Nav.Link>
             </Nav>
 
-            <Form inline className="mr-auto">
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-1"
-              />
-              <button className="btn btn-sm btn-light">
-                <SearchIcon />
-              </button>
-            </Form>
-
             { this.props.loggedInUser ? (          
                this.props.loggedInUser.signInUserSession.accessToken.payload['cognito:groups'] == "User" ? (
                 <>
