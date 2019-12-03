@@ -5,16 +5,27 @@ class Comment extends Component {
   constructor(props) {
     super(props);
 
+    const urls = window.location.href;
     this.state = {
-      comment: ""
+      comment: '',
+      scoreID: urls.slice(urls.lastIndexOf('/') + 1, urls.length)
     };
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = event => {};
+//   handleChange = event => {};
 
-  handleSubmit = event => {};
+  handleSubmit = event => {
+      event.preventDefault();
+
+      const commentData = {
+        comment: this.state.comment,
+        scoreID: this.state.scoreID,
+    };
+
+      console.log(commentData);
+  };
 
   render() {
     return (
@@ -22,6 +33,7 @@ class Comment extends Component {
         <form onSubmit={this.handleSubmit}>
           <TextField
             fullWidth
+            name="comment"
             type="text"
             rows={5}
             rowsMax={5}
@@ -30,7 +42,7 @@ class Comment extends Component {
             inputProps={{ maxLength: 600 }}
             label="Leave a comment"
             variant="outlined"
-            onChange={this.handleChange}
+            onChange={e => this.setState({ comment: e.target.value})}
             required
           />
           <Button variant="contained" type="submit" color="primary">
