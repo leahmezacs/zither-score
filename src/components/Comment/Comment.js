@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Container, TextField, Button } from "@material-ui/core";
+import { Auth, graphqlOperation, API } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 class Comment extends Component {
   constructor(props) {
@@ -16,15 +18,23 @@ class Comment extends Component {
 
 //   handleChange = event => {};
 
-  handleSubmit = event => {
+  handleSubmit = async(event) => {
       event.preventDefault();
+      const user = await Auth.currentAuthenticatedUser();
+      const userId = user.username;
+      const commentCreated = await API.graphql(graphqlOperation(mutations.createComment, {
+          input: {
+              content: this.state.comment,
+              scoreId: this.state.scoreID,
+              userId: userId
+          }
+      }));
+    //   const commentData = {
+    //     comment: this.state.comment,
+    //     scoreID: this.state.scoreID,
+    // };
 
-      const commentData = {
-        comment: this.state.comment,
-        scoreID: this.state.scoreID,
-    };
-
-      console.log(commentData);
+      console.log(commentCreated);
   };
 
   render() {
