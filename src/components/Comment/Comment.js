@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, TextField, Button } from "@material-ui/core";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
+import * as queries from "../../graphql/queries";
 
 class Comment extends Component {
   constructor(props) {
@@ -29,13 +30,23 @@ class Comment extends Component {
               userId: userId
           }
       }));
-    //   const commentData = {
-    //     comment: this.state.comment,
-    //     scoreID: this.state.scoreID,
-    // };
-
       console.log(commentCreated);
+      this.handleListComments();
   };
+
+  handleListComments = async() => {
+      const comments = await API.graphql(
+        graphqlOperation(queries.listComments, {
+          limit: 100,
+          filter: {
+            scoreId: {
+              eq: this.state.scoreID
+            }
+          }
+        })
+      );
+      console.log(comments);
+  }
 
   render() {
     return (
