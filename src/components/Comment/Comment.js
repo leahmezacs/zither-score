@@ -6,7 +6,7 @@ class Comment extends Component {
     super(props);
 
     this.state = {
-        comment:'',
+      comment: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,7 +31,11 @@ class Comment extends Component {
             label="Leave a comment"
             variant="outlined"
             onChange={this.handleChange}
+            required
           />
+          <Button variant="contained" type="submit" color="primary">
+            Comment
+          </Button>
         </form>
       </Container>
     );
