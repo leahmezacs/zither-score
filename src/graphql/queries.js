@@ -16,6 +16,7 @@ export const getUser = `query GetUser($id: ID!) {
       }
       nextToken
     }
+    group
   }
 }
 `;
@@ -32,6 +33,7 @@ export const listUsers = `query ListUsers(
       scores {
         nextToken
       }
+      group
     }
     nextToken
   }
@@ -49,7 +51,6 @@ export const getScore = `query GetScore($id: ID!) {
         doubleDot
         line
         doubleLine
-        curve
         position
         scoreId
       }
@@ -62,6 +63,7 @@ export const getScore = `query GetScore($id: ID!) {
       scores {
         nextToken
       }
+      group
     }
     createdAt
     updatedAt
@@ -85,10 +87,38 @@ export const listScores = `query ListScores(
         id
         username
         email
+        group
       }
       createdAt
       updatedAt
       status
+    }
+    nextToken
+  }
+}
+`;
+export const getComment = `query GetComment($id: ID!) {
+  getComment(id: $id) {
+    id
+    content
+    createdAt
+    userId
+    scoreId
+  }
+}
+`;
+export const listComments = `query ListComments(
+  $filter: ModelCommentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      content
+      createdAt
+      userId
+      scoreId
     }
     nextToken
   }
@@ -102,7 +132,6 @@ export const getNote = `query GetNote($id: ID!) {
     doubleDot
     line
     doubleLine
-    curve
     position
     score {
       id
@@ -114,6 +143,7 @@ export const getNote = `query GetNote($id: ID!) {
         id
         username
         email
+        group
       }
       createdAt
       updatedAt
@@ -136,7 +166,6 @@ export const listNotes = `query ListNotes(
       doubleDot
       line
       doubleLine
-      curve
       position
       score {
         id

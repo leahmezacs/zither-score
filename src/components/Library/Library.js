@@ -42,8 +42,6 @@ class Library extends Component {
             userId: user.username
         });
     
-
-        
         this.scoreDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteScore)).subscribe({
             next: (scoreData) => {
                 const scoreId = scoreData.value.data.onDeleteScore.id;
@@ -81,22 +79,22 @@ class Library extends Component {
         });
     };
 
-    async handleDeleteScore(score_name) {
+    async handleDeleteScore(score_id) {
         const deletedScore = await API.graphql(graphqlOperation(mutations.deleteScore,{
             input:{
-                id : score_name
+                id : score_id
             }
         }));
         //console.log(deletedScore);
         //console.log(this.state.scores);
     }
 
-    handleEditScore(score_name) {
+    handleEditScore(score_id) {
         this.props.history.push({
             pathname: '/EditScore',
-            search: score_name,
+            search: score_id,
             state: {
-              name: score_name
+              score_id: score_id
             }
         });
     }
@@ -130,6 +128,21 @@ class Library extends Component {
         this.state.notes.forEach((note) => {
             var pos = note.position; //array of coordinates [row, column, index]
             var data = note.number;
+            if(note.dot === "TOP") { doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (50+(pos[0]*25)), .7, .7, 'F'); }
+            if(note.dot === "BOTTOM") { doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (62+(pos[0]*25)), .7, .7, "F"); }
+            if(note.doubleDot === "TOP") { 
+                doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (48+(pos[0]*25)), .7, .7, 'F'); 
+                doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (50+(pos[0]*25)), .7, .7, 'F'); 
+            }
+            if(note.doubleDot === "BOTTOM") { 
+                doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (64+(pos[0]*25)), .7, .7, "F");
+                doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (62+(pos[0]*25)), .7, .7, "F");
+            }
+            if(note.line === true) { doc.line( (21+(pos[1]*40)+(pos[2]*10)), (59+(pos[0]*25)), (31+(pos[1]*40)+(pos[2]*10)),(59+(pos[0]*25)) ); }
+            if(note.doubleLine === true) { 
+                doc.line( (21+(pos[1]*40)+(pos[2]*10)), (60+(pos[0]*25)), (31+(pos[1]*40)+(pos[2]*10)),(60+(pos[0]*25)) );
+                doc.line( (21+(pos[1]*40)+(pos[2]*10)), (59+(pos[0]*25)), (31+(pos[1]*40)+(pos[2]*10)),(59+(pos[0]*25)) );
+            }
             doc.text( (23+(pos[1]*40)+(pos[2]*10)),  (58+(pos[0]*25)), data.toString());
             addLineBars(pos[0]);
         });
@@ -183,9 +196,9 @@ class Library extends Component {
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item onClick={() => this.handlePreviewScore(score.name, score.id)}>View</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.handleEditScore(score.name)}>Edit</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.handleDeleteScore(score.name)}>Delete</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.name)}>Change Status</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleEditScore(score.id)}>Edit</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleDeleteScore(score.id)}>Delete</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.id)}>Change Status</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
