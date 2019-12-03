@@ -247,3 +247,13 @@ button, html input[type=button], input[type=reset], input[type=submit] {
      
 
  }
+
+/* View Score Styling */
+iframe{
+    height: 75rem;
+    width: 80rem; 
+    border: 0px;
+    margin-top: 20px;
+    margin-bottom: 35px; 
+    scroll-behavior: smooth;
+} 
