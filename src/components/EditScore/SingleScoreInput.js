@@ -33,7 +33,8 @@ class SingleScoreInput extends Component {
 
     //console.log(this.props.score);
     this.handleChange = this.handleChange.bind(this);
-    this.handleCreateNote = this.handleCreateNote.bind(this);
+    this.handleCreateNoteNumber = this.handleCreateNoteNumber.bind(this);
+    this.handleCreateNoteSymbol = this.handleCreateNoteSymbol.bind(this);
     this.handleUpdateNoteNumber = this.handleUpdateNoteNumber.bind(this);
     this.handleUpdateNoteSymbol = this.handleUpdateNoteSymbol.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
@@ -142,7 +143,7 @@ class SingleScoreInput extends Component {
           this.state.num ? this.handleUpdateNoteNumber(note_id) : this.handleDeleteNote(note_id);
         }
         else {
-          this.handleCreateNote();
+          this.handleCreateNoteNumber();
         }
       });
     }
@@ -179,7 +180,7 @@ class SingleScoreInput extends Component {
           this.handleUpdateNoteSymbol(note_id);
         }
         else {
-          this.handleCreateNote();
+          this.handleCreateNoteSymbol();
         }
       });
     }
@@ -188,15 +189,30 @@ class SingleScoreInput extends Component {
     }
   };
 
-  async handleCreateNote() {
+  async handleCreateNoteNumber() {
     console.log(this.state.num);
     const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
       input: {
         number: this.state.num,
-        /* line: this.state.line,
+        position: this.state.pos,
+        noteScoreId: this.props.score.id,
+        scoreId: this.props.score.id
+      }
+    }));
+    this.setState({
+      note: noteCreated
+    });
+    console.log("created: ", noteCreated.data.createNote);
+  }
+
+  async handleCreateNoteSymbol() {
+    console.log(this.state.num);
+    const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
+      input: {
+        line: this.state.line,
         doubleLine: this.state.doubleline,
         dot: this.state.dot,
-        doubleDot: this.state.doubledot, */
+        doubleDot: this.state.doubledot,
         position: this.state.pos,
         noteScoreId: this.props.score.id,
         scoreId: this.props.score.id
