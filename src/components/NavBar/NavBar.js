@@ -31,6 +31,7 @@ class NavBar extends Component {
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
       return <Redirect to="/" />;
     }
+    console.log(this.props.loggedInUser);
     
     return (
       <div>

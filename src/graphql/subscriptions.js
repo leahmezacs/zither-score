@@ -13,6 +13,7 @@ export const onCreateUser = `subscription OnCreateUser($id: String) {
         createdAt
         updatedAt
         status
+        category
       }
       nextToken
     }
@@ -32,6 +33,7 @@ export const onUpdateUser = `subscription OnUpdateUser($id: String) {
         createdAt
         updatedAt
         status
+        category
       }
       nextToken
     }
@@ -51,6 +53,7 @@ export const onDeleteUser = `subscription OnDeleteUser($id: String) {
         createdAt
         updatedAt
         status
+        category
       }
       nextToken
     }
@@ -87,6 +90,7 @@ export const onCreateScore = `subscription OnCreateScore {
     createdAt
     updatedAt
     status
+    category
   }
 }
 `;
@@ -119,6 +123,7 @@ export const onUpdateScore = `subscription OnUpdateScore {
     createdAt
     updatedAt
     status
+    category
   }
 }
 `;
@@ -151,6 +156,7 @@ export const onDeleteScore = `subscription OnDeleteScore {
     createdAt
     updatedAt
     status
+    category
   }
 }
 `;
@@ -208,6 +214,7 @@ export const onCreateNote = `subscription OnCreateNote {
       createdAt
       updatedAt
       status
+      category
     }
     scoreId
   }
@@ -237,6 +244,7 @@ export const onUpdateNote = `subscription OnUpdateNote {
       createdAt
       updatedAt
       status
+      category
     }
     scoreId
   }
@@ -266,6 +274,7 @@ export const onDeleteNote = `subscription OnDeleteNote {
       createdAt
       updatedAt
       status
+      category
     }
     scoreId
   }

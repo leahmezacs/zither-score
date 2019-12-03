@@ -50,6 +50,11 @@ class Dashboard extends Component {
                 id : user_id
             }
         }));
+        let params = {
+          UserPoolId: process.env.REACT_APP_USERPOOLID,
+          Username: user_id
+        };
+        
       }
     
       render() {

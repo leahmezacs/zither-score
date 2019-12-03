@@ -39,7 +39,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/auth/numscore23475956-cloudformation-template.yml",
 				"logicalId": "authnumscore23475956"
 			},
-			"lastPushTimeStamp": "2019-12-02T17:34:24.417Z",
+			"lastPushTimeStamp": "2019-12-03T18:32:43.294Z",
 			"output": {
 				"AppClientSecret": "1ujie8p3ecj547c6chappapnnme4f0qqvtdcmbhisq6pp5dqsukk",
 				"UserPoolId": "us-east-1_Sbh7qj4nQ",
@@ -73,8 +73,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apinumscore"
 			},
-			"lastPushTimeStamp": "2019-12-02T17:34:24.407Z",
-			"lastPushDirHash": "G7aC/5BMpmapJofoU8tnt+eBUtQ="
+			"lastPushTimeStamp": "2019-12-03T18:32:46.285Z",
+			"lastPushDirHash": "kbAgo+4GAG9sHOKuIrVprxiQIII="
 		}
 	},
 	"hosting": {
@@ -85,7 +85,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/hosting/template.json",
 				"logicalId": "hostingS3AndCloudFront"
 			},
-			"lastPushTimeStamp": "2019-12-02T17:34:24.409Z",
+			"lastPushTimeStamp": "2019-12-03T18:32:43.301Z",
 			"output": {
 				"S3BucketSecureURL": "https://numscore-local.s3.amazonaws.com",
 				"WebsiteURL": "http://numscore-local.s3-website-us-east-1.amazonaws.com",
@@ -107,7 +107,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/function/numscore23475956PostConfirmation-cloudformation-template.json",
 				"logicalId": "functionnumscore23475956PostConfirmation"
 			},
-			"lastPushTimeStamp": "2019-12-02T17:34:24.417Z",
+			"lastPushTimeStamp": "2019-12-03T18:32:43.302Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:579217758069:function:numscore23475956PostConfirmation-local",
@@ -126,7 +126,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/function/numscore23475956PreSignup-cloudformation-template.json",
 				"logicalId": "functionnumscore23475956PreSignup"
 			},
-			"lastPushTimeStamp": "2019-12-02T17:34:24.417Z",
+			"lastPushTimeStamp": "2019-12-03T18:32:43.303Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:579217758069:function:numscore23475956PreSignup-local",

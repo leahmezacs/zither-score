@@ -12,11 +12,13 @@ class CreateModal extends Component {
       this.state = {
         score_id: "",
         name: "",
-        status: "PRIVATE"
+        status: "PRIVATE",
+        category: "Folk"
       };
 
       this.handleNameChange = this.handleNameChange.bind(this);
       this.handleStatusChange = this.handleStatusChange.bind(this);
+      this.handleCategoryChange = this.handleCategoryChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleCreateScore = this.handleCreateScore.bind(this);
     }
@@ -30,6 +32,12 @@ class CreateModal extends Component {
     handleStatusChange(event) {
       this.setState({
         status: event.target.value
+      });
+    }
+
+    handleCategoryChange(event) {
+      this.setState({
+        category: event.target.value
       });
     }
 
@@ -58,6 +66,7 @@ class CreateModal extends Component {
           input: {
               name: this.state.name,
               status: this.state.status,
+              category: this.state.category,
               scoreUserId: userId
           }
       }));
@@ -86,6 +95,14 @@ class CreateModal extends Component {
                     <select value={this.state.status} onChange={this.handleStatusChange} className="browser-default custom-select">
                           <option value="PRIVATE">Private</option>
                           <option value="PUBLIC">Public</option>
+                    </select>
+                  </div>
+                  <div className="form-group col-md-6">
+                    <label>Category:</label>
+                    <select value={this.state.category} onChange={this.handleCategoryChange} className="browser-default custom-select">
+                          <option value="Folk">Folk</option>
+                          <option value="Contemporary">Contemporary</option>
+                          <option value="Classic">Classic</option>
                     </select>
                   </div>
                 </div>

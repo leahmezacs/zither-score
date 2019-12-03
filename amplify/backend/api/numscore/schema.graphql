@@ -19,6 +19,7 @@ type Score @model {
   createdAt: String
   updatedAt: String
   status: ScoreStatus
+  category: String!
 }
 
 type Comment @model {
