@@ -34,7 +34,8 @@ class SingleScoreInput extends Component {
     //console.log(this.props.score);
     this.handleChange = this.handleChange.bind(this);
     this.handleCreateNote = this.handleCreateNote.bind(this);
-    this.handleUpdateNote = this.handleUpdateNote.bind(this);
+    this.handleUpdateNoteNumber = this.handleUpdateNoteNumber.bind(this);
+    this.handleUpdateNoteSymbol = this.handleUpdateNoteSymbol.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleSymbolChange = this.handleSymbolChange.bind(this);
 
@@ -138,7 +139,7 @@ class SingleScoreInput extends Component {
         console.log(exist);
         console.log("is there num: ", this.state.num);
         if (exist) {
-          this.state.num ? this.handleUpdateNote(note_id) : this.handleDeleteNote(note_id);
+          this.state.num ? this.handleUpdateNoteNumber(note_id) : this.handleDeleteNote(note_id);
         }
         else {
           this.handleCreateNote();
@@ -175,7 +176,7 @@ class SingleScoreInput extends Component {
         }
         console.log(exist);
         if (exist) {
-          this.handleUpdateNote(note_id);
+          this.handleUpdateNoteSymbol(note_id);
         }
         else {
           this.handleCreateNote();
@@ -192,10 +193,10 @@ class SingleScoreInput extends Component {
     const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
       input: {
         number: this.state.num,
-        line: this.state.line,
+        /* line: this.state.line,
         doubleLine: this.state.doubleline,
         dot: this.state.dot,
-        doubleDot: this.state.doubledot,
+        doubleDot: this.state.doubledot, */
         position: this.state.pos,
         noteScoreId: this.props.score.id,
         scoreId: this.props.score.id
@@ -207,11 +208,24 @@ class SingleScoreInput extends Component {
     console.log("created: ", noteCreated.data.createNote);
   }
 
-  async handleUpdateNote(id) {
+  async handleUpdateNoteNumber(id) {
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
       input: {
         id: id,
         number: this.state.num,
+        position: this.state.pos
+      }
+    }));
+    this.setState({
+      note: updatedNote
+    });
+    console.log("updated: ", updatedNote.data.updateNote);
+  }
+
+  async handleUpdateNoteSymbol(id) {
+    const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
+      input: {
+        id: id,
         line: this.state.line,
         doubleLine: this.state.doubleline,
         dot: this.state.dot,
