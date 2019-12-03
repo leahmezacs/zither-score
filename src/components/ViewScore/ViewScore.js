@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import "../../stylesheets/scorestylesheet.css";
+import "../../stylesheets/style.css";
 import { graphqlOperation, API } from "aws-amplify";
 import * as queries from "../../graphql/queries";
-import PDFObject from 'pdfobject';
 import jsPDF from "jspdf";
-//import PDFViewer from "./PDFViewer";
+import $ from "jquery";
 
 class ViewScore extends Component {
   constructor(props) {
@@ -45,17 +45,12 @@ class ViewScore extends Component {
 
   generatePDF(){
     var doc = new jsPDF(); //pdf created
-    doc.setProperties({
-        title: this.state.score.name
-    });
-    doc.line(20, 36, 180, 36);
-    doc.setFontSize(14); doc.text(20, 44, "By: "+ this.state.score.user); //creator
+    doc.setFont("helvetica");
     var addLineBars = function(i) {
         for (var j=0; j <= 4; j++) {
             doc.line( (20+(j*40)), (50+(i*25)),  (20+(j*40)), (65+(i*25))); // horizontal line
         }
     };
-    
     //Map notes to their corresponding position 
     this.state.notes.forEach((note) => {
         var pos = note.position; //array of coordinates [row, column, index]
@@ -79,11 +74,8 @@ class ViewScore extends Component {
         addLineBars(pos[0]);
     });
     
-    return (
-        <div>
-             <p>Hello</p>
-        </div>
-    );
+    var pdf = doc.output('datauri')
+    $('iframe').attr('src', pdf)
     
   }
 
@@ -95,6 +87,9 @@ class ViewScore extends Component {
             <g className="page-main">
                 <div id="pdf-window"> 
                     {this.generatePDF()}
+                    <iframe type="application/pdf">
+                      <p>Your browser does not support iframes.</p>
+                    </iframe>
                 </div>
             </g>
         </div>
