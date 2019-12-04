@@ -13,6 +13,7 @@ class Discovery extends Component {
       columns: [
         { title: "Score Name", field: "scoreName" },
         { title: "Author", field: "author" },
+        { title: "Category", field: "category"},
         { title: "Modify Date", field: "modifyDate" }
       ]
     };
@@ -39,8 +40,9 @@ class Discovery extends Component {
       datas: this.state.scores.map(score => {
         const scoreName = score.name;
         const author = score.user.username;
+        const category = score.category
         const date = score.updatedAt;
-        return { scoreName: scoreName, author: author, modifyDate: date };
+        return { scoreName: scoreName, author: author, category: category, modifyDate: date };
       })
     });
   }
