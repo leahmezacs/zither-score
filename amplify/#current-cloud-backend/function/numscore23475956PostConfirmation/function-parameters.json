@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "add-to-group"
+    ],
+    "parentResource": "numscore23475956",
+    "functionName": "numscore23475956PostConfirmation",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "PostConfirmation.json.ejs",
+    "roleName": "numscore23475956PostConfirmation",
+    "skipEdit": true,
+    "resourceName": "numscore23475956PostConfirmation"
+}

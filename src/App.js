@@ -9,6 +9,7 @@ import Library from './components/Library/Library';
 import Dashboard from './components/Dashboard/Dashboard';
 import Discovery from './components/Discovery/Discovery';
 import EditScore from './components/EditScore/EditScore';
+import ViewScore from './components/ViewScore/ViewScore';
 import SingleScore from './components/EditScore/ScoreInput';
 import ChangePassword from './components/Settings/ChangePassword';
 import Comment from './components/Comment/Comment';
@@ -56,7 +57,8 @@ class App extends Component {
                     <Route exact path="/Discovery" component={Discovery}/>
                     <Route exact path="/EditScore" component={EditScore}/>
                     <Route exact path="/ScoreInput" component={SingleScore}/>  
-                    <Route exact path="/viewScore/:id" component={Comment} />        
+                    <Route exact path="/viewScore/:id" component={Comment} />
+                    <Route exact path="/ViewScore" component={ViewScore}/>  
                 </div>
             </Router>
         ); 
