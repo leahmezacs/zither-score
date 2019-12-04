@@ -35,9 +35,7 @@ export function searchByNameGen(value, searchType, old) {
         delete old["author"];
     } else if (searchType == "Name") {
         old["searchFieldName"] = { "contains": value.toLowerCase() };
-    } else {
-        old["searchFieldLocation"] = { "contains": value.toLowerCase() };
-    }
+    } 
     return old;
 }
 
