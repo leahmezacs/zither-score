@@ -83,13 +83,15 @@ class ViewScore extends Component {
   }
 
   render() {
-    //console.log(this.state.score_name);
     return (
       <div>
-        <h1>Comment Below to Support the Community</h1> <br />
-        <h2>Score Title: {this.state.score.name}</h2>
-        <h2>Author: {this.state.userId}</h2>
-        <h2>Last Updated: {this.state.score.updatedAt}</h2>
+        <div className="jumbotron text-center">
+          <h1>Welcome, Share Your Thoughts Below!</h1>
+          <h2>Score Title: {this.state.score.name}</h2>
+          <h2>Author: {this.state.userId}</h2>
+          <h2>Last Updated: {this.state.score.updatedAt}</h2>
+        </div>
+        
         <div id="main-content" className="score-scrollable">
             <g className="page-main">
                 <div id="pdf-window"> 
