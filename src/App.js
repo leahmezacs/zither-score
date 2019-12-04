@@ -12,7 +12,6 @@ import EditScore from './components/EditScore/EditScore';
 import ViewScore from './components/ViewScore/ViewScore';
 import SingleScore from './components/EditScore/ScoreInput';
 import ChangePassword from './components/Settings/ChangePassword';
-import Comment from './components/Comment/Comment';
 
 class App extends Component {
     constructor(props) {
@@ -56,8 +55,7 @@ class App extends Component {
                     <Route exact path="/Library" component={Library}/>
                     <Route exact path="/Discovery" component={Discovery}/>
                     <Route exact path="/EditScore" component={EditScore}/>
-                    <Route exact path="/ScoreInput" component={SingleScore}/>  
-                    <Route exact path="/viewScore/:id" component={Comment} />
+                    <Route exact path="/ScoreInput" component={SingleScore}/>
                     <Route exact path="/ViewScore" component={ViewScore}/>  
                 </div>
             </Router>

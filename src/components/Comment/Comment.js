@@ -21,14 +21,11 @@ class Comment extends Component {
     const urls = window.location.href;
     this.state = {
       comment: "",
-      scoreID: urls.slice(urls.lastIndexOf("/") + 1, urls.length),
+      scoreID: urls.slice(urls.lastIndexOf("?") + 1, urls.length),
       listComments: []
     };
-    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  //   handleChange = event => {};
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -43,6 +40,7 @@ class Comment extends Component {
         }
       })
     );
+    window.location.reload();
     //   console.log(commentCreated);
   };
 
@@ -134,6 +132,7 @@ class Comment extends Component {
             "No Comment"
           )}
         </List>
+        <br />
       </Container>
     );
   }
