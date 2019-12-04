@@ -99,25 +99,22 @@ class Comment extends Component {
             return (
               <ListItem key={comment.id}>
                 <ListItemText
-                  primary={(
-                        <>
-                          <Typography
-                            component="span"
-                            color="textPrimary"
-                          >
-                            {comment.userId}
-                          </Typography>
-                          <Typography component="span">
-                            {commentTime}
-                          </Typography>
-                        </>
-                      )}
-                      secondary={(
-                        <Typography>
-                          {comment.content}
-                        </Typography>
-                      )}
-                  />
+                  primary={
+                    <>
+                      <Typography
+                        component="span"
+                        className="commentLeft"
+                        color="textPrimary"
+                      >
+                        {comment.userId}
+                      </Typography>
+                      <Typography component="span" className="commentRight">
+                        {commentTime}
+                      </Typography>
+                    </>
+                  }
+                  secondary={<Typography className="commentContent">{comment.content}</Typography>}
+                />
               </ListItem>
             );
           })}

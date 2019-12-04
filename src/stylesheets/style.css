@@ -247,3 +247,17 @@ button, html input[type=button], input[type=reset], input[type=submit] {
      
 
  }
+
+
+ /* Comments Component Styling */
+ .commentLeft {
+    display: block;
+    float: left;
+}
+.commentRight {
+    display: block;
+    float: right;
+}
+.commentContent {
+    padding-top: 25px;
+}
