@@ -6,6 +6,7 @@ import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as queries from "../../graphql/queries";
 import jsPDF from "jspdf";
 import $ from "jquery";
+import Comment from "../Comment/Comment";
 
 class ViewScore extends Component {
   constructor(props) {
@@ -102,6 +103,7 @@ class ViewScore extends Component {
                 </div>
             </g>
         </div>
+        <Comment />
       </div>
     );
   }

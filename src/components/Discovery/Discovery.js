@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { graphqlOperation, API } from "aws-amplify";
 import * as queries from "../../graphql/queries";
-
 import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 
@@ -13,7 +12,16 @@ class Discovery extends Component {
       columns: [
         { title: "Score Name", field: "scoreName" },
         { title: "Author", field: "author" },
-        { title: "Modify Date", field: "modifyDate" }
+        {
+          title: "Category",
+          field: "category",
+          lookup: {
+            Contemporary: "Contemporary",
+            Classic: "Classic",
+            Folk: "Folk"
+          }
+        },
+        { title: "Modify Date", field: "modifyDate", filtering: false },
       ]
     };
   }
@@ -37,10 +45,18 @@ class Discovery extends Component {
     });
     this.setState({
       datas: this.state.scores.map(score => {
+        const scoreId = score.id;
         const scoreName = score.name;
         const author = score.user.username;
-        const date = score.updatedAt;
-        return { scoreName: scoreName, author: author, modifyDate: date };
+        const category = score.category;
+        const date = score.updatedAt.substr(0, score.updatedAt.indexOf("T"));
+        return {
+          scoreName: scoreName,
+          author: author,
+          category: category,
+          modifyDate: date,
+          scoreId: scoreId
+        };
       })
     });
   }
@@ -53,6 +69,10 @@ class Discovery extends Component {
           title="Public Score"
           columns={this.state.columns}
           data={this.state.datas}
+          options={{
+            filtering: true,
+          }}
+          onRowClick={(event, rowData) => this.props.history.push("ViewScore?" + rowData.scoreId)}
         />
       </Container>
     );

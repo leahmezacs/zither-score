@@ -55,9 +55,8 @@ class App extends Component {
                     <Route exact path="/Library" component={Library}/>
                     <Route exact path="/Discovery" component={Discovery}/>
                     <Route exact path="/EditScore" component={EditScore}/>
-                    <Route exact path="/ScoreInput" component={SingleScore}/>   
+                    <Route exact path="/ScoreInput" component={SingleScore}/>
                     <Route exact path="/ViewScore" component={ViewScore}/>  
-
                 </div>
             </Router>
         ); 
