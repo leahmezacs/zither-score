@@ -59,7 +59,6 @@ class NavBar extends Component {
                 <>
                   <Nav className="ml-auto">
                     <Nav.Link onClick={this.handleShow}>Create</Nav.Link>
-                    <Nav.Link href="#">Notification</Nav.Link>
                   </Nav>
 
                   <NavDropdown 
