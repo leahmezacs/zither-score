@@ -1,9 +1,17 @@
 import React, { Component } from "react";
-import { 
-    Container, TextField, Button, Typography, Avatar, List, ListItem, ListItemAvatar, ListItemText, 
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Avatar,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText
 } from "@material-ui/core";
-import { Auth, graphqlOperation, API } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
+import { Auth, graphqlOperation, API } from "aws-amplify";
+import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
 
 class Comment extends Component {
@@ -12,45 +20,47 @@ class Comment extends Component {
 
     const urls = window.location.href;
     this.state = {
-      comment: '',
-      scoreID: urls.slice(urls.lastIndexOf('/') + 1, urls.length),
-      listComments: [],
+      comment: "",
+      scoreID: urls.slice(urls.lastIndexOf("/") + 1, urls.length),
+      listComments: []
     };
     // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-//   handleChange = event => {};
+  //   handleChange = event => {};
 
-  handleSubmit = async(event) => {
-      event.preventDefault();
-      const user = await Auth.currentAuthenticatedUser();
-      const userId = user.username;
-      const commentCreated = await API.graphql(graphqlOperation(mutations.createComment, {
-          input: {
-              content: this.state.comment,
-              scoreId: this.state.scoreID,
-              userId: userId
-          }
-      }));
+  handleSubmit = async event => {
+    event.preventDefault();
+    const user = await Auth.currentAuthenticatedUser();
+    const userId = user.username;
+    const commentCreated = await API.graphql(
+      graphqlOperation(mutations.createComment, {
+        input: {
+          content: this.state.comment,
+          scoreId: this.state.scoreID,
+          userId: userId
+        }
+      })
+    );
     //   console.log(commentCreated);
   };
 
   async componentDidMount() {
-      const comments = await API.graphql(
-        graphqlOperation(queries.listComments, {
-          limit: 100,
-          filter: {
-            scoreId: {
-              eq: this.state.scoreID
-            }
+    const comments = await API.graphql(
+      graphqlOperation(queries.listComments, {
+        limit: 100,
+        filter: {
+          scoreId: {
+            eq: this.state.scoreID
           }
-        })
-      );
-      this.setState({
-        listComments: comments.data.listComments.items
-      });
-      console.log(this.state.listComments);
+        }
+      })
+    );
+    this.setState({
+      listComments: comments.data.listComments.items
+    });
+    console.log(this.state.listComments);
     // console.log(comments);
   }
 
@@ -69,7 +79,7 @@ class Comment extends Component {
             inputProps={{ maxLength: 600 }}
             label="Leave a comment"
             variant="outlined"
-            onChange={e => this.setState({ comment: e.target.value})}
+            onChange={e => this.setState({ comment: e.target.value })}
             required
           />
           <Button variant="contained" type="submit" color="primary">
@@ -78,6 +88,18 @@ class Comment extends Component {
         </form>
 
         <List>
+          <div>COMMENTS</div>
+          <hr />
+          {/* <List> */}
+          {this.state.listComments.map(comment => {
+            return (
+              <ListItem key={comment.id}>
+                <ListItemText>
+                    {comment.content}
+                </ListItemText>
+              </ListItem>
+            );
+          })}
         </List>
       </Container>
     );
