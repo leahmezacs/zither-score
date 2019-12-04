@@ -56,7 +56,7 @@ class NavBar extends Component {
                     id="basic-nav-dropdown"
                     className="float-right"
                   >
-                    <NavDropdown.Item href="#">Profile</NavDropdown.Item>
+                    {/* <NavDropdown.Item href="#">Profile</NavDropdown.Item> */}
                     <NavDropdown.Item href="/Library">Library</NavDropdown.Item>
                     <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
                     <NavDropdown.Divider />

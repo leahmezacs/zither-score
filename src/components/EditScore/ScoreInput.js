@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import SingleLineScoreInput from "./SingleLineScoreInput";
 import Container from "@material-ui/core/Container";
 import ControlPointIcon from "@material-ui/icons/ControlPoint";
-import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
 
 // Map through singleLineScoreinput for the whole page input
@@ -49,22 +48,12 @@ class ScoreInput extends Component {
           className="scoreInputIcon"
           // disabled={!this.state.buttonEnable}
         />
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <SingleLineScoreInput
             key={this.state.line}
             lineLength={this.state.lineLength}
             score={this.props.score}
           />
-          <br />
-          <Button
-            type="submit"
-            size="large"
-            variant="outlined"
-            color="primary"
-            className="float-right"
-          >
-            Save
-          </Button>
         </form>
       </Container>
     );
