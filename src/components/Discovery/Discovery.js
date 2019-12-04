@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { graphqlOperation, API } from "aws-amplify";
 import * as queries from "../../graphql/queries";
-import { Link } from "react-router-dom";
 import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 
@@ -23,14 +22,6 @@ class Discovery extends Component {
           }
         },
         { title: "Modify Date", field: "modifyDate", filtering: false },
-        {
-          title: "View",
-          field: "url",
-          filtering: false,
-          render: rowData => (
-            <Link to={"ViewScore?" + rowData.scoreId}>View</Link>
-          )
-        }
       ]
     };
   }
@@ -79,8 +70,9 @@ class Discovery extends Component {
           columns={this.state.columns}
           data={this.state.datas}
           options={{
-            filtering: true
+            filtering: true,
           }}
+          onRowClick={(event, rowData) => this.props.history.push("ViewScore?" + rowData.scoreId)}
         />
       </Container>
     );
