@@ -10,5 +10,5 @@ test('nav bar renders guest view', () => {
       <NavBar />
     </MemoryRouter>,
   );
-  expect(getByTestId('login-button')).toHaveTextContent('SIGN IN');
+  expect(getByTestId('login-button')).toHaveTextContent('Login');
 });
