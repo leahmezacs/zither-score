@@ -112,8 +112,12 @@ class Comment extends Component {
                           </Typography>
                         </>
                       )}
+                      secondary={(
+                        <Typography>
+                          {comment.content}
+                        </Typography>
+                      )}
                   />
-                    {comment.content}
               </ListItem>
             );
           })}
