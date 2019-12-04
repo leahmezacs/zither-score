@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import ToolBar from "../ToolBar/ToolBar";
 import "../../stylesheets/scorestylesheet.css";
 import ScoreInput from "./ScoreInput";
 import { graphqlOperation, API } from "aws-amplify";
@@ -33,7 +32,7 @@ class EditScore extends Component {
     //console.log(this.state.score_name);
     return (
       <div>
-        <ToolBar />
+        
 
         <div id="main-content" className="score-scrollable">
           <svg width="1150" height="1650" className="score-sheet">
