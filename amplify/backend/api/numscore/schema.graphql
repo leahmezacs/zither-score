@@ -25,7 +25,7 @@ type Score @model {
 type Comment @model {
   id: ID!
   content: String
-  createdAt: String!
+  createdAt: String
   userId: String!
   scoreId: String!
 }

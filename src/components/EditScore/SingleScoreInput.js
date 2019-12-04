@@ -13,6 +13,7 @@ import { graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
+import { input } from "@aws-amplify/ui";
 
 // Four inputs in one componenet
 class SingleScoreInput extends Component {
@@ -20,6 +21,7 @@ class SingleScoreInput extends Component {
     super(props);
     this.state = {
       notes: [],
+      deletedNote: [],
       num: null,
       pos: [],
       line: false,
@@ -82,14 +84,16 @@ class SingleScoreInput extends Component {
 
     this.noteDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteNote)).subscribe({
       next: (noteData) => {
-        const deletedNote = noteData.value.data.onDeleteNote.id;
-        console.log("deleted note id: " + deletedNote);
+        const deletedNote = noteData.value.data.onDeleteNote;
+        console.log("deleted note: " + deletedNote);
 
-        const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote);
+        const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote.id);
         this.setState({
-          notes: remainingNotes
+          notes: remainingNotes,
+          deletedNote: deletedNote
         });
         console.log(this.state.notes);
+        console.log("state of deleted note: ", this.state.deletedNote);
       },
     });
 
@@ -282,9 +286,21 @@ class SingleScoreInput extends Component {
             : symbol_bottom.value = null;
 
           input.value = note.number;
-          console.log("note.number: ", note.number);
-          console.log(this.state.num);
         }
+      })
+    }
+    if(this.state.deletedNote !== undefined && this.state.deletedNote.length != 0){
+      console.log("correct");
+      const pos = this.state.deletedNote.position.toString();
+      const input = document.getElementById(pos);
+      const symbol_top = document.getElementsByName(pos)[0];
+      const symbol_bottom = document.getElementsByName(pos)[1];
+
+      if(input.value) input.value = null;
+      if(symbol_top.value) symbol_top.value = null;
+      if(symbol_bottom.value) symbol_bottom.value = null;
+      this.setState({
+        deletedNote: []
       })
     }
   }

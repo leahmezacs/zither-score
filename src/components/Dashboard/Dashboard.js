@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { graphqlOperation, API } from 'aws-amplify';
+import { graphqlOperation, Auth, API } from 'aws-amplify';
 import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 import * as queries from '../../graphql/queries';
@@ -45,16 +45,30 @@ class Dashboard extends Component {
       }
 
       async handleDeleteUser(user_id) {
-        const deletedUser = await API.graphql(graphqlOperation(mutations.deleteUser,{
+        /* const deletedUser = await API.graphql(graphqlOperation(mutations.deleteUser,{
             input:{
                 id : user_id
             }
-        }));
-        let params = {
-          UserPoolId: process.env.REACT_APP_USERPOOLID,
-          Username: user_id
-        };
-        
+        })); */
+        try {
+          console.log(await Auth.currentSession());
+          let apiName = 'AdminQueries';
+          const path = '/disableUser';
+          const myInit = {
+            body: {
+              user_id,
+            },
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `${(await Auth.currentSession()).getAccessToken().getJwtToken()}`,
+            },
+          };
+          const result = await API.post(apiName, path, myInit);
+          return result.message;
+        } catch (e) {
+          console.log(e);
+          return e;
+        }
       }
     
       render() {

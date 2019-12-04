@@ -161,7 +161,7 @@
 						]
 					},
 					"S3DeploymentBucket": "numscore-local-20191122002554-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/abb12d64201e98c51dce2cb1a91faf72124afe1b",
+					"S3DeploymentRootKey": "amplify-appsync-files/a5e3b28814a4c2ae5f958ed41c57ac31024aae07",
 					"env": "local"
 				}
 			}
