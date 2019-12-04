@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Container, TextField, Button } from "@material-ui/core";
+import { 
+    Container, TextField, Button, Typography, Avatar, List, ListItem, ListItemAvatar, ListItemText, 
+} from "@material-ui/core";
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import * as queries from "../../graphql/queries";
@@ -11,7 +13,8 @@ class Comment extends Component {
     const urls = window.location.href;
     this.state = {
       comment: '',
-      scoreID: urls.slice(urls.lastIndexOf('/') + 1, urls.length)
+      scoreID: urls.slice(urls.lastIndexOf('/') + 1, urls.length),
+      listComments: [],
     };
     // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,11 +33,10 @@ class Comment extends Component {
               userId: userId
           }
       }));
-      console.log(commentCreated);
-      this.handleListComments();
+    //   console.log(commentCreated);
   };
 
-  handleListComments = async() => {
+  async componentDidMount() {
       const comments = await API.graphql(
         graphqlOperation(queries.listComments, {
           limit: 100,
@@ -45,7 +47,11 @@ class Comment extends Component {
           }
         })
       );
-      console.log(comments);
+      this.setState({
+        listComments: comments.data.listComments.items
+      });
+      console.log(this.state.listComments);
+    // console.log(comments);
   }
 
   render() {
@@ -70,6 +76,9 @@ class Comment extends Component {
             Comment
           </Button>
         </form>
+
+        <List>
+        </List>
       </Container>
     );
   }
