@@ -13,6 +13,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         createdAt
         updatedAt
         status
+        category
       }
       nextToken
     }
@@ -32,6 +33,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         createdAt
         updatedAt
         status
+        category
       }
       nextToken
     }
@@ -51,6 +53,7 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         createdAt
         updatedAt
         status
+        category
       }
       nextToken
     }
@@ -87,6 +90,7 @@ export const createScore = `mutation CreateScore($input: CreateScoreInput!) {
     createdAt
     updatedAt
     status
+    category
   }
 }
 `;
@@ -119,6 +123,7 @@ export const updateScore = `mutation UpdateScore($input: UpdateScoreInput!) {
     createdAt
     updatedAt
     status
+    category
   }
 }
 `;
@@ -151,6 +156,7 @@ export const deleteScore = `mutation DeleteScore($input: DeleteScoreInput!) {
     createdAt
     updatedAt
     status
+    category
   }
 }
 `;
@@ -208,6 +214,7 @@ export const createNote = `mutation CreateNote($input: CreateNoteInput!) {
       createdAt
       updatedAt
       status
+      category
     }
     scoreId
   }
@@ -237,6 +244,7 @@ export const updateNote = `mutation UpdateNote($input: UpdateNoteInput!) {
       createdAt
       updatedAt
       status
+      category
     }
     scoreId
   }
@@ -266,6 +274,7 @@ export const deleteNote = `mutation DeleteNote($input: DeleteNoteInput!) {
       createdAt
       updatedAt
       status
+      category
     }
     scoreId
   }

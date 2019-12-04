@@ -35,9 +35,10 @@ class Library extends Component {
 
     //get list of scores from all users 
     async componentDidMount() {
+        console.log("inside mount");
         const limit = 1000;
         const user = await Auth.currentAuthenticatedUser();
-        const result = await API.graphql(graphqlOperation(queries.listScores, {limit}));  
+        const result = await API.graphql(graphqlOperation(queries.listScores));  
         this.setState({
             scores: result.data.listScores.items,
             userId: user.username
@@ -190,7 +191,7 @@ class Library extends Component {
         for(let i = 0; i < temp.length; ++i){
             if(temp[i].user.id === this.state.userId) data.push(temp[i]);
         } 
-        //console.log(this.state.userId);
+        console.log(temp);
 
         return (
             <div>
@@ -198,6 +199,7 @@ class Library extends Component {
                     return (
                         <div className="tr" key={index}>
                             <div className="td row-title">{score.name}</div>
+                            <div className="td row-category">{score.category}</div>
                             <div className="td row-date">{new Date(score.updatedAt).toDateString()}</div>
                             <div className="td row-sharing">{score.status}</div>
                             <div className="td row-options">
@@ -263,6 +265,9 @@ class Library extends Component {
                                         </div> */}
                                         <div className="th row-title sorting">
                                             Name
+                                        </div>
+                                        <div className="th row-category">
+                                            Category
                                         </div>
                                         <div className="th row-date sorting">
                                             Date Modified
