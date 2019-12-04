@@ -19,12 +19,13 @@ type Score @model {
   createdAt: String
   updatedAt: String
   status: ScoreStatus
+  category: String!
 }
 
 type Comment @model {
   id: ID!
   content: String
-  createdAt: String!
+  createdAt: String
   userId: String!
   scoreId: String!
 }

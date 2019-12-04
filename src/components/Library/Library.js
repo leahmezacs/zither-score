@@ -22,7 +22,8 @@ class Library extends Component {
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
-        this.handlePreviewScore = this.handlePreviewScore.bind(this);
+        this.handleViewScore = this.handleViewScore.bind(this);
+        this.handlePrintScore = this.handlePrintScore.bind(this);
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
@@ -34,9 +35,10 @@ class Library extends Component {
 
     //get list of scores from all users 
     async componentDidMount() {
+        console.log("inside mount");
         const limit = 1000;
         const user = await Auth.currentAuthenticatedUser();
-        const result = await API.graphql(graphqlOperation(queries.listScores, {limit}));  
+        const result = await API.graphql(graphqlOperation(queries.listScores));  
         this.setState({
             scores: result.data.listScores.items,
             userId: user.username
@@ -99,7 +101,17 @@ class Library extends Component {
         });
     }
 
-    async handlePreviewScore(score_name, score_id) {
+    handleViewScore(score_id) {
+        this.props.history.push({
+            pathname: '/ViewScore',
+            search: score_id,
+            state: {
+              score_id: score_id
+            }
+        });
+    }
+
+    async handlePrintScore(score_name, score_id) {
         var doc = new jsPDF(); //pdf created
         doc.setProperties({
             title: score_name
@@ -179,7 +191,7 @@ class Library extends Component {
         for(let i = 0; i < temp.length; ++i){
             if(temp[i].user.id === this.state.userId) data.push(temp[i]);
         } 
-        //console.log(this.state.userId);
+        console.log(temp);
 
         return (
             <div>
@@ -187,6 +199,7 @@ class Library extends Component {
                     return (
                         <div className="tr" key={index}>
                             <div className="td row-title">{score.name}</div>
+                            <div className="td row-category">{score.category}</div>
                             <div className="td row-date">{new Date(score.updatedAt).toDateString()}</div>
                             <div className="td row-sharing">{score.status}</div>
                             <div className="td row-options">
@@ -195,7 +208,8 @@ class Library extends Component {
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name, score.id)}>View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleViewScore(score.id)}>View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handlePrintScore(score.name, score.id)}>Print</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.id)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.id)}>Delete</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.id)}>Change Status</Dropdown.Item>
@@ -251,6 +265,9 @@ class Library extends Component {
                                         </div> */}
                                         <div className="th row-title sorting">
                                             Name
+                                        </div>
+                                        <div className="th row-category">
+                                            Category
                                         </div>
                                         <div className="th row-date sorting">
                                             Date Modified

@@ -13,6 +13,7 @@ export const getUser = `query GetUser($id: ID!) {
         createdAt
         updatedAt
         status
+        category
       }
       nextToken
     }
@@ -68,6 +69,7 @@ export const getScore = `query GetScore($id: ID!) {
     createdAt
     updatedAt
     status
+    category
   }
 }
 `;
@@ -92,6 +94,7 @@ export const listScores = `query ListScores(
       createdAt
       updatedAt
       status
+      category
     }
     nextToken
   }
@@ -148,6 +151,7 @@ export const getNote = `query GetNote($id: ID!) {
       createdAt
       updatedAt
       status
+      category
     }
     scoreId
   }
@@ -173,6 +177,7 @@ export const listNotes = `query ListNotes(
         createdAt
         updatedAt
         status
+        category
       }
       scoreId
     }

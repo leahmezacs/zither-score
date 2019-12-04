@@ -13,6 +13,7 @@ import { graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
+import { input } from "@aws-amplify/ui";
 
 // Four inputs in one componenet
 class SingleScoreInput extends Component {
@@ -20,6 +21,7 @@ class SingleScoreInput extends Component {
     super(props);
     this.state = {
       notes: [],
+      deletedNote: [],
       num: null,
       pos: [],
       line: false,
@@ -33,8 +35,10 @@ class SingleScoreInput extends Component {
 
     //console.log(this.props.score);
     this.handleChange = this.handleChange.bind(this);
-    this.handleCreateNote = this.handleCreateNote.bind(this);
-    this.handleUpdateNote = this.handleUpdateNote.bind(this);
+    this.handleCreateNoteNumber = this.handleCreateNoteNumber.bind(this);
+    this.handleCreateNoteSymbol = this.handleCreateNoteSymbol.bind(this);
+    this.handleUpdateNoteNumber = this.handleUpdateNoteNumber.bind(this);
+    this.handleUpdateNoteSymbol = this.handleUpdateNoteSymbol.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleSymbolChange = this.handleSymbolChange.bind(this);
 
@@ -80,14 +84,16 @@ class SingleScoreInput extends Component {
 
     this.noteDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteNote)).subscribe({
       next: (noteData) => {
-        const deletedNote = noteData.value.data.onDeleteNote.id;
-        console.log("deleted note id: " + deletedNote);
+        const deletedNote = noteData.value.data.onDeleteNote;
+        console.log("deleted note: " + deletedNote);
 
-        const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote);
+        const remainingNotes = this.state.notes.filter(notesData => notesData.id !== deletedNote.id);
         this.setState({
-          notes: remainingNotes
+          notes: remainingNotes,
+          deletedNote: deletedNote
         });
         console.log(this.state.notes);
+        console.log("state of deleted note: ", this.state.deletedNote);
       },
     });
 
@@ -138,10 +144,10 @@ class SingleScoreInput extends Component {
         console.log(exist);
         console.log("is there num: ", this.state.num);
         if (exist) {
-          this.state.num ? this.handleUpdateNote(note_id) : this.handleDeleteNote(note_id);
+          this.state.num ? this.handleUpdateNoteNumber(note_id) : this.handleDeleteNote(note_id);
         }
         else {
-          this.handleCreateNote();
+          this.handleCreateNoteNumber();
         }
       });
     }
@@ -175,10 +181,10 @@ class SingleScoreInput extends Component {
         }
         console.log(exist);
         if (exist) {
-          this.handleUpdateNote(note_id);
+          this.handleUpdateNoteSymbol(note_id);
         }
         else {
-          this.handleCreateNote();
+          this.handleCreateNoteSymbol();
         }
       });
     }
@@ -187,11 +193,26 @@ class SingleScoreInput extends Component {
     }
   };
 
-  async handleCreateNote() {
+  async handleCreateNoteNumber() {
     console.log(this.state.num);
     const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
       input: {
         number: this.state.num,
+        position: this.state.pos,
+        noteScoreId: this.props.score.id,
+        scoreId: this.props.score.id
+      }
+    }));
+    this.setState({
+      note: noteCreated
+    });
+    console.log("created: ", noteCreated.data.createNote);
+  }
+
+  async handleCreateNoteSymbol() {
+    console.log(this.state.num);
+    const noteCreated = await API.graphql(graphqlOperation(mutations.createNote, {
+      input: {
         line: this.state.line,
         doubleLine: this.state.doubleline,
         dot: this.state.dot,
@@ -207,11 +228,24 @@ class SingleScoreInput extends Component {
     console.log("created: ", noteCreated.data.createNote);
   }
 
-  async handleUpdateNote(id) {
+  async handleUpdateNoteNumber(id) {
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
       input: {
         id: id,
         number: this.state.num,
+        position: this.state.pos
+      }
+    }));
+    this.setState({
+      note: updatedNote
+    });
+    console.log("updated: ", updatedNote.data.updateNote);
+  }
+
+  async handleUpdateNoteSymbol(id) {
+    const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
+      input: {
+        id: id,
         line: this.state.line,
         doubleLine: this.state.doubleline,
         dot: this.state.dot,
@@ -252,9 +286,21 @@ class SingleScoreInput extends Component {
             : symbol_bottom.value = null;
 
           input.value = note.number;
-          console.log("note.number: ", note.number);
-          console.log(this.state.num);
         }
+      })
+    }
+    if(this.state.deletedNote !== undefined && this.state.deletedNote.length != 0){
+      console.log("correct");
+      const pos = this.state.deletedNote.position.toString();
+      const input = document.getElementById(pos);
+      const symbol_top = document.getElementsByName(pos)[0];
+      const symbol_bottom = document.getElementsByName(pos)[1];
+
+      if(input.value) input.value = null;
+      if(symbol_top.value) symbol_top.value = null;
+      if(symbol_bottom.value) symbol_bottom.value = null;
+      this.setState({
+        deletedNote: []
       })
     }
   }

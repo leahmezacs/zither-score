@@ -19,6 +19,7 @@ zither-score.wiki
 
 #amplify
 amplify/\#current-cloud-backend
+build/
 amplify/.config/local-*
 amplify/mock-data
 dist/
