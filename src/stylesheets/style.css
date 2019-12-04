@@ -250,6 +250,9 @@ button, html input[type=button], input[type=reset], input[type=submit] {
 
 
  /* Comments Component Styling */
+ .commentHeader {
+     margin-top: 30px;
+ }
  .commentLeft {
     display: block;
     float: left;

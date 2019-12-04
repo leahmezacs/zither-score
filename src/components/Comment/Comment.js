@@ -65,8 +65,9 @@ class Comment extends Component {
   }
 
   render() {
-    const avatarURL = 'http://api.adorable.io/avatar/50/';
+    const avatarURL = "http://api.adorable.io/avatar/50/";
     return (
+      // "xs","sm","md","lg","xl"
       <Container maxWidth="lg">
         <form onSubmit={this.handleSubmit}>
           <TextField
@@ -89,43 +90,49 @@ class Comment extends Component {
         </form>
 
         <List>
-          <div>COMMENTS</div>
+          <div className="commentHeader">{this.state.listComments.length} COMMENTS</div>
           <hr />
-          {/* <List> */}
-          {this.state.listComments.map(comment => {
-            const commentTime = comment.createdAt.substr(
-              0,
-              comment.createdAt.indexOf("T")
-            );
-            return (
-              <ListItem key={comment.id}>
-                <ListItemAvatar>
-                  <Avatar alt="profile" src={avatarURL + comment.userId} />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={
-                    <>
-                      <Typography
-                        component="span"
-                        className="commentLeft"
-                        color="textPrimary"
-                      >
-                        {comment.userId}
-                      </Typography>
-                      <Typography component="span" className="commentRight">
-                        {commentTime}
-                      </Typography>
-                    </>
-                  }
-                  secondary={
-                    <Typography className="commentContent">
-                      {comment.content}
-                    </Typography>
-                  }
-                />
-              </ListItem>
-            );
-          })}
+          {this.state.listComments.length > 0 ? (
+            <List>
+              {" "}
+              {this.state.listComments.map(comment => {
+                const commentTime = comment.createdAt.substr(
+                  0,
+                  comment.createdAt.indexOf("T")
+                );
+                return (
+                  <ListItem key={comment.id}>
+                    <ListItemAvatar>
+                      <Avatar alt="profile" src={avatarURL + comment.userId} />
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <>
+                          <Typography
+                            component="span"
+                            className="commentLeft"
+                            color="textPrimary"
+                          >
+                            {comment.userId}
+                          </Typography>
+                          <Typography component="span" className="commentRight">
+                            {commentTime}
+                          </Typography>
+                        </>
+                      }
+                      secondary={
+                        <Typography className="commentContent">
+                          {comment.content}
+                        </Typography>
+                      }
+                    />
+                  </ListItem>
+                );
+              })}{" "}
+            </List>
+          ) : (
+            "No Comment"
+          )}
         </List>
       </Container>
     );
