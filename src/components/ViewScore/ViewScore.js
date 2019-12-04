@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import "../../stylesheets/scorestylesheet.css";
 import "../../stylesheets/style.css";
-import { graphqlOperation, API } from "aws-amplify";
+import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as queries from "../../graphql/queries";
 import jsPDF from "jspdf";
 import $ from "jquery";
@@ -14,12 +14,14 @@ class ViewScore extends Component {
     this.state = {
       score_id: url.slice(url.lastIndexOf('?') + 1, url.length),
       score: [],
+      userId: '',
       notes: []
     };    
     this.generatePDF = this.generatePDF.bind(this);
     //console.log(this.state.score_id);
   }
   async componentDidMount() {
+    const user = await Auth.currentAuthenticatedUser();
     const result = await API.graphql(
       graphqlOperation(queries.getScore, {
         id: this.state.score_id
@@ -27,7 +29,8 @@ class ViewScore extends Component {
     );
     // console.log("id: ", this.state.score_id);
     this.setState({
-      score: result.data.getScore
+      score: result.data.getScore,
+      userId: user.username
     });
     //Get list of notes belonging to this score id
     const noteList = await API.graphql(graphqlOperation(queries.listNotes, { 
@@ -83,6 +86,10 @@ class ViewScore extends Component {
     //console.log(this.state.score_name);
     return (
       <div>
+        <h1>Comment Below to Support the Community</h1> <br />
+        <h2>Score Title: {this.state.score.name}</h2>
+        <h2>Author: {this.state.userId}</h2>
+        <h2>Last Updated: {this.state.score.updatedAt}</h2>
         <div id="main-content" className="score-scrollable">
             <g className="page-main">
                 <div id="pdf-window"> 
