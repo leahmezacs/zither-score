@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "email-filter-blacklist"
+    ],
+    "parentResource": "numscore23475956",
+    "functionName": "numscore23475956PreSignup",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "PreSignup.json.ejs",
+    "roleName": "numscore23475956PreSignup",
+    "skipEdit": true,
+    "resourceName": "numscore23475956PreSignup"
+}
