@@ -65,7 +65,6 @@ class Comment extends Component {
   render() {
     const avatarURL = "http://api.adorable.io/avatar/50/";
     return (
-      // "xs","sm","md","lg","xl"
       <Container maxWidth="lg">
         <form onSubmit={this.handleSubmit}>
           <TextField

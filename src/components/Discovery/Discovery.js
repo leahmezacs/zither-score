@@ -13,8 +13,8 @@ class Discovery extends Component {
       columns: [
         { title: "Score Name", field: "scoreName" },
         { title: "Author", field: "author" },
-        { title: "Category", field: "category"},
-        { title: "Modify Date", field: "modifyDate" }
+        { title: "Category", field: "category" },
+        { title: "Modify Date", field: "modifyDate", filtering: false }
       ]
     };
   }
@@ -40,9 +40,14 @@ class Discovery extends Component {
       datas: this.state.scores.map(score => {
         const scoreName = score.name;
         const author = score.user.username;
-        const category = score.category
+        const category = score.category;
         const date = score.updatedAt;
-        return { scoreName: scoreName, author: author, category: category, modifyDate: date };
+        return {
+          scoreName: scoreName,
+          author: author,
+          category: category,
+          modifyDate: date
+        };
       })
     });
   }
@@ -55,6 +60,9 @@ class Discovery extends Component {
           title="Public Score"
           columns={this.state.columns}
           data={this.state.datas}
+          options={{
+            filtering: true
+          }}
         />
       </Container>
     );
