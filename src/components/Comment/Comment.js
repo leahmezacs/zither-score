@@ -65,6 +65,7 @@ class Comment extends Component {
   }
 
   render() {
+    const avatarURL = 'http://api.adorable.io/avatar/50/';
     return (
       <Container maxWidth="lg">
         <form onSubmit={this.handleSubmit}>
@@ -98,6 +99,9 @@ class Comment extends Component {
             );
             return (
               <ListItem key={comment.id}>
+                <ListItemAvatar>
+                  <Avatar alt="profile" src={avatarURL + comment.userId} />
+                </ListItemAvatar>
                 <ListItemText
                   primary={
                     <>
@@ -113,7 +117,11 @@ class Comment extends Component {
                       </Typography>
                     </>
                   }
-                  secondary={<Typography className="commentContent">{comment.content}</Typography>}
+                  secondary={
+                    <Typography className="commentContent">
+                      {comment.content}
+                    </Typography>
+                  }
                 />
               </ListItem>
             );
