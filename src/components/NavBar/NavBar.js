@@ -47,23 +47,11 @@ class NavBar extends Component {
               </Nav.Link>
             </Nav>
 
-            <Form inline className="mr-auto">
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-1"
-              />
-              <button className="btn btn-sm btn-light">
-                <SearchIcon />
-              </button>
-            </Form>
-
             { this.props.loggedInUser ? (          
                this.props.loggedInUser.signInUserSession.accessToken.payload['cognito:groups'] == "User" ? (
                 <>
                   <Nav className="ml-auto">
                     <Nav.Link onClick={this.handleShow}>Create</Nav.Link>
-                    <Nav.Link href="#">Notification</Nav.Link>
                   </Nav>
 
                   <NavDropdown 
@@ -71,7 +59,7 @@ class NavBar extends Component {
                     id="basic-nav-dropdown"
                     className="float-right"
                   >
-                    <NavDropdown.Item href="#">Profile</NavDropdown.Item>
+                    {/* <NavDropdown.Item href="#">Profile</NavDropdown.Item> */}
                     <NavDropdown.Item href="/Library">Library</NavDropdown.Item>
                     <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
                     <NavDropdown.Divider />

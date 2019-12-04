@@ -22,7 +22,8 @@ class Library extends Component {
         }
         this.handleShow = this.handleShow.bind(this);
         this.handleListScores = this.handleListScores.bind(this);
-        this.handlePreviewScore = this.handlePreviewScore.bind(this);
+        this.handleViewScore = this.handleViewScore.bind(this);
+        this.handlePrintScore = this.handlePrintScore.bind(this);
         this.handleDeleteScore = this.handleDeleteScore.bind(this);
         this.handleEditScore = this.handleEditScore.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
@@ -100,7 +101,17 @@ class Library extends Component {
         });
     }
 
-    async handlePreviewScore(score_name, score_id) {
+    handleViewScore(score_id) {
+        this.props.history.push({
+            pathname: '/ViewScore',
+            search: score_id,
+            state: {
+              score_id: score_id
+            }
+        });
+    }
+
+    async handlePrintScore(score_name, score_id) {
         var doc = new jsPDF(); //pdf created
         doc.setProperties({
             title: score_name
@@ -129,6 +140,21 @@ class Library extends Component {
         this.state.notes.forEach((note) => {
             var pos = note.position; //array of coordinates [row, column, index]
             var data = note.number;
+            if(note.dot === "TOP") { doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (50+(pos[0]*25)), .7, .7, 'F'); }
+            if(note.dot === "BOTTOM") { doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (62+(pos[0]*25)), .7, .7, "F"); }
+            if(note.doubleDot === "TOP") { 
+                doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (48+(pos[0]*25)), .7, .7, 'F'); 
+                doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (50+(pos[0]*25)), .7, .7, 'F'); 
+            }
+            if(note.doubleDot === "BOTTOM") { 
+                doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (64+(pos[0]*25)), .7, .7, "F");
+                doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (62+(pos[0]*25)), .7, .7, "F");
+            }
+            if(note.line === true) { doc.line( (21+(pos[1]*40)+(pos[2]*10)), (59+(pos[0]*25)), (31+(pos[1]*40)+(pos[2]*10)),(59+(pos[0]*25)) ); }
+            if(note.doubleLine === true) { 
+                doc.line( (21+(pos[1]*40)+(pos[2]*10)), (60+(pos[0]*25)), (31+(pos[1]*40)+(pos[2]*10)),(60+(pos[0]*25)) );
+                doc.line( (21+(pos[1]*40)+(pos[2]*10)), (59+(pos[0]*25)), (31+(pos[1]*40)+(pos[2]*10)),(59+(pos[0]*25)) );
+            }
             doc.text( (23+(pos[1]*40)+(pos[2]*10)),  (58+(pos[0]*25)), data.toString());
             addLineBars(pos[0]);
         });
@@ -182,7 +208,8 @@ class Library extends Component {
                                         <MoreVertIcon />
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                        <Dropdown.Item onClick={() => this.handlePreviewScore(score.name, score.id)}>View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handleViewScore(score.id)}>View</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => this.handlePrintScore(score.name, score.id)}>Print</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleEditScore(score.id)}>Edit</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleDeleteScore(score.id)}>Delete</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.handleChangeStatus(score.status, score.id)}>Change Status</Dropdown.Item>
