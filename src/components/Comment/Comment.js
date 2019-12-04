@@ -92,11 +92,28 @@ class Comment extends Component {
           <hr />
           {/* <List> */}
           {this.state.listComments.map(comment => {
+            const commentTime = comment.createdAt.substr(
+              0,
+              comment.createdAt.indexOf("T")
+            );
             return (
               <ListItem key={comment.id}>
-                <ListItemText>
+                <ListItemText
+                  primary={(
+                        <>
+                          <Typography
+                            component="span"
+                            color="textPrimary"
+                          >
+                            {comment.userId}
+                          </Typography>
+                          <Typography component="span">
+                            {commentTime}
+                          </Typography>
+                        </>
+                      )}
+                  />
                     {comment.content}
-                </ListItemText>
               </ListItem>
             );
           })}
