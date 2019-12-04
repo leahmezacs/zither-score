@@ -13,6 +13,14 @@
         "categories": {
             "auth": {
                 "numscore23475956": {}
+            },
+            "function": {
+                "numscore23475956PostConfirmation": {
+                    "GROUP": "User"
+                },
+                "numscore23475956PreSignup": {
+                    "DOMAINBLACKLIST": ""
+                }
             }
         }
     }

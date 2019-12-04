@@ -1,6 +1,6 @@
 {
     "identityPoolName": "numscore23475956_identitypool_23475956",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "numsco23475956",
     "userPoolName": "numscore23475956_userpool_23475956",
     "autoVerifiedAttributes": [
@@ -44,6 +44,34 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
-    "dependsOn": []
+    "useDefault": "manual",
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "numscore23475956PostConfirmation",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "numscore23475956PreSignup",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        }
+    ],
+    "thirdPartyAuth": false,
+    "triggers": "{\"PostConfirmation\":[\"add-to-group\"],\"PreSignup\":[\"email-filter-blacklist\"]}",
+    "hostedUI": false,
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [
+        "{\"policyName\":\"AddToGroupCognito\",\"trigger\":\"PostConfirmation\",\"effect\":\"Allow\",\"actions\":[\"cognito-idp:AdminAddUserToGroup\",\"cognito-idp:GetGroup\",\"cognito-idp:CreateGroup\"],\"resource\":{\"paramType\":\"!GetAtt\",\"keys\":[\"UserPool\",\"Arn\"]}}"
+    ]
 }
