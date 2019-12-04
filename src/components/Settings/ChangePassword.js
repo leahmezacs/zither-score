@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
 import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import { Button } from "react-bootstrap";
-import LoaderButton from "./LoaderButton";
 import './Settings.css';
 
 class ChangePassword extends Component {
