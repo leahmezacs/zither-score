@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { graphqlOperation, API } from "aws-amplify";
 import * as queries from "../../graphql/queries";
-
+import { Link } from "react-router-dom";
 import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 
@@ -22,7 +22,15 @@ class Discovery extends Component {
             Folk: "Folk"
           }
         },
-        { title: "Modify Date", field: "modifyDate", filtering: false }
+        { title: "Modify Date", field: "modifyDate", filtering: false },
+        {
+          title: "View",
+          field: "url",
+          filtering: false,
+          render: rowData => (
+            <Link to={"ViewScore?" + rowData.scoreId}>View</Link>
+          )
+        }
       ]
     };
   }
@@ -46,15 +54,17 @@ class Discovery extends Component {
     });
     this.setState({
       datas: this.state.scores.map(score => {
+        const scoreId = score.id;
         const scoreName = score.name;
         const author = score.user.username;
         const category = score.category;
-        const date = score.updatedAt;
+        const date = score.updatedAt.substr(0, score.updatedAt.indexOf("T"));
         return {
           scoreName: scoreName,
           author: author,
           category: category,
-          modifyDate: date
+          modifyDate: date,
+          scoreId: scoreId
         };
       })
     });
