@@ -13,7 +13,15 @@ class Discovery extends Component {
       columns: [
         { title: "Score Name", field: "scoreName" },
         { title: "Author", field: "author" },
-        { title: "Category", field: "category" },
+        {
+          title: "Category",
+          field: "category",
+          lookup: {
+            Contemporary: "Contemporary",
+            Classic: "Classic",
+            Folk: "Folk"
+          }
+        },
         { title: "Modify Date", field: "modifyDate", filtering: false }
       ]
     };
