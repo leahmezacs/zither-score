@@ -12,6 +12,7 @@ class ListScores extends Component {
 
     this.state = {
       columns: [
+        { title: "Score ID", field: "scoreId" },
         { title: "Score Name", field: "scoreName" },
         { title: "Author", field: "author" },
         { title: "Category", field: "category" },
@@ -30,12 +31,13 @@ class ListScores extends Component {
         scores: result.data.listScores.items
     });
     this.setState({
-    datas: this.state.scores.map(score => {
+    data: this.state.scores.map(score => {
+        const scoreId = score.id;
         const scoreName = score.name;
         const author = score.user.username;
         const category = score.category;
-        const date = score.updatedAt;
-        return { scoreName: scoreName, author: author, category: category, modifyDate: date };
+        const date = new Date(score.updatedAt).toDateString();
+        return { scoreId: scoreId, scoreName: scoreName, author: author, category: category, modifyDate: date };
     })
     });
   }
@@ -65,7 +67,7 @@ class ListScores extends Component {
                     data.splice(data.indexOf(oldData), 1);
                     return { ...prevState, data };
                   });
-                  this.handleDeleteScore(oldData.id);
+                  this.handleDeleteScore(oldData.scoreId);
                 }, 600);
               }),
           }}
