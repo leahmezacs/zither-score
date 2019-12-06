@@ -165,6 +165,7 @@ export const onCreateComment = `subscription OnCreateComment {
     id
     content
     createdAt
+    rating
     userId
     scoreId
   }
@@ -175,6 +176,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
     id
     content
     createdAt
+    rating
     userId
     scoreId
   }
@@ -185,6 +187,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
     id
     content
     createdAt
+    rating
     userId
     scoreId
   }

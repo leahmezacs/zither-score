@@ -26,6 +26,7 @@ type Comment @model {
   id: ID!
   content: String
   createdAt: String
+  rating: Int
   userId: String!
   scoreId: String!
 }

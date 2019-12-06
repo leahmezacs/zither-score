@@ -6,6 +6,35 @@ import Col from 'react-bootstrap/Col';
 import "./HomePage.css";
 
 class HomePage extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: "",
+            email: "",
+            comment: "",
+            message: ""
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        if(this.state.name && this.state.email && this.state.comment) {
+            this.setState({
+                message: "Your comment is received. We will response as soon as possible. \
+                Thank you for your feedback."
+            })
+        }
+    }
+
     render () {
         return (
             <div id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -13,7 +42,6 @@ class HomePage extends Component{
                     <h1 className="homepage-header">NumScore</h1> 
                     <p className="text-light">Numbers to scores</p> 
                     <br />
-                    
                 </div>
 
                 <div id="about" className="container-fluid">
@@ -27,8 +55,7 @@ class HomePage extends Component{
 
                 <div className="container-fluid bg-grey">
                     <div className="row">
-                        <div className="col-sm-4">
-                            
+                        <div className="col-sm-4">  
                         </div>
                         <div className="col-sm-8">
                             <h2>Our Values</h2><br/>
@@ -70,22 +97,55 @@ class HomePage extends Component{
                             <p> +1 (111) 222-3333</p>
                             <p> numscore000@gmail.com</p>
                         </div>
-                        <div className="col-sm-7">
+                        
+                        <form className="col-sm-7">
                             <div className="row">
                                 <div className="col-sm-6 form-group">
-                                    <input className="form-control" id="name" name="name" placeholder="Name" type="text" required/>
+                                    <input 
+                                        className="form-control" 
+                                        name="name" 
+                                        placeholder="Name" 
+                                        type="text" 
+                                        value={this.state.name}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
                                 </div>
                                 <div className="col-sm-6 form-group">
-                                    <input className="form-control" id="email" name="email" placeholder="Email" type="email" required/>
+                                    <input 
+                                        className="form-control" 
+                                        name="email" 
+                                        placeholder="Email" 
+                                        type="email" 
+                                        value={this.state.email}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
                                 </div>
                             </div>
-                            <textarea className="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br/>
+                            <textarea 
+                                className="form-control" 
+                                name="comment" 
+                                placeholder="Comment" 
+                                rows="5" 
+                                value={this.state.comment}
+                                onChange={this.handleChange}
+                                required 
+                            />
+                            <br/>
                             <div className="row">
                                 <div className="col-sm-12 form-group">
-                                    <button className="btn btn-default pull-right" type="submit">Send</button>
+                                    <button 
+                                        className="btn btn-default pull-right" 
+                                        type="submit" 
+                                        onClick={this.handleSubmit}
+                                    >
+                                        Send
+                                    </button>
+                                    <div className="homepage-result">{this.state.message}</div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -165,6 +165,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     id
     content
     createdAt
+    rating
     userId
     scoreId
   }
@@ -175,6 +176,7 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
     id
     content
     createdAt
+    rating
     userId
     scoreId
   }
@@ -185,6 +187,7 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
     id
     content
     createdAt
+    rating
     userId
     scoreId
   }

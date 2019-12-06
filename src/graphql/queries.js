@@ -105,6 +105,7 @@ export const getComment = `query GetComment($id: ID!) {
     id
     content
     createdAt
+    rating
     userId
     scoreId
   }
@@ -120,6 +121,7 @@ export const listComments = `query ListComments(
       id
       content
       createdAt
+      rating
       userId
       scoreId
     }
