@@ -2,18 +2,11 @@ import React, { Component } from "react";
 import "../../stylesheets/style.css";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import AddIcon from "@material-ui/icons/Add";
-import ControlPointIcon from "@material-ui/icons/ControlPoint";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import Dot from "@material-ui/icons/FiberManualRecord";
-import Line from "@material-ui/icons/Remove";
-import DoubleLine from "@material-ui/icons/DragHandle";
-import { Dropdown } from "react-bootstrap";
 import { graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
-import { input } from "@aws-amplify/ui";
+
 
 // Four inputs in one componenet
 class SingleScoreInput extends Component {
