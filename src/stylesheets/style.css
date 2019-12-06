@@ -224,7 +224,7 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     background: transparent;
     font-weight: bold;
     width: 40px;
-    padding: 5px;
+    padding: 0px;
     line-height: 1;
     border: 0;
     border-radius: 0;
