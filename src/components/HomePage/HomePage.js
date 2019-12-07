@@ -27,12 +27,11 @@ class HomePage extends Component{
     handleSubmit(e) {
         e.preventDefault();
 
-        if(this.state.name && this.state.email && this.state.comment) {
-            this.setState({
-                message: "Your comment is received. We will response as soon as possible. \
-                Thank you for your feedback."
-            })
-        }
+        this.setState({
+            message: "Thank you for your feedback. We will respond to you as \
+            soon as possible."
+        });
+        
     }
 
     render () {
@@ -98,7 +97,7 @@ class HomePage extends Component{
                             <p> numscore000@gmail.com</p>
                         </div>
                         
-                        <form className="col-sm-7">
+                        <form className="col-sm-7" onSubmit={this.handleSubmit}>
                             <div className="row">
                                 <div className="col-sm-6 form-group">
                                     <input 
@@ -135,13 +134,11 @@ class HomePage extends Component{
                             <br/>
                             <div className="row">
                                 <div className="col-sm-12 form-group">
-                                    <button 
+                                    <input
                                         className="btn btn-default pull-right" 
                                         type="submit" 
-                                        onClick={this.handleSubmit}
-                                    >
-                                        Send
-                                    </button>
+                                        value="Submit"
+                                    />
                                     <div className="homepage-result">{this.state.message}</div>
                                 </div>
                             </div>
