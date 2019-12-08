@@ -3,6 +3,8 @@ import { Carousel } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Auth, graphqlOperation, API } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 import "./HomePage.css";
 
 class HomePage extends Component{
@@ -16,6 +18,7 @@ class HomePage extends Component{
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCreateFeedback = this.handleCreateFeedback.bind(this);
     }
 
     handleChange(e) {
@@ -27,11 +30,23 @@ class HomePage extends Component{
     handleSubmit(e) {
         e.preventDefault();
 
+        this.handleCreateFeedback();
         this.setState({
-            message: "Thank you for your feedback. We will respond to you as \
+            message: "Thank you for your feedback. We will get back to you as \
             soon as possible."
         });
-        
+    }
+
+    async handleCreateFeedback() {
+        const feedbackCreated = await API.graphql(graphqlOperation(mutations.createFeedback, {
+            input: {
+                name: this.state.name,
+                email: this.state.email,
+                comment: this.state.comment,
+                status: "Unresolved"
+            }
+        }));
+        console.log(feedbackCreated);
     }
 
     render () {
@@ -103,7 +118,9 @@ class HomePage extends Component{
                                     <input 
                                         className="form-control" 
                                         name="name" 
-                                        placeholder="Name" 
+                                        placeholder="Name"
+                                        maxlength="32"
+                                        pattern="[A-Za-z]{1,32}" 
                                         type="text" 
                                         value={this.state.name}
                                         onChange={this.handleChange}
