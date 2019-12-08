@@ -161,7 +161,7 @@
 						]
 					},
 					"S3DeploymentBucket": "numscore-local-20191122002554-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/a5e3b28814a4c2ae5f958ed41c57ac31024aae07",
+					"S3DeploymentRootKey": "amplify-appsync-files/f84354e9f563018fcb35ebfaf1644edcb58998f5",
 					"env": "local"
 				}
 			}
@@ -182,7 +182,6 @@
 				"TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/function/numscore23475956PostConfirmation-cloudformation-template.json",
 				"Parameters": {
 					"modules": "add-to-group",
-					"resourceName": "numscore23475956PostConfirmation",
 					"GROUP": "User",
 					"env": "local"
 				}
@@ -194,7 +193,6 @@
 				"TemplateURL": "https://s3.amazonaws.com/numscore-local-20191122002554-deployment/amplify-cfn-templates/function/numscore23475956PreSignup-cloudformation-template.json",
 				"Parameters": {
 					"modules": "email-filter-blacklist",
-					"resourceName": "numscore23475956PreSignup",
 					"DOMAINBLACKLIST": "",
 					"env": "local"
 				}

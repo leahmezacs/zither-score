@@ -12,7 +12,6 @@ class ListScores extends Component {
 
     this.state = {
       columns: [
-        { title: "Score ID", field: "scoreId" },
         { title: "Score Name", field: "scoreName" },
         { title: "Author", field: "author" },
         { title: "Category", field: "category" },
@@ -48,6 +47,7 @@ class ListScores extends Component {
             id : score_id
         }
     }));
+    console.log(deletedScore);
   }
 
   render() {

@@ -105,8 +105,18 @@ export const getComment = `query GetComment($id: ID!) {
     id
     content
     createdAt
+    rating
     userId
     scoreId
+    replies {
+      items {
+        id
+        content
+        createdAt
+        userId
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -120,8 +130,56 @@ export const listComments = `query ListComments(
       id
       content
       createdAt
+      rating
       userId
       scoreId
+      replies {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getReply = `query GetReply($id: ID!) {
+  getReply(id: $id) {
+    id
+    content
+    createdAt
+    comment {
+      id
+      content
+      createdAt
+      rating
+      userId
+      scoreId
+      replies {
+        nextToken
+      }
+    }
+    userId
+  }
+}
+`;
+export const listReplys = `query ListReplys(
+  $filter: ModelReplyFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listReplys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      content
+      createdAt
+      comment {
+        id
+        content
+        createdAt
+        rating
+        userId
+        scoreId
+      }
+      userId
     }
     nextToken
   }
@@ -180,6 +238,35 @@ export const listNotes = `query ListNotes(
         category
       }
       scoreId
+    }
+    nextToken
+  }
+}
+`;
+export const getFeedback = `query GetFeedback($id: ID!) {
+  getFeedback(id: $id) {
+    id
+    name
+    email
+    comment
+    createdAt
+    status
+  }
+}
+`;
+export const listFeedbacks = `query ListFeedbacks(
+  $filter: ModelFeedbackFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFeedbacks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      email
+      comment
+      createdAt
+      status
     }
     nextToken
   }

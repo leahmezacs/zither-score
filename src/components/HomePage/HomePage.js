@@ -3,63 +3,77 @@ import { Carousel } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Auth, graphqlOperation, API } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 import "./HomePage.css";
 
 class HomePage extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: "",
+            email: "",
+            comment: "",
+            message: ""
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCreateFeedback = this.handleCreateFeedback.bind(this);
+    }
+
+    handleChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        this.handleCreateFeedback();
+        this.setState({
+            message: "Thank you for your feedback. We will get back to you as \
+            soon as possible."
+        });
+    }
+
+    async handleCreateFeedback() {
+        const feedbackCreated = await API.graphql(graphqlOperation(mutations.createFeedback, {
+            input: {
+                name: this.state.name,
+                email: this.state.email,
+                comment: this.state.comment,
+                status: "Unresolved"
+            }
+        }));
+        console.log(feedbackCreated);
+    }
+
     render () {
         return (
             <div id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-
-                {/* <nav className="navbar navbar-default navbar-fixed-top">
-                <div className="container">
-                    <div className="navbar-header">
-                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>                        
-                    </button>
-                    <a className="navbar-brand" href="#myPage">Logo</a>
-                    </div>
-                    <div className="collapse navbar-collapse" id="myNavbar">
-                    <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#about">ABOUT</a></li>
-                        <li><a href="#services">SERVICES</a></li>
-                        <li><a href="#portfolio">PORTFOLIO</a></li>
-                        <li><a href="#pricing">PRICING</a></li>
-                        <li><a href="#contact">CONTACT</a></li>
-                    </ul>
-                    </div>
-                </div>
-                </nav> */}
-
                 <div className="jumbotron text-center">
                     <h1 className="homepage-header">NumScore</h1> 
                     <p className="text-light">Numbers to scores</p> 
                     <br />
-                    
                 </div>
 
                 <div id="about" className="container-fluid">
                     <div className="row">
                         <div className="col-sm-8">
                             <h2>About NumScore</h2><br/>
-                            <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br/>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <br/><button className="btn btn-default btn-lg">Get in Touch</button>
+                            <h4>Our application allows users to create, view, and print music scores written in numbered notation called JianPu.</h4><br/>
                         </div>
                     </div>
                 </div>
 
                 <div className="container-fluid bg-grey">
                     <div className="row">
-                        <div className="col-sm-4">
-                            
+                        <div className="col-sm-4">  
                         </div>
                         <div className="col-sm-8">
                             <h2>Our Values</h2><br/>
-                            <h4><strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br/>
-                            <p><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <h4><strong>MISSION:</strong> Our mission is to help users to create and read music scores written in numbered notation freely. </h4><br/>
                         </div>
                     </div>
                 </div>
@@ -69,130 +83,85 @@ class HomePage extends Component{
                     <h4>What we offer</h4>
                     <br/>
                     <div>
-                        <Container>
+                        <Container className="service-container">
                             <Row>
                                 <Col>
                                     <h4>SIMPLICITY</h4>
-                                    <p>Lorem ipsum dolor sit amet..</p>
+                                    <p>No ads or any unnecessary features</p>
                                 </Col>
                                 <Col>
-                                    <h4>LOVE</h4>
-                                    <p>Lorem ipsum dolor sit amet..</p>
+                                    <h4>User Friendly</h4>
+                                    <p>Easy to navigate through our app</p>
                                 </Col>
                                 <Col>
                                     <h4>JOB DONE</h4>
-                                    <p>Lorem ipsum dolor sit amet..</p>
+                                    <p>create and read others' scores now!</p>
                                 </Col>
                             </Row>
                         </Container>
                     </div>
-                </div>
-                
-                <br/>
-
-                <div id="review" className="container-fluid-b text-center bg-grey">
-                    <h2>What our customers say</h2>
-                </div>
-                
-                <div id="myCarousel" className="carousel slide text-center bg-grey" data-ride="carousel">
-
-                    <Carousel>
-                        <Carousel.Item className="item">
-                            <h3>First slide</h3>
-                        </Carousel.Item>
-                        <Carousel.Item className="item">
-                            <h3>Second slide</h3>
-                        </Carousel.Item>
-                        <Carousel.Item className="item">
-                            <h3>Third slide</h3>
-                        </Carousel.Item>
-                    </Carousel>
-
-                </div>
-
-                <div id="pricing" className="container-fluid">
-                    <div className="text-center">
-                        <h2>Pricing</h2>
-                        <h4>Start free now and upgrade later</h4>
-                    </div>
-                    <div >
-                        <div className="a-col-sm-4 col-xs-12">
-                            <div className="panel panel-default text-center">
-                                <div className="panel-heading">
-                                    <h1>Basic</h1>
-                                </div>
-                                <div className="panel-body">
-                                    <p><strong>20</strong> Lorem</p>
-                                    <p><strong>15</strong> Ipsum</p>
-                                    <p><strong>5</strong> Dolor</p>
-                                    <p><strong>2</strong> Sit</p>
-                                    <p><strong>Endless</strong> Amet</p>
-                                </div>
-                                <div className="panel-footer">
-                                    <h3>$0</h3>
-                                    <h4>per month</h4>
-                                    <button className="btn btn-lg">Sign Up</button>
-                                </div>
-                            </div>      
-                        </div>     
-                        {/* <div className="col-sm-4 col-xs-12">
-                            <div className="panel panel-default text-center">
-                                <div className="panel-heading">
-                                    <h1>Pro</h1>
-                                </div>
-                                <div className="panel-body">
-                                    <p><strong>50</strong> Lorem</p>
-                                    <p><strong>25</strong> Ipsum</p>
-                                    <p><strong>10</strong> Dolor</p>
-                                    <p><strong>5</strong> Sit</p>
-                                    <p><strong>Endless</strong> Amet</p>
-                                </div>
-                                <div className="panel-footer">
-                                    <h3>$29</h3>
-                                    <h4>per month</h4>
-                                    <button className="btn btn-lg">Sign Up</button>
-                                </div>
-                            </div>      
-                        </div>        */}
-                    </div>
-                </div>
-
+                </div>               
+                <br/>                
                 <div id="contact" className="container-fluid bg-grey">
                     <h2 className="text-center">CONTACT</h2>
                     <div className="row">
                         <div className="col-sm-5">
-                            <h5>Contact us and we'll get back to you within 24 hours.</h5>
+                            <h5>Contact us and we'll try to get back to you within 24 hours.</h5>
                             <p> New York, US</p>
                             <p> +1 (111) 222-3333</p>
-                            <p> myemail@something.com</p>
+                            <p> numscore000@gmail.com</p>
                         </div>
-                        <div className="col-sm-7">
+                        
+                        <form className="col-sm-7" onSubmit={this.handleSubmit}>
                             <div className="row">
                                 <div className="col-sm-6 form-group">
-                                    <input className="form-control" id="name" name="name" placeholder="Name" type="text" required/>
+                                    <input 
+                                        className="form-control" 
+                                        name="name" 
+                                        placeholder="Name"
+                                        maxlength="32"
+                                        pattern="[A-Za-z]{1,32}" 
+                                        type="text" 
+                                        value={this.state.name}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
                                 </div>
                                 <div className="col-sm-6 form-group">
-                                    <input className="form-control" id="email" name="email" placeholder="Email" type="email" required/>
+                                    <input 
+                                        className="form-control" 
+                                        name="email" 
+                                        placeholder="Email" 
+                                        type="email" 
+                                        value={this.state.email}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
                                 </div>
                             </div>
-                            <textarea className="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br/>
+                            <textarea 
+                                className="form-control" 
+                                name="comment" 
+                                placeholder="Comment" 
+                                rows="5" 
+                                value={this.state.comment}
+                                onChange={this.handleChange}
+                                required 
+                            />
+                            <br/>
                             <div className="row">
                                 <div className="col-sm-12 form-group">
-                                    <button className="btn btn-default pull-right" type="submit">Send</button>
+                                    <input
+                                        className="btn btn-default pull-right" 
+                                        type="submit" 
+                                        value="Submit"
+                                    />
+                                    <div className="homepage-result">{this.state.message}</div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-
-                {/* <img src="/w3images/map.jpg" className="w3-image w3-greyscale-min" style="width:100%"/> */}
-
-                <footer className="container-fluid text-center">
-                    <a href="#myPage" title="To Top">
-                        
-                    </a>
-                    <p>Bootstrap theme made by: <a href="https://www.w3schools.com" target="_blank">www.w3schools.com</a></p>
-                </footer>
             </div>
         )  
     }

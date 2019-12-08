@@ -20,7 +20,7 @@ class Settings extends Component {
     render () {
         console.log(this.state.user.attributes);
         return (
-            <div className = "container">
+            <div className = "setting-container">
                 <div className = "content">
                     <h4>Username</h4> 
                     <p>{this.state.user.username}</p><hr />
