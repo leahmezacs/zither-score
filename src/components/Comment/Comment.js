@@ -9,9 +9,9 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Box,
+  Box
 } from "@material-ui/core";
-import Rating from '@material-ui/lab/Rating';
+import Rating from "@material-ui/lab/Rating";
 import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
@@ -22,8 +22,8 @@ class Comment extends Component {
 
     const urls = window.location.href;
     this.state = {
-      comment: '',
-      rating: '',
+      comment: "",
+      rating: "",
       scoreID: urls.slice(urls.lastIndexOf("?") + 1, urls.length),
       listComments: []
     };
@@ -70,16 +70,16 @@ class Comment extends Component {
     return (
       <Container maxWidth="lg">
         <form onSubmit={this.handleSubmit}>
-        <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Rate the Score</Typography>
-        <Rating
-          name="simple-controlled"
-          value={this.state.rating}
-          onChange={(event, newValue) => {
-            this.setState({rating: newValue});
-          }}
-        />
-      </Box>
+          <Box component="fieldset" mb={3} borderColor="transparent">
+            <Typography component="legend">Rate the Score</Typography>
+            <Rating
+              name="simple-controlled"
+              value={this.state.rating}
+              onChange={(event, newValue) => {
+                this.setState({ rating: newValue });
+              }}
+            />
+          </Box>
           <TextField
             fullWidth
             name="comment"
@@ -94,13 +94,20 @@ class Comment extends Component {
             onChange={e => this.setState({ comment: e.target.value })}
             required
           />
-          <Button variant="contained" type="submit" color="primary">
+          <Button
+            variant="contained"
+            disabled={!this.state.comment.trim() || !this.state.rating}
+            type="submit"
+            color="primary"
+          >
             Comment
           </Button>
         </form>
 
         <List>
-          <div className="commentHeader">{this.state.listComments.length} COMMENTS</div>
+          <div className="commentHeader">
+            {this.state.listComments.length} COMMENTS
+          </div>
           <hr />
           {this.state.listComments.length > 0 ? (
             <List>
