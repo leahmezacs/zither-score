@@ -20,7 +20,9 @@ class Dashboard extends Component {
       scores: false,
       feedbacks: false
     };
-    this.handleChangeClick = this.handleChangeClick.bind(this);
+    this.handleUsersClick = this.handleUsersClick.bind(this);
+    this.handleScoresClick = this.handleScoresClick.bind(this);
+    this.handleFeedbacksClick = this.handleFeedbacksClick.bind(this);
   }
 
   handleUsersClick = () => {
@@ -31,7 +33,21 @@ class Dashboard extends Component {
     })
   };
 
-  
+  handleScoresClick = () => {
+    this.setState({
+      users: false,
+      scores: true,
+      feedbacks: false
+    })
+  };
+
+  handleFeedbacksClick = () => {
+    this.setState({
+      users: false,
+      scores: false,
+      feedbacks: true
+    })
+  };
 
   render() {
     return (
@@ -42,13 +58,13 @@ class Dashboard extends Component {
           variant="permanent"
         >
           <List>
-            <ListItem button onClick={this.handleChangeClick}>
+            <ListItem button onClick={this.handleUsersClick}>
               <ListItemText primary="Users" />
             </ListItem>
-            <ListItem button onClick={this.handleChangeClick}>
+            <ListItem button onClick={this.handleScoresClick}>
               <ListItemText primary="Scores" />
             </ListItem>
-            <ListItem button onClick={this.handleChangeClick}>
+            <ListItem button onClick={this.handleFeedbacksClick}>
               <ListItemText primary="Feedbacks" />
             </ListItem>
           </List>
