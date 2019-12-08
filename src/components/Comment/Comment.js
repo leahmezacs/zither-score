@@ -23,7 +23,7 @@ class Comment extends Component {
     const urls = window.location.href;
     this.state = {
       comment: "",
-      rating: "",
+      rating: 0,
       scoreID: urls.slice(urls.lastIndexOf("?") + 1, urls.length),
       listComments: []
     };
@@ -34,17 +34,19 @@ class Comment extends Component {
     event.preventDefault();
     const user = await Auth.currentAuthenticatedUser();
     const userId = user.username;
+    console.log(this.state.rating)
     const commentCreated = await API.graphql(
       graphqlOperation(mutations.createComment, {
         input: {
           content: this.state.comment,
+          rating: this.state.rating,
           scoreId: this.state.scoreID,
           userId: userId
         }
       })
     );
+    console.log(commentCreated);
     window.location.reload();
-    //   console.log(commentCreated);
   };
 
   async componentDidMount() {
@@ -72,8 +74,8 @@ class Comment extends Component {
         <form onSubmit={this.handleSubmit}>
           <Box component="fieldset" mb={3} borderColor="transparent">
             <Typography component="legend">Rate the Score</Typography>
-            <Rating
-              name="simple-controlled"
+            <Rating 
+              name="rating"
               value={this.state.rating}
               onChange={(event, newValue) => {
                 this.setState({ rating: newValue });
