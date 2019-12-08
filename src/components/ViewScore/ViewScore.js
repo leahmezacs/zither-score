@@ -7,6 +7,11 @@ import * as queries from "../../graphql/queries";
 import jsPDF from "jspdf";
 import $ from "jquery";
 import Comment from "../Comment/Comment";
+import {
+  Typography,
+  Box
+} from "@material-ui/core";
+import Rating from "@material-ui/lab/Rating";
 
 class ViewScore extends Component {
   constructor(props) {
@@ -18,6 +23,7 @@ class ViewScore extends Component {
       userId: '',
       notes: [],
       rating: 0,
+      avgRate: ''
     };    
     this.generatePDF = this.generatePDF.bind(this);
     //console.log(this.state.score_id);
@@ -63,9 +69,13 @@ class ViewScore extends Component {
     this.state.listComments.map(comment => (
       this.state.rating += comment.rating
     ))
+    this.setState({
+      avgRate: this.state.rating/this.state.listComments.length
+    })
     console.log(this.state.listComments);
     console.log(this.state.rating)
     console.log(this.state.rating/this.state.listComments.length)
+    console.log(this.state.avgRate)
   }
 
   generatePDF(){
@@ -114,7 +124,10 @@ class ViewScore extends Component {
           <h2>Score Title: {this.state.score.name}</h2>
           <h2>Author: {this.state.userId}</h2>
           <h2>Last Updated: {this.state.score.updatedAt}</h2>
-          <h2>Rating: {}</h2>
+          <Box component="fieldset" mb={3} borderColor="transparent">
+            <Typography>Rating: </Typography>
+            <Rating name="read-only" value={this.state.avgRate} precision={0.1} readOnly />
+          </Box>
         </div>
         
         <div id="main-content" className="score-scrollable">
