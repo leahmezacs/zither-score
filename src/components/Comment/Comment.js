@@ -70,7 +70,16 @@ class Comment extends Component {
     return (
       <Container maxWidth="lg">
         <form onSubmit={this.handleSubmit}>
-        <Rating />
+        <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Rate the Score</Typography>
+        <Rating
+          name="simple-controlled"
+          value={this.state.rating}
+          onChange={(event, newValue) => {
+            this.setState({rating: newValue});
+          }}
+        />
+      </Box>
           <TextField
             fullWidth
             name="comment"
