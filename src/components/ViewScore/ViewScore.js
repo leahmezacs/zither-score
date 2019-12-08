@@ -16,7 +16,8 @@ class ViewScore extends Component {
       score_id: url.slice(url.lastIndexOf('?') + 1, url.length),
       score: [],
       userId: '',
-      notes: []
+      notes: [],
+      rating: 0,
     };    
     this.generatePDF = this.generatePDF.bind(this);
     //console.log(this.state.score_id);
@@ -45,6 +46,26 @@ class ViewScore extends Component {
     this.setState({
         notes: noteList.data.listNotes.items
     });
+
+    const comments = await API.graphql(
+      graphqlOperation(queries.listComments, {
+        limit: 100,
+        filter: {
+          scoreId: {
+            eq: this.state.score_id
+          }
+        }
+      })
+    );
+    this.setState({
+      listComments: comments.data.listComments.items
+    });
+    this.state.listComments.map(comment => (
+      this.state.rating += comment.rating
+    ))
+    console.log(this.state.listComments);
+    console.log(this.state.rating)
+    console.log(this.state.rating/this.state.listComments.length)
   }
 
   generatePDF(){
@@ -93,6 +114,7 @@ class ViewScore extends Component {
           <h2>Score Title: {this.state.score.name}</h2>
           <h2>Author: {this.state.userId}</h2>
           <h2>Last Updated: {this.state.score.updatedAt}</h2>
+          <h2>Rating: {}</h2>
         </div>
         
         <div id="main-content" className="score-scrollable">

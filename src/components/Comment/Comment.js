@@ -34,7 +34,7 @@ class Comment extends Component {
     event.preventDefault();
     const user = await Auth.currentAuthenticatedUser();
     const userId = user.username;
-    console.log(this.state.rating)
+    // console.log(this.state.rating)
     const commentCreated = await API.graphql(
       graphqlOperation(mutations.createComment, {
         input: {
@@ -45,7 +45,7 @@ class Comment extends Component {
         }
       })
     );
-    console.log(commentCreated);
+    // console.log(commentCreated);
     window.location.reload();
   };
 
@@ -63,7 +63,7 @@ class Comment extends Component {
     this.setState({
       listComments: comments.data.listComments.items
     });
-    console.log(this.state.listComments);
+    // console.log(this.state.listComments);
     // console.log(comments);
   }
 
@@ -113,7 +113,6 @@ class Comment extends Component {
           <hr />
           {this.state.listComments.length > 0 ? (
             <List>
-              {" "}
               {this.state.listComments.map(comment => {
                 const commentTime = comment.createdAt.substr(
                   0,
@@ -147,7 +146,7 @@ class Comment extends Component {
                     />
                   </ListItem>
                 );
-              })}{" "}
+              })}
             </List>
           ) : (
             "No Comment"
