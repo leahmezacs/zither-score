@@ -168,6 +168,15 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     rating
     userId
     scoreId
+    replies {
+      items {
+        id
+        content
+        createdAt
+        userId
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -179,6 +188,15 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
     rating
     userId
     scoreId
+    replies {
+      items {
+        id
+        content
+        createdAt
+        userId
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -190,6 +208,75 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
     rating
     userId
     scoreId
+    replies {
+      items {
+        id
+        content
+        createdAt
+        userId
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createReply = `mutation CreateReply($input: CreateReplyInput!) {
+  createReply(input: $input) {
+    id
+    content
+    createdAt
+    comment {
+      id
+      content
+      createdAt
+      rating
+      userId
+      scoreId
+      replies {
+        nextToken
+      }
+    }
+    userId
+  }
+}
+`;
+export const updateReply = `mutation UpdateReply($input: UpdateReplyInput!) {
+  updateReply(input: $input) {
+    id
+    content
+    createdAt
+    comment {
+      id
+      content
+      createdAt
+      rating
+      userId
+      scoreId
+      replies {
+        nextToken
+      }
+    }
+    userId
+  }
+}
+`;
+export const deleteReply = `mutation DeleteReply($input: DeleteReplyInput!) {
+  deleteReply(input: $input) {
+    id
+    content
+    createdAt
+    comment {
+      id
+      content
+      createdAt
+      rating
+      userId
+      scoreId
+      replies {
+        nextToken
+      }
+    }
+    userId
   }
 }
 `;
@@ -280,6 +367,39 @@ export const deleteNote = `mutation DeleteNote($input: DeleteNoteInput!) {
       category
     }
     scoreId
+  }
+}
+`;
+export const createFeedback = `mutation CreateFeedback($input: CreateFeedbackInput!) {
+  createFeedback(input: $input) {
+    id
+    name
+    email
+    comment
+    createdAt
+    status
+  }
+}
+`;
+export const updateFeedback = `mutation UpdateFeedback($input: UpdateFeedbackInput!) {
+  updateFeedback(input: $input) {
+    id
+    name
+    email
+    comment
+    createdAt
+    status
+  }
+}
+`;
+export const deleteFeedback = `mutation DeleteFeedback($input: DeleteFeedbackInput!) {
+  deleteFeedback(input: $input) {
+    id
+    name
+    email
+    comment
+    createdAt
+    status
   }
 }
 `;

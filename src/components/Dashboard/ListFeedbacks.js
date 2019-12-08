@@ -6,16 +6,15 @@ import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
 
-class ListScores extends Component {
+class ListFeedbacks extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       columns: [
-        { title: "Score Name", field: "scoreName" },
-        { title: "Author", field: "author" },
-        { title: "Category", field: "category" },
-        { title: "Modify Date", field: "modifyDate" }
+        { title: "Name", field: "name" },
+        { title: "Email", field: "email" },
+        { title: "Date", field: "date" }
       ]
     };
   }
@@ -23,31 +22,29 @@ class ListScores extends Component {
   //get public scores from all users
   async componentDidMount() {
     const limit = 100;
-    const result = await API.graphql(graphqlOperation(queries.listScores, {limit}));
+    const result = await API.graphql(graphqlOperation(queries.listFeedbacks, {limit}));
     console.log(result);
 
     this.setState({
-        scores: result.data.listScores.items
+        feedbacks: result.data.listFeedbacks.items
     });
     this.setState({
-    data: this.state.scores.map(score => {
-        const scoreId = score.id;
-        const scoreName = score.name;
-        const author = score.user.username;
-        const category = score.category;
-        const date = new Date(score.updatedAt).toDateString();
-        return { scoreId: scoreId, scoreName: scoreName, author: author, category: category, modifyDate: date };
+    data: this.state.feedbacks.map(feedback => {
+        const feedbackId = feedback.id;
+        const name = feedback.name;
+        const email = feedback.email;
+        const date = new Date(feedback.createdAt).toDateString();
+        return { feedbackId: feedbackId, name: name, email: email, date: date };
     })
     });
   }
 
-  async handleDeleteScore(score_id) {
-    const deletedScore = await API.graphql(graphqlOperation(mutations.deleteScore,{
+  async handleDeleteFeedback(feedback_id) {
+    const deletedFeedback = await API.graphql(graphqlOperation(mutations.deleteFeedback,{
         input:{
-            id : score_id
+            id : feedback_id
         }
     }));
-    console.log(deletedScore);
   }
 
   render() {
@@ -67,7 +64,7 @@ class ListScores extends Component {
                     data.splice(data.indexOf(oldData), 1);
                     return { ...prevState, data };
                   });
-                  this.handleDeleteScore(oldData.scoreId);
+                  this.handleDeleteFeedback(oldData.feedbackId);
                 }, 600);
               }),
           }}
@@ -77,4 +74,4 @@ class ListScores extends Component {
   }
 }
 
-export default ListScores;
+export default ListFeedbacks;

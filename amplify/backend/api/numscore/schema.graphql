@@ -29,6 +29,15 @@ type Comment @model {
   rating: Int
   userId: String!
   scoreId: String!
+  replies: [Reply] @connection(name: "CommentReplies", sortField: "createdAt")
+}
+
+type Reply @model {
+  id: ID!
+  content: String
+  createdAt: String
+  comment: Comment @connection(name: "CommentReplies", sortField: "createdAt")
+  userId: String!
 }
 
 enum ScoreStatus {
@@ -51,4 +60,13 @@ type Note @model {
 enum dotStatus {
   TOP
   BOTTOM
+}
+
+type Feedback @model {
+  id: ID!
+  name: String!
+  email: String!
+  comment: String!
+  createdAt: String
+  status: String!
 }
