@@ -1,13 +1,13 @@
-.container {
-    border: 0;
-    border-radius: 3;
-    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
-    height: 700px;
-    padding: 0 30px;
-}
-
 .content {
     padding-top: 70px;
+}
+
+.setting-container {
+  border: 0;
+  border-radius: 3;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+  height: 700px;
+  padding: 30px 30px;
 }
 
 h4 {
@@ -15,7 +15,7 @@ h4 {
     font-size: 24px;
 }
 
-p {
+.content p {
     color: black;
     font-size: 16px;
 }

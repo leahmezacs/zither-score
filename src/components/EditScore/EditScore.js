@@ -8,32 +8,50 @@ import * as queries from "../../graphql/queries";
 class EditScore extends Component {
   constructor(props) {
     super(props);
+
     const url = window.location.href;
     this.state = {
       score_id: url.slice(url.lastIndexOf('?') + 1, url.length),
-      score: []
+      score: [],
+      timer: null,
+      saved: true
     };
     //console.log(this.state.score_id);
   }
+
   async componentDidMount() {
+    let interval = setInterval(() => {
+        this.setState(prevState => {
+          return {
+            saved: !prevState.saved
+          };
+        });
+      }, 5000);
+
     const result = await API.graphql(
       graphqlOperation(queries.getScore, {
         id: this.state.score_id
       })
     );
-   // console.log("id: ", this.state.score_id);
 
     this.setState({
-      score: result.data.getScore
+      score: result.data.getScore,
+      timer: interval
     });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.timer);
   }
 
   render() {
     //console.log(this.state.score_name);
     return (
       <div>
-        
-
+        <div className="save-state">
+          { this.state.saved ? <p>Saved</p> 
+          : <p>Autosaving...</p> }
+        </div>
         <div id="main-content" className="score-scrollable">
           <svg width="1150" height="1650" className="score-sheet">
             <g
@@ -49,7 +67,7 @@ class EditScore extends Component {
                     fontSize="40"
                     transform="translate(431.024, 80)"
                   >
-                    {this.state.score.name}
+                    {this.state.score.name} 
                   </text>
                 </g>
               </g>
