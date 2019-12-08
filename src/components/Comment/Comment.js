@@ -8,8 +8,10 @@ import {
   List,
   ListItem,
   ListItemAvatar,
-  ListItemText
+  ListItemText,
+  Box,
 } from "@material-ui/core";
+import Rating from '@material-ui/lab/Rating';
 import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
@@ -20,7 +22,8 @@ class Comment extends Component {
 
     const urls = window.location.href;
     this.state = {
-      comment: "",
+      comment: '',
+      rating: '',
       scoreID: urls.slice(urls.lastIndexOf("?") + 1, urls.length),
       listComments: []
     };
@@ -67,6 +70,7 @@ class Comment extends Component {
     return (
       <Container maxWidth="lg">
         <form onSubmit={this.handleSubmit}>
+        <Rating />
           <TextField
             fullWidth
             name="comment"
