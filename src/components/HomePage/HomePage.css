@@ -62,6 +62,7 @@ h4 {
 .jumbotron {
     background: linear-gradient(315deg, #31caa9 30%, #54cece 70%);;
     color: #fff;
+    height: 60px;
     padding: 100px 25px;
     font-family: Montserrat, sans-serif;
 }
