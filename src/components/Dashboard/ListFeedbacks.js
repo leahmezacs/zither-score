@@ -19,16 +19,21 @@ class ListFeedbacks extends Component {
     this.state = {
         open: false,
         comment: '',
+        feedback_id: '',
         columns: [
             { title: "Name", field: "name" },
             { title: "Email", field: "email" },
-            { title: "Date", field: "date" }
+            { title: "Date", field: "date" },
+            { title: "Status", field: "status" }
         ]
     };
 
     //this.handleClick = this.handleClick.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClickClose = this.handleClickClose.bind(this);
+    this.handleResolveFeedback = this.handleResolveFeedback.bind(this);
+    this.handleIgnoreFeedback = this.handleIgnoreFeedback.bind(this);
+    this.handleFethData = this.handleFethData.bind(this);
   }
 
   //get public scores from all users
@@ -40,23 +45,48 @@ class ListFeedbacks extends Component {
         this.setState({
             feedbacks: result.data.listFeedbacks.items
         });
+        
+        this.feedbackUpdationSubscription = API.graphql(graphqlOperation(subscriptions.onUpdateFeedback)).subscribe({
+            next: (feedbackData) => {
+                const updatedFeedback = feedbackData.value.data.onUpdateFeedback;
+                const updatedFeedbacks = this.state.feedbacks.filter(feedbacksData => feedbacksData.id !== updatedFeedback.id);
+                this.setState({
+                    feedbacks: [...updatedFeedbacks, updatedFeedback]
+                }, () => this.handleFethData());
+                
+            }
+        });
+
+        
+
+        this.handleFethData()
+    }
+
+    componentWillUnmount() {
+        if(this.feedbackDeletionSubscription) this.feedbackDeletionSubscription.unsubscribe();
+        if(this.feedbackUpdationSubscription) this.feedbackUpdationSubscription.unsubscribe();
+    }
+
+    handleFethData() {
         this.setState({
-        data: this.state.feedbacks.map(feedback => {
-            const feedbackId = feedback.id;
-            const name = feedback.name;
-            const email = feedback.email;
-            const date = new Date(feedback.createdAt).toDateString();
-            const comment = feedback.comment;
-            return { feedbackId: feedbackId, name: name, email: email, date: date, comment: comment };
+            data: this.state.feedbacks.map(feedback => {
+                const ID = feedback.id;
+                const name = feedback.name;
+                const email = feedback.email;
+                const date = new Date(feedback.createdAt).toDateString();
+                const status = feedback.status;
+                const comment = feedback.comment;
+                return { ID: ID, name: name, email: email, date: date, status: status, comment: comment };
             })
         });
     }
 
-    handleClickOpen(comment) {
-        console.log(comment);
+    handleClickOpen(comment, id) {
+        console.log(id);
         this.setState({
             open: true,
-            comment: comment
+            comment: comment,
+            feedback_id: id
         });
     }
 
@@ -66,9 +96,24 @@ class ListFeedbacks extends Component {
         })
     }
 
-  /* async handleUpdateFeedback(feedback_id) {
+    async handleResolveFeedback() {
+        const updatedFeedback = await API.graphql(graphqlOperation(mutations.updateFeedback, {
+            input: {
+              id: this.state.feedback_id,
+              status: "Resolved"
+            }
+        }));
+        this.handleClickClose();
+    }
 
-  } */
+    async handleIgnoreFeedback() {
+        const deletedScore = await API.graphql(graphqlOperation(mutations.deleteFeedback,{
+            input:{
+                id : this.state.feedback_id
+            }
+        }));
+        this.handleClickClose();
+    }
 
     async handleDeleteFeedback(feedback_id) {
         const deletedFeedback = await API.graphql(graphqlOperation(mutations.deleteFeedback,{
@@ -98,11 +143,11 @@ class ListFeedbacks extends Component {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.handleClickClose} color="primary">
+                    <Button onClick={this.handleResolveFeedback} color="primary">
                         Mark as Resolved
                     </Button>
-                    <Button onClick={this.handleClickClose} color="primary">
-                        Cancel
+                    <Button onClick={this.handleIgnoreFeedback} color="primary">
+                        Ignore
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -110,7 +155,7 @@ class ListFeedbacks extends Component {
             title="Feedback"
             columns={this.state.columns}
             data={this.state.data}
-            onRowClick={(event, rowData) => this.handleClickOpen(rowData.comment)}
+            onRowClick={(event, rowData) => this.handleClickOpen(rowData.comment, rowData.ID)}
             />
         </Container>
         );
