@@ -12,6 +12,7 @@ import {
   Box
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class ViewScore extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class ViewScore extends Component {
       userId: '',
       notes: [],
       rating: 0,
-      avgRate: ''
+      avgRate: 0,
     };    
     this.generatePDF = this.generatePDF.bind(this);
     //console.log(this.state.score_id);
@@ -125,20 +126,29 @@ class ViewScore extends Component {
           <h2>Author: {this.state.userId}</h2>
           <h2>Last Updated: {this.state.score.updatedAt}</h2>
           <Box component="fieldset" mb={3} borderColor="transparent">
-            <Typography>Rating: </Typography>
-            <Rating name="read-only" value={this.state.avgRate} precision={0.1} readOnly />
+            <div className="rating">
+              <Box mr={2}>Rating: </Box>
+              <Rating
+                name="read-only"
+                value={this.state.avgRate}
+                precision={0.1}
+                size="large"
+                readOnly
+              />
+              <Box ml={1}>{this.state.avgRate} out of 5</Box>
+            </div>
           </Box>
         </div>
-        
+
         <div id="main-content" className="score-scrollable">
-            <g className="page-main">
-                <div id="pdf-window"> 
-                    {this.generatePDF()}
-                    <iframe type="application/pdf">
-                      <p>Your browser does not support iframes.</p>
-                    </iframe>
-                </div>
-            </g>
+          <g className="page-main">
+            <div id="pdf-window">
+              {this.generatePDF()}
+              <iframe type="application/pdf">
+                <p>Your browser does not support iframes.</p>
+              </iframe>
+            </div>
+          </g>
         </div>
         <Comment />
       </div>

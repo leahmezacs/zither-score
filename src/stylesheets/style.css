@@ -280,3 +280,13 @@ h2{
     text-align: center;
     margin: 0px;
 }
+
+/* ViewScore page Rating styling */
+.rating {
+    width: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 20px;
+  }
