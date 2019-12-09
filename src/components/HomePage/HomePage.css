@@ -269,3 +269,30 @@ footer .icon {
         font-size: 150px;
   }
 }
+
+/* Tutorials Styling */
+
+.pstyle1 {
+    display: none;text-align: center;
+}
+.istyle1 {
+    font-style: italic; font-weight: bold; color: #CCCCCC; font-size: 18px;
+}
+.divstyle1 {
+    display: none;
+}
+.pstyle2 {
+    font-size: 18px;
+}
+.bstyle1 {
+    font-weight: normal; width: 40px; height: 40px; display: inline-block; border: 2px solid #CCCCCC; color: #CCCCCC; border-radius: 100%; text-align: center; box-sizing: border-box; padding-left: 1px; margin-right: 24px;
+}
+.spanstyle1 {
+    line-height: 37px;
+}
+.spanstyle2 {
+    display: inline-block; margin-top: 8px; line-height: 23px;
+}
+.bstyle2 {
+    font-weight: bold; color: #FF00D6;
+}
