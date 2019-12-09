@@ -67,7 +67,6 @@ class HomePage extends Component{
                         </div>
                     </div>
                 </div>
-                <Tutorials />
 
                 <div className="container-fluid bg-grey">
                     <div className="row">
@@ -79,6 +78,8 @@ class HomePage extends Component{
                         </div>
                     </div>
                 </div>
+                <br/>
+                <Tutorials />
 
                 <div id="services" className="container-fluid text-center">
                     <h2>SERVICES</h2>
