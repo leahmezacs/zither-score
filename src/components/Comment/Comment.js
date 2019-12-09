@@ -86,12 +86,11 @@ class Comment extends Component {
 
     this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
       next: (commentData) => {
-          console.log(commentData)
           const commentID = commentData.value.data.onDeleteComment.id;
-          console.log("deleted score id: " + commentID);
+          // console.log("deleted score id: " + commentID);
 
           const remainingComment = this.state.listComments.filter(comment => comment.id !== commentID);
-          console.log(remainingComment);
+          // console.log(remainingComment);
           this.setState({
               listComments: remainingComment
           });
