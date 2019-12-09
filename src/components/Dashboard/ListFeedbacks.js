@@ -18,6 +18,7 @@ class ListFeedbacks extends Component {
 
     this.state = {
         open: false,
+        comment: '',
         columns: [
             { title: "Name", field: "name" },
             { title: "Email", field: "email" },
@@ -25,112 +26,95 @@ class ListFeedbacks extends Component {
         ]
     };
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleViewComment = this.handleViewComment.bind(this);
+    //this.handleClick = this.handleClick.bind(this);
+    this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.handleClickClose = this.handleClickClose.bind(this);
   }
 
   //get public scores from all users
-  async componentDidMount() {
-    const limit = 100;
-    const result = await API.graphql(graphqlOperation(queries.listFeedbacks, {limit}));
-    console.log(result);
+    async componentDidMount() {
+        const limit = 100;
+        const result = await API.graphql(graphqlOperation(queries.listFeedbacks, {limit}));
+        console.log(result);
 
-    this.setState({
-        feedbacks: result.data.listFeedbacks.items
-    });
-    this.setState({
-    data: this.state.feedbacks.map(feedback => {
-        const feedbackId = feedback.id;
-        const name = feedback.name;
-        const email = feedback.email;
-        const date = new Date(feedback.createdAt).toDateString();
-        const comment = feedback.comment;
-        return { feedbackId: feedbackId, name: name, email: email, date: date, comment: comment };
+        this.setState({
+            feedbacks: result.data.listFeedbacks.items
+        });
+        this.setState({
+        data: this.state.feedbacks.map(feedback => {
+            const feedbackId = feedback.id;
+            const name = feedback.name;
+            const email = feedback.email;
+            const date = new Date(feedback.createdAt).toDateString();
+            const comment = feedback.comment;
+            return { feedbackId: feedbackId, name: name, email: email, date: date, comment: comment };
+            })
+        });
+    }
+
+    handleClickOpen(comment) {
+        console.log(comment);
+        this.setState({
+            open: true,
+            comment: comment
+        });
+    }
+
+    handleClickClose() {
+        this.setState({
+            open: false
         })
-    });
-  }
+    }
 
-  /* handleClick() {
-    this.setState(prevState => {
-        return {
-          open: !prevState.open
-        };
-    });
+  /* async handleUpdateFeedback(feedback_id) {
+
   } */
 
-  handleViewComment(comment) {
-    console.log(comment);
-    return(
-        <div>
-            <Button onClick={this.handleClick}>scroll=paper</Button>
+    async handleDeleteFeedback(feedback_id) {
+        const deletedFeedback = await API.graphql(graphqlOperation(mutations.deleteFeedback,{
+            input:{
+                id : feedback_id
+            }
+        }));
+    }
+
+    render() {
+        return (
+        <Container maxWidth="md">
             <Dialog
                 open={this.state.open}
-                onClose={this.handleClick}
-                scroll="paper"
+                onClose={this.handleClickClose}
+                scroll='paper'
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
             >
                 <DialogTitle id="scroll-dialog-title">Feedback</DialogTitle>
-                <DialogContent dividers="paper">
+                <DialogContent dividers={true}>
                     <DialogContentText
                         id="scroll-dialog-description"
-                        ref="descriptionElementRef"
                         tabIndex={-1}
                     >
-                        {comment}
+                        {this.state.comment}
                     </DialogContentText>
-                    </DialogContent>
+                </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.handleClick} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={this.handleClick} color="primary">
+                    <Button onClick={this.handleClickClose} color="primary">
                         Mark as Resolved
+                    </Button>
+                    <Button onClick={this.handleClickClose} color="primary">
+                        Cancel
                     </Button>
                 </DialogActions>
             </Dialog>
-        </div>
-    )
-  }
-
-  async handleUpdateFeedback(feedback_id) {
-
-  }
-
-  async handleDeleteFeedback(feedback_id) {
-    const deletedFeedback = await API.graphql(graphqlOperation(mutations.deleteFeedback,{
-        input:{
-            id : feedback_id
-        }
-    }));
-  }
-
-  render() {
-    return (
-      <Container maxWidth="md">
-        <MaterialTable
-          title="Scores"
-          columns={this.state.columns}
-          data={this.state.data}
-          onRowClick={(event, rowData) => this.handleViewComment(rowData.comment)}
-          editable={{
-            onRowDelete: oldData =>
-              new Promise(resolve => {
-                setTimeout(() => {
-                  resolve();
-                  this.setState(prevState => {
-                    const data = [...prevState.data];
-                    data.splice(data.indexOf(oldData), 1);
-                    return { ...prevState, data };
-                  });
-                  this.handleDeleteFeedback(oldData.feedbackId);
-                }, 600);
-              }),
-          }}
-        />
-      </Container>
-    );
-  }
+            <MaterialTable
+            title="Feedback"
+            columns={this.state.columns}
+            data={this.state.data}
+            onRowClick={(event, rowData) => this.handleClickOpen(rowData.comment)}
+            />
+        </Container>
+        );
+    }
 }
 
 export default ListFeedbacks;
