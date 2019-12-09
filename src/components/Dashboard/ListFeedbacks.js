@@ -57,7 +57,15 @@ class ListFeedbacks extends Component {
             }
         });
 
-        
+        this.feedbackDeleteSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteFeedback)).subscribe({
+            next: (feedbackData) => {
+                const feedbackId = feedbackData.value.data.onDeleteFeedback.id;
+                const remainingFeedbacks = this.state.feedbacks.filter(feedbacksData => feedbacksData.id !== feedbackId);
+                this.setState({
+                    feedbacks: remainingFeedbacks
+                }, () => this.handleFethData());
+            }
+        });
 
         this.handleFethData()
     }
