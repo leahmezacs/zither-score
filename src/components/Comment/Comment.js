@@ -12,6 +12,7 @@ import {
   Box
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
+import DeleteIcon from '@material-ui/icons/Delete';
 import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
@@ -25,23 +26,22 @@ class Comment extends Component {
       comment: "",
       rating: 0,
       scoreID: urls.slice(urls.lastIndexOf("?") + 1, urls.length),
-      listComments: []
+      listComments: [],
+      userId: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    const user = await Auth.currentAuthenticatedUser();
-    const userId = user.username;
-    // console.log(this.state.rating)
     const commentCreated = await API.graphql(
       graphqlOperation(mutations.createComment, {
         input: {
           content: this.state.comment,
           rating: this.state.rating,
           scoreId: this.state.scoreID,
-          userId: userId
+          userId: this.state.userId
         }
       })
     );
@@ -50,6 +50,12 @@ class Comment extends Component {
   };
 
   async componentDidMount() {
+    const user = await Auth.currentAuthenticatedUser();
+    const userId = user.username;
+    this.setState({
+      userId: userId
+    })
+
     const comments = await API.graphql(
       graphqlOperation(queries.listComments, {
         limit: 100,
@@ -145,6 +151,11 @@ class Comment extends Component {
                             size="small"
                             readOnly
                           />
+                          {this.state.userId === comment.userId
+                            && <DeleteIcon 
+                              className="commentRight"
+                              onClick={() => this.handleDelete(comment.commentID)}
+                            />}
                           <br />
                           {comment.content}
                         </Typography>
