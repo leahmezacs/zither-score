@@ -140,6 +140,14 @@ class Comment extends Component {
                       }
                       secondary={
                         <Typography className="commentContent">
+                          <Rating
+                            name="rating"
+                            value={comment.rating}
+                            precision={0.1}
+                            size="small"
+                            readOnly
+                          />
+                          <br />
                           {comment.content}
                         </Typography>
                       }

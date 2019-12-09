@@ -125,11 +125,11 @@ class ViewScore extends Component {
           <h2>Score Title: {this.state.score.name}</h2>
           <h2>Author: {this.state.userId}</h2>
           <h2>Last Updated: {this.state.score.updatedAt}</h2>
-          <Box component="fieldset" mb={3} borderColor="transparent">
-            <div className="rating">
+          <Box mb={3} borderColor="transparent">
+            <div className="viewRating">
               <Box mr={2}>Rating: </Box>
               <Rating
-                name="read-only"
+                name="rating"
                 value={this.state.avgRate}
                 precision={0.1}
                 size="large"

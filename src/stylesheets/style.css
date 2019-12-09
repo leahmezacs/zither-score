@@ -282,7 +282,7 @@ h2{
 }
 
 /* ViewScore page Rating styling */
-.rating {
+.viewRating {
     width: 200;
     display: flex;
     align-items: center;
