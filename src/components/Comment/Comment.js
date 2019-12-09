@@ -16,6 +16,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
+import * as subscriptions from '../../graphql/subscriptions';
 
 class Comment extends Component {
   constructor(props) {
@@ -30,7 +31,9 @@ class Comment extends Component {
       userId: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.handleDeleteComment = this.handleDeleteComment.bind(this);
+
+    this.commentDeletionSubscription = null;
   }
 
   handleSubmit = async (event) => {
@@ -48,6 +51,17 @@ class Comment extends Component {
     // console.log(commentCreated);
     window.location.reload();
   };
+
+  async handleDeleteComment(commentID) {
+    const deleteComment = await API.graphql(graphqlOperation(mutations.deleteComment,{
+        input:{
+            id : commentID
+        }
+    }));
+    // window.location.reload();
+    // console.log(deleteComment);
+    // console.log(this.state.listComments);
+}
 
   async componentDidMount() {
     const user = await Auth.currentAuthenticatedUser();
@@ -69,6 +83,24 @@ class Comment extends Component {
     this.setState({
       listComments: comments.data.listComments.items
     });
+
+    this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
+      next: (commentData) => {
+          console.log(commentData)
+          const commentID = commentData.value.data.onDeleteComment.id;
+          console.log("deleted score id: " + commentID);
+
+          const remainingComment = this.state.listComments.filter(comment => comment.id !== commentID);
+          console.log(remainingComment);
+          this.setState({
+              listComments: remainingComment
+          });
+      },
+    });
+  }
+  
+  componentWillUnmount() {
+    if(this.commentDeletionSubscription) this.commentDeletionSubscription.unsubscribe();
   }
 
   render() {
@@ -154,7 +186,7 @@ class Comment extends Component {
                           {this.state.userId === comment.userId
                             && <DeleteIcon 
                               className="commentRight"
-                              onClick={() => this.handleDelete(comment.commentID)}
+                              onClick={() => this.handleDeleteComment(comment.id)}
                             />}
                           <br />
                           {comment.content}
