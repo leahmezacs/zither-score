@@ -8,7 +8,6 @@ import jsPDF from "jspdf";
 import $ from "jquery";
 import Comment from "../Comment/Comment";
 import {
-  Typography,
   Box
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
@@ -73,10 +72,6 @@ class ViewScore extends Component {
     this.setState({
       avgRate: this.state.rating/this.state.listComments.length
     })
-    console.log(this.state.listComments);
-    console.log(this.state.rating)
-    console.log(this.state.rating/this.state.listComments.length)
-    console.log(this.state.avgRate)
   }
 
   generatePDF(){
@@ -135,7 +130,7 @@ class ViewScore extends Component {
                 size="large"
                 readOnly
               />
-              <Box ml={1}>{this.state.avgRate} out of 5</Box>
+              <Box ml={1}>{this.state.avgRate ? this.state.avgRate + ' out of 5': 'Not rated yet'}</Box>
             </div>
           </Box>
         </div>

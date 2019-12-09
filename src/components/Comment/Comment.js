@@ -63,8 +63,6 @@ class Comment extends Component {
     this.setState({
       listComments: comments.data.listComments.items
     });
-    // console.log(this.state.listComments);
-    // console.log(comments);
   }
 
   render() {
