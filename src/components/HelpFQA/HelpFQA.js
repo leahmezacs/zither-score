@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import "./HelpFQA.css";
+//import "HelpFQA.css";
 
 class HelpFQA extends Component {
     render() {
