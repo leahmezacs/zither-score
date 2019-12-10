@@ -165,8 +165,18 @@ export const onCreateComment = `subscription OnCreateComment {
     id
     content
     createdAt
+    rating
     userId
     scoreId
+    replies {
+      items {
+        id
+        content
+        createdAt
+        userId
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -175,8 +185,18 @@ export const onUpdateComment = `subscription OnUpdateComment {
     id
     content
     createdAt
+    rating
     userId
     scoreId
+    replies {
+      items {
+        id
+        content
+        createdAt
+        userId
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -185,8 +205,78 @@ export const onDeleteComment = `subscription OnDeleteComment {
     id
     content
     createdAt
+    rating
     userId
     scoreId
+    replies {
+      items {
+        id
+        content
+        createdAt
+        userId
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onCreateReply = `subscription OnCreateReply {
+  onCreateReply {
+    id
+    content
+    createdAt
+    comment {
+      id
+      content
+      createdAt
+      rating
+      userId
+      scoreId
+      replies {
+        nextToken
+      }
+    }
+    userId
+  }
+}
+`;
+export const onUpdateReply = `subscription OnUpdateReply {
+  onUpdateReply {
+    id
+    content
+    createdAt
+    comment {
+      id
+      content
+      createdAt
+      rating
+      userId
+      scoreId
+      replies {
+        nextToken
+      }
+    }
+    userId
+  }
+}
+`;
+export const onDeleteReply = `subscription OnDeleteReply {
+  onDeleteReply {
+    id
+    content
+    createdAt
+    comment {
+      id
+      content
+      createdAt
+      rating
+      userId
+      scoreId
+      replies {
+        nextToken
+      }
+    }
+    userId
   }
 }
 `;
@@ -277,6 +367,39 @@ export const onDeleteNote = `subscription OnDeleteNote {
       category
     }
     scoreId
+  }
+}
+`;
+export const onCreateFeedback = `subscription OnCreateFeedback {
+  onCreateFeedback {
+    id
+    name
+    email
+    comment
+    createdAt
+    status
+  }
+}
+`;
+export const onUpdateFeedback = `subscription OnUpdateFeedback {
+  onUpdateFeedback {
+    id
+    name
+    email
+    comment
+    createdAt
+    status
+  }
+}
+`;
+export const onDeleteFeedback = `subscription OnDeleteFeedback {
+  onDeleteFeedback {
+    id
+    name
+    email
+    comment
+    createdAt
+    status
   }
 }
 `;

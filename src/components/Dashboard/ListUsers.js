@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphqlOperation, Auth, API } from 'aws-amplify';
+import AWS from "aws-sdk"; 
 import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 import * as queries from '../../graphql/queries';
@@ -45,11 +46,34 @@ class ListUsers extends Component {
   }
 
   async handleDeleteUser(user_id) {
+    /* const cognitoUser = await Auth.currentAuthenticatedUser();
+
+    const AWS = require('aws-sdk');
+    AWS.config.region = 'us-east-1'; // Region
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'us-east-1:037e5840-fa82-4b51-858f-e0ef42677465',
+        Logins: {
+          'us-east-1_Sbh7qj4nQ': cognitoUser.signInUserSession.idToken.jwtToken
+      }
+    });
+    console.log(AWS.config.credentials);
+
+    const cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider();
+    const params = {
+      UserPoolId: 'us-east-1_Sbh7qj4nQ', 
+      Username: user_id 
+    };
+    cognitoidentityserviceprovider.adminDeleteUser(params, function(err, data) {
+      if (err) console.log(err, err.stack); 
+      else console.log(data);          
+    }); */
+
     const deletedUser = await API.graphql(graphqlOperation(mutations.deleteUser,{
         input:{
             id : user_id
         }
     }));
+
     /* try {
       console.log(await Auth.currentSession());
       let apiName = 'AdminQueries';
