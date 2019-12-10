@@ -8,7 +8,7 @@ import CreateModal from "../CreateModal/CreateModal";
 import { Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
 import { graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
-import HelpFQA from '../HelpFQA/HelpFQA'
+
 
 class NavBar extends Component {
   constructor(props) {
