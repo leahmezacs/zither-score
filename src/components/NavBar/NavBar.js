@@ -9,6 +9,7 @@ import { Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
 import { graphqlOperation, API } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -63,7 +64,7 @@ class NavBar extends Component {
                     <NavDropdown.Item href="/Library">Library</NavDropdown.Item>
                     <NavDropdown.Item href="/Settings">Settings</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#">Help</NavDropdown.Item>
+                    <NavDropdown.Item href="/HelpFQA">Help</NavDropdown.Item>
                     <NavDropdown.Item href="/" onClick={this.props.onSignOut}>
                       Logout
                     </NavDropdown.Item>

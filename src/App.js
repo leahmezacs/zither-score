@@ -12,6 +12,7 @@ import EditScore from './components/EditScore/EditScore';
 import ViewScore from './components/ViewScore/ViewScore';
 import SingleScore from './components/EditScore/ScoreInput';
 import ChangePassword from './components/Settings/ChangePassword';
+import HelpFQA from './components/HelpFQA/HelpFQA'
 
 class App extends Component {
     constructor(props) {
@@ -57,6 +58,7 @@ class App extends Component {
                     <Route exact path="/EditScore" component={EditScore}/>
                     <Route exact path="/ScoreInput" component={SingleScore}/>
                     <Route exact path="/ViewScore" component={ViewScore}/>  
+                    <Route exact path="/HelpFQA" component={HelpFQA}/>
                 </div>
             </Router>
         ); 
