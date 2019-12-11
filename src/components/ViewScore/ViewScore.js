@@ -89,16 +89,16 @@ class ViewScore extends Component {
     // For fetching rating in the comment
     this.fetchRating();
 
-    this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
-      next: (commentData) => {
-          const createComment = commentData.value.data.onCreateComment;
-          const updatedComments = [...this.state.listComments, createComment];
-          this.setState({
-            listComments: updatedComments
-          });
-          this.fetchRating()
-      },
-    });
+    // this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
+    //   next: (commentData) => {
+    //       const createComment = commentData.value.data.onCreateComment;
+    //       const updatedComments = [...this.state.listComments, createComment];
+    //       this.setState({
+    //         listComments: updatedComments
+    //       });
+    //       this.fetchRating()
+    //   },
+    // });
 
     this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
       next: (commentData) => {
@@ -158,7 +158,7 @@ class ViewScore extends Component {
   render() {
     return (
       <div>
-        <div className="jumbotron text-center">
+        <div className="text-center">
           <h1>Welcome, Share Your Thoughts Below!</h1>
           <h2>Score Title: {this.state.score.name}</h2>
           <h2>Author: {this.state.userId}</h2>

@@ -17,6 +17,7 @@ import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
 import * as subscriptions from '../../graphql/subscriptions';
+import Reply from "./Reply";
 
 class Comment extends Component {
   constructor(props) {
@@ -169,7 +170,8 @@ class Comment extends Component {
                   comment.createdAt.indexOf("T")
                 );
                 return (
-                  <ListItem key={comment.id}>
+                  <div key={comment.id}>
+                  <ListItem>
                     <ListItemAvatar>
                       <Avatar alt="profile" src={avatarURL + comment.userId} />
                     </ListItemAvatar>
@@ -207,7 +209,10 @@ class Comment extends Component {
                         </Typography>
                       }
                     />
+                    {/* <Reply commentID={comment.id} /> */}
                   </ListItem>
+                  <Reply commentID={comment.id} />
+                  </div>
                 );
               })}
             </List>
