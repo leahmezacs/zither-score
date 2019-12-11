@@ -50,7 +50,6 @@ class Comment extends Component {
         }
       })
     );
-    // console.log(commentCreated);
     // window.location.reload();
   };
 
@@ -90,14 +89,22 @@ class Comment extends Component {
     this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
       next: (commentData) => {
           const createComment = commentData.value.data.onCreateComment;
+          
           const updatedComments = [...this.state.listComments, createComment];
+          const uniqueComments = Array.from(new Set(updatedComments.map(comment => comment.id)))
+            .map(id => {
+              return updatedComments.find(comment => comment.id === id)
+            });
+
+          const updatedUniqueComments = [...uniqueComments];
           this.setState({
             comment: "",
             rating: 0,
-            listComments: updatedComments
+            listComments: updatedUniqueComments
           });
+          console.log(updatedUniqueComments);
       },
-  });
+    });
 
     this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
       next: (commentData) => {
