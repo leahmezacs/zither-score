@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel } from 'react-bootstrap';
+import { Redirect, Route } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -61,7 +61,13 @@ class HomePage extends Component{
                     <p className="text-light">Numbers to scores</p> 
                     <br />
                 </div>
-                <Tutorials />
+                
+                {localStorage.getItem('auth') ? (
+                    <Tutorials />
+                ) : (
+                    <div></div>
+                )}
+
                 <div id="about" className="container-fluid">
                     <div className="row">
                         <div className="col-sm-8">
