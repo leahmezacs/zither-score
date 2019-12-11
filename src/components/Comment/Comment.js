@@ -85,6 +85,7 @@ class Comment extends Component {
     this.setState({
       listComments: comments.data.listComments.items
     });
+    console.log(this.state.listComments)
 
     this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
       next: (commentData) => {

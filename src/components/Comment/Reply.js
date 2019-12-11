@@ -12,7 +12,8 @@ class Reply extends Component {
     this.state = {
       userId: "",
       content: "",
-      replyForm: false
+      replyForm: false,
+      listReplys: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,7 +28,21 @@ class Reply extends Component {
     this.setState({
       userId: userId
     });
-    // console.log(this.props.commentID)
+
+    // const replys = await API.graphql(
+    //     graphqlOperation(queries.listReplys, {
+    //       limit: 100,
+    //       filter: {
+    //         commentId: {
+    //           eq: this.props.commentID
+    //         }
+    //       }
+    //     })
+    //   );
+    //   console.log(replys)
+    //   this.setState({
+    //     listComments: replys.data.listReplys.items
+    //   });
   }
 
   handleChange = event => {
@@ -61,7 +76,7 @@ class Reply extends Component {
       })
     );
     console.log(replyCreated);
-    // window.location.reload();
+    window.location.reload();
   };
 
   render() {
@@ -115,6 +130,40 @@ class Reply extends Component {
             </Grid>
           </form>
         )}
+
+        {/* <div>
+      {replies && repliesDisplay.map((reply) => (
+        <ListItem data-testid="replyList" className={classes.reply} key={`${reply.username}${reply.createdAt}`} m={1}>
+          <ListItemAvatar>
+            <Avatar
+              alt="profile"
+              src={avatarURL + reply.username}
+            />
+          </ListItemAvatar>
+          <ListItemText
+            primary={(
+              <>
+                <Typography
+                  component="span"
+                  className={classes.left}
+                  color="textPrimary"
+                >
+                  {reply.username}
+                </Typography>
+                <Typography component="span" className={classes.right}>
+                  {reply.createdAt.substr(0, reply.createdAt.indexOf('T'))}
+                </Typography>
+              </>
+          )}
+            secondary={(
+              <Typography className={classes.content}>
+                {reply.content}
+              </Typography>
+          )}
+          />
+        </ListItem>
+      ))}
+      </div> */}
       </Container>
     );
   }
