@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Redirect, Route } from "react-router-dom";
 import { Auth } from 'aws-amplify';
 
-export const PrivateROute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
         render = { props =>
-            await Auth.currentAuthenticatedUser() ? (
+            console.log(Auth.currentUserInfo()) ? (
                 <Component {...props} />
             ) : (
                 <Redirect 
@@ -19,3 +19,5 @@ export const PrivateROute = ({ component: Component, ...rest }) => (
         }
     />
 );
+
+export default PrivateRoute;
