@@ -48,6 +48,21 @@ class EditScore extends Component {
     //console.log(this.state.score_name);
     return (
       <div>
+        <div className="title-block">
+          <Accordion defaultActiveKey="0">
+            <Card>
+              <Accordion.Toggle as={Card.Header} eventKey="0">
+                New to NumScore? Click to reveal quick tutorial on editing.
+              </Accordion.Toggle>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                  
+      
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+        </div>
         <div className="save-state">
           { this.state.saved ? <p>Saved</p> 
           : <p>Autosaving...</p> }

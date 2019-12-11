@@ -1,6 +1,12 @@
 /* Zither Score styling (used from FlatIO styling) */
 
 /* EditScore */
+.title-block {
+    display: block;
+    background-color: #646f8d;
+    color: #ffffff;
+    height: 30px;
+}
 
 .score-sheet {
     display: block;
