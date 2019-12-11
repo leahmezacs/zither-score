@@ -33,6 +33,9 @@ class HomePage extends Component{
 
         this.handleCreateFeedback();
         this.setState({
+            name: "",
+            email: "",
+            comment: "",
             message: "Thank you for your feedback. We will get back to you as \
             soon as possible."
         });

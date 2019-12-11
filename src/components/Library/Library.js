@@ -28,6 +28,7 @@ class Library extends Component {
         this.handleEditScore = this.handleEditScore.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
         this.handleUpdateScore = this.handleUpdateScore.bind(this);
+        this.handleDeleteComment = this.handleDeleteComment.bind(this);
 
         this.scoreDeletionSubscription = null;
         this.scoreUpdationSubscription = null;
@@ -81,14 +82,34 @@ class Library extends Component {
         });
     };
 
+    async handleDeleteComment(comment_id) {
+        const deletedComment = await API.graphql(graphqlOperation(mutations.deleteComment,{
+            input:{
+                id : comment_id
+            }
+        }));
+        console.log("deleted comment ", deletedComment);
+    }
+
     async handleDeleteScore(score_id) {
         const deletedScore = await API.graphql(graphqlOperation(mutations.deleteScore,{
             input:{
                 id : score_id
             }
         }));
-        //console.log(deletedScore);
-        //console.log(this.state.scores);
+        const comments = await API.graphql(graphqlOperation(queries.listComments, {
+            limit: 1000,
+            filter: {
+              scoreId: {
+                eq: score_id
+              }
+            }
+        }));
+        console.log(comments);
+        const temp = comments.data.listComments.items;
+        for(let i = 0; i < temp.length; ++i){
+            this.handleDeleteComment(temp[i].id);
+        }
     }
 
     handleEditScore(score_id) {

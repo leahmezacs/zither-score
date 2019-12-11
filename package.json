@@ -10,8 +10,6 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@aws-amplify/api": "^1.2.3",
-    "@aws-amplify/pubsub": "^1.2.3",
     "@csstools/normalize.css": "github:csstools/normalize.css",
     "@material-ui/core": "^4.7.1",
     "@material-ui/icons": "^4.5.1",
