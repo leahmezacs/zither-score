@@ -9,8 +9,47 @@ class Tutorials extends Component{
     render () {
         return (
             <div> 
-                <h2>Watch Tutorials</h2>
-                <p className="pstyle1">
+                <h2>Get Started</h2>
+                <Carousel>
+                    <Carousel.Item>
+                        <Carousel.Caption> 
+                            <h3><span className="spanstyle2">The first step is to click <b className="bstyle2">Create tab.&nbsp;</b></span></h3>
+                        </Carousel.Caption>
+                        <div className="divstyle2 w-100"> 
+                            <img className="imagestyle2" src="https://i.imgur.com/5JETsNz.png" title="source: imgur.com" thumbnail />
+                        </div>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <Carousel.Caption>
+                            <h3><span className="spanstyle2">Enter your Score&nbsp;<b className="bstyle2">Name:</b></span></h3>
+                        </Carousel.Caption>
+                        <div className="divstyle2 w-100">
+                            <img className="imagestyle2" src="https://i.imgur.com/xjRGk44.png" title="source: imgur.com" />
+                        </div>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <Carousel.Caption>
+                            <h3><span className="spanstyle2">Select <b className="bstyle2">Privacy type.</b></span></h3>
+                        </Carousel.Caption>
+                        <div className="divstyle2 w-100">
+                            <img className="imagestyle2" src="https://i.imgur.com/Z7xQ3j5.png" title="source: imgur.com" />
+                        </div>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                       
+                        <div className="divstyle2 w-100">
+                            <img className="imagestyle2" src="https://i.imgur.com/L86Uyab.png" title="source: imgur.com" />
+                        </div>
+                        <Carousel.Caption className="carouselstyle">
+                            <h3><span className="spanstyle2">Select <b className="bstyle2">Category type.</b></span></h3>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+             
+                </Carousel>
+
+
+{/*        
+                            <p className="pstyle1">
                     <i className="istyle1">8 STEPS</i>
                 </p>
                 <br/>
@@ -101,6 +140,8 @@ class Tutorials extends Component{
                             mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen">
                     </iframe>
                 </p>
+
+*/}
             </div>
             
         )  
