@@ -18,6 +18,7 @@ class ListScores extends Component {
         { title: "Modify Date", field: "modifyDate" }
       ]
     };
+    this.handleDeleteComment = this.handleDeleteComment.bind(this);
   }
 
   //get public scores from all users
@@ -41,6 +42,15 @@ class ListScores extends Component {
     });
   }
 
+  async handleDeleteComment(comment_id) {
+    const deletedComment = await API.graphql(graphqlOperation(mutations.deleteComment,{
+        input:{
+            id : comment_id
+        }
+    }));
+    console.log("deleted comment ", deletedComment);
+  }
+
   async handleDeleteScore(score_id) {
     const deletedScore = await API.graphql(graphqlOperation(mutations.deleteScore,{
         input:{
@@ -48,6 +58,21 @@ class ListScores extends Component {
         }
     }));
     console.log(deletedScore);
+
+    const comments = await API.graphql(graphqlOperation(queries.listComments, {
+      limit: 1000,
+      filter: {
+        scoreId: {
+          eq: score_id
+        }
+      }
+    }));
+
+    const temp = comments.data.listComments.items;
+    for(let i = 0; i < temp.length; ++i){
+        this.handleDeleteComment(temp[i].id);
+    }
+    
   }
 
   render() {

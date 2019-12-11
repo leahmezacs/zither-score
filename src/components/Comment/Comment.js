@@ -12,9 +12,11 @@ import {
   Box
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
+import DeleteIcon from '@material-ui/icons/Delete';
 import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
+import * as subscriptions from '../../graphql/subscriptions';
 
 class Comment extends Component {
   constructor(props) {
@@ -25,31 +27,50 @@ class Comment extends Component {
       comment: "",
       rating: 0,
       scoreID: urls.slice(urls.lastIndexOf("?") + 1, urls.length),
-      listComments: []
+      listComments: [],
+      userId: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDeleteComment = this.handleDeleteComment.bind(this);
+
+    this.commentCreateSubscription = null;
+    this.commentDeletionSubscription = null;
   }
 
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    const user = await Auth.currentAuthenticatedUser();
-    const userId = user.username;
-    // console.log(this.state.rating)
     const commentCreated = await API.graphql(
       graphqlOperation(mutations.createComment, {
         input: {
           content: this.state.comment,
           rating: this.state.rating,
           scoreId: this.state.scoreID,
-          userId: userId
+          userId: this.state.userId
         }
       })
     );
     // console.log(commentCreated);
-    window.location.reload();
+    // window.location.reload();
   };
 
+  async handleDeleteComment(commentID) {
+    const deleteComment = await API.graphql(graphqlOperation(mutations.deleteComment,{
+        input:{
+            id : commentID
+        }
+    }));
+    // window.location.reload();
+    // console.log(deleteComment);
+    // console.log(this.state.listComments);
+}
+
   async componentDidMount() {
+    const user = await Auth.currentAuthenticatedUser();
+    const userId = user.username;
+    this.setState({
+      userId: userId
+    })
+
     const comments = await API.graphql(
       graphqlOperation(queries.listComments, {
         limit: 100,
@@ -63,6 +84,36 @@ class Comment extends Component {
     this.setState({
       listComments: comments.data.listComments.items
     });
+
+    this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
+      next: (commentData) => {
+          const createComment = commentData.value.data.onCreateComment;
+          const updatedComments = [...this.state.listComments, createComment];
+          this.setState({
+            comment: "",
+            rating: 0,
+            listComments: updatedComments
+          });
+      },
+  });
+
+    this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
+      next: (commentData) => {
+          const commentID = commentData.value.data.onDeleteComment.id;
+          // console.log("deleted score id: " + commentID);
+
+          const remainingComment = this.state.listComments.filter(comment => comment.id !== commentID);
+          // console.log(remainingComment);
+          this.setState({
+              listComments: remainingComment
+          });
+      },
+    });
+  }
+  
+  componentWillUnmount() {
+    if (this.commentCreateSubscription) this.commentCreateSubscription.unsubscribe();
+    if (this.commentDeletionSubscription) this.commentDeletionSubscription.unsubscribe();
   }
 
   render() {
@@ -91,6 +142,7 @@ class Comment extends Component {
             inputProps={{ maxLength: 600 }}
             label="Leave a comment"
             variant="outlined"
+            value={this.state.comment}
             onChange={e => this.setState({ comment: e.target.value })}
             required
           />
@@ -145,6 +197,11 @@ class Comment extends Component {
                             size="small"
                             readOnly
                           />
+                          {this.state.userId === comment.userId
+                            && <DeleteIcon 
+                              className="commentRight"
+                              onClick={() => this.handleDeleteComment(comment.id)}
+                            />}
                           <br />
                           {comment.content}
                         </Typography>

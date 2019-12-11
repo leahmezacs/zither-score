@@ -33,6 +33,9 @@ class HomePage extends Component{
 
         this.handleCreateFeedback();
         this.setState({
+            name: "",
+            email: "",
+            comment: "",
             message: "Thank you for your feedback. We will get back to you as \
             soon as possible."
         });
@@ -58,7 +61,7 @@ class HomePage extends Component{
                     <p className="text-light">Numbers to scores</p> 
                     <br />
                 </div>
-
+                <Tutorials />
                 <div id="about" className="container-fluid">
                     <div className="row">
                         <div className="col-sm-8">
@@ -79,7 +82,6 @@ class HomePage extends Component{
                     </div>
                 </div>
                 <br/>
-                <Tutorials />
 
                 <div id="services" className="container-fluid text-center">
                     <h2>SERVICES</h2>

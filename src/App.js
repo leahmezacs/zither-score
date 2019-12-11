@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 import HomePage from './components/HomePage/HomePage';
 import Settings from './components/Settings/Settings';
@@ -13,6 +13,8 @@ import ViewScore from './components/ViewScore/ViewScore';
 import SingleScore from './components/EditScore/ScoreInput';
 import ChangePassword from './components/Settings/ChangePassword';
 import HelpFAQ from './components/HelpFAQ/HelpFAQ'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+
 
 class App extends Component {
     constructor(props) {
@@ -50,15 +52,15 @@ class App extends Component {
                     <Route exact path="/Login" 
                         render = {() => <Login onLogin={this.updateCurrentUser} />}
                     />
-                    <Route exact path="/Dashboard" component={Dashboard}/>
-                    <Route exact path="/Settings" component={Settings}/>
-                    <Route exact path="/Settings/ChangePassword" component={ChangePassword}/>
-                    <Route exact path="/Library" component={Library}/>
-                    <Route exact path="/Discovery" component={Discovery}/>
-                    <Route exact path="/EditScore" component={EditScore}/>
-                    <Route exact path="/ScoreInput" component={SingleScore}/>
-                    <Route exact path="/ViewScore" component={ViewScore}/>  
-                    <Route exact path="/HelpFAQ" component={HelpFAQ}/>
+                    <PrivateRoute exact path="/Dashboard" component={Dashboard}/>
+                    <PrivateRoute exact path="/Settings" component={Settings}/>
+                    <PrivateRoute exact path="/Settings/ChangePassword" component={ChangePassword}/>
+                    <PrivateRoute exact path="/Library" component={Library}/>
+                    <PrivateRoute exact path="/Discovery" component={Discovery}/>
+                    <PrivateRoute exact path="/EditScore" component={EditScore}/>
+                    <PrivateRoute exact path="/ScoreInput" component={SingleScore}/>
+                    <PrivateRoute exact path="/ViewScore" component={ViewScore}/> 
+                    <Route exact path="/HelpFAQ" component={HelpFAQ}/> 
                 </div>
             </Router>
         ); 
