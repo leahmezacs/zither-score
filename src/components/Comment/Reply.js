@@ -29,7 +29,8 @@ class Reply extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.openReplyForm = this.openReplyForm.bind(this);
     this.closeReplyForm = this.closeReplyForm.bind(this);
-    // this.handleDeleteComment = this.handleDeleteComment.bind(this);
+    
+    this.replyCreateSubscription = null;
   }
 
   async componentDidMount() {
@@ -53,6 +54,28 @@ class Reply extends Component {
       listReplys: replys.data.listReplys.items
     });
     console.log(this.state.listReplys);
+
+    this.replyCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateReply)).subscribe({
+        next: (replyData) => {
+            const createReply = replyData.value.data.onCreateReply;
+            const updatedReplies = [...this.state.listReplys, createReply];
+            const uniqueReplies = Array.from(new Set(updatedReplies.map(reply => reply.id)))
+              .map(id => {
+                return updatedReplies.find(reply => reply.id === id)
+              });
+
+            const updatedUniqueReplies = [...uniqueReplies];
+            console.log(updatedUniqueReplies)
+            this.setState({
+              content: "",
+              listReplys: updatedUniqueReplies
+            });
+        },
+    });
+  }
+
+  componentWillUnmount() {
+    if (this.replyCreateSubscription) this.replyCreateSubscription.unsubscribe();
   }
 
   handleChange = event => {
@@ -88,7 +111,7 @@ class Reply extends Component {
       })
     );
     console.log(replyCreated);
-    window.location.reload();
+    // window.location.reload();
   };
 
   render() {
