@@ -290,3 +290,22 @@ h2{
     margin-top: 20px;
     font-size: 20px;
   }
+
+/* Reply page styling */
+.replyButton {
+    color: gray;
+    font-size: 13px;
+    margin-left: 10px;
+}
+.replyAvatar {
+    width: 25px;
+    height: 25px;
+}
+.replyLeftButton {
+    float: right;
+    /* /* marginTop: theme.spacing(1), */
+    margin-bottom: 10px
+  }
+.grid {
+    margin-left: 20px;
+}

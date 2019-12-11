@@ -141,6 +141,7 @@ class Comment extends Component {
             multiline
             disableunderline="true"
             inputProps={{ maxLength: 600 }}
+            helperText={`${this.state.comment.length}/${600}`}
             label="Leave a comment"
             variant="outlined"
             value={this.state.comment}
