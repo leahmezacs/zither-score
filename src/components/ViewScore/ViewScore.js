@@ -22,12 +22,14 @@ class ViewScore extends Component {
       score: [],
       userId: '',
       notes: [],
-      // rating: 0,
       avgRate: 0,
     };    
 
     this.fetchRating = this.fetchRating.bind(this);
     this.generatePDF = this.generatePDF.bind(this);
+
+    this.commentCreateSubscription = null;
+    this.commentDeletionSubscription = null;
     //console.log(this.state.score_id);
   }
 
@@ -87,6 +89,17 @@ class ViewScore extends Component {
     // For fetching rating in the comment
     this.fetchRating();
 
+    this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
+      next: (commentData) => {
+          const createComment = commentData.value.data.onCreateComment;
+          const updatedComments = [...this.state.listComments, createComment];
+          this.setState({
+            listComments: updatedComments
+          });
+          this.fetchRating()
+      },
+    });
+
     this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
       next: (commentData) => {
           const commentID = commentData.value.data.onDeleteComment.id;
@@ -97,6 +110,11 @@ class ViewScore extends Component {
           this.fetchRating();
       },
     });
+  }
+
+  componentWillUnmount() {
+    if (this.commentCreateSubscription) this.commentCreateSubscription.unsubscribe();
+    if (this.commentDeletionSubscription) this.commentDeletionSubscription.unsubscribe();
   }
 
   generatePDF(){
@@ -155,7 +173,7 @@ class ViewScore extends Component {
                 size="large"
                 readOnly
               />
-              <Box ml={1}>{this.state.avgRate ? this.state.avgRate + ' out of 5': 'Not rated yet'}</Box>
+              <Box ml={1}>{this.state.avgRate ? this.state.avgRate.toFixed(2) + ' out of 5': 'Not rated yet'}</Box>
             </div>
           </Box>
         </div>

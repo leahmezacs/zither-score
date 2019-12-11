@@ -33,6 +33,7 @@ class Comment extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDeleteComment = this.handleDeleteComment.bind(this);
 
+    this.commentCreateSubscription = null;
     this.commentDeletionSubscription = null;
   }
 
@@ -49,7 +50,7 @@ class Comment extends Component {
       })
     );
     // console.log(commentCreated);
-    window.location.reload();
+    // window.location.reload();
   };
 
   async handleDeleteComment(commentID) {
@@ -84,6 +85,18 @@ class Comment extends Component {
       listComments: comments.data.listComments.items
     });
 
+    this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
+      next: (commentData) => {
+          const createComment = commentData.value.data.onCreateComment;
+          const updatedComments = [...this.state.listComments, createComment];
+          this.setState({
+            comment: "",
+            rating: 0,
+            listComments: updatedComments
+          });
+      },
+  });
+
     this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
       next: (commentData) => {
           const commentID = commentData.value.data.onDeleteComment.id;
@@ -99,7 +112,8 @@ class Comment extends Component {
   }
   
   componentWillUnmount() {
-    if(this.commentDeletionSubscription) this.commentDeletionSubscription.unsubscribe();
+    if (this.commentCreateSubscription) this.commentCreateSubscription.unsubscribe();
+    if (this.commentDeletionSubscription) this.commentDeletionSubscription.unsubscribe();
   }
 
   render() {
@@ -128,6 +142,7 @@ class Comment extends Component {
             inputProps={{ maxLength: 600 }}
             label="Leave a comment"
             variant="outlined"
+            value={this.state.comment}
             onChange={e => this.setState({ comment: e.target.value })}
             required
           />
