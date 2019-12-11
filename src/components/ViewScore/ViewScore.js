@@ -53,12 +53,12 @@ class ViewScore extends Component {
       tempRate += comment.rating
       // this.state.rating += comment.rating
     ))
-    console.log('tempRate = ' + tempRate)
-    console.log(this.state.listComments.length)
+    // console.log('tempRate = ' + tempRate)
+    // console.log(this.state.listComments.length)
     this.setState({
       avgRate: tempRate/this.state.listComments.length
     })
-    console.log(this.state.listComments)
+    // console.log(this.state.listComments)
   }
 
   async componentDidMount() {

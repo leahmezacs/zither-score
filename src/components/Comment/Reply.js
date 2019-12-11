@@ -1,9 +1,19 @@
 import React, { Component } from "react";
-import { Container, TextField, Button, Avatar, Grid } from "@material-ui/core";
+import {
+  Container,
+  TextField,
+  Button,
+  Avatar,
+  Grid,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography
+} from "@material-ui/core";
 import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
-import * as subscriptions from '../../graphql/subscriptions';
+import * as subscriptions from "../../graphql/subscriptions";
 
 class Reply extends Component {
   constructor(props) {
@@ -29,20 +39,20 @@ class Reply extends Component {
       userId: userId
     });
 
-    // const replys = await API.graphql(
-    //     graphqlOperation(queries.listReplys, {
-    //       limit: 100,
-    //       filter: {
-    //         commentId: {
-    //           eq: this.props.commentID
-    //         }
-    //       }
-    //     })
-    //   );
-    //   console.log(replys)
-    //   this.setState({
-    //     listComments: replys.data.listReplys.items
-    //   });
+    const replys = await API.graphql(
+      graphqlOperation(queries.listReplys, {
+        limit: 100,
+        filter: {
+          commentId: {
+            eq: this.props.commentID
+          }
+        }
+      })
+    );
+    this.setState({
+      listReplys: replys.data.listReplys.items
+    });
+    console.log(this.state.listReplys);
   }
 
   handleChange = event => {
@@ -66,17 +76,19 @@ class Reply extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+    console.log(this.props.commentID);
     const replyCreated = await API.graphql(
       graphqlOperation(mutations.createReply, {
         input: {
           replyCommentId: this.props.commentID,
+          commentId: this.props.commentID,
           content: this.state.content,
           userId: this.state.userId
         }
       })
     );
     console.log(replyCreated);
-    window.location.reload();
+    // window.location.reload();
   };
 
   render() {
@@ -131,39 +143,36 @@ class Reply extends Component {
           </form>
         )}
 
-        {/* <div>
-      {replies && repliesDisplay.map((reply) => (
-        <ListItem data-testid="replyList" className={classes.reply} key={`${reply.username}${reply.createdAt}`} m={1}>
-          <ListItemAvatar>
-            <Avatar
-              alt="profile"
-              src={avatarURL + reply.username}
-            />
-          </ListItemAvatar>
-          <ListItemText
-            primary={(
-              <>
-                <Typography
-                  component="span"
-                  className={classes.left}
-                  color="textPrimary"
-                >
-                  {reply.username}
-                </Typography>
-                <Typography component="span" className={classes.right}>
-                  {reply.createdAt.substr(0, reply.createdAt.indexOf('T'))}
-                </Typography>
-              </>
-          )}
-            secondary={(
-              <Typography className={classes.content}>
-                {reply.content}
-              </Typography>
-          )}
-          />
-        </ListItem>
-      ))}
-      </div> */}
+        <div>
+          {this.state.listReplys &&
+            this.state.listReplys.map(reply => (
+              <ListItem
+                data-testid="replyList"
+                key={`${reply.userId}${reply.createdAt}`}
+                m={1}
+              >
+                <ListItemAvatar>
+                  <Avatar alt="profile" src={avatarURL + reply.userId} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={
+                    <>
+                      <Typography component="span" color="textPrimary">
+                        {reply.userId}
+                      </Typography>
+                      <Typography component="span">
+                        {reply.createdAt.substr(
+                          0,
+                          reply.createdAt.indexOf("T")
+                        )}
+                      </Typography>
+                    </>
+                  }
+                  secondary={<Typography>{reply.content}</Typography>}
+                />
+              </ListItem>
+            ))}
+        </div>
       </Container>
     );
   }
