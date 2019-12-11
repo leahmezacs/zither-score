@@ -4,6 +4,14 @@ import App from "./App";
 
 const puppeteer = require('puppeteer')
 
+const faker = require('faker')
+const user = {
+  email: faker.internet.email(),
+  password: 'test',
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName()
+}
+
 const isDebugging = () => {
   const debugging_mode = {
     headless: false,
