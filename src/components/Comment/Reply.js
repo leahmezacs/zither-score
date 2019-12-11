@@ -9,8 +9,31 @@ class Reply extends Component {
       content: "",
       replyForm: false
     };
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.openReplyForm = this.openReplyForm.bind(this);
+    this.closeReplyForm = this.closeReplyForm.bind(this);
+    // this.handleDeleteComment = this.handleDeleteComment.bind(this);
   }
 
+  handleChange = event => {
+    this.setState({
+      content: event.target.value
+    });
+  };
+
+  openReplyForm = () => {
+    this.setState({
+      replyForm: true
+    });
+  };
+
+  closeReplyForm = () => {
+    this.setState({
+      content: "",
+      replyForm: false
+    });
+  };
   render() {
     return (
       <Container maxWidth="lg">
