@@ -1,0 +1,292 @@
+/* SingleScoreInput Page Sytling */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.Toast__toast___XXr3v {
+    position: absolute;
+    top: 58px;
+}
+
+.modal-content {
+    top: 58px;
+}
+
+.singleNote {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+.button-style {
+    color: #cccccc;
+    background-color: transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+.add-button-div {
+    position: relative;
+}
+.add-button-overlap {
+    position: absolute;
+    display: none;
+}
+.add-button-div:hover .add-button-overlap {
+    display: block;
+}
+
+/* ScoreInput Page Styling */
+.scoreInputIcon {
+    margin-bottom: 20px;
+}
+
+
+.lineInBetween {
+    font-size: 25px;
+    padding-left: 10px;
+    padding-top: 30px;
+}
+.lineBegin {
+    font-size: 20px;
+    margin-top: 7px;
+    padding-top: 30px;
+}
+.lineSpacing {
+    height: 150px;
+}
+
+
+/* NavBar Page Styling */
+.NavBarBackground {
+    background: linear-gradient(315deg, #31caa9 30%, #54cece 70%);
+}
+.dropdown-toggle::after {
+    display:none;
+}
+.SearchIcon {
+    margin-right: 10px;
+}
+
+
+/* ToolBar Page styling */
+.score-top {
+    background: #fff;
+    flex: 0 0 auto;
+    width: 100%;
+    z-index: 6;
+}
+
+.score-toolbar.reg {
+    width: 100%;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    background: #fff;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,.04);
+}
+
+.score-toolbar.reg .score-toolbar-inner {
+    flex: 1 1 auto;
+}
+
+.score-toolbar.reg .score-toolbar-main {
+    height: 42px;
+    justify-content: space-between;
+}
+
+.score-toolbar.reg .score-toolbar-main, .score-toolbar.reg .score-toolbar-sub, .score-toolbar.reg .score-toolbar-doc {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    position: relative;
+}
+
+.score-toolbar.reg .score-toolbar-div {
+    height: 1px;
+    width: 100%;
+    background: #f2f4f5;
+    position: absolute;
+    left: 0;
+}
+
+.score-toolbar.reg .toolbar-separator {
+    height: 22px;
+    border-left: 1px solid #d9dae1;
+    margin: 0 5px;
+}
+
+.score-toolbar.reg .score-toolbar-sub.active {
+    opacity: 1;
+    visibility: visible;
+    height: 42px;
+}
+
+.score-toolbar.reg .score-toolbar.sub {
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
+    align-items: center;
+    margin-left: -15px;
+}
+
+.score-toolbar.reg .toolbar-group {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.score-toolbar.reg .score-toolbar-main-tabs button.active {
+    color: #2cb194;
+}
+
+/* .score-toolbar.reg .score-toolbar-main-tabs button:first-child {
+    margin: 0 15px 0 0;
+} */
+
+.score-toolbar.reg .score-toolbar-main-tabs button {
+    background: transparent;
+    border: 0;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    margin: 0 15px;
+    font-size: 13px;
+    letter-spacing: .5px;
+    font-weight: 500;
+    color: #646f8d;
+    transition: all 500ms ease-in-out;
+}
+
+button, html input[type=button], input[type=reset], input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+.score-toolbar.reg .score-toolbar-main-tabs button.active:after {
+    height: 3px;
+    right: 0;
+    left: 0;
+}
+.score-toolbar.reg .score-toolbar-main-tabs button:after {
+    position: absolute;
+    bottom: -1px;
+    margin: auto;
+    content: '';
+    display: block;
+    height: 0;
+    border-radius: 2px;
+    background-color: #e7e8ec;
+    font-weight: 700;
+    left: 49%;
+    right: 49%;
+    min-width: 3px;
+    transition: all 200ms ease-in-out;
+}
+
+.score-toolbar.reg .toolbar-icon {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    position: relative;
+    height: 42px;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.displayinrow{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.displayincolumn{
+    display: flex;
+    flex-direction: column;
+}
+
+#paragraph
+{
+  display:none;
+}
+
+.select {
+    background: transparent;
+    font-weight: bold;
+    width: 40px;
+    padding: 0px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
+    font-family:helvetica-roman;
+    color:black;   
+    background-color: rgba(0, 0, 0, 0);
+    -webkit-appearance: none;
+    border: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    font-size: 20px;
+    text-align-last:center;
+ }
+
+ .option {
+     color:black;
+     font-weight: bold;
+     
+
+ }
+ /* Comments Component Styling */
+ .commentHeader {
+     margin-top: 30px;
+ }
+ .commentLeft {
+    display: block;
+    float: left;
+}
+.commentRight {
+    display: block;
+    float: right;
+}
+.commentContent {
+    padding-top: 25px;
+}
+
+
+/* View Score Styling */
+iframe{
+    height: 75rem;
+    width: 79rem; 
+    border: 0px;
+    margin-top: 20px;
+    margin-bottom: 35px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    scroll-behavior: smooth;
+} 
+h2{
+    text-align: center;
+    margin: 0px;
+}
+
+/* ViewScore page Rating styling */
+.viewRating {
+    width: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 20px;
+  }

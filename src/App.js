@@ -1,14 +1,19 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { Analytics, Auth } from 'aws-amplify';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Auth } from 'aws-amplify';
 import HomePage from './components/HomePage/HomePage';
 import Settings from './components/Settings/Settings';
 import Login from './components/Login/Login';
 import NavBar from './components/NavBar/NavBar';
 import Library from './components/Library/Library';
+import Dashboard from './components/Dashboard/Dashboard';
+import Discovery from './components/Discovery/Discovery';
 import EditScore from './components/EditScore/EditScore';
-
-
+import ViewScore from './components/ViewScore/ViewScore';
+import SingleScore from './components/EditScore/ScoreInput';
+import ChangePassword from './components/Settings/ChangePassword';
+import HelpFAQ from './components/HelpFAQ/HelpFAQ'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 class App extends Component {
     constructor(props) {
@@ -16,16 +21,9 @@ class App extends Component {
         this.state = {
             currentUser: null
         };
-        this.state = {
-            showPopup: false
-          };
     }
 
     componentDidMount() {
-        Analytics.startSession();
-        window.addEventListener('beforeunload', () => {
-            Analytics.stopSession();
-        })
         Auth.currentAuthenticatedUser().then(user => {
             this.updateCurrentUser(user)
         });
@@ -42,11 +40,8 @@ class App extends Component {
         this.setState({
             currentUser: null
         })
+        localStorage.clear();
     }
-
-   
-      
-
 
     render () {
         return ( 
@@ -57,11 +52,15 @@ class App extends Component {
                     <Route exact path="/Login" 
                         render = {() => <Login onLogin={this.updateCurrentUser} />}
                     />
-                    <Route exact path="/Settings" component={Settings}/>
-                    <Route exact path="/Library" component={Library}/>
-                    <Route exact path="/EditScore" component={EditScore}/>
-                    
-                    
+                    <PrivateRoute exact path="/Dashboard" component={Dashboard}/>
+                    <PrivateRoute exact path="/Settings" component={Settings}/>
+                    <PrivateRoute exact path="/Settings/ChangePassword" component={ChangePassword}/>
+                    <PrivateRoute exact path="/Library" component={Library}/>
+                    <Route exact path="/Discovery" component={Discovery}/>
+                    <PrivateRoute exact path="/EditScore" component={EditScore}/>
+                    <PrivateRoute exact path="/ScoreInput" component={SingleScore}/>
+                    <Route exact path="/ViewScore" component={ViewScore}/> 
+                    <Route exact path="/HelpFAQ" component={HelpFAQ}/> 
                 </div>
             </Router>
         ); 

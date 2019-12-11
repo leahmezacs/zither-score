@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SLSI render slsi without crashing 1`] = `ShallowWrapper {}`;
