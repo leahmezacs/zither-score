@@ -8,6 +8,7 @@ import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
 
 
+
 // Four inputs in one componenet
 class SingleScoreInput extends Component {
   constructor(props) {
@@ -335,6 +336,8 @@ class SingleScoreInput extends Component {
                           <option value="doubledot-bottom" className="option"> : </option>
                           <option value="line" className="option">______</option>
                           <option value="doubleline" className="option">======</option>
+                         
+                         
                         </select>
                     </span>
 
