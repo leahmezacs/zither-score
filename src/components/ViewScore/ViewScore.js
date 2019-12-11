@@ -159,7 +159,7 @@ class ViewScore extends Component {
   render() {
     return (
       <div>
-        <div className="text-center">
+        <div className="jumbotron text-center viewScore_welcome">
           <h1>Welcome, Share Your Thoughts Below!</h1>
           <h2>Score Title: {this.state.score.name}</h2>
           <h2>Author: {this.state.userId}</h2>
