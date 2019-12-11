@@ -40,6 +40,7 @@ class App extends Component {
         this.setState({
             currentUser: null
         })
+        localStorage.clear();
     }
 
     render () {

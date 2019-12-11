@@ -30,8 +30,8 @@ class Login extends Component {
     
     handleAuthStateChange = async (state) => {
         if (state === 'signedIn') {
-            localStorage.setItem('auth', true);
             const cognitoUser = await Auth.currentAuthenticatedUser();
+            localStorage.setItem('auth', cognitoUser.username);
             const userExists = await API.graphql(graphqlOperation(queries.getUser, {id: cognitoUser.username}));
             if (!userExists.data.getUser) {
                 const createdUser = await API.graphql(graphqlOperation(mutations.createUser,{
@@ -48,7 +48,10 @@ class Login extends Component {
                 this.props.onLogin(cognitoUser);
             }
         }
-        else localStorage.setItem('auth', false);
+        else {
+            localStorage.clear();
+            localStorage.setItem('auth', null);
+        }
     }
 }
 
