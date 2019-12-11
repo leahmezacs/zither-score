@@ -112,7 +112,7 @@ class HelpFQA extends Component {
 
 
 
-                        <a href="#0" >Close</a>
+                        
 
                         <div aria-hidden="true"></div>
                     </div>
