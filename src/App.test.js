@@ -4,13 +4,13 @@ import App from "./App";
 
 const puppeteer = require('puppeteer')
 
-const faker = require('faker')
-const user = {
-  email: faker.internet.email(),
-  password: 'test',
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName()
-}
+// const faker = require('faker')
+// const user = {
+//   email: faker.internet.email(),
+//   password: 'test',
+//   firstName: faker.name.firstName(),
+//   lastName: faker.name.lastName()
+// }
 
 const isDebugging = () => {
   const debugging_mode = {
@@ -20,6 +20,20 @@ const isDebugging = () => {
   }
   return process.env.NODE_ENV === 'debug' ? debugging_mode : {}
 }
+
+let browser;
+let page;
+beforeAll(async () => { 
+  browser = await puppeteer.launch(isDebugging()); 
+  page = await browser.newPage();
+  page.setViewport({ width: 500, height: 2400 });
+});
+
+afterAll(() => {     
+    if (isDebugging()) {         
+      browser.close()     
+    } 
+  })
 
 describe('on page load', () => {
   test('h1 loads correctly', async() => {
