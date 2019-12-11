@@ -66,12 +66,16 @@ input[type=number] {
 /* NavBar Page Styling */
 .NavBarBackground {
     background: linear-gradient(315deg, #31caa9 30%, #54cece 70%);
+    height: 80px;
 }
 .dropdown-toggle::after {
     display:none;
 }
 .SearchIcon {
     margin-right: 10px;
+}
+.link {
+    font-size: large;
 }
 
 
