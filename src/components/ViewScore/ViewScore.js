@@ -11,7 +11,7 @@ import {
   Box
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
-import DeleteIcon from '@material-ui/icons/Delete';
+import * as subscriptions from '../../graphql/subscriptions';
 
 class ViewScore extends Component {
   constructor(props) {
@@ -22,12 +22,45 @@ class ViewScore extends Component {
       score: [],
       userId: '',
       notes: [],
-      rating: 0,
       avgRate: 0,
     };    
+
+    this.fetchRating = this.fetchRating.bind(this);
     this.generatePDF = this.generatePDF.bind(this);
+
+    this.commentCreateSubscription = null;
+    this.commentDeletionSubscription = null;
     //console.log(this.state.score_id);
   }
+
+  // For fetching rating in the comment
+  fetchRating = async(event) => {
+    let tempRate = 0
+    const comments = await API.graphql(
+      graphqlOperation(queries.listComments, {
+        limit: 100,
+        filter: {
+          scoreId: {
+            eq: this.state.score_id
+          }
+        }
+      })
+    );
+    this.setState({
+      listComments: comments.data.listComments.items
+    });
+    this.state.listComments.map(comment => (
+      tempRate += comment.rating
+      // this.state.rating += comment.rating
+    ))
+    console.log('tempRate = ' + tempRate)
+    console.log(this.state.listComments.length)
+    this.setState({
+      avgRate: tempRate/this.state.listComments.length
+    })
+    console.log(this.state.listComments)
+  }
+
   async componentDidMount() {
     const user = await Auth.currentAuthenticatedUser();
     const result = await API.graphql(
@@ -53,25 +86,35 @@ class ViewScore extends Component {
         notes: noteList.data.listNotes.items
     });
 
-    const comments = await API.graphql(
-      graphqlOperation(queries.listComments, {
-        limit: 100,
-        filter: {
-          scoreId: {
-            eq: this.state.score_id
-          }
-        }
-      })
-    );
-    this.setState({
-      listComments: comments.data.listComments.items
+    // For fetching rating in the comment
+    this.fetchRating();
+
+    this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
+      next: (commentData) => {
+          const createComment = commentData.value.data.onCreateComment;
+          const updatedComments = [...this.state.listComments, createComment];
+          this.setState({
+            listComments: updatedComments
+          });
+          this.fetchRating()
+      },
     });
-    this.state.listComments.map(comment => (
-      this.state.rating += comment.rating
-    ))
-    this.setState({
-      avgRate: this.state.rating/this.state.listComments.length
-    })
+
+    this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
+      next: (commentData) => {
+          const commentID = commentData.value.data.onDeleteComment.id;
+          const remainingComment = this.state.listComments.filter(comment => comment.id !== commentID);
+          this.setState({
+              listComments: remainingComment
+          });
+          this.fetchRating();
+      },
+    });
+  }
+
+  componentWillUnmount() {
+    if (this.commentCreateSubscription) this.commentCreateSubscription.unsubscribe();
+    if (this.commentDeletionSubscription) this.commentDeletionSubscription.unsubscribe();
   }
 
   generatePDF(){
@@ -130,7 +173,7 @@ class ViewScore extends Component {
                 size="large"
                 readOnly
               />
-              <Box ml={1}>{this.state.avgRate ? this.state.avgRate + ' out of 5': 'Not rated yet'}</Box>
+              <Box ml={1}>{this.state.avgRate ? this.state.avgRate.toFixed(2) + ' out of 5': 'Not rated yet'}</Box>
             </div>
           </Box>
         </div>
