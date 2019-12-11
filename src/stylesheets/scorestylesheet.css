@@ -2,13 +2,30 @@
 
 /* EditScore */
 .title-block {
-    display: block;
+    position: relative;
     background-color: #646f8d;
     color: #ffffff;
-    height: 30px;
+    height: 100%;
+}
+
+.tut-images {
+    margin-left: 30px;
+    display: inline;
+}
+
+.tut-text1 {
+    color: #fff;
+    margin-left: 130px;
+    display: inline;
+}
+.tut-text2 {
+    color: #fff;
+    margin-left: 70px;
+    display: inline;
 }
 
 .score-sheet {
+    position: relative;
     display: block;
     box-shadow: 0 -1px #e7e8ec, 0 -18px 0 0 #fff, 0 0 12px 0 rgba(0,0,0,.08);
     margin-top: 1px;
@@ -38,7 +55,6 @@
 }
 
 .save-state {
-    position: relative;
     font-size: 20px;
     left: 20px;
 }
