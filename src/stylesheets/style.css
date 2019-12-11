@@ -293,20 +293,20 @@ h2{
 
 /* Reply page styling */
 .replyButton {
-    color: gray;
-    font-size: 13px;
-    margin-left: 10px;
+    color: gray !important;
+    font-size: 13px !important;
+    margin-left: 10px !important;
 }
-.replyAvatar {
+.replyForm .MuiAvatar-img {
     width: 25px;
     height: 25px;
 }
 .replyLeftButton {
     float: right;
-    margin-bottom: 10px
+    margin-bottom: 10px !important; 
   }
 .grid {
-    margin-left: 20px;
+    margin-left: 20px !important;
 }
 .viewReply {
     text-align: center;

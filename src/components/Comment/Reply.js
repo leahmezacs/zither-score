@@ -122,13 +122,12 @@ class Reply extends Component {
           REPLY
         </Button>
         {this.state.replyForm && (
-          <form onSubmit={this.handleSubmit}>
+          <form className="replyForm" onSubmit={this.handleSubmit}>
             <Grid container wrap="nowrap" className="grid" spacing={1}>
               <Grid item>
                 <Avatar
                   component="span"
                   alt="profile picture"
-                  className="replyAvatar"
                   src={avatarURL + this.state.userId}
                 />
               </Grid>

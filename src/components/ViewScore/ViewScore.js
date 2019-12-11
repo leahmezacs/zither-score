@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import * as subscriptions from '../../graphql/subscriptions';
+import "./ViewScore.css";
 
 class ViewScore extends Component {
   constructor(props) {
@@ -158,11 +159,11 @@ class ViewScore extends Component {
   render() {
     return (
       <div>
-        <div className="text-center">
+        <div className="jumbotron text-center viewScore_welcome">
           <h1>Welcome, Share Your Thoughts Below!</h1>
           <h2>Score Title: {this.state.score.name}</h2>
           <h2>Author: {this.state.userId}</h2>
-          <h2>Last Updated: {this.state.score.updatedAt}</h2>
+          <h2>Last Updated: {new Date(this.state.score.updatedAt).toDateString()}</h2>
           <Box mb={3} borderColor="transparent">
             <div className="viewRating">
               <Box mr={2}>Rating: </Box>
