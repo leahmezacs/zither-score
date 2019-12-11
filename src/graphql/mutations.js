@@ -174,6 +174,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
         content
         createdAt
         userId
+        commentId
       }
       nextToken
     }
@@ -194,6 +195,7 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
         content
         createdAt
         userId
+        commentId
       }
       nextToken
     }
@@ -214,6 +216,7 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
         content
         createdAt
         userId
+        commentId
       }
       nextToken
     }
@@ -237,6 +240,7 @@ export const createReply = `mutation CreateReply($input: CreateReplyInput!) {
       }
     }
     userId
+    commentId
   }
 }
 `;
@@ -257,6 +261,7 @@ export const updateReply = `mutation UpdateReply($input: UpdateReplyInput!) {
       }
     }
     userId
+    commentId
   }
 }
 `;
@@ -277,6 +282,7 @@ export const deleteReply = `mutation DeleteReply($input: DeleteReplyInput!) {
       }
     }
     userId
+    commentId
   }
 }
 `;

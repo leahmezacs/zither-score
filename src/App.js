@@ -15,7 +15,6 @@ import ChangePassword from './components/Settings/ChangePassword';
 import HelpFAQ from './components/HelpFAQ/HelpFAQ'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
-
 class App extends Component {
     constructor(props) {
         super(props);
