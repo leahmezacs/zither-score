@@ -303,9 +303,26 @@ h2{
 }
 .replyLeftButton {
     float: right;
-    /* /* marginTop: theme.spacing(1), */
     margin-bottom: 10px
   }
 .grid {
     margin-left: 20px;
+}
+.viewReply {
+    text-align: center;
+    margin-top: 20px
+}
+.reply {
+    width: calc(100%-48px);
+    margin-left: 20px;
+    background: #f6f7fa;
+    border: 1px solid;
+    border-color: #eff1f5;
+    border-bottom: 0px;
+    white-space: normal;
+    word-wrap: break-word;
+    align-items: flex-start;
+}
+.replyContent {
+    padding-top: 10px;
 }

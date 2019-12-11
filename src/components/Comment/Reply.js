@@ -88,7 +88,7 @@ class Reply extends Component {
       })
     );
     console.log(replyCreated);
-    // window.location.reload();
+    window.location.reload();
   };
 
   render() {
@@ -143,11 +143,11 @@ class Reply extends Component {
           </form>
         )}
 
-        <div>
+        <div className="viewReply">
           {this.state.listReplys &&
             this.state.listReplys.map(reply => (
               <ListItem
-                data-testid="replyList"
+                className="reply"
                 key={`${reply.userId}${reply.createdAt}`}
                 m={1}
               >
@@ -160,7 +160,7 @@ class Reply extends Component {
                       <Typography component="span" color="textPrimary">
                         {reply.userId}
                       </Typography>
-                      <Typography component="span">
+                      <Typography component="span" className="commentRight">
                         {reply.createdAt.substr(
                           0,
                           reply.createdAt.indexOf("T")
@@ -168,7 +168,7 @@ class Reply extends Component {
                       </Typography>
                     </>
                   }
-                  secondary={<Typography>{reply.content}</Typography>}
+                  secondary={<Typography className="replyContent">{reply.content}</Typography>}
                 />
               </ListItem>
             ))}
