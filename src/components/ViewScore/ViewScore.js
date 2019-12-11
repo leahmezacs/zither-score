@@ -7,6 +7,11 @@ import * as queries from "../../graphql/queries";
 import jsPDF from "jspdf";
 import $ from "jquery";
 import Comment from "../Comment/Comment";
+import {
+  Box
+} from "@material-ui/core";
+import Rating from "@material-ui/lab/Rating";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class ViewScore extends Component {
   constructor(props) {
@@ -16,7 +21,9 @@ class ViewScore extends Component {
       score_id: url.slice(url.lastIndexOf('?') + 1, url.length),
       score: [],
       userId: '',
-      notes: []
+      notes: [],
+      rating: 0,
+      avgRate: 0,
     };    
     this.generatePDF = this.generatePDF.bind(this);
     //console.log(this.state.score_id);
@@ -45,6 +52,26 @@ class ViewScore extends Component {
     this.setState({
         notes: noteList.data.listNotes.items
     });
+
+    const comments = await API.graphql(
+      graphqlOperation(queries.listComments, {
+        limit: 100,
+        filter: {
+          scoreId: {
+            eq: this.state.score_id
+          }
+        }
+      })
+    );
+    this.setState({
+      listComments: comments.data.listComments.items
+    });
+    this.state.listComments.map(comment => (
+      this.state.rating += comment.rating
+    ))
+    this.setState({
+      avgRate: this.state.rating/this.state.listComments.length
+    })
   }
 
   generatePDF(){
@@ -93,17 +120,30 @@ class ViewScore extends Component {
           <h2>Score Title: {this.state.score.name}</h2>
           <h2>Author: {this.state.userId}</h2>
           <h2>Last Updated: {this.state.score.updatedAt}</h2>
+          <Box mb={3} borderColor="transparent">
+            <div className="viewRating">
+              <Box mr={2}>Rating: </Box>
+              <Rating
+                name="rating"
+                value={this.state.avgRate}
+                precision={0.1}
+                size="large"
+                readOnly
+              />
+              <Box ml={1}>{this.state.avgRate ? this.state.avgRate + ' out of 5': 'Not rated yet'}</Box>
+            </div>
+          </Box>
         </div>
-        
+
         <div id="main-content" className="score-scrollable">
-            <g className="page-main">
-                <div id="pdf-window"> 
-                    {this.generatePDF()}
-                    <iframe type="application/pdf">
-                      <p>Your browser does not support iframes.</p>
-                    </iframe>
-                </div>
-            </g>
+          <g className="page-main">
+            <div id="pdf-window">
+              {this.generatePDF()}
+              <iframe type="application/pdf">
+                <p>Your browser does not support iframes.</p>
+              </iframe>
+            </div>
+          </g>
         </div>
         <Comment />
       </div>

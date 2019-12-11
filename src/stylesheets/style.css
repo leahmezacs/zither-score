@@ -224,7 +224,7 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     background: transparent;
     font-weight: bold;
     width: 40px;
-    padding: 5px;
+    padding: 0px;
     line-height: 1;
     border: 0;
     border-radius: 0;
@@ -280,3 +280,13 @@ h2{
     text-align: center;
     margin: 0px;
 }
+
+/* ViewScore page Rating styling */
+.viewRating {
+    width: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 20px;
+  }

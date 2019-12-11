@@ -12,7 +12,11 @@ import EditScore from './components/EditScore/EditScore';
 import ViewScore from './components/ViewScore/ViewScore';
 import SingleScore from './components/EditScore/ScoreInput';
 import ChangePassword from './components/Settings/ChangePassword';
+<<<<<<< HEAD
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+=======
+import HelpFQA from './components/HelpFQA/HelpFQA'
+>>>>>>> 999a1f6a97b8aae451eeee66ae1f6c727f12a0c8
 
 class App extends Component {
     constructor(props) {
@@ -57,7 +61,8 @@ class App extends Component {
                     <PrivateRoute exact path="/Discovery" component={Discovery}/>
                     <PrivateRoute exact path="/EditScore" component={EditScore}/>
                     <PrivateRoute exact path="/ScoreInput" component={SingleScore}/>
-                    <PrivateRoute exact path="/ViewScore" component={ViewScore}/>  
+                    <PrivateRoute exact path="/ViewScore" component={ViewScore}/> 
+                    <Route exact path="/HelpFQA" component={HelpFQA}/> 
                 </div>
             </Router>
         ); 

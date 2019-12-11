@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import "./HomePage.css";
+import Tutorials from "./Tutorials";
 
 class HomePage extends Component{
     constructor(props) {
@@ -80,6 +81,8 @@ class HomePage extends Component{
                         </div>
                     </div>
                 </div>
+                <br/>
+                <Tutorials />
 
                 <div id="services" className="container-fluid text-center">
                     <h2>SERVICES</h2>
