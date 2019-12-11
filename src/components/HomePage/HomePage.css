@@ -315,3 +315,18 @@ footer .icon {
 .imagestyle {
     padding: 4px; border: none;
 }
+.imagestyle2 {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+.divstyle2 {
+    width:100%;
+    background-color: #000000;
+}
+.carouselstyle {
+    position: relative;
+    left: auto;
+    right: auto;
+}
