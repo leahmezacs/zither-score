@@ -290,3 +290,39 @@ h2{
     margin-top: 20px;
     font-size: 20px;
   }
+
+/* Reply page styling */
+.replyButton {
+    color: gray;
+    font-size: 13px;
+    margin-left: 10px;
+}
+.replyAvatar {
+    width: 25px;
+    height: 25px;
+}
+.replyLeftButton {
+    float: right;
+    margin-bottom: 10px
+  }
+.grid {
+    margin-left: 20px;
+}
+.viewReply {
+    text-align: center;
+    margin-top: 20px
+}
+.reply {
+    width: calc(100%-48px);
+    margin-left: 20px;
+    background: #f6f7fa;
+    border: 1px solid;
+    border-color: #eff1f5;
+    border-bottom: 0px;
+    white-space: normal;
+    word-wrap: break-word;
+    align-items: flex-start;
+}
+.replyContent {
+    padding-top: 10px;
+}
