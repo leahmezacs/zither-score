@@ -23,24 +23,19 @@ class HelpFQA extends Component {
                                 <h2>Basics</h2>
                             </li>
                             <li>
-                                <a href="#0"><span>How do I change my password?</span></a>
+                                <a href="#0"><span>How to see the saved score sheet?</span></a>
                                 <div>
                                     <div>
-                                        <p>First, go to NavBar and click on icon, and then click login, the web will direct you to a
-                                            login page. Second, click forgot password, the page will direct you enter email address
-                                            so and so, you will reveive temporary password, and then you can log in to your account,
-								and change your password through the settings.</p>
+                                        <p>First, go to NavBar and click on Icon, you will see a dropdown menu, then click on library, you will see all the score sheet you saved.</p>
                                     </div>
                                 </div>
                             </li>
 
                             <li>
-                                <a href="#0"><span>How do I sign up?</span></a>
+                                <a href="#0"><span>why I did not see my saved score after I click the view of certain score sheet?</span></a>
                                 <div>
                                     <div>
-                                        <p>First, go to NavBar and click on icon, and then click login, if you do not have an
-                                            account, there is a button called Create a account, after that you need to filled in
-								every box in order to create an account.</p>
+                                        <p>After clicked view, you will see the edit page, in order to see the scores you saved, you have to clicked on the plus Icon, then the scores will show up.</p>
                                     </div>
                                 </div>
                             </li>
@@ -60,9 +55,7 @@ class HelpFQA extends Component {
                                 <a href="#0"><span>How do reviews work?</span></a>
                                 <div>
                                     <div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis,
-                                            reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit,
-								magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.</p>
+                                        <p>Clicked on the Discover on the Navbar, and you will see the public score sheets, you can click on any score sheet and comment on it also rate the score sheet.</p>
                                     </div>
                                 </div>
                             </li>
