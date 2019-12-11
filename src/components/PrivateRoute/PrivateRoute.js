@@ -3,10 +3,11 @@ import { Redirect, Route } from "react-router-dom";
 import { Auth } from 'aws-amplify';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
+    console.log(localStorage.getItem('auth')),
     <Route
         {...rest}
         render = { props =>
-            console.log(Auth.currentUserInfo()) ? (
+            localStorage.getItem('auth') ? (
                 <Component {...props} />
             ) : (
                 <Redirect 

@@ -55,10 +55,10 @@ class App extends Component {
                     <PrivateRoute exact path="/Settings" component={Settings}/>
                     <PrivateRoute exact path="/Settings/ChangePassword" component={ChangePassword}/>
                     <PrivateRoute exact path="/Library" component={Library}/>
-                    <PrivateRoute exact path="/Discovery" component={Discovery}/>
+                    <Route exact path="/Discovery" component={Discovery}/>
                     <PrivateRoute exact path="/EditScore" component={EditScore}/>
                     <PrivateRoute exact path="/ScoreInput" component={SingleScore}/>
-                    <PrivateRoute exact path="/ViewScore" component={ViewScore}/> 
+                    <Route exact path="/ViewScore" component={ViewScore}/> 
                     <Route exact path="/HelpFQA" component={HelpFQA}/> 
                 </div>
             </Router>
