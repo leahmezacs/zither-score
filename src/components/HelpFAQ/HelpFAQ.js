@@ -105,7 +105,6 @@ class HelpFQA extends Component {
                             </li>
                         </ul>
 
-                        <a href="#0" >Close</a>
 
                         <div aria-hidden="true"></div>
                     </div>

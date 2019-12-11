@@ -38,15 +38,15 @@ class NavBar extends Component {
       <div>
         <Navbar className="NavBarBackground" expand="lg">
           <Navbar.Brand href="/">
-            <LibraryMusicIcon fontSize="default" className="text-light" />
+            <LibraryMusicIcon fontSize="large" className="text-light" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link className="text-light font-weight-bold" href="/Discovery">
+              <Nav.Link className="text-light link font-weight-bold" href="/Discovery">
                 Discover
               </Nav.Link>
-              <Nav.Link className="text-light font-weight-bold" href="/HelpFAQ">
+              <Nav.Link className="text-light link font-weight-bold" href="/HelpFAQ">
                 Help
               </Nav.Link>
             </Nav>
@@ -55,7 +55,7 @@ class NavBar extends Component {
                this.props.loggedInUser.signInUserSession.accessToken.payload['cognito:groups'] == "User" ? (
                 <>
                   <Nav className="ml-auto">
-                    <Nav.Link onClick={this.handleShow}>Create</Nav.Link>
+                    <Nav.Link className="link font-weight-bold" onClick={this.handleShow}>Create</Nav.Link>
                   </Nav>
 
                   <NavDropdown 
@@ -90,7 +90,7 @@ class NavBar extends Component {
                 Login
               </Nav.Link> */
             )) : (
-              <Nav.Link className="text-light font-weight-bold" href="/Login">
+              <Nav.Link className="text-light link font-weight-bold" href="/Login">
                 Login
               </Nav.Link>
             )}
