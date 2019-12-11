@@ -10,13 +10,8 @@ class HelpFQA extends Component {
                         <h1>NumScore User's FAQ</h1>
                     </div>
                 </header>
+                <br />
                 <div>
-                    <ul>
-                        <li><a href="#basics">Basics</a></li>
-                        <li><a href="#account">Account</a></li>
-
-
-                    </ul>
                     <div>
                         <ul id="basics" >
                             <li class="cd-faq__title">
@@ -109,8 +104,6 @@ class HelpFQA extends Component {
                                 </div>
                             </li>
                         </ul>
-
-
 
                         <a href="#0" >Close</a>
 
