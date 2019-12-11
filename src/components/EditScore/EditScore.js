@@ -4,6 +4,7 @@ import "../../stylesheets/scorestylesheet.css";
 import ScoreInput from "./ScoreInput";
 import { graphqlOperation, API } from "aws-amplify";
 import * as queries from "../../graphql/queries";
+import {Accordion, Card} from 'react-bootstrap';
 
 class EditScore extends Component {
   constructor(props) {
@@ -48,21 +49,34 @@ class EditScore extends Component {
     //console.log(this.state.score_name);
     return (
       <div>
-        <div className="title-block">
-          <Accordion defaultActiveKey="0">
+        <div className="tutorial-acc">
+        <Accordion defaultActiveKey="0">
             <Card>
-              <Accordion.Toggle as={Card.Header} eventKey="0">
+              <Accordion.Toggle as={Card.Header} eventKey="1">
                 New to NumScore? Click to reveal quick tutorial on editing.
               </Accordion.Toggle>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  
-      
+              <Accordion.Collapse eventKey="1">
+                <Card.Body className="title-block"> 
+                    <div>
+                      <h2 className="tut-text1">Add a symbol.</h2>
+                      <h2 className="tut-text1">Autosave feature.</h2>
+                      <h2 className="tut-text1">Remove a symbol.</h2>
+                    </div>
+                    <div>
+                      <img className="tut-images" src="https://i.imgur.com/nsvekXf.gif"  />
+                      <img className="tut-images" src="https://i.imgur.com/uArCzbw.gif"  /> 
+                      <img className="tut-images" src="https://i.imgur.com/oocMy7p.gif"  />
+                    </div>
+                    <div>
+                      <h2 className="tut-text2">Click above or below.</h2>
+                      <h2 className="tut-text2">Saves to your Library.</h2>
+                      <h2 className="tut-text2">Click above or below.</h2>
+                    </div>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
           </Accordion>
-        </div>
+        </div> <br />
         <div className="save-state">
           { this.state.saved ? <p>Saved</p> 
           : <p>Autosaving...</p> }
