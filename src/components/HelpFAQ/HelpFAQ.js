@@ -7,7 +7,7 @@ class HelpFQA extends Component {
             <div>
                 <header>
                     <div>
-                        <h1>NumScore User's FAQ</h1>
+                        <h1 className="title">NumScore User's FAQ</h1>
                     </div>
                 </header>
                 <div>
@@ -19,7 +19,7 @@ class HelpFQA extends Component {
                     </ul>
                     <div>
                         <ul id="basics" >
-                            <li class="cd-faq__title">
+                            <li>
                                 <h2>Basics</h2>
                             </li>
                             <li>
@@ -112,7 +112,7 @@ class HelpFQA extends Component {
 
 
 
-                        
+
 
                         <div aria-hidden="true"></div>
                     </div>
