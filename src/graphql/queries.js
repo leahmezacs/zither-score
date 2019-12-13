@@ -114,6 +114,7 @@ export const getComment = `query GetComment($id: ID!) {
         content
         createdAt
         userId
+        commentId
       }
       nextToken
     }
@@ -158,6 +159,7 @@ export const getReply = `query GetReply($id: ID!) {
       }
     }
     userId
+    commentId
   }
 }
 `;
@@ -180,6 +182,7 @@ export const listReplys = `query ListReplys(
         scoreId
       }
       userId
+      commentId
     }
     nextToken
   }

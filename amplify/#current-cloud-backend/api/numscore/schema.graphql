@@ -38,6 +38,7 @@ type Reply @model {
   createdAt: String
   comment: Comment @connection(name: "CommentReplies", sortField: "createdAt")
   userId: String!
+  commentId: String!
 }
 
 enum ScoreStatus {

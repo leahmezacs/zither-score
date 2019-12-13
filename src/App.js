@@ -15,7 +15,6 @@ import ChangePassword from './components/Settings/ChangePassword';
 import HelpFAQ from './components/HelpFAQ/HelpFAQ'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -41,6 +40,7 @@ class App extends Component {
         this.setState({
             currentUser: null
         })
+        localStorage.clear();
     }
 
     render () {
@@ -56,10 +56,10 @@ class App extends Component {
                     <PrivateRoute exact path="/Settings" component={Settings}/>
                     <PrivateRoute exact path="/Settings/ChangePassword" component={ChangePassword}/>
                     <PrivateRoute exact path="/Library" component={Library}/>
-                    <PrivateRoute exact path="/Discovery" component={Discovery}/>
+                    <Route exact path="/Discovery" component={Discovery}/>
                     <PrivateRoute exact path="/EditScore" component={EditScore}/>
                     <PrivateRoute exact path="/ScoreInput" component={SingleScore}/>
-                    <PrivateRoute exact path="/ViewScore" component={ViewScore}/> 
+                    <Route exact path="/ViewScore" component={ViewScore}/> 
                     <Route exact path="/HelpFAQ" component={HelpFAQ}/> 
                 </div>
             </Router>

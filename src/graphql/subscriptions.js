@@ -174,6 +174,7 @@ export const onCreateComment = `subscription OnCreateComment {
         content
         createdAt
         userId
+        commentId
       }
       nextToken
     }
@@ -194,6 +195,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
         content
         createdAt
         userId
+        commentId
       }
       nextToken
     }
@@ -214,6 +216,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
         content
         createdAt
         userId
+        commentId
       }
       nextToken
     }
@@ -237,6 +240,7 @@ export const onCreateReply = `subscription OnCreateReply {
       }
     }
     userId
+    commentId
   }
 }
 `;
@@ -257,6 +261,7 @@ export const onUpdateReply = `subscription OnUpdateReply {
       }
     }
     userId
+    commentId
   }
 }
 `;
@@ -277,6 +282,7 @@ export const onDeleteReply = `subscription OnDeleteReply {
       }
     }
     userId
+    commentId
   }
 }
 `;

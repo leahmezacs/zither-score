@@ -17,6 +17,7 @@ import { Auth, graphqlOperation, API } from "aws-amplify";
 import * as mutations from "../../graphql/mutations";
 import * as queries from "../../graphql/queries";
 import * as subscriptions from '../../graphql/subscriptions';
+import Reply from "./Reply";
 
 class Comment extends Component {
   constructor(props) {
@@ -49,7 +50,6 @@ class Comment extends Component {
         }
       })
     );
-    // console.log(commentCreated);
     // window.location.reload();
   };
 
@@ -84,18 +84,27 @@ class Comment extends Component {
     this.setState({
       listComments: comments.data.listComments.items
     });
+    console.log(this.state.listComments)
 
     this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
       next: (commentData) => {
           const createComment = commentData.value.data.onCreateComment;
+          
           const updatedComments = [...this.state.listComments, createComment];
+          const uniqueComments = Array.from(new Set(updatedComments.map(comment => comment.id)))
+            .map(id => {
+              return updatedComments.find(comment => comment.id === id)
+            });
+
+          const updatedUniqueComments = [...uniqueComments];
           this.setState({
             comment: "",
             rating: 0,
-            listComments: updatedComments
+            listComments: updatedUniqueComments
           });
+          console.log(updatedUniqueComments);
       },
-  });
+    });
 
     this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
       next: (commentData) => {
@@ -140,6 +149,7 @@ class Comment extends Component {
             multiline
             disableunderline="true"
             inputProps={{ maxLength: 600 }}
+            helperText={`${this.state.comment.length}/${600}`}
             label="Leave a comment"
             variant="outlined"
             value={this.state.comment}
@@ -169,7 +179,8 @@ class Comment extends Component {
                   comment.createdAt.indexOf("T")
                 );
                 return (
-                  <ListItem key={comment.id}>
+                  <div key={comment.id}>
+                  <ListItem>
                     <ListItemAvatar>
                       <Avatar alt="profile" src={avatarURL + comment.userId} />
                     </ListItemAvatar>
@@ -207,7 +218,10 @@ class Comment extends Component {
                         </Typography>
                       }
                     />
+                    {/* <Reply commentID={comment.id} /> */}
                   </ListItem>
+                  <Reply commentID={comment.id} />
+                  </div>
                 );
               })}
             </List>

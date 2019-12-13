@@ -10,13 +10,8 @@ class HelpFQA extends Component {
                         <h1 className="title">NumScore User's FAQ</h1>
                     </div>
                 </header>
+                <br />
                 <div>
-                    <ul>
-                        <li><a href="#basics">Basics</a></li>
-                        <li><a href="#account">Account</a></li>
-
-
-                    </ul>
                     <div>
                         <ul id="basics" >
                             <li>
@@ -111,9 +106,12 @@ class HelpFQA extends Component {
                         </ul>
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 175917470a2b9db62f742af36240d246d67d1639
                         <div aria-hidden="true"></div>
                     </div>
                 </div>
