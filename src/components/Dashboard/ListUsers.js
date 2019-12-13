@@ -46,17 +46,24 @@ class ListUsers extends Component {
   }
 
   async handleDeleteUser(user_id) {
-    /* const cognitoUser = await Auth.currentAuthenticatedUser();
-
+    const cognitoUser = await Auth.currentAuthenticatedUser();
+    console.log(cognitoUser);
     const AWS = require('aws-sdk');
     AWS.config.region = 'us-east-1'; // Region
+    
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
         IdentityPoolId: 'us-east-1:037e5840-fa82-4b51-858f-e0ef42677465',
         Logins: {
-          'us-east-1_Sbh7qj4nQ': cognitoUser.signInUserSession.idToken.jwtToken
+          'cognito-idp.us-east-1.amazonaws.com/us-east-1_Sbh7qj4nQ': cognitoUser.signInUserSession.idToken.jwtToken
       }
     });
+
+    AWS.config.credentials.get(function(err) {
+      if (err) console.log(err);
+      else console.log(AWS.config.credentials);
+    });
     console.log(AWS.config.credentials);
+
 
     const cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider();
     const params = {
@@ -66,7 +73,7 @@ class ListUsers extends Component {
     cognitoidentityserviceprovider.adminDeleteUser(params, function(err, data) {
       if (err) console.log(err, err.stack); 
       else console.log(data);          
-    }); */
+    });
 
     const deletedUser = await API.graphql(graphqlOperation(mutations.deleteUser,{
         input:{

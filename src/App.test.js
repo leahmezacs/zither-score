@@ -4,15 +4,6 @@ import App from "./App";
 
 const puppeteer = require('puppeteer')
 
-// const faker = require('faker');
-// const user = {
-//     username: 'testuser',
-//     email: faker.internet.email(),
-//     password: 'test',
-//     firstName: faker.name.firstName(),
-//     lastName: faker.name.lastName()
-// }
-
 const isDebugging = () => {
     const debugging_mode = {
         headless: false,
@@ -49,17 +40,6 @@ describe('on page load', () => {
             userAgent: ''
         })
     })
-    
-    // test('login form works correctly', async () => {
-    //     await page.click('[data-testid="username"]')
-    //     await page.type('[data-testid="username"]', user.username)
-
-    //     await page.click('[data-testid="password"]')
-    //     await page.type('[data-testid="password"]', user.password)
-
-    //     await page.click('[data.testid="submit"]')
-    //     await page.waitForSelector('[data-testid="success"]')
-    // }, 1600)
 
 })
 

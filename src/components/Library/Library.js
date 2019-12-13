@@ -255,14 +255,6 @@ class Library extends Component {
                                 <a className="list-item">
                                     <span className="t">Scores</span>
                                 </a>
-                                <div className="sub-item">
-                                    <a className="list-item">
-                                        <span className="t em">New collection</span>
-                                    </a>
-                                </div>
-                                <a className="list-item">
-                                    <span className="t">Trash</span>
-                                </a>
                         </div>
                     </div>
                 </div>
