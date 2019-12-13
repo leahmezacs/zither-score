@@ -7,9 +7,7 @@ import * as queries from "../../graphql/queries";
 import jsPDF from "jspdf";
 import $ from "jquery";
 import Comment from "../Comment/Comment";
-import {
-  Box
-} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import * as subscriptions from '../../graphql/subscriptions';
 import "./ViewScore.css";
