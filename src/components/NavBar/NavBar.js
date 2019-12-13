@@ -42,7 +42,7 @@ class NavBar extends Component {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
+          <Nav className="mr-auto">
               <Nav.Link className="text-light link font-weight-bold" href="/Discovery">
                 Discover
               </Nav.Link>
@@ -50,7 +50,7 @@ class NavBar extends Component {
                 Help
               </Nav.Link>
             </Nav>
-
+            
             { this.props.loggedInUser ? (          
                this.props.loggedInUser.signInUserSession.accessToken.payload['cognito:groups'] == "User" ? (
                 <>

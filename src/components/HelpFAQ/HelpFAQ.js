@@ -7,14 +7,19 @@ class HelpFQA extends Component {
             <div>
                 <header>
                     <div>
-                        <h1>NumScore User's FAQ</h1>
+                        <h1 className="title">NumScore User's FAQ</h1>
                     </div>
                 </header>
-                <br />
                 <div>
+                    <ul>
+                        <li><a href="#basics">Basics</a></li> {/*by click the basics it will direct to the title*/ }
+                        <li><a href="#account">Account</a></li>{/*by click the account it will direct to the title*/ }
+
+
+                    </ul>
                     <div>
                         <ul id="basics" >
-                            <li class="cd-faq__title">
+                            <li>
                                 <h2>Basics</h2>
                             </li>
                             <li>
@@ -104,6 +109,9 @@ class HelpFQA extends Component {
                                 </div>
                             </li>
                         </ul>
+
+
+
 
 
                         <div aria-hidden="true"></div>

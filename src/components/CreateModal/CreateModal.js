@@ -121,3 +121,7 @@ class CreateModal extends Component {
 }
 
 export default withRouter(CreateModal);
+
+{/* this create modal is for creating the music score, it contains options with 
+public/private, and type of music score sheets.  the score sheet's name it required 
+to fill, if there is no name, the score sheet would not able to be created */}
