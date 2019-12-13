@@ -12,6 +12,9 @@ test('on submit comments', () =>{
     const {getByLabelText,getByText,getByDisplayValue} = render(
         <Reply
           submit={handleSubmit}
+          Change ={handleChange}
+          openReplyForm = {openReplyForm}
+          closeReplyForm = {closeReplyForm}
           
         />,
     )
@@ -22,5 +25,8 @@ test('on submit comments', () =>{
     // expect(handleSubmit).toHaveBeenCalledWith({
     //   variant: 1,
     // })
+    expect(Change).toHaveBeenCalledTimes(1)
+    expect(openReplyForm).toHaveBeenCalledTimes(1)
+    expect(closeReplyForm).toHaveBeenCalledTimes(1)
 
 })
