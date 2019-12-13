@@ -46,7 +46,7 @@ class NavBar extends Component {
               <Nav.Link className="text-light font-weight-bold" href="/Discovery">
                 Discover
               </Nav.Link>
-              <Nav.Link className="text-light font-weight-bold" href="/HelpFAQ">
+              <Nav.Link className="text-light font-weight-bold" href="/HelpFAQ"> {/* this link to the help page on the nav bar, it considered as user documentation*/}
                 Help
               </Nav.Link>
             </Nav>
