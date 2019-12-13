@@ -309,10 +309,7 @@ class SingleScoreInput extends Component {
               <span className="lineBegin">|</span>
               <Grid class="displayinrow" item>
                 {this.props.nodeLength.map(column => (
-{/*all the selections is for the symbols of each music socre input
-you can add more later, just notes that the single line and double
-lines can only be the bottom, but the dot and double dots can be 
-both top and bottom,  however it should not appear at the same time.*/}
+
                   <span key={column} className="displayinrow">
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">
@@ -440,3 +437,8 @@ both top and bottom,  however it should not appear at the same time.*/}
 };
 
 export default SingleScoreInput;
+
+{/*all the selections is for the symbols of each music socre input
+you can add more later, just notes that the single line and double
+lines can only be the bottom, but the dot and double dots can be 
+both top and bottom,  however it should not appear at the same time.*/}
