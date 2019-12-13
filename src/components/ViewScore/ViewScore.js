@@ -7,7 +7,7 @@ import * as queries from "../../graphql/queries";
 import jsPDF from "jspdf";
 import $ from "jquery";
 import Comment from "../Comment/Comment";
-import {Box} from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import * as subscriptions from '../../graphql/subscriptions';
 import "./ViewScore.css";
@@ -22,7 +22,7 @@ class ViewScore extends Component {
       userId: '',
       notes: [],
       avgRate: 0,
-    };    
+    };
 
     this.fetchRating = this.fetchRating.bind(this);
     this.generatePDF = this.generatePDF.bind(this);
@@ -33,7 +33,7 @@ class ViewScore extends Component {
   }
 
   // For fetching rating in the comment
-  fetchRating = async(event) => {
+  fetchRating = async (event) => {
     let tempRate = 0
     const comments = await API.graphql(
       graphqlOperation(queries.listComments, {
@@ -55,7 +55,7 @@ class ViewScore extends Component {
     // console.log('tempRate = ' + tempRate)
     // console.log(this.state.listComments.length)
     this.setState({
-      avgRate: tempRate/this.state.listComments.length
+      avgRate: tempRate / this.state.listComments.length
     })
     // console.log(this.state.listComments)
   }
@@ -73,16 +73,16 @@ class ViewScore extends Component {
       userId: user.username
     });
     //Get list of notes belonging to this score id
-    const noteList = await API.graphql(graphqlOperation(queries.listNotes, { 
-        limit: 200, 
-        filter: {
-            scoreId: {
-            eq: this.state.score_id
-            }
+    const noteList = await API.graphql(graphqlOperation(queries.listNotes, {
+      limit: 200,
+      filter: {
+        scoreId: {
+          eq: this.state.score_id
         }
-    }));  
+      }
+    }));
     this.setState({
-        notes: noteList.data.listNotes.items
+      notes: noteList.data.listNotes.items
     });
 
     // For fetching rating in the comment
@@ -101,12 +101,12 @@ class ViewScore extends Component {
 
     this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
       next: (commentData) => {
-          const commentID = commentData.value.data.onDeleteComment.id;
-          const remainingComment = this.state.listComments.filter(comment => comment.id !== commentID);
-          this.setState({
-              listComments: remainingComment
-          });
-          this.fetchRating();
+        const commentID = commentData.value.data.onDeleteComment.id;
+        const remainingComment = this.state.listComments.filter(comment => comment.id !== commentID);
+        this.setState({
+          listComments: remainingComment
+        });
+        this.fetchRating();
       },
     });
   }
@@ -116,42 +116,42 @@ class ViewScore extends Component {
     if (this.commentDeletionSubscription) this.commentDeletionSubscription.unsubscribe();
   }
 
-  generatePDF(){
+  generatePDF() {
     var doc = new jsPDF(); //pdf created
     doc.setFont("helvetica");
-    var addLineBars = function(i) {
-        for (var j=0; j <= 4; j++) {
-            doc.line( (20+(j*40)), (50+(i*25)),  (20+(j*40)), (65+(i*25))); // horizontal line
-        }
+    var addLineBars = function (i) {
+      for (var j = 0; j <= 4; j++) {
+        doc.line((20 + (j * 40)), (50 + (i * 25)), (20 + (j * 40)), (65 + (i * 25))); // horizontal line
+      }
     };
     //Map notes to their corresponding position 
     this.state.notes.forEach((note) => {
-        var pos = note.position; //array of coordinates [row, column, index]
-        var data = note.number;
-        if(note.dot === "TOP") { doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (50+(pos[0]*25)), .7, .7, 'F'); }
-        if(note.dot === "BOTTOM") { doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (62+(pos[0]*25)), .7, .7, "F"); }
-        if(note.doubleDot === "TOP") { 
-            doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (48+(pos[0]*25)), .7, .7, 'F'); 
-            doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (50+(pos[0]*25)), .7, .7, 'F'); 
-        }
-        if(note.doubleDot === "BOTTOM") { 
-            doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (64+(pos[0]*25)), .7, .7, "F");
-            doc.ellipse( (25+(pos[1]*40)+(pos[2]*10)), (62+(pos[0]*25)), .7, .7, "F");
-        }
-        if(note.line === true) { doc.line( (21+(pos[1]*40)+(pos[2]*10)), (59+(pos[0]*25)), (31+(pos[1]*40)+(pos[2]*10)),(59+(pos[0]*25)) ); }
-        if(note.doubleLine === true) { 
-            doc.line( (21+(pos[1]*40)+(pos[2]*10)), (60+(pos[0]*25)), (31+(pos[1]*40)+(pos[2]*10)),(60+(pos[0]*25)) );
-            doc.line( (21+(pos[1]*40)+(pos[2]*10)), (59+(pos[0]*25)), (31+(pos[1]*40)+(pos[2]*10)),(59+(pos[0]*25)) );
-        }
-        if(data) {
-          doc.text( (23+(pos[1]*40)+(pos[2]*10)),  (58+(pos[0]*25)), data.toString());
-        } 
-        addLineBars(pos[0]);
+      var pos = note.position; //array of coordinates [row, column, index]
+      var data = note.number;
+      if (note.dot === "TOP") { doc.ellipse((25 + (pos[1] * 40) + (pos[2] * 10)), (50 + (pos[0] * 25)), .7, .7, 'F'); }
+      if (note.dot === "BOTTOM") { doc.ellipse((25 + (pos[1] * 40) + (pos[2] * 10)), (62 + (pos[0] * 25)), .7, .7, "F"); }
+      if (note.doubleDot === "TOP") {
+        doc.ellipse((25 + (pos[1] * 40) + (pos[2] * 10)), (48 + (pos[0] * 25)), .7, .7, 'F');
+        doc.ellipse((25 + (pos[1] * 40) + (pos[2] * 10)), (50 + (pos[0] * 25)), .7, .7, 'F');
+      }
+      if (note.doubleDot === "BOTTOM") {
+        doc.ellipse((25 + (pos[1] * 40) + (pos[2] * 10)), (64 + (pos[0] * 25)), .7, .7, "F");
+        doc.ellipse((25 + (pos[1] * 40) + (pos[2] * 10)), (62 + (pos[0] * 25)), .7, .7, "F");
+      }
+      if (note.line === true) { doc.line((21 + (pos[1] * 40) + (pos[2] * 10)), (59 + (pos[0] * 25)), (31 + (pos[1] * 40) + (pos[2] * 10)), (59 + (pos[0] * 25))); }
+      if (note.doubleLine === true) {
+        doc.line((21 + (pos[1] * 40) + (pos[2] * 10)), (60 + (pos[0] * 25)), (31 + (pos[1] * 40) + (pos[2] * 10)), (60 + (pos[0] * 25)));
+        doc.line((21 + (pos[1] * 40) + (pos[2] * 10)), (59 + (pos[0] * 25)), (31 + (pos[1] * 40) + (pos[2] * 10)), (59 + (pos[0] * 25)));
+      }
+      if (data) {
+        doc.text((23 + (pos[1] * 40) + (pos[2] * 10)), (58 + (pos[0] * 25)), data.toString());
+      }
+      addLineBars(pos[0]);
     });
-    
+
     var pdf = doc.output('datauri')
     $('iframe').attr('src', pdf)
-    
+
   }
 
   render() {
@@ -172,7 +172,7 @@ class ViewScore extends Component {
                 size="large"
                 readOnly
               />
-              <Box ml={1}>{this.state.avgRate ? this.state.avgRate.toFixed(2) + ' out of 5': 'Not rated yet'}</Box>
+              <Box ml={1}>{this.state.avgRate ? this.state.avgRate.toFixed(2) + ' out of 5' : 'Not rated yet'}</Box>
             </div>
           </Box>
         </div>
