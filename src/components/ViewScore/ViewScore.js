@@ -88,16 +88,16 @@ class ViewScore extends Component {
     // For fetching rating in the comment
     this.fetchRating();
 
-    // this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
-    //   next: (commentData) => {
-    //       const createComment = commentData.value.data.onCreateComment;
-    //       const updatedComments = [...this.state.listComments, createComment];
-    //       this.setState({
-    //         listComments: updatedComments
-    //       });
-    //       this.fetchRating()
-    //   },
-    // });
+    this.commentCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateComment)).subscribe({
+      next: (commentData) => {
+          const createComment = commentData.value.data.onCreateComment;
+          const updatedComments = [...this.state.listComments, createComment];
+          this.setState({
+            listComments: updatedComments
+          });
+          this.fetchRating()
+      },
+    });
 
     this.commentDeletionSubscription = API.graphql(graphqlOperation(subscriptions.onDeleteComment)).subscribe({
       next: (commentData) => {
