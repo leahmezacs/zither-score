@@ -50,6 +50,7 @@ class Comment extends Component {
         }
       })
     );
+    return commentCreated;
   };
 
   async handleDeleteComment(commentID) {
@@ -60,6 +61,7 @@ class Comment extends Component {
         }
       })
     );
+    return deleteComment;
   }
 
   async componentDidMount() {
@@ -82,7 +84,6 @@ class Comment extends Component {
     this.setState({
       listComments: comments.data.listComments.items
     });
-    console.log(this.state.listComments);
 
     this.commentCreateSubscription = API.graphql(
       graphqlOperation(subscriptions.onCreateComment)
@@ -103,7 +104,6 @@ class Comment extends Component {
           rating: 0,
           listComments: updatedUniqueComments
         });
-        console.log(updatedUniqueComments);
       }
     });
 

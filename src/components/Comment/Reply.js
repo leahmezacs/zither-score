@@ -107,6 +107,7 @@ class Reply extends Component {
         }
       })
     );
+    return replyCreated;
   };
 
   render() {
