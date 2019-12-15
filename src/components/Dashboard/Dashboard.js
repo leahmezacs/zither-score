@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
-import { graphqlOperation, Auth, API } from 'aws-amplify';
-import MaterialTable from "material-table";
-import Container from "@material-ui/core/Container";
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListUsers from './ListUsers';
-import ListScores from './ListScores';
-import ListFeedbacks from './ListFeedbacks';
+import React, { Component } from "react";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListUsers from "./ListUsers";
+import ListScores from "./ListScores";
+import ListFeedbacks from "./ListFeedbacks";
 import "./Dashboard.css";
 
 class Dashboard extends Component {
@@ -30,7 +27,7 @@ class Dashboard extends Component {
       users: true,
       scores: false,
       feedbacks: false
-    })
+    });
   };
 
   handleScoresClick = () => {
@@ -38,7 +35,7 @@ class Dashboard extends Component {
       users: false,
       scores: true,
       feedbacks: false
-    })
+    });
   };
 
   handleFeedbacksClick = () => {
@@ -46,17 +43,14 @@ class Dashboard extends Component {
       users: false,
       scores: false,
       feedbacks: true
-    })
+    });
   };
 
   render() {
     return (
       <div className="dashboard-root">
         <br />
-        <Drawer
-          className="drawer"
-          variant="permanent"
-        >
+        <Drawer className="drawer" variant="permanent">
           <List>
             <ListItem button onClick={this.handleUsersClick}>
               <ListItemText primary="Users" />
@@ -70,9 +64,13 @@ class Dashboard extends Component {
           </List>
         </Drawer>
         <main className="content">
-          { this.state.users === true ? <ListUsers /> 
-            : this.state.scores === true ? <ListScores />
-            : <ListFeedbacks /> }
+          {this.state.users === true ? (
+            <ListUsers />
+          ) : this.state.scores === true ? (
+            <ListScores />
+          ) : (
+            <ListFeedbacks />
+          )}
         </main>
       </div>
     );
