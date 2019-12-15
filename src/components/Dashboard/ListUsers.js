@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import { graphqlOperation, Auth, API } from 'aws-amplify';
-/* import AWS from "aws-sdk";  */
+import React, { Component } from "react";
+import { graphqlOperation, Auth, API } from "aws-amplify";
 import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
-import * as queries from '../../graphql/queries';
-import * as mutations from '../../graphql/mutations';
-import * as subscriptions from '../../graphql/subscriptions';
+import * as queries from "../../graphql/queries";
+import * as mutations from "../../graphql/mutations";
 
 class ListUsers extends Component {
   constructor(props) {
@@ -32,7 +30,6 @@ class ListUsers extends Component {
         }
       })
     );
-    console.log(result);
     this.setState({
       users: result.data.listUsers.items
     });
@@ -47,14 +44,14 @@ class ListUsers extends Component {
 
   async handleDeleteUser(user_id) {
     const cognitoUser = await Auth.currentAuthenticatedUser();
-    console.log(cognitoUser);
-    const AWS = require('aws-sdk');
-    AWS.config.region = 'us-east-1'; // Region
-    
+    const AWS = require("aws-sdk");
+    AWS.config.region = "us-east-1"; // Region
+
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-        IdentityPoolId: 'us-east-1:037e5840-fa82-4b51-858f-e0ef42677465',
-        Logins: {
-          'cognito-idp.us-east-1.amazonaws.com/us-east-1_Sbh7qj4nQ': cognitoUser.signInUserSession.idToken.jwtToken
+      IdentityPoolId: "us-east-1:037e5840-fa82-4b51-858f-e0ef42677465",
+      Logins: {
+        "cognito-idp.us-east-1.amazonaws.com/us-east-1_Sbh7qj4nQ":
+          cognitoUser.signInUserSession.idToken.jwtToken
       }
     });
 
@@ -64,42 +61,25 @@ class ListUsers extends Component {
     });
     console.log(AWS.config.credentials);
 
-
     const cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider();
     const params = {
-      UserPoolId: 'us-east-1_Sbh7qj4nQ', 
-      Username: user_id 
+      UserPoolId: "us-east-1_Sbh7qj4nQ",
+      Username: user_id
     };
     cognitoidentityserviceprovider.adminDeleteUser(params, function(err, data) {
-      if (err) console.log(err, err.stack); 
-      else console.log(data);          
+      if (err) console.log(err, err.stack);
+      else console.log(data);
     });
 
-    const deletedUser = await API.graphql(graphqlOperation(mutations.deleteUser,{
-        input:{
-            id : user_id
+    const deletedUser = await API.graphql(
+      graphqlOperation(mutations.deleteUser, {
+        input: {
+          id: user_id
         }
-    }));
+      })
+    );
 
-    /* try {
-      console.log(await Auth.currentSession());
-      let apiName = 'AdminQueries';
-      const path = '/disableUser';
-      const myInit = {
-        body: {
-          user_id,
-        },
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `${(await Auth.currentSession()).getAccessToken().getJwtToken()}`,
-        },
-      };
-      const result = await API.post(apiName, path, myInit);
-      return result.message;
-    } catch (e) {
-      console.log(e);
-      return e;
-    } */
+    return deletedUser;
   }
 
   render() {
@@ -121,7 +101,7 @@ class ListUsers extends Component {
                   });
                   this.handleDeleteUser(oldData.username);
                 }, 600);
-              }),
+              })
           }}
         />
       </Container>
