@@ -20,6 +20,7 @@ class ListFeedbacks extends Component {
         open: false,
         comment: '',
         feedback_id: '',
+        status: '',
         columns: [
             { title: "Name", field: "name" },
             { title: "Email", field: "email" },
@@ -89,12 +90,13 @@ class ListFeedbacks extends Component {
         });
     }
 
-    handleClickOpen(comment, id) {
-        console.log(id);
+    handleClickOpen(data) {
+        console.log(data.ID);
         this.setState({
             open: true,
-            comment: comment,
-            feedback_id: id
+            comment: data.comment,
+            status: data.status,
+            feedback_id: data.ID
         });
     }
 
@@ -151,19 +153,28 @@ class ListFeedbacks extends Component {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.handleResolveFeedback} color="primary">
-                        Mark as Resolved
-                    </Button>
-                    <Button onClick={this.handleIgnoreFeedback} color="primary">
-                        Ignore
-                    </Button>
+                    { this.state.status === "Unresolved" ? 
+                        <>
+                            <Button onClick={this.handleResolveFeedback} color="primary">
+                                Mark as Resolved
+                            </Button>
+                            <Button onClick={this.handleIgnoreFeedback} color="primary">
+                                Ignore
+                            </Button>
+                        </> :
+                        <>
+                            <Button onClick={this.handleClickClose} color="primary">
+                                Cancel
+                            </Button>
+                        </>
+                    }
                 </DialogActions>
             </Dialog>
             <MaterialTable
             title="Feedback"
             columns={this.state.columns}
             data={this.state.data}
-            onRowClick={(event, rowData) => this.handleClickOpen(rowData.comment, rowData.ID)}
+            onRowClick={(event, rowData) => this.handleClickOpen(rowData)}
             />
         </Container>
         );
