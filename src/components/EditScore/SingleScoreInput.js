@@ -7,8 +7,6 @@ import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import * as subscriptions from '../../graphql/subscriptions';
 
-
-
 // Four inputs in one componenet
 class SingleScoreInput extends Component {
   constructor(props) {
@@ -273,6 +271,7 @@ class SingleScoreInput extends Component {
 
           note.dot === "TOP" ? symbol_top.value = "dot-top" 
             : note.doubleDot === "TOP" ? symbol_top.value = "doubledot-top"
+            : note.dot === null && note.doubleDot === null ? symbol_top.value = null
             : note.dot === "BOTTOM" ? symbol_bottom.value = "dot-bottom"
             : note.doubleDot === "BOTTOM" ? symbol_bottom.value = "doubledot-bottom" 
             : note.line === true ? symbol_bottom.value = "line" 

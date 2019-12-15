@@ -17,6 +17,14 @@ input[type=number] {
     top: 58px;
 }
 
+.save-state {
+    position: absolute;
+    font-size: 20px;
+    margin-top: 20px;
+    left: 20px;
+    line-height: 1;
+}
+
 .singleNote {
     width: 40px;
     height: 40px;
