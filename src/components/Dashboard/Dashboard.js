@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { graphqlOperation, Auth, API } from 'aws-amplify';
-import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
