@@ -7,7 +7,6 @@ afterEach(cleanup)
 
 test('on submit comments', () =>{
     const handleSubmit = jest.fn()
-    
 
     const {getByLabelText,getByText,getByDisplayValue} = render(
         <Comment
@@ -19,8 +18,57 @@ test('on submit comments', () =>{
 
 
     expect(handleSubmit).toHaveBeenCalledTimes(1)
-    // expect(handleSubmit).toHaveBeenCalledWith({
-    //   variant: 1,
-    // })
+   
+})
+
+test('delete comments', () =>{
+    const handleDeleteComment = {handleDeleteComment}
+
+    const {getByLabelText,getByText,getByDisplayValue} = render(
+        <Comment
+          handleDeleteComment={handleDeleteComment}
+          
+        />,
+    )
+    
+
+
+    expect(handleDeleteComment).toHaveBeenCalledTimes(1)
+   
 
 })
+
+test('on subscription', () =>{
+
+    const Subscription = {commentCreateSubscription}
+    
+    
+
+    const {getByLabelText,getByText,getByDisplayValue} = render(
+        <Comment
+          Subscription={commentCreateSubscription}
+          
+        />,
+    )
+    
+
+
+    expect(commentCreateSubscription).toHaveBeenCalledTimes(1)
+    
+})
+
+test('on delete subscription', () =>{
+    const deleteSub = {commentDeletionSubscription}
+
+    const {getByLabelText,getByText,getByDisplayValue} = render(
+        <Comment
+         deleteSub = {commentDeletionSubscription}
+          
+        />,
+    )
+    
+
+
+    expect(commentDeletionSubscription).toHaveBeenCalledTimes(1)
+})
+
