@@ -16,7 +16,7 @@ class HelpFQA extends Component {
           </ul>
           <div>
             <ul id="basics">
-              <li><h2>Basics</h2></li>
+              <h2>Basics</h2>
               <li>
                 <a href="#0"><span>How to see the saved score sheet?</span></a>
                 <div>
@@ -72,9 +72,7 @@ class HelpFQA extends Component {
             </ul>
 
             <ul id="account">
-              <li>
                 <h2>Account</h2>
-              </li>
               <li>
                 <a href="#0">
                   <span>How do I change my password?</span>
