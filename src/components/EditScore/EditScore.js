@@ -86,7 +86,7 @@ class EditScore extends Component {
               </Accordion.Collapse>
             </Card>
           </Accordion>
-        </div>{" "}
+        </div>
         <br />
         <div className="save-state">
           {this.state.saved ? <p>Saved</p> : <p>Autosaving...</p>}

@@ -46,7 +46,6 @@ class ScoreInput extends Component {
           color="primary"
           fontSize="large"
           className="scoreInputIcon"
-          // disabled={!this.state.buttonEnable}
         />
         <form>
           <SingleLineScoreInput
