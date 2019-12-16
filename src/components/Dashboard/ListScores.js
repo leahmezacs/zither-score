@@ -4,7 +4,7 @@ import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
-import * as subscriptions from '../../graphql/subscriptions';
+
 
 class ListScores extends Component {
   constructor(props) {

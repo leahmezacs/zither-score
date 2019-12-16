@@ -5,7 +5,7 @@ import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
-import * as subscriptions from '../../graphql/subscriptions';
+
 
 class ListUsers extends Component {
   constructor(props) {
