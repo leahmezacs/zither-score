@@ -10,9 +10,7 @@ class HelpFQA extends Component {
         <div>
           <ul>
             <li><a href="#basics">Basics</a></li>
-            {/*by click the basics it will direct to the title*/}
             <li><a href="#account">Account</a></li>
-            {/*by click the account it will direct to the title*/}
           </ul>
           <div>
             <ul id="basics">
