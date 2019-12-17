@@ -33,8 +33,10 @@ class SingleScoreInput extends Component {
     this.handleCreateNoteSymbol = this.handleCreateNoteSymbol.bind(this);
     this.handleUpdateNoteNumber = this.handleUpdateNoteNumber.bind(this);
     this.handleUpdateNoteSymbol = this.handleUpdateNoteSymbol.bind(this);
+    this.handleUpdateUpperNoteSymbol = this.handleUpdateUpperNoteSymbol.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleSymbolChange = this.handleSymbolChange.bind(this);
+    this.handleUpperSymbolChange = this.handleUpperSymbolChange.bind(this);
 
     this.noteCreationSubscription = null;
     this.noteUpdationSubscription = null;
@@ -150,8 +152,49 @@ class SingleScoreInput extends Component {
     }
   };
 
+  async handleUpperSymbolChange(e){
+    e.preventDefault(); 
+    try {
+      let { value } = e.target;
+      console.log(value);
+      let result = e.target.name.replace(/, +/g, ",").split(",").map(Number);
+      this.setState({
+        // line: value === "line" ? true : false,
+        // doubleline: value === "doubleline" ? true : false,
+        dot: value === "dot-top" ? "TOP" : null,
+        doubledot: value === "doubledot-top" ? "BOTTOM" : null,
+        // dot: value === "dot-top" ? "TOP" : value ==="dot-bottom" ? "BOTTOM" : null,
+        // doubledot: value === "doubledot-top" ? "TOP" : value ==="doubledot-bottom" ? "BOTTOM" : null,
+        pos: result
+      }, () => {
+        console.log(this.state.dot)
+        const temp = this.state.notes;
+        //console.log(temp);
+        let exist = false;
+        let note_id = "";
+        for (let i = 0; i < temp.length; ++i) {
+          if (JSON.stringify(temp[i].position) == JSON.stringify(this.state.pos)) {
+            note_id = temp[i].id;
+            exist = true;
+          }
+        }
+        console.log(exist);
+        if (exist) {
+          this.handleUpdateUpperNoteSymbol(note_id);
+        }
+        else {
+          this.handleCreateNoteSymbol();
+        }
+      });
+    }
+    catch (e) {
+      alert(e.message);
+    }
+
+  }
+
   async handleSymbolChange(e) {
-    e.preventDefault();
+    e.preventDefault(); 
     try {
       let { value, min, max } = e.target;
       console.log(e.target.value);
@@ -307,13 +350,13 @@ class SingleScoreInput extends Component {
           <Grid item xs={12}>
             <Grid container justify="center" spacing={2}>
               <span className="lineBegin">|</span>
-              <Grid class="displayinrow" item>
+              <Grid className="displayinrow" item>
                 {this.props.nodeLength.map(column => (
 
                   <span key={column} className="displayinrow">
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">
-                        <select name={[row, column, 0]} onChange={this.handleSymbolChange} className="select">
+                        <select name={[row, column, 0]} onChange={this.handleUpperSymbolChange} className="select">
                           <option>   </option>
                           <option value="dot-top" className="option"> . </option>
                           <option value="doubledot-top" className="option"> : </option>
@@ -343,7 +386,7 @@ class SingleScoreInput extends Component {
 
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">                     
-                        <select name={[row, column, 1]} onChange={this.handleSymbolChange} className="select">
+                        <select name={[row, column, 1]} onChange={this.handleUpperSymbolChange} className="select">
                           <option>  </option>
                           <option value="dot-top" className="option"> . </option>
                           <option value="doubledot-top" className="option"> : </option>
@@ -371,7 +414,7 @@ class SingleScoreInput extends Component {
                    
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">                       
-                        <select name={[row, column, 2]} onChange={this.handleSymbolChange} className="select">
+                        <select name={[row, column, 2]} onChange={this.handleUpperSymbolChange} className="select">
                           <option> </option>
                           <option value="dot-top" className="option"> . </option>
                           <option value="doubledot-top" className="option"> : </option>
@@ -399,7 +442,7 @@ class SingleScoreInput extends Component {
 
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">                       
-                        <select name={[row, column, 3]} onChange={this.handleSymbolChange} className="select">
+                        <select name={[row, column, 3]} onChange={this.handleUpperSymbolChange} className="select">
                           <option>   </option>
                           <option value="dot-top" className="option"> . </option>
                           <option value="doubledot-top" className="option"> : </option>
