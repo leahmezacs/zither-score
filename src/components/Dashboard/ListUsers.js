@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { graphqlOperation, Auth, API } from 'aws-amplify';
-/* import AWS from "aws-sdk";  */
 import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 import * as queries from '../../graphql/queries';
