@@ -279,6 +279,23 @@ class SingleScoreInput extends Component {
     console.log("updated: ", updatedNote.data.updateNote);
   }
 
+  async handleUpdateUpperNoteSymbol(id) {
+    const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
+      input: {
+        id: id,
+        // line: this.state.line,
+        // doubleLine: this.state.doubleline,
+        dot: this.state.dot,
+        doubleDot: this.state.doubledot,
+        position: this.state.pos
+      }
+    }));
+    this.setState({
+      note: updatedNote
+    });
+    console.log("updated: ", updatedNote.data.updateNote);
+  }
+
   async handleUpdateNoteSymbol(id) {
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
       input: {
