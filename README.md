@@ -1,8 +1,8 @@
 # Welcome to the Num Score app!
 
-This website application is almost exactly like [FlatIO](https://flat.io), _including_ the appearance! It allows users to create score sheets in the cipher / jianpu / numbered musical notation.
+This website application is not compatible on Safari! We highly suggest you to run it using Chrome on Windows or Mac. It allows users to create score sheets in the cipher / jianpu / numbered musical notation.
 
-Please be advised that there are certainly main missing features in creating music scores, such as symbols that currently might not be available. It _is_ a work in progress! 
+Pleae be adviced that the notation only supported for dots and lines symbols for upper and lower the numbers notations, and others symbols _are_ working in progress! 
 
 **Check our [wiki](https://github.com/leahmezacs/zither-score/wiki) for more detailed information!**
 
