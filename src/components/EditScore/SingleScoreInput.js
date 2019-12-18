@@ -162,7 +162,7 @@ class SingleScoreInput extends Component {
         // line: value === "line" ? true : false,
         // doubleline: value === "doubleline" ? true : false,
         dot: value === "dot-top" ? "TOP" : null,
-        doubledot: value === "doubledot-top" ? "BOTTOM" : null,
+        doubledot: value === "doubledot-top" ? "TOP" : null,
         // dot: value === "dot-top" ? "TOP" : value ==="dot-bottom" ? "BOTTOM" : null,
         // doubledot: value === "doubledot-top" ? "TOP" : value ==="doubledot-bottom" ? "BOTTOM" : null,
         pos: result
@@ -202,8 +202,10 @@ class SingleScoreInput extends Component {
       this.setState({
         line: value === "line" ? true : false,
         doubleline: value === "doubleline" ? true : false,
-        dot: value === "dot-top" ? "TOP" : value ==="dot-bottom" ? "BOTTOM" : null,
-        doubledot: value === "doubledot-top" ? "TOP" : value ==="doubledot-bottom" ? "BOTTOM" : null,
+        dot: value === "dot-bottom" ? "BOTTOM" : null,
+        doubledot: value === "doubledot-bottom" ? "BOTTOM" : null,
+        // dot: value === "dot-top" ? "TOP" : value ==="dot-bottom" ? "BOTTOM" : null,
+        // doubledot: value === "doubledot-top" ? "TOP" : value ==="doubledot-bottom" ? "BOTTOM" : null,
         pos: result
       }, () => {
         const temp = this.state.notes;
@@ -280,11 +282,29 @@ class SingleScoreInput extends Component {
   }
 
   async handleUpdateUpperNoteSymbol(id) {
+    const getNote = await API.graphql(
+      graphqlOperation(queries.getNote, {
+        id: id
+      }))
+    console.log(getNote);
+    console.log(getNote.data.getNote.number)
+
+    this.setState({
+      line: getNote.data.getNote.line,
+      doubleLine: getNote.data.getNote.doubleline,
+    })
+    console.log('------------')
+    console.log(getNote.data.getNote.line)
+    console.log(getNote.data.getNote.doubleLine)
+    console.log(this.state.line)
+    console.log(this.state.doubleLine)
+    
+
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
       input: {
         id: id,
-        // line: this.state.line,
-        // doubleLine: this.state.doubleline,
+        line: this.state.line,
+        doubleLine: this.state.doubleline,
         dot: this.state.dot,
         doubleDot: this.state.doubledot,
         position: this.state.pos
@@ -297,6 +317,21 @@ class SingleScoreInput extends Component {
   }
 
   async handleUpdateNoteSymbol(id) {
+    const getNote = await API.graphql(
+      graphqlOperation(queries.getNote, {
+        id: id
+      }))
+    console.log(getNote);
+    console.log(getNote.data.getNote.number)
+
+    if (!this.state.dot && !this.state.doubledot){
+      this.setState({
+        dot: getNote.data.getNote.dot,
+        doubledot: getNote.data.getNote.doubleDot,
+      })
+    }
+    
+
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
       input: {
         id: id,
