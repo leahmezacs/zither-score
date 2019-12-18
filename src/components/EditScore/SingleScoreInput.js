@@ -33,8 +33,10 @@ class SingleScoreInput extends Component {
     this.handleCreateNoteSymbol = this.handleCreateNoteSymbol.bind(this);
     this.handleUpdateNoteNumber = this.handleUpdateNoteNumber.bind(this);
     this.handleUpdateNoteSymbol = this.handleUpdateNoteSymbol.bind(this);
+    this.handleUpdateUpperNoteSymbol = this.handleUpdateUpperNoteSymbol.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleSymbolChange = this.handleSymbolChange.bind(this);
+    this.handleUpperSymbolChange = this.handleUpperSymbolChange.bind(this);
 
     this.noteCreationSubscription = null;
     this.noteUpdationSubscription = null;
@@ -150,8 +152,49 @@ class SingleScoreInput extends Component {
     }
   };
 
+  async handleUpperSymbolChange(e){
+    e.preventDefault(); 
+    try {
+      let { value } = e.target;
+      console.log(value);
+      let result = e.target.name.replace(/, +/g, ",").split(",").map(Number);
+      this.setState({
+        // line: value === "line" ? true : false,
+        // doubleline: value === "doubleline" ? true : false,
+        dot: value === "dot-top" ? "TOP" : null,
+        doubledot: value === "doubledot-top" ? "TOP" : null,
+        // dot: value === "dot-top" ? "TOP" : value ==="dot-bottom" ? "BOTTOM" : null,
+        // doubledot: value === "doubledot-top" ? "TOP" : value ==="doubledot-bottom" ? "BOTTOM" : null,
+        pos: result
+      }, () => {
+        console.log(this.state.dot)
+        const temp = this.state.notes;
+        //console.log(temp);
+        let exist = false;
+        let note_id = "";
+        for (let i = 0; i < temp.length; ++i) {
+          if (JSON.stringify(temp[i].position) == JSON.stringify(this.state.pos)) {
+            note_id = temp[i].id;
+            exist = true;
+          }
+        }
+        console.log(exist);
+        if (exist) {
+          this.handleUpdateUpperNoteSymbol(note_id);
+        }
+        else {
+          this.handleCreateNoteSymbol();
+        }
+      });
+    }
+    catch (e) {
+      alert(e.message);
+    }
+
+  }
+
   async handleSymbolChange(e) {
-    e.preventDefault();
+    e.preventDefault(); 
     try {
       let { value, min, max } = e.target;
       console.log(e.target.value);
@@ -159,8 +202,10 @@ class SingleScoreInput extends Component {
       this.setState({
         line: value === "line" ? true : false,
         doubleline: value === "doubleline" ? true : false,
-        dot: value === "dot-top" ? "TOP" : value ==="dot-bottom" ? "BOTTOM" : null,
-        doubledot: value === "doubledot-top" ? "TOP" : value ==="doubledot-bottom" ? "BOTTOM" : null,
+        dot: value === "dot-bottom" ? "BOTTOM" : null,
+        doubledot: value === "doubledot-bottom" ? "BOTTOM" : null,
+        // dot: value === "dot-top" ? "TOP" : value ==="dot-bottom" ? "BOTTOM" : null,
+        // doubledot: value === "doubledot-top" ? "TOP" : value ==="doubledot-bottom" ? "BOTTOM" : null,
         pos: result
       }, () => {
         const temp = this.state.notes;
@@ -236,7 +281,57 @@ class SingleScoreInput extends Component {
     console.log("updated: ", updatedNote.data.updateNote);
   }
 
+  async handleUpdateUpperNoteSymbol(id) {
+    const getNote = await API.graphql(
+      graphqlOperation(queries.getNote, {
+        id: id
+      }))
+    console.log(getNote);
+    console.log(getNote.data.getNote.number)
+
+    this.setState({
+      line: getNote.data.getNote.line,
+      doubleLine: getNote.data.getNote.doubleline,
+    })
+    console.log('------------')
+    console.log(getNote.data.getNote.line)
+    console.log(getNote.data.getNote.doubleLine)
+    console.log(this.state.line)
+    console.log(this.state.doubleLine)
+    
+
+    const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
+      input: {
+        id: id,
+        line: this.state.line,
+        doubleLine: this.state.doubleline,
+        dot: this.state.dot,
+        doubleDot: this.state.doubledot,
+        position: this.state.pos
+      }
+    }));
+    this.setState({
+      note: updatedNote
+    });
+    console.log("updated: ", updatedNote.data.updateNote);
+  }
+
   async handleUpdateNoteSymbol(id) {
+    const getNote = await API.graphql(
+      graphqlOperation(queries.getNote, {
+        id: id
+      }))
+    console.log(getNote);
+    console.log(getNote.data.getNote.number)
+
+    if (!this.state.dot && !this.state.doubledot){
+      this.setState({
+        dot: getNote.data.getNote.dot,
+        doubledot: getNote.data.getNote.doubleDot,
+      })
+    }
+    
+
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
       input: {
         id: id,
@@ -307,13 +402,13 @@ class SingleScoreInput extends Component {
           <Grid item xs={12}>
             <Grid container justify="center" spacing={2}>
               <span className="lineBegin">|</span>
-              <Grid class="displayinrow" item>
+              <Grid className="displayinrow" item>
                 {this.props.nodeLength.map(column => (
 
                   <span key={column} className="displayinrow">
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">
-                        <select name={[row, column, 0]} onChange={this.handleSymbolChange} className="select">
+                        <select name={[row, column, 0]} onChange={this.handleUpperSymbolChange} className="select">
                           <option>   </option>
                           <option value="dot-top" className="option"> . </option>
                           <option value="doubledot-top" className="option"> : </option>
@@ -343,7 +438,7 @@ class SingleScoreInput extends Component {
 
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">                     
-                        <select name={[row, column, 1]} onChange={this.handleSymbolChange} className="select">
+                        <select name={[row, column, 1]} onChange={this.handleUpperSymbolChange} className="select">
                           <option>  </option>
                           <option value="dot-top" className="option"> . </option>
                           <option value="doubledot-top" className="option"> : </option>
@@ -371,7 +466,7 @@ class SingleScoreInput extends Component {
                    
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">                       
-                        <select name={[row, column, 2]} onChange={this.handleSymbolChange} className="select">
+                        <select name={[row, column, 2]} onChange={this.handleUpperSymbolChange} className="select">
                           <option> </option>
                           <option value="dot-top" className="option"> . </option>
                           <option value="doubledot-top" className="option"> : </option>
@@ -399,7 +494,7 @@ class SingleScoreInput extends Component {
 
                     <span className="displayincolumn">
                       <span className="dropdown d-inline col-xs-12">                       
-                        <select name={[row, column, 3]} onChange={this.handleSymbolChange} className="select">
+                        <select name={[row, column, 3]} onChange={this.handleUpperSymbolChange} className="select">
                           <option>   </option>
                           <option value="dot-top" className="option"> . </option>
                           <option value="doubledot-top" className="option"> : </option>
@@ -431,17 +526,17 @@ class SingleScoreInput extends Component {
             </Grid>
           </Grid>
         </Grid>
-      </Container >
+      </Container>
     ));
   }
 };
 
 export default SingleScoreInput;
 
-{/*all the selections is for the symbols of each music socre input
+/*all the selections is for the symbols of each music socre input
 you can add more later, just notes that the single line and double
 lines can only be the bottom, but the dot and double dots can be 
-both top and bottom,  however it should not appear at the same time.*/}
+both top and bottom,  however it should not appear at the same time.*/
 
-{/*some symbols can not be find, but once it figure out we can add it to
-the selections*/}
+/*some symbols can not be find, but once it figure out we can add it to
+the selections*/

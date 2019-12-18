@@ -53,7 +53,6 @@ class Reply extends Component {
     this.setState({
       listReplys: replys.data.listReplys.items
     });
-    console.log(this.state.listReplys);
 
     this.replyCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateReply)).subscribe({
         next: (replyData) => {
@@ -65,7 +64,6 @@ class Reply extends Component {
               });
 
             const updatedUniqueReplies = [...uniqueReplies];
-            console.log(updatedUniqueReplies)
             this.setState({
               content: "",
               listReplys: updatedUniqueReplies
@@ -99,7 +97,6 @@ class Reply extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    console.log(this.props.commentID);
     const replyCreated = await API.graphql(
       graphqlOperation(mutations.createReply, {
         input: {
@@ -110,8 +107,7 @@ class Reply extends Component {
         }
       })
     );
-    console.log(replyCreated);
-    // window.location.reload();
+    return replyCreated;
   };
 
   render() {
