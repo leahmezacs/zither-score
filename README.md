@@ -9,6 +9,8 @@ Pleae be adviced that the notation only supported for dots and lines symbols for
 #### Note to developers:
 For those using npm... install react-scripts: `npm i react-scripts`
 
+For running the test : `npm run test`, and to run all the tests please press `a` on the keyboard when instruction showed up
+
 The Num Score will be host at http://localhost:3000/
 
 The Num Score livesite url is http://numscore-local.s3-website-us-east-1.amazonaws.com

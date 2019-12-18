@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListUsers from "./ListUsers";
-import ListScores from "./ListScores";
-import ListFeedbacks from "./ListFeedbacks";
+import React, { Component } from 'react';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListUsers from './ListUsers';
+import ListScores from './ListScores';
+import ListFeedbacks from './ListFeedbacks';
 import "./Dashboard.css";
 
 class Dashboard extends Component {

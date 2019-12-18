@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { graphqlOperation, Auth, API } from "aws-amplify";
+import React, { Component } from 'react';
+import { graphqlOperation, Auth, API } from 'aws-amplify';
 import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
-import * as queries from "../../graphql/queries";
-import * as mutations from "../../graphql/mutations";
+import * as queries from '../../graphql/queries';
+import * as mutations from '../../graphql/mutations';
 
 class ListUsers extends Component {
   constructor(props) {

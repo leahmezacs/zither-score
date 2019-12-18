@@ -526,17 +526,17 @@ class SingleScoreInput extends Component {
             </Grid>
           </Grid>
         </Grid>
-      </Container >
+      </Container>
     ));
   }
 };
 
 export default SingleScoreInput;
 
-{/*all the selections is for the symbols of each music socre input
+/*all the selections is for the symbols of each music socre input
 you can add more later, just notes that the single line and double
 lines can only be the bottom, but the dot and double dots can be 
-both top and bottom,  however it should not appear at the same time.*/}
+both top and bottom,  however it should not appear at the same time.*/
 
-{/*some symbols can not be find, but once it figure out we can add it to
-the selections*/}
+/*some symbols can not be find, but once it figure out we can add it to
+the selections*/
