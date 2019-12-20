@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, cleanup, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import CreateModal from '../../components/Comment/Reply'
+import Reply from '../../components/Comment/Reply'
 
 afterEach(cleanup)
 

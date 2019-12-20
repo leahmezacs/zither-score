@@ -8,7 +8,7 @@ afterEach(cleanup)
 test('submit create a music score', () =>{
     const handleSubmit = jest.fn()
   
-    const {getByLabelText,getByText,getByDisplayValue} = render(
+    const {CreateScore} = render(
         <CreateModal
           create={handleSubmit}
         />,
@@ -25,7 +25,7 @@ test('close create music score', () =>{
   const handleClose = jest.fn()
   
 
-  const {getByLabelText,getByText,getByDisplayValue} = render(
+  const {CreateScore} = render(
       <CreateModal
         create={handleClose}
       />,
@@ -39,7 +39,7 @@ test('change status music score', () =>{
 
   const handleShow = jest.fn()
 
-  const {getByLabelText,getByText,getByDisplayValue} = render(
+  const {CreateScore} = render(
       <CreateModal
         status={handleStatusChange}
       />,

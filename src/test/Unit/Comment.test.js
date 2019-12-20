@@ -1,14 +1,14 @@
 import React from 'react'
 import {render, cleanup, fireEvent} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import CreateModal from '../../components/Comment/Comment'
+import Comment from '../../components/Comment/Comment'
 
 afterEach(cleanup)
 
 test('on submit comments', () =>{
     const handleSubmit = jest.fn()
 
-    const {getByLabelText,getByText,getByDisplayValue} = render(
+    const {createComment,UpdateComment,DeleteComment} = render(
         <Comment
           submit={handleSubmit}
           
@@ -24,7 +24,7 @@ test('on submit comments', () =>{
 test('delete comments', () =>{
     const handleDeleteComment = {handleDeleteComment}
 
-    const {getByLabelText,getByText,getByDisplayValue} = render(
+    const {createComment,UpdateComment,DeleteComment} = render(
         <Comment
           handleDeleteComment={handleDeleteComment}
           
@@ -44,7 +44,7 @@ test('on subscription', () =>{
     
     
 
-    const {getByLabelText,getByText,getByDisplayValue} = render(
+    const {createComment,UpdateComment,DeleteComment} = render(
         <Comment
           Subscription={commentCreateSubscription}
           
@@ -60,7 +60,7 @@ test('on subscription', () =>{
 test('on delete subscription', () =>{
     const deleteSub = {commentDeletionSubscription}
 
-    const {getByLabelText,getByText,getByDisplayValue} = render(
+    const {createComment,UpdateComment,DeleteComment} = render(
         <Comment
          deleteSub = {commentDeletionSubscription}
           
