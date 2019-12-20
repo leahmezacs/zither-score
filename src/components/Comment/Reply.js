@@ -56,8 +56,15 @@ class Reply extends Component {
 
     this.replyCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateReply)).subscribe({
         next: (replyData) => {
-            const createReply = replyData.value.data.onCreateReply;
-            const updatedReplies = [...this.state.listReplys, createReply];
+           console.log(replyData)
+            const createReply = replyData.value.data.onCreateReply
+            let updatedReplies = []
+            if(this.state.listReplys[0].commentId === createReply.commentId){
+              updatedReplies = [...this.state.listReplys, createReply];
+            }
+            else {
+              updatedReplies = [...this.state.listReplys]
+            }
             const uniqueReplies = Array.from(new Set(updatedReplies.map(reply => reply.id)))
               .map(id => {
                 return updatedReplies.find(reply => reply.id === id)
