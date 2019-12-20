@@ -29,13 +29,13 @@ class App extends Component {
         });
     }
 
-    updateCurrentUser = (user) => {
+    updateCurrentUser(user) {
         this.setState({
             currentUser: user
         })
     }
 
-    onSignOut = async () => {
+    async onSignOut() {
         await Auth.signOut();
         this.setState({
             currentUser: null
