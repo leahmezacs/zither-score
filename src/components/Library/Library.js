@@ -80,13 +80,13 @@ class Library extends Component {
       this.scoreUpdationSubscription.unsubscribe();
   }
 
-  handleShow = () => {
+  handleShow() {
     this.setState(prevState => {
       return {
         modal: !prevState.modal
       };
     });
-  };
+  }
 
   async handleDeleteComment(comment_id) {
     const deletedComment = await API.graphql(
