@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/no-deprecated
 import React, { Component, PropTypes } from 'react';
 import PDFObject from 'pdfobject';
 
