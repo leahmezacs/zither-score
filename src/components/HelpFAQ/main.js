@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 (function () {
 	// FAQ Template - by CodyHouse.co
 	var FaqTemplate = function (element) {
@@ -20,27 +21,42 @@
 			if (!category) return;
 			var mq = getMq(faqs),
 				selectedCategory = category.getAttribute('href').replace('#', '');
-			if (mq == 'how to use') { // on how to use, open faq panel
-				event.preventDefault();
-				faqs.faqContainer.scrollTop = 0;
-				Util.addClass(faqs.faqContainer, 'cd-faq__items--slide-in');
-				Util.addClass(faqs.faqClose, 'cd-faq__close-panel--move-left');
-				Util.addClass(faqs.faqOverlay, 'cd-faq__overlay--is-visible');
-				var selectedSection = faqs.faqContainer.getElementsByClassName('cd-faq__group--selected');
-				if (selectedSection.length > 0) {
-					Util.removeClass(selectedSection[0], 'cd-faq__group--selected');
-				}
-				Util.addClass(document.getElementById(selectedCategory), 'cd-faq__group--selected');
-			} else { // on desktop, scroll to section
-				if (!window.requestAnimationFrame) return;
-				event.preventDefault();
-				var windowScrollTop = window.scrollY || document.documentElement.scrollTop;
-				Util.scrollTo(document.getElementById(selectedCategory).getBoundingClientRect().top + windowScrollTop + 2, 200);
-			}
+			if (mq == "how to use") {
+        // on how to use, open faq panel
+        event.preventDefault();
+        faqs.faqContainer.scrollTop = 0;
+        Util.addClass(faqs.faqContainer, "cd-faq__items--slide-in");
+        Util.addClass(faqs.faqClose, "cd-faq__close-panel--move-left");
+        Util.addClass(faqs.faqOverlay, "cd-faq__overlay--is-visible");
+        var selectedSection = faqs.faqContainer.getElementsByClassName(
+          "cd-faq__group--selected"
+        );
+        if (selectedSection.length > 0) {
+          Util.removeClass(selectedSection[0], "cd-faq__group--selected");
+        }
+        Util.addClass(
+          document.getElementById(selectedCategory),
+          "cd-faq__group--selected"
+        );
+      } else {
+        // on desktop, scroll to section
+        if (!window.requestAnimationFrame) return;
+        event.preventDefault();
+        var windowScrollTop =
+          window.scrollY || document.documentElement.scrollTop;
+        Util.scrollTo(
+          document.getElementById(selectedCategory).getBoundingClientRect()
+            .top +
+            windowScrollTop +
+            2,
+          200
+        );
+      }
 		});
 
 		// on how to use -> close faq panel
 		faqs.faqOverlay.addEventListener('click', function (event) {
+			event.preventDefault();
 			closeFaqPanel(faqs);
 		});
 		faqs.faqClose.addEventListener('click', function (event) {
@@ -82,18 +98,18 @@
 				window.requestAnimationFrame(updateCategory.bind(faqs));
 			});
 		}
-	};
+	}
 
 	function closeFaqPanel(faqs) {
 		Util.removeClass(faqs.faqContainer, 'cd-faq__items--slide-in');
 		Util.removeClass(faqs.faqClose, 'cd-faq__close-panel--move-left');
 		Util.removeClass(faqs.faqOverlay, 'cd-faq__overlay--is-visible');
-	};
+	}
 
 	function getMq(faqs) {
 		//get MQ value ('desktop' or 'how to use') 
 		return window.getComputedStyle(faqs.element, '::before').getPropertyValue('content').replace(/'|"/g, "");
-	};
+	}
 
 	function updateCategory() { // update selected category -> show green rectangle to the left of the category
 		var selected = false;
@@ -105,12 +121,12 @@
 		}
 		if (!selected) Util.addClass(this.faqsCategories[0], 'cd-faq__category-selected');
 		this.scrolling = false;
-	};
+	}
 
 	function heighAnimationCb(content, bool) {
 		content.removeAttribute("style");
 		if (bool) Util.removeClass(content, 'cd-faq__content--visible');
-	};
+	}
 
 	var faqTemplate = document.getElementsByClassName('js-cd-faq'),
 		faqArray = [];
@@ -118,5 +134,5 @@
 		for (var i = 0; i < faqTemplate.length; i++) {
 			faqArray.push(new FaqTemplate(faqTemplate[i]));
 		}
-	};
+	}
 })();
