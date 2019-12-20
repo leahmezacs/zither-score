@@ -1,5 +1,5 @@
 // Utility function
-function Util() { };
+function Util() { }
 
 /* 
 	class manipulation functions
@@ -41,6 +41,7 @@ Util.setAttributes = function (el, attrs) {
   DOM manipulation
 */
 Util.getChildrenByClassName = function (el, className) {
+  // eslint-disable-next-line no-unused-vars
   var children = el.children,
     childrenByClass = [];
   for (var i = 0; i < el.children.length; i++) {
@@ -152,6 +153,7 @@ if (!Element.prototype.closest) {
 //Custom Event() constructor
 if (typeof window.CustomEvent !== "function") {
 
+  // eslint-disable-next-line no-inner-declarations
   function CustomEvent(event, params) {
     params = params || { bubbles: false, cancelable: false, detail: undefined };
     var evt = document.createEvent('CustomEvent');

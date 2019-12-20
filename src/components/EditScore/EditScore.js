@@ -64,17 +64,17 @@ class EditScore extends Component {
                     <img
                       className="tut-images"
                       src="https://i.imgur.com/nsvekXf.gif"
-                      alt=""
+                      alt="image of tutorial for the edit music page"
                     />
                     <img
                       className="tut-images"
                       src="https://i.imgur.com/uArCzbw.gif"
-                      alt=""
+                      alt="image of tutorial for the edit music page"
                     />
                     <img
                       className="tut-images"
                       src="https://i.imgur.com/oocMy7p.gif"
-                      alt=""
+                      alt="image of tutorial for the edit music page"
                     />
                   </div>
                   <div>

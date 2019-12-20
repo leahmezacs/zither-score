@@ -76,26 +76,26 @@ class Reply extends Component {
     if (this.replyCreateSubscription) this.replyCreateSubscription.unsubscribe();
   }
 
-  handleChange = event => {
+  handleChange(event) {
     this.setState({
       content: event.target.value
     });
-  };
+  }
 
-  openReplyForm = () => {
+  openReplyForm() {
     this.setState({
       replyForm: true
     });
-  };
+  }
 
-  closeReplyForm = () => {
+  closeReplyForm() {
     this.setState({
       content: "",
       replyForm: false
     });
-  };
+  }
 
-  handleSubmit = async event => {
+  async handleSubmit(event){
     event.preventDefault();
     const replyCreated = await API.graphql(
       graphqlOperation(mutations.createReply, {
@@ -108,7 +108,7 @@ class Reply extends Component {
       })
     );
     return replyCreated;
-  };
+  }
 
   render() {
     const avatarURL = "http://api.adorable.io/avatar/50/";
@@ -134,7 +134,6 @@ class Reply extends Component {
                   multiline
                   autoComplete="on"
                   component="span"
-                  //   className={classes.input}
                   value={this.state.content}
                   onChange={this.handleChange}
                   inputProps={{ maxLength: 500 }}

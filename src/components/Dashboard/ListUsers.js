@@ -44,6 +44,7 @@ class ListUsers extends Component {
 
   async handleDeleteUser(user_id) {
     const cognitoUser = await Auth.currentAuthenticatedUser();
+    // eslint-disable-next-line no-undef
     const AWS = require("aws-sdk");
     AWS.config.region = "us-east-1"; // Region
 

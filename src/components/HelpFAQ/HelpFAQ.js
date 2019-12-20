@@ -5,7 +5,7 @@ class HelpFQA extends Component {
     return (
       <div>
         <header>
-          <div><h1 className="title">NumScore User's FAQ</h1></div>
+          <div><h1 className="title">NumScore User&apos;s FAQ</h1></div>
         </header>
         <div>
           <ul>

@@ -38,7 +38,7 @@ class Comment extends Component {
     this.commentDeletionSubscription = null;
   }
 
-  handleSubmit = async event => {
+  async handleSubmit(event) {
     event.preventDefault();
     const commentCreated = await API.graphql(
       graphqlOperation(mutations.createComment, {
@@ -51,7 +51,7 @@ class Comment extends Component {
       })
     );
     return commentCreated;
-  };
+  }
 
   async handleDeleteComment(commentID) {
     const deleteComment = await API.graphql(

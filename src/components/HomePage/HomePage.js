@@ -112,7 +112,7 @@ class HomePage extends Component {
                 </Col>
                 <Col>
                   <h4>JOB DONE</h4>
-                  <p>create and read others' scores now!</p>
+                  <p>create and read others&apos; scores now!</p>
                 </Col>
               </Row>
             </Container>
@@ -124,7 +124,7 @@ class HomePage extends Component {
           <div className="row">
             <div className="col-sm-5">
               <h5>
-                Contact us and we'll try to get back to you within 24 hours.
+                Contact us and we&apos;ll try to get back to you within 24 hours.
               </h5>
               <p> New York, US</p>
               <p> +1 (111) 222-3333</p>
@@ -138,7 +138,7 @@ class HomePage extends Component {
                     className="form-control"
                     name="name"
                     placeholder="Name"
-                    maxlength="32"
+                    maxLength="32"
                     pattern="[A-Za-z]{1,32}"
                     type="text"
                     value={this.state.name}

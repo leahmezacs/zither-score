@@ -17,7 +17,7 @@ class ScoreInput extends Component {
     this.handleNewLine = this.handleNewLine.bind(this);
   }
 
-  handleNewLine = event => {
+  handleNewLine(event) {
     event.preventDefault();
     if(this.state.line < 8){
       this.setState({
@@ -33,7 +33,7 @@ class ScoreInput extends Component {
         errorMessage: 'Maximum of 8 Lines'
       })
     }
-  };
+  }
 
   render() {
     return (

@@ -28,7 +28,7 @@ class Login extends Component {
         )
     }
     
-    handleAuthStateChange = async (state) => {
+    async handleAuthStateChange(state) {
         if (state === 'signedIn') {
             const cognitoUser = await Auth.currentAuthenticatedUser();
             localStorage.setItem('auth', cognitoUser.username);
@@ -43,6 +43,7 @@ class Login extends Component {
                     }
                 }));
                 this.props.onLogin(cognitoUser);
+                return createdUser;
             } 
             else {
                 this.props.onLogin(cognitoUser);
