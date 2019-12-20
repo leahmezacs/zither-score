@@ -19,11 +19,8 @@ class SingleScoreInput extends Component {
       line: false,
       doubleline: false,
       dot: null,
-      doubledot: null,
+      doubledot: null
     };
-
-    this.refList = [];
-    this.a = React.createRef();
 
     //console.log(this.props.score);
     this.handleChange = this.handleChange.bind(this);
@@ -38,15 +35,6 @@ class SingleScoreInput extends Component {
     this.noteUpdationSubscription = null;
     this.noteDeletionSubscription = null;
   }
-
-  createRef = () => {
-    const ls = this.state.ls;
-
-    for (let i = 0; i < ls.length; i++) {
-      this.refList[i] = React.createRef();
-    }
-    console.log("this is the refList: ", this.refList);
-  };
 
   async componentDidMount() {
     const result = await API.graphql(graphqlOperation(queries.listNotes, {
@@ -151,18 +139,16 @@ class SingleScoreInput extends Component {
   async handleSymbolChange(e) {
     e.preventDefault();
     try {
-      let { value, min, max } = e.target;
-      console.log(e.target.value);
       let result = e.target.name.replace(/, +/g, ",").split(",").map(Number);
+      
       this.setState({
-        line: value === "line" ? true : false,
-        doubleline: value === "doubleline" ? true : false,
-        dot: value === "dot-top" ? "TOP" : value ==="dot-bottom" ? "BOTTOM" : null,
-        doubledot: value === "doubledot-top" ? "TOP" : value ==="doubledot-bottom" ? "BOTTOM" : null,
+        line: e.target.value === "line",
+        doubleline: e.target.value === "doubleline",
+        dot: e.target.value === "dot-top" ? "TOP" : e.target.value === "dot-bottom" ? "BOTTOM" : null,
+        doubledot: e.target.value === "doubledot-top" ? "TOP" : e.target.value === "doubledot-bottom" ? "BOTTOM" : null,
         pos: result
       }, () => {
         const temp = this.state.notes;
-        //console.log(temp);
         let exist = false;
         let note_id = "";
         for (let i = 0; i < temp.length; ++i) {
@@ -241,7 +227,7 @@ class SingleScoreInput extends Component {
         line: this.state.line,
         doubleLine: this.state.doubleline,
         dot: this.state.dot,
-        doubleDot: this.state.doubledot,
+        doubleDot: this.state,
         position: this.state.pos
       }
     }));
@@ -261,7 +247,6 @@ class SingleScoreInput extends Component {
 
   componentDidUpdate() {
     if (this.state.notes) {
-      console.log("component update: ", this.state.notes);
       this.state.notes.forEach((note) => {
         if (note.position[0] < this.props.lineLength.length) {
           const pos = note.position.toString();
@@ -271,11 +256,11 @@ class SingleScoreInput extends Component {
 
           note.dot === "TOP" ? symbol_top.value = "dot-top" 
             : note.doubleDot === "TOP" ? symbol_top.value = "doubledot-top"
-            : note.dot === null && note.doubleDot === null ? symbol_top.value = null
+            : note.dot !== "TOP" && note.doubleDot !== "TOP" ? symbol_top.value = null
             : note.dot === "BOTTOM" ? symbol_bottom.value = "dot-bottom"
             : note.doubleDot === "BOTTOM" ? symbol_bottom.value = "doubledot-bottom" 
-            : note.line === true ? symbol_bottom.value = "line" 
-            : note.doubleLine === true ? symbol_bottom.value = "doubleline" 
+            : note.line ? symbol_bottom.value = "line" 
+            : note.doubleLine ? symbol_bottom.value = "doubleline" 
             : symbol_bottom.value = null;
 
           input.value = note.number;
