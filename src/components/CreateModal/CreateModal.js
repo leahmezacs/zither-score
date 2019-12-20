@@ -4,7 +4,6 @@ import { Button, Modal} from 'react-bootstrap';
 import { Auth, graphqlOperation, API } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 
-
 class CreateModal extends Component {
     constructor(props) {
       super(props);
@@ -59,7 +58,7 @@ class CreateModal extends Component {
       });      
     }
 
-    handleCreateScore = async () => {
+    async handleCreateScore(){
       const user = await Auth.currentAuthenticatedUser();
       const userId = user.username;
       const scoreCreated = await API.graphql(graphqlOperation(mutations.createScore, {
@@ -70,13 +69,12 @@ class CreateModal extends Component {
               scoreUserId: userId
           }
       }));
-      console.log(scoreCreated);
       return scoreCreated;
     }
 
     render(){
       return (
-        <>     
+        <>
           <Modal show={this.props.modal} onHide={this.props.handleShow}>
             <form onSubmit={this.handleSubmit}>
               <Modal.Header closeButton>
@@ -84,33 +82,53 @@ class CreateModal extends Component {
               </Modal.Header>
 
               <Modal.Body>
-
                 <div className="column">
                   <div className="form-group col-md-4">
                     <label>Name:</label>
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange} className="form-control" required/>                   
-                  </div>  
+                    <input
+                      type="text"
+                      value={this.state.name}
+                      onChange={this.handleNameChange}
+                      className="form-control"
+                      required
+                    />
+                  </div>
                   <div className="form-group col-md-4">
                     <label>Privacy:</label>
-                    <select value={this.state.status} onChange={this.handleStatusChange} className="browser-default custom-select">
-                          <option value="PRIVATE">Private</option>
-                          <option value="PUBLIC">Public</option>
+                    <select
+                      value={this.state.status}
+                      onChange={this.handleStatusChange}
+                      className="browser-default custom-select"
+                    >
+                      <option value="PRIVATE">Private</option>
+                      <option value="PUBLIC">Public</option>
                     </select>
                   </div>
                   <div className="form-group col-md-6">
                     <label>Category:</label>
-                    <select value={this.state.category} onChange={this.handleCategoryChange} className="browser-default custom-select">
-                          <option value="Folk">Folk</option>
-                          <option value="Contemporary">Contemporary</option>
-                          <option value="Classic">Classic</option>
+                    <select
+                      value={this.state.category}
+                      onChange={this.handleCategoryChange}
+                      className="browser-default custom-select"
+                    >
+                      <option value="Folk">Folk</option>
+                      <option value="Contemporary">Contemporary</option>
+                      <option value="Classic">Classic</option>
                     </select>
                   </div>
                 </div>
               </Modal.Body>
 
               <Modal.Footer>
-                <Button variant="danger" onClick={this.props.handleShow}>Cancel</Button>
-                <input type="submit" value="Submit" color="primary" className="btn btn-primary" />
+                <Button variant="danger" onClick={this.props.handleShow}>
+                  Cancel
+                </Button>
+                <input
+                  type="submit"
+                  value="Submit"
+                  color="primary"
+                  className="btn btn-primary"
+                />
               </Modal.Footer>
             </form>
           </Modal>
@@ -122,6 +140,6 @@ class CreateModal extends Component {
 
 export default withRouter(CreateModal);
 
-{/* this create modal is for creating the music score, it contains options with 
+/* this create modal is for creating the music score, it contains options with 
 public/private, and type of music score sheets.  the score sheet's name it required 
-to fill, if there is no name, the score sheet would not able to be created */}
+to fill, if there is no name, the score sheet would not able to be created */

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Container from "@material-ui/core/Container";
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -23,38 +22,35 @@ class Dashboard extends Component {
     this.handleFeedbacksClick = this.handleFeedbacksClick.bind(this);
   }
 
-  handleUsersClick = () => {
+  handleUsersClick() {
     this.setState({
       users: true,
       scores: false,
       feedbacks: false
-    })
-  };
+    });
+  }
 
-  handleScoresClick = () => {
+  handleScoresClick() {
     this.setState({
       users: false,
       scores: true,
       feedbacks: false
-    })
-  };
+    });
+  }
 
-  handleFeedbacksClick = () => {
+  handleFeedbacksClick() {
     this.setState({
       users: false,
       scores: false,
       feedbacks: true
-    })
-  };
+    });
+  }
 
   render() {
     return (
       <div className="dashboard-root">
         <br />
-        <Drawer
-          className="drawer"
-          variant="permanent"
-        >
+        <Drawer className="drawer" variant="permanent">
           <List>
             <ListItem button onClick={this.handleUsersClick}>
               <ListItemText primary="Users" />
@@ -68,9 +64,13 @@ class Dashboard extends Component {
           </List>
         </Drawer>
         <main className="content">
-          { this.state.users === true ? <ListUsers /> 
-            : this.state.scores === true ? <ListScores />
-            : <ListFeedbacks /> }
+          {this.state.users === true ? (
+            <ListUsers />
+          ) : this.state.scores === true ? (
+            <ListScores />
+          ) : (
+            <ListFeedbacks />
+          )}
         </main>
       </div>
     );

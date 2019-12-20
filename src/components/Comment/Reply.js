@@ -53,19 +53,24 @@ class Reply extends Component {
     this.setState({
       listReplys: replys.data.listReplys.items
     });
-    console.log(this.state.listReplys);
 
     this.replyCreateSubscription = API.graphql(graphqlOperation(subscriptions.onCreateReply)).subscribe({
         next: (replyData) => {
-            const createReply = replyData.value.data.onCreateReply;
-            const updatedReplies = [...this.state.listReplys, createReply];
+           console.log(replyData)
+            const createReply = replyData.value.data.onCreateReply
+            let updatedReplies = []
+            if(this.state.listReplys[0].commentId === createReply.commentId){
+              updatedReplies = [...this.state.listReplys, createReply];
+            }
+            else {
+              updatedReplies = [...this.state.listReplys]
+            }
             const uniqueReplies = Array.from(new Set(updatedReplies.map(reply => reply.id)))
               .map(id => {
                 return updatedReplies.find(reply => reply.id === id)
               });
 
             const updatedUniqueReplies = [...uniqueReplies];
-            console.log(updatedUniqueReplies)
             this.setState({
               content: "",
               listReplys: updatedUniqueReplies
@@ -78,28 +83,27 @@ class Reply extends Component {
     if (this.replyCreateSubscription) this.replyCreateSubscription.unsubscribe();
   }
 
-  handleChange = event => {
+  handleChange(event) {
     this.setState({
       content: event.target.value
     });
-  };
+  }
 
-  openReplyForm = () => {
+  openReplyForm() {
     this.setState({
       replyForm: true
     });
-  };
+  }
 
-  closeReplyForm = () => {
+  closeReplyForm() {
     this.setState({
       content: "",
       replyForm: false
     });
-  };
+  }
 
-  handleSubmit = async event => {
+  async handleSubmit(event){
     event.preventDefault();
-    console.log(this.props.commentID);
     const replyCreated = await API.graphql(
       graphqlOperation(mutations.createReply, {
         input: {
@@ -110,9 +114,8 @@ class Reply extends Component {
         }
       })
     );
-    console.log(replyCreated);
-    // window.location.reload();
-  };
+    return replyCreated;
+  }
 
   render() {
     const avatarURL = "http://api.adorable.io/avatar/50/";
@@ -138,7 +141,6 @@ class Reply extends Component {
                   multiline
                   autoComplete="on"
                   component="span"
-                  //   className={classes.input}
                   value={this.state.content}
                   onChange={this.handleChange}
                   inputProps={{ maxLength: 500 }}
