@@ -43,14 +43,14 @@ class SingleScoreInput extends Component {
     this.noteDeletionSubscription = null;
   }
 
-  createRef = () => {
+  createRef() {
     const ls = this.state.ls;
 
     for (let i = 0; i < ls.length; i++) {
       this.refList[i] = React.createRef();
     }
     console.log("this is the refList: ", this.refList);
-  };
+  }
 
   async componentDidMount() {
     const result = await API.graphql(graphqlOperation(queries.listNotes, {
@@ -150,7 +150,7 @@ class SingleScoreInput extends Component {
     catch (e) {
       alert(e.message);
     }
-  };
+  }
 
   async handleUpperSymbolChange(e){
     e.preventDefault(); 
@@ -190,13 +190,12 @@ class SingleScoreInput extends Component {
     catch (e) {
       alert(e.message);
     }
-
   }
 
   async handleSymbolChange(e) {
     e.preventDefault(); 
     try {
-      let { value, min, max } = e.target;
+      let { value } = e.target;
       console.log(e.target.value);
       let result = e.target.name.replace(/, +/g, ",").split(",").map(Number);
       this.setState({
@@ -230,7 +229,7 @@ class SingleScoreInput extends Component {
     catch (e) {
       alert(e.message);
     }
-  };
+  }
 
   async handleCreateNoteNumber() {
     console.log(this.state.num);
@@ -354,6 +353,7 @@ class SingleScoreInput extends Component {
         id: id
       }
     }));
+    return deletedNote;
   }
 
   componentDidUpdate() {
@@ -529,7 +529,7 @@ class SingleScoreInput extends Component {
       </Container>
     ));
   }
-};
+}
 
 export default SingleScoreInput;
 
