@@ -14,7 +14,7 @@ class Tutorials extends Component {
                 className="imagestyle2"
                 src="https://i.imgur.com/5JETsNz.png"
                 title="source: imgur.com"
-                alt=""
+                alt="tutorial for how to use the app"
                 thumbnail
               />
             </div>
@@ -33,7 +33,7 @@ class Tutorials extends Component {
                 className="imagestyle2"
                 src="https://i.imgur.com/xjRGk44.png"
                 title="source: imgur.com"
-                alt=""
+                alt="tutorial for how to use the app"
               />
             </div>
             <Carousel.Caption className="carouselstyle">
@@ -50,7 +50,7 @@ class Tutorials extends Component {
                 className="imagestyle2"
                 src="https://i.imgur.com/Z7xQ3j5.png"
                 title="source: imgur.com"
-                alt=""
+                alt="tutorial for how to use the app"
               />
             </div>
             <Carousel.Caption className="carouselstyle">
@@ -67,7 +67,7 @@ class Tutorials extends Component {
                 className="imagestyle2"
                 src="https://i.imgur.com/L86Uyab.png"
                 title="source: imgur.com"
-                alt=""
+                alt="tutorial for how to use the app"
               />
             </div>
             <Carousel.Caption className="carouselstyle">
@@ -84,7 +84,7 @@ class Tutorials extends Component {
                 className="imagestyle2"
                 src="https://i.imgur.com/ZkUXOrB.png"
                 title="source: imgur.com"
-                alt=""
+                alt="tutorial for how to use the app"
               />
             </div>
             <Carousel.Caption className="carouselstyle">
@@ -101,14 +101,14 @@ class Tutorials extends Component {
                 className="imagestyle2"
                 src="https://i.imgur.com/bnctBjn.png"
                 title="source: imgur.com"
-                alt=""
+                alt="tutorial for how to use the app"
               />
             </div>
             <Carousel.Caption className="carouselstyle">
               <h3>
                 <span className="spanstyle2">
                   On edit page, click <b className="bstyle2">plus sign&nbsp;</b>
-                  to reveal a new line.<b class="bstyle2"></b>
+                  to reveal a new line.<b className="bstyle2"></b>
                 </span>
               </h3>
             </Carousel.Caption>
@@ -119,7 +119,7 @@ class Tutorials extends Component {
                 className="imagestyle2"
                 src="https://i.imgur.com/hGKtL6Z.png"
                 title="source: imgur.com"
-                alt=""
+                alt="tutorial for how to use the app"
               />
             </div>
             <Carousel.Caption className="carouselstyle">
