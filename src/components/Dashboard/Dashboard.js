@@ -22,29 +22,29 @@ class Dashboard extends Component {
     this.handleFeedbacksClick = this.handleFeedbacksClick.bind(this);
   }
 
-  handleUsersClick = () => {
+  handleUsersClick() {
     this.setState({
       users: true,
       scores: false,
       feedbacks: false
     });
-  };
+  }
 
-  handleScoresClick = () => {
+  handleScoresClick() {
     this.setState({
       users: false,
       scores: true,
       feedbacks: false
     });
-  };
+  }
 
-  handleFeedbacksClick = () => {
+  handleFeedbacksClick() {
     this.setState({
       users: false,
       scores: false,
       feedbacks: true
     });
-  };
+  }
 
   render() {
     return (

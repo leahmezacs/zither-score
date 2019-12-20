@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Button, Modal} from 'react-bootstrap';
