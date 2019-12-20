@@ -29,13 +29,13 @@ class App extends Component {
         });
     }
 
-    updateCurrentUser = (user) => {
+    updateCurrentUser(user) {
         this.setState({
             currentUser: user
         })
     }
 
-    onSignOut = async () => {
+    async onSignOut() {
         await Auth.signOut();
         this.setState({
             currentUser: null
@@ -56,7 +56,7 @@ class App extends Component {
                     <PrivateRoute exact path="/Settings" component={Settings}/>
                     <PrivateRoute exact path="/Settings/ChangePassword" component={ChangePassword}/>
                     <PrivateRoute exact path="/Library" component={Library}/>
-                    <Route exact path="/Discovery" component={Discovery}/>
+                    <PrivateRoute exact path="/Discovery" component={Discovery}/>
                     <PrivateRoute exact path="/EditScore" component={EditScore}/>
                     <PrivateRoute exact path="/ScoreInput" component={SingleScore}/>
                     <Route exact path="/ViewScore" component={ViewScore}/> 
