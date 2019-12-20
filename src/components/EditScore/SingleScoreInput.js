@@ -149,9 +149,9 @@ class SingleScoreInput extends Component {
         doubledot: value === "doubledot-top" ? "TOP" : null,
         pos: result
       }, () => {
-        console.log(this.state.dot)
+        console.log("dot: ", this.state.dot);
+
         const temp = this.state.notes;
-        //console.log(temp);
         let exist = false;
         let note_id = "";
         for (let i = 0; i < temp.length; ++i) {
@@ -265,12 +265,26 @@ class SingleScoreInput extends Component {
       graphqlOperation(queries.getNote, {
         id: id
       }))
+
+    let note = getNote.data.getNote;
+    let dot = this.state.dot;
+    let doubledot = this.state.doubledot;
+
+    if(note.doubleDot === "BOTTOM" && this.state.dot) {
+      doubledot = null;
+      dot = this.state.dot;
+    }
+
+    if(note.dot === "BOTTOM" && this.state.doubledot) {
+      doubledot = this.state.doubledot;
+      dot = null;
+    } 
     
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
       input: {
         id: id,
-        dot: this.state.dot,
-        doubleDot: this.state.doubledot,
+        dot: dot,
+        doubleDot: doubledot,
         position: this.state.pos
       }
     }));
@@ -284,11 +298,19 @@ class SingleScoreInput extends Component {
       }))
     
     let note = getNote.data.getNote;
-    let dot = "";
-    let doubledot = "";
+    let dot = note.dot;
+    let doubledot = note.doubledot;
 
-    this.state.dot ? dot = this.state.dot : dot = note.dot;
-    this.state.doubledot ? doubledot = this.state.doubledot : doubledot = note.doubledot;
+    if(note.doubleDot === "TOP" && this.state.dot) {
+      doubledot = null;
+      dot = this.state.dot;
+    }
+
+    console.log(this.state.doubledot);
+    if(note.dot === "TOP" && this.state.doubledot) {
+      doubledot = this.state.doubledot;
+      dot = null;
+    } 
     
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
       input: {
