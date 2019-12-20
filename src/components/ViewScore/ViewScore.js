@@ -33,7 +33,7 @@ class ViewScore extends Component {
   }
 
   // For fetching rating in the comment
-  fetchRating = async event => {
+  async fetchRating() {
     let tempRate = 0;
     const comments = await API.graphql(
       graphqlOperation(queries.listComments, {
@@ -52,7 +52,7 @@ class ViewScore extends Component {
     this.setState({
       avgRate: tempRate / this.state.listComments.length
     });
-  };
+  }
 
   async componentDidMount() {
     const user = await Auth.currentAuthenticatedUser();

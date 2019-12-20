@@ -16,13 +16,13 @@ class NavBar extends Component {
     this.handleShow = this.handleShow.bind(this);
   }
 
-  handleShow = () => {
+  handleShow() {
     this.setState(prevState => {
       return {
         modal: !prevState.modal
       };
     });
-  };
+  }
 
   render() {
     if (this.props.loggedInUser && this.props.location.pathname === "/Login") {
