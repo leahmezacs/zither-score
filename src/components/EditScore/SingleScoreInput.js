@@ -27,10 +27,10 @@ class SingleScoreInput extends Component {
     this.handleCreateNoteNumber = this.handleCreateNoteNumber.bind(this);
     this.handleCreateNoteSymbol = this.handleCreateNoteSymbol.bind(this);
     this.handleUpdateNoteNumber = this.handleUpdateNoteNumber.bind(this);
-    this.handleUpdateNoteSymbol = this.handleUpdateNoteSymbol.bind(this);
+    this.handleUpdateLowerNoteSymbol = this.handleUpdateLowerNoteSymbol.bind(this);
     this.handleUpdateUpperNoteSymbol = this.handleUpdateUpperNoteSymbol.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
-    this.handleSymbolChange = this.handleSymbolChange.bind(this);
+    this.handleLowerSymbolChange = this.handleLowerSymbolChange.bind(this);
     this.handleUpperSymbolChange = this.handleUpperSymbolChange.bind(this);
 
     this.noteCreationSubscription = null;
@@ -145,12 +145,8 @@ class SingleScoreInput extends Component {
       console.log(value);
       let result = e.target.name.replace(/, +/g, ",").split(",").map(Number);
       this.setState({
-        // line: value === "line" ? true : false,
-        // doubleline: value === "doubleline" ? true : false,
         dot: value === "dot-top" ? "TOP" : null,
         doubledot: value === "doubledot-top" ? "TOP" : null,
-        // dot: value === "dot-top" ? "TOP" : value ==="dot-bottom" ? "BOTTOM" : null,
-        // doubledot: value === "doubledot-top" ? "TOP" : value ==="doubledot-bottom" ? "BOTTOM" : null,
         pos: result
       }, () => {
         console.log(this.state.dot)
@@ -178,7 +174,7 @@ class SingleScoreInput extends Component {
     }
   }
 
-  async handleSymbolChange(e) {
+  async handleLowerSymbolChange(e) {
     e.preventDefault(); 
     try {
       let { value } = e.target;
@@ -190,8 +186,6 @@ class SingleScoreInput extends Component {
         doubleline: value === "doubleline" ? true : false,
         dot: value === "dot-bottom" ? "BOTTOM" : null,
         doubledot: value === "doubledot-bottom" ? "BOTTOM" : null,
-        // dot: value === "dot-top" ? "TOP" : value ==="dot-bottom" ? "BOTTOM" : null,
-        // doubledot: value === "doubledot-top" ? "TOP" : value ==="doubledot-bottom" ? "BOTTOM" : null,
         pos: result
       }, () => {
         const temp = this.state.notes;
@@ -205,7 +199,7 @@ class SingleScoreInput extends Component {
         }
         console.log(exist);
         if (exist) {
-          this.handleUpdateNoteSymbol(note_id);
+          this.handleUpdateLowerNoteSymbol(note_id);
         }
         else {
           this.handleCreateNoteSymbol();
@@ -271,59 +265,38 @@ class SingleScoreInput extends Component {
       graphqlOperation(queries.getNote, {
         id: id
       }))
-    console.log(getNote);
-    console.log(getNote.data.getNote.number)
-
-    this.setState({
-      line: getNote.data.getNote.line,
-      doubleLine: getNote.data.getNote.doubleline,
-    })
-    console.log('------------')
-    console.log(getNote.data.getNote.line)
-    console.log(getNote.data.getNote.doubleLine)
-    console.log(this.state.line)
-    console.log(this.state.doubleLine)
     
-
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
       input: {
         id: id,
-        line: this.state.line,
-        doubleLine: this.state.doubleline,
         dot: this.state.dot,
         doubleDot: this.state.doubledot,
         position: this.state.pos
       }
     }));
-    this.setState({
-      note: updatedNote
-    });
     console.log("updated: ", updatedNote.data.updateNote);
   }
 
-  async handleUpdateNoteSymbol(id) {
+  async handleUpdateLowerNoteSymbol(id) {
     const getNote = await API.graphql(
       graphqlOperation(queries.getNote, {
         id: id
       }))
-    console.log(getNote);
-    console.log(getNote.data.getNote.number)
-
-    if (!this.state.dot && !this.state.doubledot){
-      this.setState({
-        dot: getNote.data.getNote.dot,
-        doubledot: getNote.data.getNote.doubleDot,
-      })
-    }
     
+    let note = getNote.data.getNote;
+    let dot = "";
+    let doubledot = "";
 
+    this.state.dot ? dot = this.state.dot : dot = note.dot;
+    this.state.doubledot ? doubledot = this.state.doubledot : doubledot = note.doubledot;
+    
     const updatedNote = await API.graphql(graphqlOperation(mutations.updateNote, {
       input: {
         id: id,
         line: this.state.line,
         doubleLine: this.state.doubleline,
-        dot: this.state.dot,
-        doubleDot: this.state,
+        dot: dot,
+        doubleDot: doubledot,
         position: this.state.pos
       }
     }));
@@ -353,8 +326,9 @@ class SingleScoreInput extends Component {
 
           note.dot === "TOP" ? symbol_top.value = "dot-top" 
             : note.doubleDot === "TOP" ? symbol_top.value = "doubledot-top"
-            : note.dot !== "TOP" && note.doubleDot !== "TOP" ? symbol_top.value = null
-            : note.dot === "BOTTOM" ? symbol_bottom.value = "dot-bottom"
+            : symbol_top.value = null;
+            
+          note.dot === "BOTTOM" ? symbol_bottom.value = "dot-bottom"
             : note.doubleDot === "BOTTOM" ? symbol_bottom.value = "doubledot-bottom" 
             : note.line ? symbol_bottom.value = "line" 
             : note.doubleLine ? symbol_bottom.value = "doubleline" 
@@ -411,7 +385,7 @@ class SingleScoreInput extends Component {
                           onChange={this.handleChange}
                         />      
                       </span>
-                      <select name={[row, column, 0]} onChange={this.handleSymbolChange} className="select">
+                      <select name={[row, column, 0]} onChange={this.handleLowerSymbolChange} className="select">
                           <option>   </option>
                           <option value="dot-bottom" className="option"> . </option>
                           <option value="doubledot-bottom" className="option"> : </option>
@@ -441,7 +415,7 @@ class SingleScoreInput extends Component {
                           onChange={this.handleChange}
                         />
                       </span>
-                      <select name={[row, column, 1]} onChange={this.handleSymbolChange} className="select">
+                      <select name={[row, column, 1]} onChange={this.handleLowerSymbolChange} className="select">
                           <option>   </option>
                           <option value="dot-bottom" className="option"> . </option>
                           <option value="doubledot-bottom" className="option"> : </option>
@@ -469,7 +443,7 @@ class SingleScoreInput extends Component {
                           onChange={this.handleChange}
                         />
                       </span>
-                      <select name={[row, column, 2]} onChange={this.handleSymbolChange} className="select">
+                      <select name={[row, column, 2]} onChange={this.handleLowerSymbolChange} className="select">
                           <option>   </option>
                           <option value="dot-bottom" className="option"> . </option>
                           <option value="doubledot-bottom" className="option"> : </option>
@@ -497,7 +471,7 @@ class SingleScoreInput extends Component {
                           onChange={this.handleChange}
                         />
                       </span>
-                      <select name={[row, column, 3]} onChange={this.handleSymbolChange} className="select">
+                      <select name={[row, column, 3]} onChange={this.handleLowerSymbolChange} className="select">
                           <option>   </option>
                           <option value="dot-bottom" className="option"> . </option>
                           <option value="doubledot-bottom" className="option"> : </option>
